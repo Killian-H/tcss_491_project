@@ -2,7 +2,7 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
-ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_1");
+ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_1.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
@@ -10,5 +10,9 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.init(ctx);
 
+	gameEngine.addEntity(new masterchief(gameEngine));
+
 	gameEngine.start();
+
+	
 });
