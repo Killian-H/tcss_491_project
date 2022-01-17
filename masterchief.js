@@ -25,8 +25,10 @@ class masterchief {
         this.state = 0; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
 
-        this.test = new Animator(this.DEAD_LEFT, 30, 1, 50, 43, 4, 0.5, false, true);
+        this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
+        this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
         this.armRotation = 0;
+        this.orientation = "right";
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
         this.armImg = this.ARMS_DEFAULT;
@@ -103,20 +105,46 @@ class masterchief {
                 this.game.mouse.x - this.x, 
                 - (this.game.mouse.y - this.y)
             ) - 1.5708;
+
+            console.log(this.armRotation);
+            if(this.armRotation > -1.5037 && this.armRotation < 1.4825) {
+                this.orientation = "right";
+                console.log("Orientation right");
+            } else {
+                this.orientation = "left";
+                console.log("Orientation left");
+            }
         }
     };
 
     draw(ctx) {
-        // this.animator.drawFrame(this.game.clockTick, ctx, 100, 100);
-        
-        this.test.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT, this.Y_DEFAULT, this.SCALE);
+
+        ctx.save();
+        if(this.orientation == "left") {
+            this.left.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+        } else {
+            this.right.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT - 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+        }
+        ctx.restore();
+
         ctx.save();
         ctx.translate(
             this.x,
             this.y
         );
-        ctx.rotate(this.armRotation);
-        // ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2);
+        if (this.orientation == "left") {
+            ctx.scale(-1,1);
+            ctx.translate(
+                -27.5,
+                0
+            );
+            ctx.rotate(-this.armRotation + 2 *1.5708);
+            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+
+        } else {
+            ctx.rotate(this.armRotation);
+            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+        }
         ctx.restore();
     };
 
