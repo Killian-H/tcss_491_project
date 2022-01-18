@@ -30,7 +30,6 @@ class masterchief {
         this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
         this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
         this.armRotation = 0;
-        this.orientation = "right";
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
         this.armImg = this.ARMS_DEFAULT;
@@ -113,10 +112,10 @@ class masterchief {
 
             //console.log(this.armRotation);
             if(this.armRotation > -1.5037 && this.armRotation < 1.4825) {
-                this.orientation = "right";
+                this.facing = 0;
                 //console.log("Orientation right");
             } else {
-                this.orientation = "left";
+                this.facing = 1;
                 //console.log("Orientation left");
             }
         }
@@ -129,12 +128,7 @@ class masterchief {
     draw(ctx) {
 
         ctx.save();
-        if(this.orientation == "left") {
-            this.walkright.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
-            this.walkleft.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
-        } else {
-            this.walkright.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
-        }
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
         ctx.restore();
 
         ctx.save();
@@ -142,7 +136,7 @@ class masterchief {
             this.x,
             this.y
         );
-        if (this.orientation == "left") {
+        if (this.facing == 1) {
             ctx.scale(-1,1);
             ctx.translate(
                 -27.5,
@@ -152,6 +146,7 @@ class masterchief {
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
 
         } else {
+            ctx.translate(-10.0, 0);
             ctx.rotate(this.armRotation);
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
         }
