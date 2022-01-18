@@ -51,7 +51,7 @@ class masterchief {
 
         // idle animation for standing = 0
         // facing right = 0
-        this.animations[0][0] = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
+        this.animations[0][0] = new Animator(this.IDLE_RIGHT, -4, 0, 30, 43, 1, 1, false, true);
 
         // idle animation for standing = 0
         // facing left = 1
@@ -63,7 +63,7 @@ class masterchief {
 
         // walking animation = 1
         // facing left = 1
-        this.animations[1][1] = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, 0.1, false, true);
+        this.animations[1][1] = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, 0.1, true, true);
 
         // idle animation for crouching = 2
         // facing right = 0
@@ -129,6 +129,7 @@ class masterchief {
 
         ctx.save();
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+            this.walkright.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
         ctx.restore();
 
         ctx.save();
@@ -146,7 +147,6 @@ class masterchief {
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
 
         } else {
-            ctx.translate(-10.0, 0);
             ctx.rotate(this.armRotation);
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
         }
