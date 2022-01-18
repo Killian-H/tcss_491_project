@@ -25,11 +25,15 @@ class masterchief {
         this.state = 0; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
 
+        this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
+        this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
+        this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
+        this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
         this.armRotation = 0;
-        this.orientation = "right";
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
         this.armImg = this.ARMS_DEFAULT;
+        this.velocity = { x: 0, y: 0};
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.animations = [];
@@ -50,7 +54,7 @@ class masterchief {
 
         // idle animation for standing = 0
         // facing right = 0
-        this.animations[0][0] = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
+        this.animations[0][0] = new Animator(this.IDLE_RIGHT, -4, 0, 30, 43, 1, 1, false, true);
 
         // idle animation for standing = 0
         // facing left = 1
@@ -58,11 +62,11 @@ class masterchief {
 
         // walking animation = 1
         // facing right = 0
-        this.animations[1][0] = new Animator(this.WALK_RIGHT, 0, 2, 41, 41, 8, 0.1, false, true);
+        this.animations[1][0] = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, 0.1, false, true);
 
         // walking animation = 1
         // facing left = 1
-        this.animations[1][1] = new Animator(this.WALK_LEFT, 0, 2, 42, 42, 8, 0.1, true, true);
+        this.animations[1][1] = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, 0.1, true, true);
 
         // idle animation for crouching = 2
         // facing right = 0
@@ -100,6 +104,8 @@ class masterchief {
     };
 
     update() {
+        const TICK = this.game.clockTick;
+        const walk = 5; //test
 
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
@@ -109,23 +115,23 @@ class masterchief {
 
             //console.log(this.armRotation);
             if(this.armRotation > -1.5037 && this.armRotation < 1.4825) {
-                this.orientation = "right";
+                this.facing = 0;
                 //console.log("Orientation right");
             } else {
-                this.orientation = "left";
+                this.facing = 1;
                 //console.log("Orientation left");
             }
+        }
+
+        if(this.game.right) {
+            this.velocity.x = walk;
         }
     };
 
     draw(ctx) {
 
         ctx.save();
-        if(this.orientation == "left") {
-            this.leftAnim.drawFrame(this.game.clockTick, ctx, this.x- 2.5* 7.5, this.y - 7.5, this.SCALE);
-        } else {
-            this.rightAnim.drawFrame(this.game.clockTick, ctx, this.x - 7.5, this.y - 7.5, this.SCALE);
-        }
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
         ctx.restore();
 
         ctx.save();
@@ -133,7 +139,7 @@ class masterchief {
             this.x,
             this.y
         );
-        if (this.orientation == "left") {
+        if (this.facing == 1) {
             ctx.scale(-1,1);
             ctx.translate(
                 -27.5,
