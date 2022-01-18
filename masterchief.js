@@ -129,7 +129,6 @@ class masterchief {
 
         ctx.save();
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
-            this.walkright.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
         ctx.restore();
 
         ctx.save();
