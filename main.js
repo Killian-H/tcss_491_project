@@ -25,6 +25,7 @@ ASSET_MANAGER.downloadAll(() => {
 	
 	gameEngine.addEntity(new masterchief(gameEngine));
 
+	new SceneManager(gameEngine);
 	gameEngine.start();
 
 	

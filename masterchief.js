@@ -32,6 +32,7 @@ class masterchief {
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
         this.armImg = this.ARMS_DEFAULT;
+        this.velocity = { x: 0, y: 0};
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.animations = [];
@@ -99,6 +100,8 @@ class masterchief {
     };
 
     update() {
+        const TICK = this.game.clockTick;
+        const walk = 5; //test
 
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
@@ -106,14 +109,18 @@ class masterchief {
                 - (this.game.mouse.y - this.y)
             ) - 1.5708;
 
-            console.log(this.armRotation);
+            //console.log(this.armRotation);
             if(this.armRotation > -1.5037 && this.armRotation < 1.4825) {
                 this.orientation = "right";
-                console.log("Orientation right");
+                //console.log("Orientation right");
             } else {
                 this.orientation = "left";
-                console.log("Orientation left");
+                //console.log("Orientation left");
             }
+        }
+
+        if(this.game.right) {
+            this.velocity.x = walk;
         }
     };
 
