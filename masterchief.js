@@ -27,6 +27,8 @@ class masterchief {
 
         this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
         this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
+        this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
+        this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
         this.armRotation = 0;
         this.orientation = "right";
         this.x = this.X_DEFAULT;
@@ -58,11 +60,11 @@ class masterchief {
 
         // walking animation = 1
         // facing right = 0
-        this.animations[1][0] = new Animator(this.WALK_RIGHT, 0, 2, 41, 41, 8, 0.1, false, true);
+        this.animations[1][0] = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, 0.1, false, true);
 
         // walking animation = 1
         // facing left = 1
-        this.animations[1][1] = new Animator(this.WALK_LEFT, 0, 2, 42, 42, 8, 0.1, true, true);
+        this.animations[1][1] = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, 0.1, false, true);
 
         // idle animation for crouching = 2
         // facing right = 0
@@ -128,9 +130,10 @@ class masterchief {
 
         ctx.save();
         if(this.orientation == "left") {
-            this.left.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+            this.walkright.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+            this.walkleft.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
         } else {
-            this.right.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT - 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+            this.walkright.drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
         }
         ctx.restore();
 
