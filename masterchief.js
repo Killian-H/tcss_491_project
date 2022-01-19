@@ -22,7 +22,7 @@ class masterchief {
     constructor(game) {
         this.game = game;
         this.facing = 0; // 0 = right, 1 = left
-        this.state = 0; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
+        this.state = 1; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
 
         this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
@@ -36,6 +36,8 @@ class masterchief {
         this.velocity = { x: 0, y: 0};
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
+        // this.updateBoundBox();
+
         this.animations = [];
         this.loadAnimations();
 
@@ -126,7 +128,68 @@ class masterchief {
         if(this.game.right) {
             this.velocity.x = walk;
         }
+
+        // CODE FOR UPDATING CHIEFS COORDINATES GOES HERE
+
+        var that = this;
+        this.game.entities.forEach(function (entity) {
+            if (entity.BB && that.BB.collide(entity.BB)) {
+                if (that.velocity.y > 0) { // Traveling down.
+                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
+                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.bottom <= entity.BB.top) {
+                            if (that.velocity.y > 0) {
+                                that.velocity.y === 0;
+                            }
+                            if (that.velocity.x === 0) {
+                                that.state = 0;
+                            }
+                        }
+                        that.updateBoundBox();
+                } 
+                if (that.velocity.y < 0) { // traveling up.
+                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
+                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.top >= entity.BB.bottom) {
+                            if (that.velocity.y < 0) {
+                                that.velocity.y === 0;
+                            }
+                            if (that.velocity.x === 0) {
+                                that.state = 0;
+                            }
+                        }
+                        that.updateBoundBox();
+                }
+                if (that.velocity.x > 0) { // traveling right.
+                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
+                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.right >= entity.BB.left) {
+                            if (that.velocity.x > 0) {
+                                that.velocity.x === 0;
+                            }
+                            if (that.velocity.y === 0) {
+                                that.state = 0;
+                            }
+                        }
+                        that.updateBoundBox();
+                }
+                if (that.velocity.x < 0) { // traveling left.
+                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
+                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.left <= entity.BB.right) {
+                            if (that.velocity.x < 0) {
+                                that.velocity.x === 0;
+                            }
+                            if (that.velocity.y === 0) {
+                                that.state = 0;
+                            }
+                        }
+                        that.updateBoundBox();
+                }
+            }
+        })
     };
+
+    updateBoundBox() {
+        this.lastBB = this.BB;
+        this.BB = new BoundingBox(this.X_DEFAULT, THIS.Y_DEFAULT, 30, 100);
+    }
 
     draw(ctx) {
 
