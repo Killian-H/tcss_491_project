@@ -3,6 +3,18 @@ class masterchief {
     X_DEFAULT = 250;
     Y_DEFAULT = 250;
     SCALE = 2;
+
+    LEFT = 1;
+    RIGHT = 0;
+
+    IDLE = 0;
+    WALK = 1;
+    CROUCH = 2;
+    CROUCH_WALK = 3;
+    MELEE = 4;
+    DEAD = 5;
+
+
     ARMS_DEFAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png");
     IDLE_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_right.png");
     IDLE_LEFT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_left.png");    
@@ -117,12 +129,18 @@ class masterchief {
 
             //console.log(this.armRotation);
             if(this.armRotation > -1.5037 && this.armRotation < 1.4825) {
-                this.facing = 0;
+                this.facing = this.RIGHT;
                 //console.log("Orientation right");
             } else {
-                this.facing = 1;
+                this.facing = this.LEFT;
                 //console.log("Orientation left");
             }
+        }
+
+        if (this.game.right || this.game.left || this.game.up || this.game.down) {
+            this.state = this.WALK;
+        } else {
+            this.state = this.IDLE;
         }
 
         if(this.game.right) {
