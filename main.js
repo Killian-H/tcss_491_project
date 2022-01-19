@@ -17,6 +17,7 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_melee_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_melee_left.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_left.png");
+ASSET_MANAGER.queueDownload("./sprites/bullet.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

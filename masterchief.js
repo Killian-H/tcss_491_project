@@ -46,6 +46,9 @@ class masterchief {
         this.y = this.Y_DEFAULT;
         this.armImg = this.ARMS_DEFAULT;
         this.velocity = { x: 0, y: 0};
+        this.elapsedtime = 0;
+        this.firerate = .1;
+        this.clickcount = 0;
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         // this.updateBoundBox();
@@ -135,6 +138,15 @@ class masterchief {
                 this.facing = this.LEFT;
                 //console.log("Orientation left");
             }
+        }
+
+        this.elapsedtime += this.game.clockTick;
+        if(this.game.click != null && this.elapsedtime > this.firerate) {
+            console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
+            this.elapsedtime = 0;
+            this.clickcount = 1;
+            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y));
+            this.game.click = null
         }
 
         if (this.game.right || this.game.left || this.game.up || this.game.down) {
