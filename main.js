@@ -2,6 +2,7 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
+ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_1.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_left.png");

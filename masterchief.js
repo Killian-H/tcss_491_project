@@ -1,7 +1,7 @@
 class masterchief {
 
-    X_DEFAULT = 250;
-    Y_DEFAULT = 250;
+    X_DEFAULT = 480;
+    Y_DEFAULT = 240;
     SCALE = 2;
 
     LEFT = 1;
@@ -212,9 +212,10 @@ class masterchief {
     draw(ctx) {
 
         ctx.save();
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE);
         ctx.restore();
-
+        //- 2.5* 7.5
+        //-7.5
         ctx.save();
         ctx.translate(
             this.x,
