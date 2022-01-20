@@ -1,10 +1,17 @@
 class SceneManager {
     constructor(game) {
         this.game = game;
+        this.game.camara = this;
+        this.x = 0;
+        this.y = 0;
+        this.masterchief = new masterchief(game)
     }
 
     update() {
         PARAMS.DEBUG = document.getElementById("debug").checked;
+        let midpoint = PARAMS.CANVAS_WIDTH/2;
+
+        this.x = this.masterchief.x - midpoint;
     }
     draw(ctx) {
         if (PARAMS.DEBUG) {

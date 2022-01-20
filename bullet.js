@@ -9,7 +9,7 @@ class bullet {
         var dist = Math.sqrt(pow((clickX-x),2)+pow((clickY-y),2));
         //var dist = math.distance()
         console.log(dist);
-        this.maxSpeed  = 200;
+        this.maxSpeed  = 400;
         //this.velocity = {x: clickX, y: clickY};
         this.velocity = {x: (this.clickX - this.x) / dist * this.maxSpeed, y: (this.clickY - this.y) / dist * this.maxSpeed};
         this.chache = [];
