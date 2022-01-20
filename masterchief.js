@@ -3,10 +3,8 @@ class masterchief {
     X_DEFAULT = 480;
     Y_DEFAULT = 240;
     SCALE = 2;
-
     LEFT = 1;
     RIGHT = 0;
-
     IDLE = 0;
     WALK = 1;
     CROUCH = 2;
@@ -15,7 +13,7 @@ class masterchief {
     DEAD = 5;
 
 
-    ARMS_DEFAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png");
+    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
     IDLE_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_right.png");
     IDLE_LEFT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_left.png");    
     WALK_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_walk_right.png");
@@ -46,7 +44,7 @@ class masterchief {
         this.armRotation = 0;
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
-        this.armImg = this.ARMS_DEFAULT;
+        this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
         this.firerate = .1;
@@ -64,7 +62,7 @@ class masterchief {
     };
 
     loadAnimations() {
-        for (var i = 0; i < 6; i++) { // five states
+        for (var i = 0; i < 6; i++) { // five statesa
             this.animations.push([]);
             for (var j = 0; j < 2; j++) { // two directions
                 this.animations[i].push([]);
@@ -148,7 +146,7 @@ class masterchief {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y));
-            this.game.click = null
+            //this.game.click = null
         }
 
         if (this.game.right) {
