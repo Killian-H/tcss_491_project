@@ -3,10 +3,8 @@ class masterchief {
     X_DEFAULT = 480;
     Y_DEFAULT = 240;
     SCALE = 2;
-
     LEFT = 1;
     RIGHT = 0;
-
     IDLE = 0;
     WALK = 1;
     CROUCH = 2;
@@ -37,10 +35,6 @@ class masterchief {
         this.state = 1; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
 
-        this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
-        this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
-        this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
-        this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
         this.armRotation = 0;
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
@@ -62,7 +56,7 @@ class masterchief {
     };
 
     loadAnimations() {
-        for (var i = 0; i < 6; i++) { // five states
+        for (var i = 0; i < 6; i++) { // five statesa
             this.animations.push([]);
             for (var j = 0; j < 2; j++) { // two directions
                 this.animations[i].push([]);
