@@ -1,7 +1,7 @@
 class SceneManager {
     constructor(game) {
         this.game = game;
-        this.game.camara = this;
+        //this.game.camara = this;
         this.x = 0;
         this.y = 0;
         this.masterchief = new masterchief(game)

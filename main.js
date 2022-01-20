@@ -2,6 +2,8 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
+const SCENE_MANAGER = new SceneManager();
+
 ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_top_right.png");

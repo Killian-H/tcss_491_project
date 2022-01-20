@@ -170,7 +170,8 @@ class masterchief {
             this.game.click = null
         }
 
-        if (this.game.right) {
+        //moving left/right/up/down
+        if (this.game.right) { //right
             this.state = this.WALK;
             this.X_DEFAULT += 220 * TICK;
             this.x = this.X_DEFAULT;
@@ -179,7 +180,7 @@ class masterchief {
                 this.x = this.X_DEFAULT;
             }
         }
-        else if (this.game.left) {
+        else if (this.game.left) { //left
             this.state = this.WALK;
             this.X_DEFAULT -= 220 * TICK;
             this.x = this.X_DEFAULT;
@@ -188,7 +189,7 @@ class masterchief {
                 this.x = this.X_DEFAULT;
             }
         }
-        else if (this.game.up) {
+        else if (this.game.up) { //up
             this.state = this.WALK;
             this.Y_DEFAULT -= 220 * TICK;
             this.y = this.Y_DEFAULT;
@@ -197,7 +198,7 @@ class masterchief {
                 this.y = this.Y_DEFAULT;
             }
         }
-        else if (this.game.down) {
+        else if (this.game.down) { //down
             this.state = this.WALK;
             this.Y_DEFAULT += 220 * TICK;
             this.y = this.Y_DEFAULT;
@@ -210,29 +211,30 @@ class masterchief {
             this.state = this.IDLE;
         }
 
-        //diogonal
-        if (this.game.right && this.game.up) {
+        //moving diagonal
+        //adjust x (50) for more left/right, adjust y for more up/down
+        if (this.game.right && this.game.up) { //right/up
             this.state = this.WALK;
             this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
             this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
-        if (this.game.right && this.game.down) {
+        if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2); 
             this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
-        if (this.game.left && this.game.up) {
+        if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
             this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
-        if (this.game.left && this.game.down) {
+        if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
             this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
@@ -350,5 +352,6 @@ class masterchief {
         }
         ctx.restore();
     };
+    
 
 };
