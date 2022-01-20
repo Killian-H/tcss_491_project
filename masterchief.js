@@ -1,20 +1,13 @@
 class masterchief {
 
-<<<<<<< HEAD
     X_DEFAULT = 100;
     Y_DEFAULT = 100;
-    SCALE = 2 * 0.8;
-=======
-    X_DEFAULT = 480;
-    Y_DEFAULT = 240;
     SCALE = 1.6;
->>>>>>> 979628c5b4961667a6fced5ade69806c81e3b71e
     LEFT = 1;
-    TOP_LEFT = 1.1;
-    BOTTOM_LEFT = -1.1;
     RIGHT = 0;
-    TOP_RIGHT = 0.1;
-    BOTTIM_RIGHT = -0.1;
+    TILT_UP = 0.1;
+    FORWARD = 0.2;
+    TILT_DOWN = 0.3;
     IDLE = 0;
     WALK = 1;
     CROUCH = 2;
@@ -24,6 +17,9 @@ class masterchief {
 
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
+    HEAD_FORWARD = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_right.png");
+    HEAD_TILT_UP = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_top_right.png");_
+    HEAD_TILT_DOWN = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_bottom_right.png");_
     IDLE_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_right.png");
     IDLE_LEFT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_left.png");    
     WALK_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_walk_right.png");
@@ -140,12 +136,27 @@ class masterchief {
                 - (this.game.mouse.y - this.y)
             ) - Math.PI / 2;
 
-            console.log(this.armRotation);
+            //console.log(this.armRotation);
             if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
                 this.facing = this.RIGHT;
+                if (this.armRotation < -(Math.PI / 6)) {
+                    this.headOrientation = this.TILT_UP;
+                } else if (this.armRotation < (Math.PI / 6)) {
+                    this.headOrientation = this.FORWARD;
+                } else {
+                    this.headOrientation = this.TILT_DOWN;
+                }
+
                 //console.log("Orientation right");
             } else {
                 this.facing = this.LEFT;
+                if (this.armRotation > (-(Math.PI) + (Math.PI/ 6))) {
+                    this.headOrientation = this.TILT_UP;
+                } else if (this.armRotation > -(Math.PI) - (Math.PI/ 6)) {
+                    this.headOrientation = this.FORWARD;
+                } else {
+                    this.headOrientation = this.TILT_DOWN;
+                }
                 //console.log("Orientation left");
             }
         }
@@ -293,11 +304,7 @@ class masterchief {
 
         //Drawing Body
         ctx.save();
-<<<<<<< HEAD
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
-=======
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE);
->>>>>>> 979628c5b4961667a6fced5ade69806c81e3b71e
         ctx.restore();
         //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
         
@@ -307,9 +314,18 @@ class masterchief {
             this.y
         );
         if (this.facing == this.LEFT) {
-            ctx.save();
-            ctx.restore();
             ctx.scale(-1,1);
+            ctx.save();
+            ctx.translate(-30, -32); 
+            if (this.headOrientation == this.TILT_UP) {
+                ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+            } else if (this.headOrientation == this.FORWARD){
+                ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
+            } else {
+                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
+
+            }
+            ctx.restore();
             ctx.translate(
                 -18,
                 0
@@ -318,6 +334,17 @@ class masterchief {
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
 
         } else {
+            ctx.save();
+            ctx.translate(-12.5, -32.5); 
+            if (this.headOrientation == this.TILT_UP) {
+                ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+            } else if (this.headOrientation == this.FORWARD){
+                ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
+            } else {
+                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
+
+            }
+            ctx.restore();
             ctx.rotate(this.armRotation);
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
         }
