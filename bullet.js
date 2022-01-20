@@ -26,6 +26,8 @@ class bullet {
     }
 
     draw(ctx){
+        ctx.save();
         ctx.drawImage(this.spritesheet, this.x, this.y);
+        ctx.restore();
     }
 }

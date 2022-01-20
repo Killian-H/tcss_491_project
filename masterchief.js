@@ -15,7 +15,7 @@ class masterchief {
     DEAD = 5;
 
 
-    ARMS_DEFAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png");
+    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
     IDLE_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_right.png");
     IDLE_LEFT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_left.png");    
     WALK_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_walk_right.png");
@@ -44,7 +44,7 @@ class masterchief {
         this.armRotation = 0;
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
-        this.armImg = this.ARMS_DEFAULT;
+        this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
         this.firerate = .1;
