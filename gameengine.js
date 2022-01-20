@@ -154,6 +154,7 @@ class GameEngine {
         for (let i = this.entities.length - 1; i >= 0; i--) {
             this.entities[i].draw(this.ctx, this);
         }
+        //this.camera.draw(this.ctx);
     };
 
     update() {
@@ -166,7 +167,10 @@ class GameEngine {
         // Add new things
         this.entities = this.entities.concat(this.entitiesToAdd);
         this.entitiesToAdd = [];
+
+        //this.camera.update();
     };
+    
 
     loop() {
         this.clockTick = this.timer.tick();

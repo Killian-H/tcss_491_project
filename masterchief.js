@@ -34,11 +34,13 @@ class masterchief {
     constructor(game) {
         this.game = game;
         this.facing = 0; // 0 = right, 1 = left
-        this.state = 1; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
+        this.state = 0; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
 
         this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
         this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
+        this.up = this.right;
+        this.down = this.right;
         this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
         this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
         this.armRotation = 0;
@@ -149,18 +151,76 @@ class masterchief {
             this.game.click = null
         }
 
-        if (this.game.right || this.game.left || this.game.up || this.game.down) {
+        if (this.game.right) {
             this.state = this.WALK;
-        } else {
+            this.X_DEFAULT += 200 * TICK;
+            this.x = this.X_DEFAULT;
+            if (this.x > 1024) {
+                this.X_DEFAULT = 0;
+                this.x = this.X_DEFAULT;
+            }
+        }
+        else if (this.game.left) {
+            this.state = this.WALK;
+            this.X_DEFAULT -= 200 * TICK;
+            this.x = this.X_DEFAULT;
+            if (this.x < 0) {
+                this.X_DEFAULT = 1024;
+                this.x = this.X_DEFAULT;
+            }
+        }
+        else if (this.game.up) {
+            this.state = this.WALK;
+            this.Y_DEFAULT -= 200 * TICK;
+            this.y = this.Y_DEFAULT;
+            if (this.y < 0) {
+                this.Y_DEFAULT = 540;
+                this.y = this.Y_DEFAULT;
+            }
+        }
+        else if (this.game.down) {
+            this.state = this.WALK;
+            this.Y_DEFAULT += 200 * TICK;
+            this.y = this.Y_DEFAULT;
+            if (this.y > 540) {
+                this.Y_DEFAULT = 0;
+                this.y = this.Y_DEFAULT;
+            } 
+        }
+        else {
             this.state = this.IDLE;
         }
 
-        if(this.game.right) {
-            this.velocity.x = walk;
+        //diogonal
+        if (this.game.right && this.game.up) {
+            this.state = this.WALK;
+            this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.Y_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.x = this.X_DEFAULT;
+            this.y = this.Y_DEFAULT;
         }
-
-        // CODE FOR UPDATING CHIEFS COORDINATES GOES HERE
-
+        if (this.game.right && this.game.down) {
+            this.state = this.WALK;
+            this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2); 
+            this.Y_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.x = this.X_DEFAULT;
+            this.y = this.Y_DEFAULT;
+        }
+        if (this.game.left && this.game.up) {
+            this.state = this.WALK;
+            this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
+            this.Y_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.x = this.X_DEFAULT;
+            this.y = this.Y_DEFAULT;
+        }
+        if (this.game.left && this.game.down) {
+            this.state = this.WALK;
+            this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
+            this.Y_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.x = this.X_DEFAULT;
+            this.y = this.Y_DEFAULT;
+        }
+       
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
@@ -224,10 +284,10 @@ class masterchief {
     draw(ctx) {
 
         ctx.save();
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE * 0.75);
         ctx.restore();
-        //- 2.5* 7.5
-        //-7.5
+        //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
+        
         ctx.save();
         ctx.translate(
             this.x,
@@ -240,11 +300,11 @@ class masterchief {
                 0
             );
             ctx.rotate(-this.armRotation + 2 *1.5708);
-            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE * 0.8, this.armImg.height * this.SCALE * 0.8);
 
         } else {
             ctx.rotate(this.armRotation);
-            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE * 0.8, this.armImg.height * this.SCALE * 0.8);
         }
         ctx.restore();
     };
