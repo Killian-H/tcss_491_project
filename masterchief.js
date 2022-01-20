@@ -146,7 +146,7 @@ class masterchief {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y));
-            this.game.click = null
+            //this.game.click = null
         }
 
         if (this.game.right || this.game.left || this.game.up || this.game.down) {
