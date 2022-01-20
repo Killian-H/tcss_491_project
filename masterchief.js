@@ -122,8 +122,7 @@ class masterchief {
 
     update() {
         const TICK = this.game.clockTick;
-        const walk = 5; //test
-
+        
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
                 this.game.mouse.x - this.x, 
@@ -151,7 +150,7 @@ class masterchief {
 
         if (this.game.right) {
             this.state = this.WALK;
-            this.X_DEFAULT += 200 * TICK;
+            this.X_DEFAULT += 220 * TICK;
             this.x = this.X_DEFAULT;
             if (this.x > 1024) {
                 this.X_DEFAULT = 0;
@@ -160,7 +159,7 @@ class masterchief {
         }
         else if (this.game.left) {
             this.state = this.WALK;
-            this.X_DEFAULT -= 200 * TICK;
+            this.X_DEFAULT -= 220 * TICK;
             this.x = this.X_DEFAULT;
             if (this.x < 0) {
                 this.X_DEFAULT = 1024;
@@ -169,7 +168,7 @@ class masterchief {
         }
         else if (this.game.up) {
             this.state = this.WALK;
-            this.Y_DEFAULT -= 200 * TICK;
+            this.Y_DEFAULT -= 220 * TICK;
             this.y = this.Y_DEFAULT;
             if (this.y < 0) {
                 this.Y_DEFAULT = 540;
@@ -178,7 +177,7 @@ class masterchief {
         }
         else if (this.game.down) {
             this.state = this.WALK;
-            this.Y_DEFAULT += 200 * TICK;
+            this.Y_DEFAULT += 220 * TICK;
             this.y = this.Y_DEFAULT;
             if (this.y > 540) {
                 this.Y_DEFAULT = 0;
@@ -193,28 +192,28 @@ class masterchief {
         if (this.game.right && this.game.up) {
             this.state = this.WALK;
             this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.Y_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
         if (this.game.right && this.game.down) {
             this.state = this.WALK;
             this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
         if (this.game.left && this.game.up) {
             this.state = this.WALK;
             this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
         if (this.game.left && this.game.down) {
             this.state = this.WALK;
             this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
