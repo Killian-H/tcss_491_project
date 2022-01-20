@@ -2,6 +2,7 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
+ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_1.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_left.png");
@@ -16,6 +17,7 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_melee_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_melee_left.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_left.png");
+ASSET_MANAGER.queueDownload("./sprites/bullet.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

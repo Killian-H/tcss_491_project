@@ -1,7 +1,7 @@
 class masterchief {
 
-    X_DEFAULT = 250;
-    Y_DEFAULT = 250;
+    X_DEFAULT = 480;
+    Y_DEFAULT = 240;
     SCALE = 2;
     LEFT = 1;
     RIGHT = 0;
@@ -40,6 +40,9 @@ class masterchief {
         this.y = this.Y_DEFAULT;
         this.armImg = this.ARMS_DEFAULT;
         this.velocity = { x: 0, y: 0};
+        this.elapsedtime = 0;
+        this.firerate = .1;
+        this.clickcount = 0;
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         // this.updateBoundBox();
@@ -131,6 +134,15 @@ class masterchief {
             }
         }
 
+        this.elapsedtime += this.game.clockTick;
+        if(this.game.click != null && this.elapsedtime > this.firerate) {
+            console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
+            this.elapsedtime = 0;
+            this.clickcount = 1;
+            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y));
+            this.game.click = null
+        }
+
         if (this.game.right || this.game.left || this.game.up || this.game.down) {
             this.state = this.WALK;
         } else {
@@ -206,9 +218,10 @@ class masterchief {
     draw(ctx) {
 
         ctx.save();
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT- 2.5* 7.5, this.Y_DEFAULT - 7.5, this.SCALE);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE);
         ctx.restore();
-
+        //- 2.5* 7.5
+        //-7.5
         ctx.save();
         ctx.translate(
             this.x,
