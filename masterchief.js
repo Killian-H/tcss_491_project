@@ -2,7 +2,7 @@ class masterchief {
 
     X_DEFAULT = 480;
     Y_DEFAULT = 240;
-    SCALE = 2;
+    SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
     IDLE = 0;
@@ -282,7 +282,7 @@ class masterchief {
     draw(ctx) {
 
         ctx.save();
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE * 0.75);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE);
         ctx.restore();
         //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
         
@@ -298,11 +298,11 @@ class masterchief {
                 0
             );
             ctx.rotate(-this.armRotation + 2 *1.5708);
-            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE * 0.8, this.armImg.height * this.SCALE * 0.8);
+            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
 
         } else {
             ctx.rotate(this.armRotation);
-            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE * 0.8, this.armImg.height * this.SCALE * 0.8);
+            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
         }
         ctx.restore();
     };
