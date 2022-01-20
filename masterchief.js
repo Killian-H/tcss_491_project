@@ -58,7 +58,7 @@ class masterchief {
         this.clickcount = 0;
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
-        // this.updateBoundBox();
+        this.updateBoundBox();
 
         this.animations = [];
         this.loadAnimations();
@@ -67,6 +67,11 @@ class masterchief {
         this.rightAnim = this.animations[0][0];
 
     };
+
+    updateBoundBox() {
+        this.lastBB = this.BB;
+        this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 80);
+    }
 
     loadAnimations() {
         for (var i = 0; i < 6; i++) { // five statesa
@@ -78,11 +83,11 @@ class masterchief {
 
         // idle animation for standing = 0
         // facing right = 0
-        this.animations[0][0] = new Animator(this.IDLE_RIGHT, -4, 0, 30, 43, 1, 1, false, true);
+        this.animations[0][0] = new Animator(this.IDLE_RIGHT, -3, 0, 30, 43, 1, 1, false, true);
 
         // idle animation for standing = 0
         // facing left = 1
-        this.animations[0][1] = new Animator(this.IDLE_LEFT, 1, 0, 26, 43, 1, 1, false, true);
+        this.animations[0][1] = new Animator(this.IDLE_LEFT, -3, 0, 26, 43, 1, 1, false, true);
 
         // walking animation = 1
         // facing right = 0
@@ -241,6 +246,8 @@ class masterchief {
             this.x = this.X_DEFAULT;
             this.y = this.Y_DEFAULT;
         }
+        this.updateBoundBox();
+        
        
         var that = this;
         this.game.entities.forEach(function (entity) {
@@ -297,20 +304,19 @@ class masterchief {
         })
     };
 
-    updateBoundBox() {
-        this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.X_DEFAULT, THIS.Y_DEFAULT, 30, 100);
-    }
-
     draw(ctx) {
 
         //Drawing Body
         ctx.save();
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
+        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
+        if (PARAMS.DEBUG == true) {
+            ctx.strokeStyle = 'Red';
+            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+        }
+        ctx.save();
         ctx.restore();
         //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
-        
-        ctx.save();
+    
         ctx.translate(
             this.x,
             this.y
