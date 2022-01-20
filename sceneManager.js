@@ -8,7 +8,6 @@ class SceneManager {
     }
 
     update() {
-        PARAMS.DEBUG = document.getElementById("debug").checked;
         let midpoint = PARAMS.CANVAS_WIDTH/2;
 
         this.x = this.masterchief.x - midpoint;

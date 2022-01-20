@@ -161,6 +161,8 @@ class GameEngine {
         // Update Entities
         this.entities.forEach(entity => entity.update(this));
 
+        PARAMS.DEBUG = document.getElementById("debug").checked;
+
         // Remove dead things
         this.entities = this.entities.filter(entity => !entity.removeFromWorld);
 
