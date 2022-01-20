@@ -1,10 +1,13 @@
 class masterchief {
 
-    X_DEFAULT = 480;
-    Y_DEFAULT = 240;
+    X_DEFAULT = 100;
+    Y_DEFAULT = 100;
     SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
+    TILT_UP = 0.1;
+    FORWARD = 0.2;
+    TILT_DOWN = 0.3;
     IDLE = 0;
     WALK = 1;
     CROUCH = 2;
@@ -14,6 +17,9 @@ class masterchief {
 
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
+    HEAD_FORWARD = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_right.png");
+    HEAD_TILT_UP = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_top_right.png");_
+    HEAD_TILT_DOWN = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_bottom_right.png");_
     IDLE_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_right.png");
     IDLE_LEFT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_idle_left.png");    
     WALK_RIGHT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_walk_right.png");
@@ -31,17 +37,18 @@ class masterchief {
 
     constructor(game) {
         this.game = game;
-        this.facing = 0; // 0 = right, 1 = left
-        this.state = 0; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
+        this.facing = this.RIGHT; // 0 = right, 1 = left
+        this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
 
-        this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
-        this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
-        this.up = this.right;
-        this.down = this.right;
-        this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
-        this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
+        //this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
+        //this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
+        //this.up = this.right;
+        //this.down = this.right;
+        //this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
+        //this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
         this.armRotation = 0;
+        this.headOrientation = this.RIGHT;
         this.x = this.X_DEFAULT;
         this.y = this.Y_DEFAULT;
         this.armImg = this.ARMS_ASSAULT;
@@ -127,14 +134,29 @@ class masterchief {
             this.armRotation = Math.atan2 (
                 this.game.mouse.x - this.x, 
                 - (this.game.mouse.y - this.y)
-            ) - 1.5708;
+            ) - Math.PI / 2;
 
             //console.log(this.armRotation);
-            if(this.armRotation > -1.5037 && this.armRotation < 1.4825) {
+            if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
                 this.facing = this.RIGHT;
+                if (this.armRotation < -(Math.PI / 6)) {
+                    this.headOrientation = this.TILT_UP;
+                } else if (this.armRotation < (Math.PI / 6)) {
+                    this.headOrientation = this.FORWARD;
+                } else {
+                    this.headOrientation = this.TILT_DOWN;
+                }
+
                 //console.log("Orientation right");
             } else {
                 this.facing = this.LEFT;
+                if (this.armRotation > (-(Math.PI) + (Math.PI/ 6))) {
+                    this.headOrientation = this.TILT_UP;
+                } else if (this.armRotation > -(Math.PI) - (Math.PI/ 6)) {
+                    this.headOrientation = this.FORWARD;
+                } else {
+                    this.headOrientation = this.TILT_DOWN;
+                }
                 //console.log("Orientation left");
             }
         }
@@ -145,7 +167,7 @@ class masterchief {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y));
-            // this.game.click = null
+            this.game.click = null
         }
 
         if (this.game.right) {
@@ -280,8 +302,9 @@ class masterchief {
 
     draw(ctx) {
 
+        //Drawing Body
         ctx.save();
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
         ctx.restore();
         //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
         
@@ -290,16 +313,38 @@ class masterchief {
             this.x,
             this.y
         );
-        if (this.facing == 1) {
+        if (this.facing == this.LEFT) {
             ctx.scale(-1,1);
+            ctx.save();
+            ctx.translate(-30, -32); 
+            if (this.headOrientation == this.TILT_UP) {
+                ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+            } else if (this.headOrientation == this.FORWARD){
+                ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
+            } else {
+                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
+
+            }
+            ctx.restore();
             ctx.translate(
-                -27.5,
+                -18,
                 0
             );
             ctx.rotate(-this.armRotation + 2 *1.5708);
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
 
         } else {
+            ctx.save();
+            ctx.translate(-12.5, -32.5); 
+            if (this.headOrientation == this.TILT_UP) {
+                ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+            } else if (this.headOrientation == this.FORWARD){
+                ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
+            } else {
+                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
+
+            }
+            ctx.restore();
             ctx.rotate(this.armRotation);
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
         }
