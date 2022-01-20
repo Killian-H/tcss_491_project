@@ -140,7 +140,7 @@ class masterchief {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y));
-            //this.game.click = null
+            this.game.click = null
         }
 
         if (this.game.right || this.game.left || this.game.up || this.game.down) {
@@ -218,7 +218,7 @@ class masterchief {
     draw(ctx) {
 
         ctx.save();
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -10, this.SCALE);
         ctx.restore();
         //- 2.5* 7.5
         //-7.5
