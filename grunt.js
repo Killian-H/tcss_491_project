@@ -37,6 +37,11 @@ class Grunt {
     update() {
         var that = this;
         this.game.entities.forEach(function (entity) {
+            if (entity.BB.left <= that.BB.left) {
+                that.facing = 1; 
+            } else {
+                that.facing = 0;
+            }
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (entity instanceof masterchief) {
 
