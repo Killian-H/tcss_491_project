@@ -23,11 +23,11 @@ class Grunt {
     constructor(game) {
         this.game = game;
         this.health = this.FULL_HEALTH;
-        this.state = this.IDLE; // 0 = idle, 1 = walk, 2 = scared
+        this.state = this.WALK; // 0 = idle, 1 = walk, 2 = scared
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.dead = false;
-        this.deadLeft = new Animator(this.DEAD_LEFT, 7, 0, 47, 35, 5, 0.15, true, false);
-        this.deadRight = new Animator(this.DEAD_RIGHT, 8, 0, 45, 35, 5, 0.15, false, false);
+        this.deadLeft = new Animator(this.DEAD_LEFT, 7, 0, 47, 35, 5, 0.12, true, false);
+        this.deadRight = new Animator(this.DEAD_RIGHT, 8, 0, 45, 35, 5, 0.12, false, false);
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.loadAnimations();
@@ -37,7 +37,7 @@ class Grunt {
     update() {
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity instanceof masterchief) {
+            if (entity instanceof masterchief && that.dead == false) {
                 if (that.BB.left > entity.BB.left) {
                     that.facing = 1;
                 } else {
