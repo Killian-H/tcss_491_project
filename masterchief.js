@@ -149,9 +149,9 @@ class masterchief {
                 //console.log("Orientation right");
             } else {
                 this.facing = this.LEFT;
-                if (this.armRotation > (-(Math.PI) + (Math.PI/ 6))) {
+                if (this.armRotation > (-(Math.PI) + (Math.PI/ 6)) && this.armRotation < Math.PI /2) {
                     this.headOrientation = this.TILT_UP;
-                } else if (this.armRotation > -(Math.PI) - (Math.PI/ 6)) {
+                } else if (this.armRotation > -(Math.PI) - (Math.PI/ 6) && this.armRotation < Math.PI /2) {
                     this.headOrientation = this.FORWARD;
                 } else {
                     this.headOrientation = this.TILT_DOWN;
@@ -319,7 +319,7 @@ class masterchief {
         if (this.facing == this.LEFT) {
             ctx.scale(-1,1);
             ctx.save();
-            ctx.translate(-33, -32); 
+            ctx.translate(-34, -33); 
             if (this.headOrientation == this.TILT_UP) {
                 ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
             } else if (this.headOrientation == this.FORWARD){
