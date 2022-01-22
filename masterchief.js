@@ -71,7 +71,7 @@ class masterchief {
     updateBoundBox() {
         this.lastBB = this.BB;
         this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 80);
-    }
+    };
 
     loadAnimations() {
         for (var i = 0; i < 6; i++) { // five statesa

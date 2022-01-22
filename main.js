@@ -5,6 +5,17 @@ const ASSET_MANAGER = new AssetManager();
 const SCENE_MANAGER = new SceneManager();
 
 ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
+
+
+// Grunt
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arms.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_dead.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_head.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_idle.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_scared.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_walk.png");
+
+// Chief
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_top_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_bottom_right.png");
@@ -22,6 +33,7 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_melee_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_melee_left.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_left.png");
+
 ASSET_MANAGER.queueDownload("./sprites/bullet.png");
 
 ASSET_MANAGER.downloadAll(() => {
@@ -32,7 +44,8 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.init(ctx);
 	
-	gameEngine.addEntity(new masterchief(gameEngine));
+	gameEngine.addEntity(new Grunt(gameEngine));
+    gameEngine.addEntity(new masterchief(gameEngine));
 
 	new SceneManager(gameEngine);
 	gameEngine.start();
