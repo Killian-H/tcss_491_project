@@ -37,10 +37,12 @@ class Grunt {
     update() {
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity.BB.left <= that.BB.left) {
-                that.facing = 1; 
-            } else {
-                that.facing = 0;
+            if (entity instanceof masterchief) {
+                if (that.BB.left > entity.BB.left) {
+                    that.facing = 1;
+                } else {
+                    that.facing = 0;
+                }
             }
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (entity instanceof masterchief) {
@@ -94,7 +96,7 @@ class Grunt {
             this.dead = true;
             if (this.facing === 0) {
                 this.deadRight.drawFrame(this.game.clockTick, ctx, 240, 240, 1.25);
-            } else {
+            } else if (this.facing === 1) {
                 this.deadLeft.drawFrame(this.game.clockTick, ctx, 240, 240, 1.25);
             }
         } else {
