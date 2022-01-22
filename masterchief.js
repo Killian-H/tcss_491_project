@@ -41,12 +41,6 @@ class masterchief {
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
 
-        //this.left = new Animator(this.IDLE_LEFT, 0, 0, 26, 43, 1, 1, false, true);
-        //this.right = new Animator(this.IDLE_RIGHT, 0, 0, 26, 43, 1, 1, false, true);
-        //this.up = this.right;
-        //this.down = this.right;
-        //this.walkright = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, .1, false, true);
-        //this.walkleft = new Animator(this.WALK_LEFT, 2, 2, 41, 42, 8, .1, false, true);
         this.armRotation = 0;
         this.headOrientation = this.RIGHT;
         this.x = this.X_DEFAULT;
@@ -70,7 +64,7 @@ class masterchief {
 
     updateBoundBox() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 80);
+        this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 78);
     };
 
     loadAnimations() {
@@ -254,9 +248,10 @@ class masterchief {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0) { // Traveling down.
                     if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.bottom <= entity.BB.top) {
+                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.bottom >= entity.BB.top) {
                             if (that.velocity.y > 0) {
                                 that.velocity.y === 0;
+                                that.y = entity.BB.top;
                             }
                             if (that.velocity.x === 0) {
                                 that.state = 0;

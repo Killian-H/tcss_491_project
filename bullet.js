@@ -17,15 +17,25 @@ class bullet {
         //thids.animations = [];
 
         this.elapsedTime = 0;
+        this.updateBoundBox();
 
     };
 
     update() {
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
+        this.updateBoundBox();
     }
 
+    updateBoundBox() {
+        this.BB = new BoundingBox(this.x, this.y, 10, 4);
+    };
+
     draw(ctx){
+        if (PARAMS.DEBUG == true) {
+            ctx.strokeStyle = 'Red';
+            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+        }
         ctx.save();
         ctx.drawImage(this.spritesheet, this.x, this.y);
         ctx.restore();

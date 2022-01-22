@@ -12,13 +12,20 @@ class Grunt {
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.test = new Animator(this.IDLE, 0, 0, 26, 38, 1, 1, false, true);
-        this.testWalk = new Animator(this.WALK, 5, 1, 30, 41, 6, 0.8, false, true);
+        this.testWalk = new Animator(this.WALK, 5, 1, 30, 41, 6, 0.1, false, true);
         this.animations[0] = new Animator(this.IDLE, 0, 0, 26, 38, 1, false, true);
         this.updateBoundBox();
     };
 
     update() {
+        var that = this;
+        this.game.entities.forEach(function (entity) {
+            if (entity.BB && that.BB.collide(entity.BB)) {
+                if (entity instanceof masterchief) {
 
+                }
+            };
+        });
     };
 
     updateBoundBox() {
