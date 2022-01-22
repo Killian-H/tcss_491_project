@@ -9,6 +9,7 @@ class Grunt {
 
     constructor(game) {
         this.game = game;
+        this.dead = false;
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.test = new Animator(this.IDLE, 0, 0, 26, 38, 1, 1, false, true);
