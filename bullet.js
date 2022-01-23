@@ -1,6 +1,6 @@
 class bullet {
-    constructor(game,x,y,clickX,clickY){
-        Object.assign(this, {game, x, y, clickX, clickY})
+    constructor(game,x,y,clickX,clickY, rotation){
+        Object.assign(this, {game, x, y, clickX, clickY, rotation})
         //this.game = game;
         //this.radius = 2;
         //this.smooth = false;
@@ -37,7 +37,9 @@ class bullet {
             ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
         }
         ctx.save();
-        ctx.drawImage(this.spritesheet, this.x, this.y);
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.rotation);
+        ctx.drawImage(this.spritesheet, -this.spritesheet.width / 2, -this.spritesheet.height/2);
         ctx.restore();
     }
 }

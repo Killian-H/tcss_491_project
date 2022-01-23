@@ -162,10 +162,10 @@ class masterchief {
 
         this.elapsedtime += this.game.clockTick;
         if(this.game.click != null && this.elapsedtime > this.firerate) {
-            console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
+            //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
             this.clickcount = 1;
-            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y));
+            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y, this.armRotation));
             this.game.click = null
         }
 
