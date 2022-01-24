@@ -351,7 +351,7 @@ class masterchief {
             }
             ctx.restore();
             ctx.translate(
-                -18,
+                -20,
                 1
             );
             ctx.rotate(-this.armRotation + 2 *1.5708);
