@@ -106,7 +106,7 @@ class GameEngine {
         });
 
         this.ctx.canvas.addEventListener("keydown", function (e) {
-            //dsconsole.log(e);
+            console.log(e);
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":
@@ -131,7 +131,7 @@ class GameEngine {
         }, false);
 
         this.ctx.canvas.addEventListener("keyup", function (e) {
-            //console.log(e);
+            console.log(e);
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":
