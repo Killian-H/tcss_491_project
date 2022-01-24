@@ -2,6 +2,7 @@ class masterchief {
 
     X_DEFAULT = 100;
     Y_DEFAULT = 100;
+    AMMO_DEFAULT = 32;
     SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
@@ -48,9 +49,11 @@ class masterchief {
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
+        this.elapsedtime2 = 0;
         this.firerate = .1;
         this.clickcount = 0;
-        this.ammo = 10;
+        this.ammo = this.AMMO_DEFAULT;
+
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.updateBoundBox();
@@ -129,7 +132,8 @@ class masterchief {
 
     update() {
         const TICK = this.game.clockTick;
-        
+        console.log("velocity x: " + this.velocity.x);
+        console.log("velocity y: " + this.velocity.y);
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
                 this.game.mouse.x - this.x, 
@@ -162,6 +166,7 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
+        console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
@@ -174,38 +179,37 @@ class masterchief {
         //moving left/right/up/down
         if (this.game.right) { //right
             this.state = this.WALK;
-            this.X_DEFAULT += 220 * TICK;
-            this.x = this.X_DEFAULT;
+            this.x += 220 * TICK;
+            this.velocity.x += 220 * TICK;
+            //console.log("velocity: " + this.velocity.x)
             if (this.x > 1024) {
-                this.X_DEFAULT = 0;
-                this.x = this.X_DEFAULT;
+                this.x = 0;
             }
         }
         else if (this.game.left) { //left
             this.state = this.WALK;
-            this.X_DEFAULT -= 220 * TICK;
-            this.x = this.X_DEFAULT;
+            this.x -= 220 * TICK;
+            this.velocity.x -= 220 * TICK;
+            //console.log("velocity" + this.velocity.x)
             if (this.x < 0) {
-                this.X_DEFAULT = 1024;
-                this.x = this.X_DEFAULT;
+                this.x = 1024;
+                //this.velocity.x = 0;
             }
         }
         else if (this.game.up) { //up
             this.state = this.WALK;
-            this.Y_DEFAULT -= 220 * TICK;
-            this.y = this.Y_DEFAULT;
+            this.y -= 220 * TICK;
+            this.velocity.y -= 220 * TICK;
             if (this.y < 0) {
-                this.Y_DEFAULT = 540;
-                this.y = this.Y_DEFAULT;
+                this.y = 540;
             }
         }
         else if (this.game.down) { //down
             this.state = this.WALK;
-            this.Y_DEFAULT += 220 * TICK;
-            this.y = this.Y_DEFAULT;
+            this.y += 220 * TICK;
+            this.velocity.y += 220 * TICK;
             if (this.y > 540) {
-                this.Y_DEFAULT = 0;
-                this.y = this.Y_DEFAULT;
+                this.y = 0;
             } 
         }
         else {
@@ -213,37 +217,37 @@ class masterchief {
         }
 
         if (this.game.reload) {
-            this.ammo = 10;
+            setTimeout(() => {this.ammo = this.AMMO_DEFAULT}, 3000);
         }
         //moving diagonal
         //adjust x (50) for more left/right, adjust y for more up/down
         if (this.game.right && this.game.up) { //right/up
             this.state = this.WALK;
-            this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
-            this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
-            this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
-            this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
         }
         this.updateBoundBox();
         
@@ -252,8 +256,7 @@ class masterchief {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0) { // Traveling down.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.bottom >= entity.BB.top) {
+                    if ((entity instanceof Grunt) && that.lastBB.bottom >= entity.BB.top) {
                             if (that.velocity.y > 0) {
                                 that.velocity.y === 0;
                                 that.y = entity.BB.top;
@@ -265,8 +268,7 @@ class masterchief {
                         that.updateBoundBox();
                 } 
                 if (that.velocity.y < 0) { // traveling up.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.top >= entity.BB.bottom) {
+                    if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
                                 that.velocity.y === 0;
                             }
@@ -277,8 +279,7 @@ class masterchief {
                         that.updateBoundBox();
                 }
                 if (that.velocity.x > 0) { // traveling right.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.right >= entity.BB.left) {
+                    if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
                             if (that.velocity.x > 0) {
                                 that.velocity.x === 0;
                             }
@@ -289,8 +290,7 @@ class masterchief {
                         that.updateBoundBox();
                 }
                 if (that.velocity.x < 0) { // traveling left.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.left <= entity.BB.right) {
+                    if ((entity instanceof Grunt) && that.lastBB.left <= entity.BB.right) {
                             if (that.velocity.x < 0) {
                                 that.velocity.x === 0;
                             }
@@ -324,7 +324,7 @@ class masterchief {
 
         //Drawing Body
         ctx.save();
-        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
+        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2* 7.5, this.y -12.5, this.SCALE);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
             ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
