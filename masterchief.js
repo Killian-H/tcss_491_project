@@ -2,6 +2,7 @@ class masterchief {
 
     X_DEFAULT = 100;
     Y_DEFAULT = 100;
+    AMMO_DEFAULT = 32;
     SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
@@ -49,7 +50,7 @@ class masterchief {
         this.elapsedtime = 0;
         this.firerate = .1;
         this.clickcount = 0;
-        this.ammo = 32;
+        this.ammo = this.AMMO_DEFAULT;
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.updateBoundBox();
@@ -212,7 +213,7 @@ class masterchief {
         }
 
         if (this.game.reload) {
-            this.ammo = 10;
+            this.ammo = this.AMMO_DEFAULT;
         }
         //moving diagonal
         //adjust x (50) for more left/right, adjust y for more up/down
