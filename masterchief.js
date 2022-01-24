@@ -49,7 +49,7 @@ class masterchief {
         this.elapsedtime = 0;
         this.firerate = .1;
         this.clickcount = 0;
-        this.ammo = 10;
+        this.ammo = 32;
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.updateBoundBox();
@@ -173,8 +173,8 @@ class masterchief {
         //moving left/right/up/down
         if (this.game.right) { //right
             this.state = this.WALK;
-            this.X_DEFAULT += 220 * TICK;
-            this.x = this.X_DEFAULT;
+            this.x += 220 * TICK;
+            this.velocity.x = Math.abs(this.x);
             if (this.x > 1024) {
                 this.X_DEFAULT = 0;
                 this.x = this.X_DEFAULT;
@@ -182,8 +182,8 @@ class masterchief {
         }
         else if (this.game.left) { //left
             this.state = this.WALK;
-            this.X_DEFAULT -= 220 * TICK;
-            this.x = this.X_DEFAULT;
+            this.x -= 220 * TICK;
+            this.velocity.x = Math.abs(this.x);
             if (this.x < 0) {
                 this.X_DEFAULT = 1024;
                 this.x = this.X_DEFAULT;
@@ -191,8 +191,8 @@ class masterchief {
         }
         else if (this.game.up) { //up
             this.state = this.WALK;
-            this.Y_DEFAULT -= 220 * TICK;
-            this.y = this.Y_DEFAULT;
+            this.y -= 220 * TICK;
+            this.velocity.y = Math.abs(this.y);
             if (this.y < 0) {
                 this.Y_DEFAULT = 540;
                 this.y = this.Y_DEFAULT;
@@ -200,8 +200,8 @@ class masterchief {
         }
         else if (this.game.down) { //down
             this.state = this.WALK;
-            this.Y_DEFAULT += 220 * TICK;
-            this.y = this.Y_DEFAULT;
+            this.y += 220 * TICK;
+            this.velocity.y = Math.abs(this.y);
             if (this.y > 540) {
                 this.Y_DEFAULT = 0;
                 this.y = this.Y_DEFAULT;
@@ -218,31 +218,31 @@ class masterchief {
         //adjust x (50) for more left/right, adjust y for more up/down
         if (this.game.right && this.game.up) { //right/up
             this.state = this.WALK;
-            this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = Math.abs(this.x);
+            this.velocity.y = Math.abs(this.y);
         }
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
-            this.X_DEFAULT += ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = Math.abs(this.x);
+            this.velocity.y = Math.abs(this.y);
         }
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
-            this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = Math.abs(this.x);
+            this.velocity.y = Math.abs(this.y);
         }
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
-            this.X_DEFAULT -= ((50 * TICK) / 2) * Math.sqrt(2); 
-            this.Y_DEFAULT += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.x = this.X_DEFAULT;
-            this.y = this.Y_DEFAULT;
+            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = Math.abs(this.x);
+            this.velocity.y = Math.abs(this.y);
         }
         this.updateBoundBox();
         
@@ -303,7 +303,7 @@ class masterchief {
 
         //Drawing Body
         ctx.save();
-        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
+        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2* 7.5, this.y -12.5, this.SCALE);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
             ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
