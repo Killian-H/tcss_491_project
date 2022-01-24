@@ -9,6 +9,7 @@ ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 
 // Grunt
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arms.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arm_plasma_pistol.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_dead.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_head.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_idle.png");
