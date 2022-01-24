@@ -324,13 +324,12 @@ class masterchief {
 
         //Drawing Body
         ctx.save();
-        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
+        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2* 7.5, this.y -12.5, this.SCALE);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
             ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
         }
-        ctx.save();
-        ctx.restore();
+        
         //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
     
         ctx.translate(
@@ -354,7 +353,7 @@ class masterchief {
                 -20,
                 1
             );
-            ctx.rotate(-this.armRotation + 2 *1.5708);
+            ctx.rotate(-this.armRotation + Math.PI);
             ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
 
         } else {
