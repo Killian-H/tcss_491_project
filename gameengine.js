@@ -14,6 +14,7 @@ class GameEngine {
         // Information on the input
         this.click = null;
         this.mouse = null;
+        this.mousedown = null;
         this.wheel = null;
         this.keys = {};
         this.left = false;
@@ -21,6 +22,7 @@ class GameEngine {
         this.up = false;
         this.down = false;
         this.reload = false;
+        this.pointer = null;
 
         // THE KILL SWITCH
         this.running = false;
@@ -71,6 +73,7 @@ class GameEngine {
             if (this.options.debugging) {
                 //console.log("CLICK", getXandY(e));
             }
+            this.mousedown = true;
             this.click = getXandY(e);
         });
 
@@ -78,6 +81,7 @@ class GameEngine {
             if (this.options.debugging) {
                 //console.log("CLICK", getXandY(e));
             }
+            this.mousedown = null;
             this.click = null;
         });
 
@@ -119,6 +123,7 @@ class GameEngine {
                 case "ArrowDown":
                 case "KeyS":
                     that.down = true;
+                    break;
                 case "KeyR":
                     that.reload = true;
                     break;
@@ -143,6 +148,9 @@ class GameEngine {
                 case "ArrowDown":
                 case "KeyS":
                     that.down = false;
+                    break;
+                case "KeyR":
+                    that.reload = false;
                     break;
             }
         }, false);
@@ -179,6 +187,9 @@ class GameEngine {
         // Add new things
         this.entities = this.entities.concat(this.entitiesToAdd);
         this.entitiesToAdd = [];
+
+        //this.pointer = getXandY(e);
+        //console.log(pointer);
 
         //this.camera.update();
     };
