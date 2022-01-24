@@ -128,7 +128,6 @@ class masterchief {
     };
 
     update() {
-        console.log(this.velocity.x);
         const TICK = this.game.clockTick;
         
         if(this.game.mouse != null) {
@@ -178,7 +177,8 @@ class masterchief {
             this.x += 220 * TICK;
             this.velocity.x = this.x;
             if (this.x > 1024) {
-                this.x = 0;
+                this.X_DEFAULT = 0;
+                this.x = this.X_DEFAULT;
             }
         }
         else if (this.game.left) { //left
@@ -186,7 +186,8 @@ class masterchief {
             this.x -= 220 * TICK;
             this.velocity.x = this.x;
             if (this.x < 0) {
-                this.x = 1024;
+                this.X_DEFAULT = 1024;
+                this.x = this.X_DEFAULT;
             }
         }
         else if (this.game.up) { //up
@@ -194,7 +195,8 @@ class masterchief {
             this.y -= 220 * TICK;
             this.velocity.y = this.y;
             if (this.y < 0) {
-                this.y = 540;
+                this.Y_DEFAULT = 540;
+                this.y = this.Y_DEFAULT;
             }
         }
         else if (this.game.down) { //down
@@ -202,7 +204,8 @@ class masterchief {
             this.y += 220 * TICK;
             this.velocity.y = this.y;
             if (this.y > 540) {
-                this.y = 0;
+                this.Y_DEFAULT = 0;
+                this.y = this.Y_DEFAULT;
             } 
         }
         else {
@@ -249,19 +252,19 @@ class masterchief {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0) { // Traveling down.
-                    if ((entity instanceof Grunt) && that.lastBB.bottom >= entity.BB.top) {
+                    if ((entity instanceof Grunt) && (that.lastBB.bottom) >= entity.BB.top) {
                             if (that.velocity.y > 0) {
                                 that.velocity.y = 0;
-                                that.y = entity.BB.top - 60;
+                                that.y = entity.BB.top - 58;
                             }
                         }
                         that.updateBoundBox();
                 } 
-                 else if (that.velocity.y < 0) { // traveling up.
+                 if (that.velocity.y < 0) { // traveling up.
                     if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
                                 that.velocity.y = 0;
-                                that.y = entity.BB.bottom - 50;
+                                that.y = entity.BB.bottom + 55;
                             }
                             if (that.velocity.x === 0) {
                                 that.state = 0;
@@ -269,11 +272,11 @@ class masterchief {
                         }
                         that.updateBoundBox();
                 }
-                else if (that.velocity.x > 0) { // traveling right.
+                if (that.velocity.x > 0) { // traveling right.
                     if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
                             if (that.velocity.x > 0) {
                                 that.velocity.x = 0;
-                                that.x = entity.BB.left - 50;
+                                // that.x = entity.BB.left - 50;
                             }
                             if (that.velocity.y === 0) {
                                 that.state = 0;
@@ -281,7 +284,7 @@ class masterchief {
                         }
                         that.updateBoundBox();
                 }
-                else if (that.velocity.x < 0) { // traveling left.
+                if (that.velocity.x < 0) { // traveling left.
                     if ((entity instanceof Grunt) && that.lastBB.left <= entity.BB.right) {
                             if (that.velocity.x < 0) {
                                 that.velocity.x = 0;
