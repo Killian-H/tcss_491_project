@@ -17,24 +17,40 @@ class bullet {
         //thids.animations = [];
 
         this.elapsedTime = 0;
-        this.updateBoundBox();
+        this.updateBoundCircle();
 
     };
 
     update() {
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
-        this.updateBoundBox();
-    }
+        this.updateBoundCircle();
 
-    updateBoundBox() {
-        this.BB = new BoundingBox(this.x, this.y, 10, 4);
+        var that = this;
+        this.game.entities.forEach(function (entity) {
+            if (entity.BB && that.BC.collisionCircle(entity.BB)) {
+                if (entity instanceof Grunt) {
+                    entity.health = entity.health - 10;
+                    that.removeFromWorld = true;
+                } else {
+                }
+
+            }
+        });   
+    };
+
+    updateBoundCircle() {
+        this.lastBC = this.BC;
+        this.BC = new BoundingCircle(this.x, this.y, 7);
     };
 
     draw(ctx){
         if (PARAMS.DEBUG == true) {
-            ctx.strokeStyle = 'Red';
-            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+            ctx.strokeStyle = "Red";
+            ctx.beginPath();
+            ctx.arc(this.BC.x, this.BC.y, this.BC.radius, 0, 2 * Math.PI);
+            ctx.closePath();
+            ctx.stroke();
         }
         ctx.save();
         ctx.translate(this.x, this.y);
