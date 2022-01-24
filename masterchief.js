@@ -256,15 +256,12 @@ class masterchief {
                     if ((entity instanceof Grunt) && that.lastBB.bottom >= entity.BB.top) {
                             if (that.velocity.y > 0) {
                                 that.velocity.y = 0;
-                                that.y = entity.BB.top - 50;
-                            }
-                            if (that.velocity.x === 0) {
-                                that.state = 0;
+                                that.y = entity.BB.top - 60;
                             }
                         }
                         that.updateBoundBox();
                 } 
-                if (that.velocity.y < 0) { // traveling up.
+                 else if (that.velocity.y < 0) { // traveling up.
                     if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
                                 that.velocity.y = 0;
@@ -276,10 +273,11 @@ class masterchief {
                         }
                         that.updateBoundBox();
                 }
-                if (that.velocity.x > 0) { // traveling right.
+                else if (that.velocity.x > 0) { // traveling right.
                     if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
                             if (that.velocity.x > 0) {
                                 that.velocity.x = 0;
+                                that.x = entity.BB.left - 50;
                             }
                             if (that.velocity.y === 0) {
                                 that.state = 0;
@@ -287,7 +285,7 @@ class masterchief {
                         }
                         that.updateBoundBox();
                 }
-                if (that.velocity.x < 0) { // traveling left.
+                else if (that.velocity.x < 0) { // traveling left.
                     if ((entity instanceof Grunt) && that.lastBB.left <= entity.BB.right) {
                             if (that.velocity.x < 0) {
                                 that.velocity.x = 0;
