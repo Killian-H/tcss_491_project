@@ -178,8 +178,7 @@ class masterchief {
             this.x += 220 * TICK;
             this.velocity.x = this.x;
             if (this.x > 1024) {
-                this.X_DEFAULT = 0;
-                this.x = this.X_DEFAULT;
+                this.x = 0;
             }
         }
         else if (this.game.left) { //left
@@ -187,8 +186,7 @@ class masterchief {
             this.x -= 220 * TICK;
             this.velocity.x = this.x;
             if (this.x < 0) {
-                this.X_DEFAULT = 1024;
-                this.x = this.X_DEFAULT;
+                this.x = 1024;
             }
         }
         else if (this.game.up) { //up
@@ -196,8 +194,7 @@ class masterchief {
             this.y -= 220 * TICK;
             this.velocity.y = this.y;
             if (this.y < 0) {
-                this.Y_DEFAULT = 540;
-                this.y = this.Y_DEFAULT;
+                this.y = 540;
             }
         }
         else if (this.game.down) { //down
@@ -205,8 +202,7 @@ class masterchief {
             this.y += 220 * TICK;
             this.velocity.y = this.y;
             if (this.y > 540) {
-                this.Y_DEFAULT = 0;
-                this.y = this.Y_DEFAULT;
+                this.y = 0;
             } 
         }
         else {
