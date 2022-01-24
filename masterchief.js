@@ -40,7 +40,6 @@ class masterchief {
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
-
         this.armRotation = 0;
         this.headOrientation = this.RIGHT;
         this.x = this.X_DEFAULT;

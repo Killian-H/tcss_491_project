@@ -47,8 +47,6 @@ class Grunt {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (entity instanceof masterchief) {
 
-                } else if (entity instanceof bullet) {
-                    that.health = that.health - 10;
                 }
             };
         });
