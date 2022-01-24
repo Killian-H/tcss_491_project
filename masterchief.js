@@ -129,7 +129,8 @@ class masterchief {
 
     update() {
         const TICK = this.game.clockTick;
-        
+        console.log("velocity x: " + this.velocity.x);
+        console.log("velocity y: " + this.velocity.y);
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
                 this.game.mouse.x - this.x, 
@@ -175,7 +176,8 @@ class masterchief {
         if (this.game.right) { //right
             this.state = this.WALK;
             this.x += 220 * TICK;
-            this.velocity.x = this.x;
+            this.velocity.x += 220 * TICK;
+            //console.log("velocity: " + this.velocity.x)
             if (this.x > 1024) {
                 this.x = 0;
             }
@@ -183,15 +185,17 @@ class masterchief {
         else if (this.game.left) { //left
             this.state = this.WALK;
             this.x -= 220 * TICK;
-            this.velocity.x = this.x;
+            this.velocity.x -= 220 * TICK;
+            //console.log("velocity" + this.velocity.x)
             if (this.x < 0) {
                 this.x = 1024;
+                //this.velocity.x = 0;
             }
         }
         else if (this.game.up) { //up
             this.state = this.WALK;
             this.y -= 220 * TICK;
-            this.velocity.y = this.y;
+            this.velocity.y -= 220 * TICK;
             if (this.y < 0) {
                 this.y = 540;
             }
@@ -199,7 +203,7 @@ class masterchief {
         else if (this.game.down) { //down
             this.state = this.WALK;
             this.y += 220 * TICK;
-            this.velocity.y = this.y;
+            this.velocity.y += 220 * TICK;
             if (this.y > 540) {
                 this.y = 0;
             } 
@@ -217,29 +221,29 @@ class masterchief {
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
         }
         this.updateBoundBox();
         
