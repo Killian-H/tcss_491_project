@@ -303,7 +303,7 @@ class masterchief {
 
         //Drawing Body
         ctx.save();
-        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.X_DEFAULT -2* 7.5, this.Y_DEFAULT -12.5, this.SCALE);
+        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2* 7.5, this.y -12.5, this.SCALE);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
             ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
