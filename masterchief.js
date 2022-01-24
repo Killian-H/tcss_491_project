@@ -2,6 +2,7 @@ class masterchief {
 
     X_DEFAULT = 100;
     Y_DEFAULT = 100;
+    AMMO_DEFAULT = 32;
     SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
@@ -49,7 +50,7 @@ class masterchief {
         this.elapsedtime = 0;
         this.firerate = .1;
         this.clickcount = 0;
-        this.ammo = 32;
+        this.ammo = this.AMMO_DEFAULT;
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.updateBoundBox();
@@ -175,7 +176,7 @@ class masterchief {
         if (this.game.right) { //right
             this.state = this.WALK;
             this.x += 220 * TICK;
-            this.velocity.x = Math.abs(this.x);
+            this.velocity.x = this.x;
             if (this.x > 1024) {
                 this.X_DEFAULT = 0;
                 this.x = this.X_DEFAULT;
@@ -184,7 +185,7 @@ class masterchief {
         else if (this.game.left) { //left
             this.state = this.WALK;
             this.x -= 220 * TICK;
-            this.velocity.x = Math.abs(this.x);
+            this.velocity.x = this.x;
             if (this.x < 0) {
                 this.X_DEFAULT = 1024;
                 this.x = this.X_DEFAULT;
@@ -193,7 +194,7 @@ class masterchief {
         else if (this.game.up) { //up
             this.state = this.WALK;
             this.y -= 220 * TICK;
-            this.velocity.y = Math.abs(this.y);
+            this.velocity.y = this.y;
             if (this.y < 0) {
                 this.Y_DEFAULT = 540;
                 this.y = this.Y_DEFAULT;
@@ -202,7 +203,7 @@ class masterchief {
         else if (this.game.down) { //down
             this.state = this.WALK;
             this.y += 220 * TICK;
-            this.velocity.y = Math.abs(this.y);
+            this.velocity.y = this.y;
             if (this.y > 540) {
                 this.Y_DEFAULT = 0;
                 this.y = this.Y_DEFAULT;
@@ -213,7 +214,7 @@ class masterchief {
         }
 
         if (this.game.reload) {
-            this.ammo = 10;
+            this.ammo = this.AMMO_DEFAULT;
         }
         //moving diagonal
         //adjust x (50) for more left/right, adjust y for more up/down
@@ -221,29 +222,29 @@ class masterchief {
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = Math.abs(this.x);
-            this.velocity.y = Math.abs(this.y);
+            this.velocity.x = this.x;
+            this.velocity.y = this.y;
         }
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = Math.abs(this.x);
-            this.velocity.y = Math.abs(this.y);
+            this.velocity.x = this.x;
+            this.velocity.y = this.y;
         }
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = Math.abs(this.x);
-            this.velocity.y = Math.abs(this.y);
+            this.velocity.x = this.x;
+            this.velocity.y = this.y;
         }
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = Math.abs(this.x);
-            this.velocity.y = Math.abs(this.y);
+            this.velocity.x = this.x;
+            this.velocity.y = this.y;
         }
         this.updateBoundBox();
         
