@@ -129,7 +129,6 @@ class masterchief {
 
     update() {
         const TICK = this.game.clockTick;
-        
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
                 this.game.mouse.x - this.x, 
@@ -175,7 +174,8 @@ class masterchief {
         if (this.game.right) { //right
             this.state = this.WALK;
             this.x += 220 * TICK;
-            this.velocity.x = this.x;
+            this.velocity.x += 220 * TICK;
+            //console.log("velocity: " + this.velocity.x)
             if (this.x > 1024) {
                 this.X_DEFAULT = 0;
                 this.x = this.X_DEFAULT;
@@ -184,16 +184,17 @@ class masterchief {
         else if (this.game.left) { //left
             this.state = this.WALK;
             this.x -= 220 * TICK;
-            this.velocity.x = this.x;
+            this.velocity.x -= 220 * TICK;
+            //console.log("velocity" + this.velocity.x)
             if (this.x < 0) {
-                this.X_DEFAULT = 1024;
-                this.x = this.X_DEFAULT;
+                this.x = 1024;
+                //this.velocity.x = 0;
             }
         }
         else if (this.game.up) { //up
             this.state = this.WALK;
             this.y -= 220 * TICK;
-            this.velocity.y = this.y;
+            this.velocity.y -= 220 * TICK;
             if (this.y < 0) {
                 this.Y_DEFAULT = 540;
                 this.y = this.Y_DEFAULT;
@@ -202,7 +203,7 @@ class masterchief {
         else if (this.game.down) { //down
             this.state = this.WALK;
             this.y += 220 * TICK;
-            this.velocity.y = this.y;
+            this.velocity.y += 220 * TICK;
             if (this.y > 540) {
                 this.Y_DEFAULT = 0;
                 this.y = this.Y_DEFAULT;
@@ -221,41 +222,43 @@ class masterchief {
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = this.x;
-            this.velocity.y = this.y;
+            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
         }
         this.updateBoundBox();
         
        
         var that = this;
         this.game.entities.forEach(function (entity) {
+            console.log(that.velocity.x);
+            console.log(that.velocity.y);
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0) { // Traveling down.
-                    if ((entity instanceof Grunt) && (that.lastBB.bottom) >= entity.BB.top) {
+                    if ((entity instanceof Grunt) && (that.lastBB.bottom >= entity.BB.top)) {
                             if (that.velocity.y > 0) {
-                                that.velocity.y = 0;
                                 that.y = entity.BB.top - 58;
+                                that.velocity.y === 0;
                             }
                         }
                         that.updateBoundBox();
@@ -263,8 +266,8 @@ class masterchief {
                  if (that.velocity.y < 0) { // traveling up.
                     if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
-                                that.velocity.y = 0;
-                                that.y = entity.BB.bottom + 55;
+                                that.velocity.y === 0;
+                                // dsthat.y = entity.BB.bottom + 58;
                             }
                             if (that.velocity.x === 0) {
                                 that.state = 0;
@@ -275,7 +278,7 @@ class masterchief {
                 if (that.velocity.x > 0) { // traveling right.
                     if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
                             if (that.velocity.x > 0) {
-                                that.velocity.x = 0;
+                                that.velocity.x === 0;
                                 // that.x = entity.BB.left - 50;
                             }
                             if (that.velocity.y === 0) {
@@ -287,7 +290,7 @@ class masterchief {
                 if (that.velocity.x < 0) { // traveling left.
                     if ((entity instanceof Grunt) && that.lastBB.left <= entity.BB.right) {
                             if (that.velocity.x < 0) {
-                                that.velocity.x = 0;
+                                that.velocity.x === 0;
                             }
                             if (that.velocity.y === 0) {
                                 that.state = 0;
