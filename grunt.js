@@ -26,9 +26,9 @@ class Grunt {
     SCARED_LEFT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_scared_left.png");
     DEAD_LEFT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_dead_left.png");
 
-    constructor(game) {
-        this.x = this.X_DEFAULT;
-        this.y = this.Y_DEFAULT;
+    constructor(game, x, y) {
+        this.x = x;
+        this.y = y;
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
 

@@ -36,7 +36,7 @@ class masterchief {
 
 
 
-    constructor(game) {
+    constructor(game, x, y) {
         this.game = game;
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead

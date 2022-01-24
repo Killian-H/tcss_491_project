@@ -49,8 +49,10 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.init(ctx);
 	
-	gameEngine.addEntity(new Grunt(gameEngine));
-    gameEngine.addEntity(new masterchief(gameEngine));
+	gameEngine.addEntity(new Grunt(gameEngine, 200, 200));
+	gameEngine.addEntity(new Grunt(gameEngine, 100, 300));
+	gameEngine.addEntity(new Grunt(gameEngine, 200, 200));
+    gameEngine.addEntity(new masterchief(gameEngine, 100, 100));
 
 	new SceneManager(gameEngine);
 	gameEngine.start();
