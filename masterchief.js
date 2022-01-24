@@ -50,6 +50,7 @@ class masterchief {
         this.elapsedtime = 0;
         this.firerate = .1;
         this.clickcount = 0;
+        this.ammo = 10;
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.updateBoundBox();
@@ -161,13 +162,13 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        if(this.game.click != null && this.elapsedtime > this.firerate) {
+        if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
             this.clickcount = 1;
-            // this.spawnX = this.calculateWeaponLocationX();
-            this.game.addEntity(new bullet(this.game, this.x , this.y, this.game.click.x,this.game.click.y, this.armRotation));
-            this.game.click = null
+            this.ammo -= 1;
+            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x,this.game.mouse.y, this.armRotation));
+            //this.game.click = null
         }
 
         //moving left/right/up/down
@@ -211,6 +212,9 @@ class masterchief {
             this.state = this.IDLE;
         }
 
+        if (this.game.reload) {
+            this.ammo = 10;
+        }
         //moving diagonal
         //adjust x (50) for more left/right, adjust y for more up/down
         if (this.game.right && this.game.up) { //right/up

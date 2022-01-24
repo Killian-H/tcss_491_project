@@ -14,12 +14,15 @@ class GameEngine {
         // Information on the input
         this.click = null;
         this.mouse = null;
+        this.mousedown = null;
         this.wheel = null;
         this.keys = {};
         this.left = false;
         this.right = false;
         this.up = false;
         this.down = false;
+        this.reload = false;
+        this.pointer = null;
 
         // THE KILL SWITCH
         this.running = false;
@@ -66,11 +69,20 @@ class GameEngine {
             this.mouse = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("click", e => {
+        this.ctx.canvas.addEventListener("mousedown", e => {
             if (this.options.debugging) {
                 //console.log("CLICK", getXandY(e));
             }
+            this.mousedown = true;
             this.click = getXandY(e);
+        });
+
+        this.ctx.canvas.addEventListener("mouseup", e => {
+            if (this.options.debugging) {
+                //console.log("CLICK", getXandY(e));
+            }
+            this.mousedown = null;
+            this.click = null;
         });
 
         this.ctx.canvas.addEventListener("wheel", e => {
@@ -112,6 +124,9 @@ class GameEngine {
                 case "KeyS":
                     that.down = true;
                     break;
+                case "KeyR":
+                    that.reload = true;
+                    break;
             }
         }, false);
 
@@ -133,6 +148,9 @@ class GameEngine {
                 case "ArrowDown":
                 case "KeyS":
                     that.down = false;
+                    break;
+                case "KeyR":
+                    that.reload = false;
                     break;
             }
         }, false);
@@ -169,6 +187,9 @@ class GameEngine {
         // Add new things
         this.entities = this.entities.concat(this.entitiesToAdd);
         this.entitiesToAdd = [];
+
+        //this.pointer = getXandY(e);
+        //console.log(pointer);
 
         //this.camera.update();
     };
