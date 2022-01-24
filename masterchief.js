@@ -41,6 +41,7 @@ class masterchief {
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
+
         this.armRotation = 0;
         this.headOrientation = this.RIGHT;
         this.x = this.X_DEFAULT;
@@ -305,6 +306,22 @@ class masterchief {
         })
     };
 
+    // calculateWeaponLocationX() {
+    //     if (this.facing == this.LEFT) {
+    //         return this.x - this.armImg.width/2; 
+    //     } else {
+    //         return this.x;
+    //     }
+    // }
+
+    // calculateWeaponLocationY() {
+    //     if (this.Orientation == this.LEFT) {
+    //         return this.x - this.armImg.width/2; 
+    //     } else {
+    //         return this.x;
+    //     }
+    // }
+
     draw(ctx) {
 
         //Drawing Body
@@ -336,7 +353,7 @@ class masterchief {
             }
             ctx.restore();
             ctx.translate(
-                -18,
+                -20,
                 1
             );
             ctx.rotate(-this.armRotation + 2 *1.5708);
