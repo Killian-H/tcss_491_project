@@ -165,7 +165,8 @@ class masterchief {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
             this.clickcount = 1;
-            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y, this.armRotation));
+            // this.spawnX = this.calculateWeaponLocationX();
+            this.game.addEntity(new bullet(this.game, this.x , this.y, this.game.click.x,this.game.click.y, this.armRotation));
             this.game.click = null
         }
 
@@ -298,6 +299,22 @@ class masterchief {
             }
         })
     };
+
+    // calculateWeaponLocationX() {
+    //     if (this.facing == this.LEFT) {
+    //         return this.x - this.armImg.width/2; 
+    //     } else {
+    //         return this.x;
+    //     }
+    // }
+
+    // calculateWeaponLocationY() {
+    //     if (this.Orientation == this.LEFT) {
+    //         return this.x - this.armImg.width/2; 
+    //     } else {
+    //         return this.x;
+    //     }
+    // }
 
     draw(ctx) {
 
