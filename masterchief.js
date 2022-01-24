@@ -251,8 +251,7 @@ class masterchief {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0) { // Traveling down.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.bottom >= entity.BB.top) {
+                    if ((entity instanceof Grunt) && that.lastBB.bottom >= entity.BB.top) {
                             if (that.velocity.y > 0) {
                                 that.velocity.y === 0;
                                 that.y = entity.BB.top;
@@ -264,8 +263,7 @@ class masterchief {
                         that.updateBoundBox();
                 } 
                 if (that.velocity.y < 0) { // traveling up.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.top >= entity.BB.bottom) {
+                    if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
                                 that.velocity.y === 0;
                             }
@@ -276,8 +274,7 @@ class masterchief {
                         that.updateBoundBox();
                 }
                 if (that.velocity.x > 0) { // traveling right.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.right >= entity.BB.left) {
+                    if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
                             if (that.velocity.x > 0) {
                                 that.velocity.x === 0;
                             }
@@ -288,8 +285,7 @@ class masterchief {
                         that.updateBoundBox();
                 }
                 if (that.velocity.x < 0) { // traveling left.
-                    if ((entity instanceof Tree || entity instanceof Rock || entity instanceof Grunt ||
-                        entity instanceof Brute || entity instanceof Elite) && that.lastBB.left <= entity.BB.right) {
+                    if ((entity instanceof Grunt) && that.lastBB.left <= entity.BB.right) {
                             if (that.velocity.x < 0) {
                                 that.velocity.x === 0;
                             }
