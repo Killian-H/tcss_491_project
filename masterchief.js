@@ -167,7 +167,7 @@ class masterchief {
             this.clickcount = 1;
             this.ammo -= 1;
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.click.x,this.game.click.y, this.armRotation));
-            this.game.click = null
+            //this.game.click = null
         }
 
         //moving left/right/up/down
