@@ -163,7 +163,7 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        console.log(this.elapsedtime);
+        // console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
@@ -225,29 +225,29 @@ class masterchief {
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         this.updateBoundBox();
         

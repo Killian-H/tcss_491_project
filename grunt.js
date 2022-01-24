@@ -97,6 +97,7 @@ class Grunt {
             } else if (this.facing === 1) {
                 this.deadLeft.drawFrame(this.game.clockTick, ctx, 240, 240, 1.25);
             }
+            setTimeout(() => {this.removeFromWorld = true}, 800);
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
