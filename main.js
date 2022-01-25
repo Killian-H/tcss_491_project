@@ -2,8 +2,6 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
-const SCENE_MANAGER = new SceneManager();
-
 ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 
 
@@ -48,11 +46,6 @@ ASSET_MANAGER.downloadAll(() => {
 	PARAMS.CANVAS_WIDTH = canvas.width;
 
 	gameEngine.init(ctx);
-	
-	gameEngine.addEntity(new Grunt(gameEngine, 200, 200));
-	gameEngine.addEntity(new Grunt(gameEngine, 100, 300));
-	gameEngine.addEntity(new Grunt(gameEngine, 173, 97));
-    gameEngine.addEntity(new masterchief(gameEngine, 100, 100));
 
 	new SceneManager(gameEngine);
 	gameEngine.start();
