@@ -53,6 +53,7 @@ class masterchief {
         this.firerate = .1;
         this.clickcount = 0;
         this.ammo = this.AMMO_DEFAULT;
+        this.canshoot = true;
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
@@ -167,7 +168,7 @@ class masterchief {
 
         this.elapsedtime += this.game.clockTick;
         // console.log(this.elapsedtime);
-        if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload) {
+        if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
             this.clickcount = 1;
@@ -219,7 +220,9 @@ class masterchief {
         }
 
         if (this.game.reload) {
-            setTimeout(() => {this.ammo = this.AMMO_DEFAULT}, 3000);
+            let stopShoot = setInterval(() => {this.canshoot = false}, 1);
+            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2000);
+            //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
         //moving diagonal
         //adjust x (50) for more left/right, adjust y for more up/down
