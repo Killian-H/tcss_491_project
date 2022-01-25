@@ -275,7 +275,7 @@ class masterchief {
                     if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
                                 that.velocity.y === 0;
-                                // dsthat.y = entity.BB.bottom + 58;
+                                that.y = entity.BB.bottom + 58;
                             }
                             if (that.velocity.x === 0) {
                                 that.state = 0;
@@ -287,7 +287,7 @@ class masterchief {
                     if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
                             if (that.velocity.x > 0) {
                                 that.velocity.x === 0;
-                                // that.x = entity.BB.left - 50;
+                                that.x = entity.BB.left - 50;
                             }
                             if (that.velocity.y === 0) {
                                 that.state = 0;
@@ -299,7 +299,7 @@ class masterchief {
                     if ((entity instanceof Grunt) && that.lastBB.left <= entity.BB.right) {
                             if (that.velocity.x < 0) {
                                 that.velocity.x === 0;
-                                that.x = entity.BB.right + 10;
+                                that.x = entity.BB.right + 50;
                             }
                             if (that.velocity.y === 0) {
                                 that.state = 0;
