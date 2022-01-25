@@ -167,7 +167,7 @@ class masterchief {
 
         this.elapsedtime += this.game.clockTick;
         // console.log(this.elapsedtime);
-        if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0) {
+        if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
             this.clickcount = 1;
