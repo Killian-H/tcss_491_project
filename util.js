@@ -105,3 +105,7 @@ const getDistance = (x1, y1, x2, y2) => {
 const chooseRandom = items => items.length > 0
     ? items[floor(random() * items.length)]
     : null;
+
+    function canSee(A, B) { // if A can see B
+        return (getDistance(A.x, A.y, B.x, B.y) < A.visualRadius + B.radius);
+    };

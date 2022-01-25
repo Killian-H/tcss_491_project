@@ -27,8 +27,10 @@ class Grunt {
     DEAD_LEFT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_dead_left.png");
 
     constructor(game, x, y) {
+        Object.assign(this, {game, x, y});
         this.x = x;
         this.y = y;
+        this.visualRadius = 300;
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
 
@@ -56,14 +58,16 @@ class Grunt {
                 } else {
                     that.facing = 0;
                 }
-                that.aimingX = entity.x;
-                that.aimingY = entity.y;
-                console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
-                that.armRotation =  Math.atan2 (
-                    that.aimingX - that.x, 
-                    - (that.aimingY - that.y)
-                ) - Math.PI / 2;
-                console.log("Arm Rotation: " + that.armRotation);
+                if (canSee(that, entity)) {
+                    that.aimingX = entity.x;
+                    that.aimingY = entity.y;
+                    console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
+                    that.armRotation =  Math.atan2 (
+                        that.aimingX - that.x, 
+                        - (that.aimingY - that.y)
+                    ) - Math.PI / 2;
+                    console.log("Arm Rotation: " + that.armRotation);
+                }
             }
 
             if (entity.BB && that.BB.collide(entity.BB)) {
@@ -124,6 +128,13 @@ class Grunt {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
                 ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+
+                ctx.setLineDash([5, 15]);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.visualRadius, 0, 2 * Math.PI);
+                ctx.closePath();
+                ctx.stroke();
+                ctx.setLineDash([]);
             }
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
             ctx.save();

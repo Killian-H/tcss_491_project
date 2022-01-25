@@ -37,11 +37,12 @@ class masterchief {
 
 
     constructor(game, x, y) {
+        Object.assign(this, {game, x, y});
         this.game = game;
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
-
+        this.radius = 10;
         this.armRotation = 0;
         this.headOrientation = this.RIGHT;
         this.x = this.X_DEFAULT;
@@ -256,8 +257,6 @@ class masterchief {
        
         var that = this;
         this.game.entities.forEach(function (entity) {
-            console.log(that.velocity.x);
-            console.log(that.velocity.y);
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0) { // Traveling down.
                     if ((entity instanceof Grunt) && (that.lastBB.bottom >= entity.BB.top)) {
