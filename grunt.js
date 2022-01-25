@@ -1,5 +1,10 @@
 class Grunt {
 
+    X_DEFAULT = 200;
+    Y_DEFAULT = 200;
+
+    SCALE = 1.2;
+
     IDLE = 0;
     WALK = 1;
     SCARED = 2;
@@ -10,6 +15,7 @@ class Grunt {
     IDLE_RIGHT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_idle.png");
     WALK_RIGHT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_walk.png");
     SCARED_RIGHT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_scared.png");
+    ARM_PLASMA_PISTOL = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_arm_plasma_pistol.png");
     ARMS = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_arms.png");
     DEAD_RIGHT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_dead.png");
     HEAD = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_head.png");
@@ -20,10 +26,17 @@ class Grunt {
     SCARED_LEFT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_scared_left.png");
     DEAD_LEFT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_dead_left.png");
 
-    constructor(game) {
+    constructor(game, x, y) {
+        this.x = x;
+        this.y = y;
+        this.armImg = this.ARM_PLASMA_PISTOL;
+        this.armRotation = 0;
+
+        this.aimingX = 0;
+        this.aimingY = 0;
         this.game = game;
         this.health = this.FULL_HEALTH;
-        this.state = this.WALK; // 0 = idle, 1 = walk, 2 = scared
+        this.state = this.IDLE; // 0 = idle, 1 = walk, 2 = scared
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.dead = false;
         this.deadLeft = new Animator(this.DEAD_LEFT, 7, 0, 47, 35, 5, 0.12, true, false);
@@ -43,7 +56,16 @@ class Grunt {
                 } else {
                     that.facing = 0;
                 }
+                that.aimingX = entity.x;
+                that.aimingY = entity.y;
+                console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
+                that.armRotation =  Math.atan2 (
+                    that.aimingX - that.x, 
+                    - (that.aimingY - that.y)
+                ) - Math.PI / 2;
+                console.log("Arm Rotation: " + that.armRotation);
             }
+
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (entity instanceof masterchief) {
 
@@ -53,7 +75,7 @@ class Grunt {
     };
 
     updateBoundBox() {
-        this.BB = new BoundingBox(240, 240, 35, 48);
+        this.BB = new BoundingBox(this.x, this.y, 35, 48);
     };
 
     loadAnimations() {
@@ -92,17 +114,40 @@ class Grunt {
     draw(ctx) {
         if (this.health <= 0) {
             this.dead = true;
-            if (this.facing === 0) {
-                this.deadRight.drawFrame(this.game.clockTick, ctx, 240, 240, 1.25);
-            } else if (this.facing === 1) {
-                this.deadLeft.drawFrame(this.game.clockTick, ctx, 240, 240, 1.25);
+            if (this.facing === this.RIGHT) {
+                this.deadRight.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
+            } else if (this.facing === this.LEFT) {
+                this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
             }
+            setTimeout(() => {this.removeFromWorld = true}, 800);
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
                 ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
             }
-        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, 240, 240, 1.25);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
+            ctx.save();
+            ctx.translate(
+                this.x,
+                this.y
+            );
+            if (this.facing === this.LEFT) {
+                ctx.scale(-1,1);
+                ctx.translate(
+                    -20,
+                    27.5
+                );
+                ctx.rotate(-this.armRotation + Math.PI);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+            } else {
+                ctx.translate(
+                    15,
+                    27.5
+                );
+                ctx.rotate(this.armRotation);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+            }
+            ctx.restore();
         }
     };
 }

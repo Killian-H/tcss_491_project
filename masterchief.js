@@ -36,11 +36,12 @@ class masterchief {
 
 
 
-    constructor(game) {
+    constructor(game, x, y) {
         this.game = game;
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
+
         this.armRotation = 0;
         this.headOrientation = this.RIGHT;
         this.x = this.X_DEFAULT;
@@ -48,9 +49,11 @@ class masterchief {
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
+        this.elapsedtime2 = 0;
         this.firerate = .1;
         this.clickcount = 0;
         this.ammo = this.AMMO_DEFAULT;
+
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
         this.updateBoundBox();
@@ -163,6 +166,7 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
+        // console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
@@ -179,7 +183,8 @@ class masterchief {
             this.velocity.x = 1;
             //console.log("velocity: " + this.velocity.x)
             if (this.x > 1024) {
-                this.x = 0;
+                this.X_DEFAULT = 0;
+                this.x = this.X_DEFAULT;
             }
         }
         else if (this.game.left) { //left
@@ -197,7 +202,8 @@ class masterchief {
             this.y -= 220 * TICK;
             this.velocity.y = -1;
             if (this.y < 0) {
-                this.y = 540;
+                this.Y_DEFAULT = 540;
+                this.y = this.Y_DEFAULT;
             }
         }
         else if (this.game.down) { //down
@@ -205,7 +211,8 @@ class masterchief {
             this.y += 220 * TICK;
             this.velocity.y = 1;
             if (this.y > 540) {
-                this.y = 0;
+                this.Y_DEFAULT = 0;
+                this.y = this.Y_DEFAULT;
             } 
         }
         else {
@@ -215,7 +222,7 @@ class masterchief {
         }
 
         if (this.game.reload) {
-            this.ammo = this.AMMO_DEFAULT;
+            setTimeout(() => {this.ammo = this.AMMO_DEFAULT}, 3000);
         }
         //moving diagonal
         //adjust x (50) for more left/right, adjust y for more up/down
@@ -223,55 +230,52 @@ class masterchief {
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y -= ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.y += ((150 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.x = ((50 * TICK) / 2) * Math.sqrt(2);
+            this.velocity.y = ((150 * TICK) / 2) * Math.sqrt(2);
         }
         this.updateBoundBox();
         
        
         var that = this;
         this.game.entities.forEach(function (entity) {
-            console.log("killian vel x" + that.velocity.x);
-            //console.log("killian vel y" + that.velocity.y);
+            console.log(that.velocity.x);
+            console.log(that.velocity.y);
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if (that.velocity.y < 0) { // traveling up.
-                    if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
-                            if (that.velocity.y < 0) {
+                if (that.velocity.y > 0) { // Traveling down.
+                    if ((entity instanceof Grunt) && (that.lastBB.bottom >= entity.BB.top)) {
+                            if (that.velocity.y > 0) {
+                                that.y = entity.BB.top - 58;
                                 that.velocity.y === 0;
-                                that.y = entity.BB.bottom + 10;
-                            }
-                            if (that.velocity.x === 0) {
-                                that.state = 0;
                             }
                         }
                         that.updateBoundBox();
-                }
-                if (that.velocity.y > 0) { // Traveling down.
-                    if ((entity instanceof Grunt) && that.lastBB.bottom >= entity.BB.top) {
-                            if (that.velocity.y > 0) {
+                } 
+                 if (that.velocity.y < 0) { // traveling up.
+                    if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
+                            if (that.velocity.y < 0) {
                                 that.velocity.y === 0;
-                                that.y = entity.BB.top - 10;
+                                // dsthat.y = entity.BB.bottom + 58;
                             }
                             if (that.velocity.x === 0) {
                                 that.state = 0;
@@ -283,7 +287,7 @@ class masterchief {
                     if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
                             if (that.velocity.x > 0) {
                                 that.velocity.x === 0;
-                                that.x = entity.BB.left - 10;
+                                // that.x = entity.BB.left - 50;
                             }
                             if (that.velocity.y === 0) {
                                 that.state = 0;
@@ -306,6 +310,22 @@ class masterchief {
             }
         })
     };
+
+    // calculateWeaponLocationX() {
+    //     if (this.facing == this.LEFT) {
+    //         return this.x - this.armImg.width/2; 
+    //     } else {
+    //         return this.x;
+    //     }
+    // }
+
+    // calculateWeaponLocationY() {
+    //     if (this.Orientation == this.LEFT) {
+    //         return this.x - this.armImg.width/2; 
+    //     } else {
+    //         return this.x;
+    //     }
+    // }
 
     draw(ctx) {
 
@@ -338,7 +358,7 @@ class masterchief {
             }
             ctx.restore();
             ctx.translate(
-                -18,
+                -20,
                 1
             );
             ctx.rotate(-this.armRotation + 2 *1.5708);

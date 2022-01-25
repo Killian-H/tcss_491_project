@@ -9,6 +9,7 @@ ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 
 // Grunt
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arms.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arm_plasma_pistol.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_dead.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_head.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_idle.png");
@@ -48,8 +49,10 @@ ASSET_MANAGER.downloadAll(() => {
 
 	gameEngine.init(ctx);
 	
-	gameEngine.addEntity(new Grunt(gameEngine));
-    gameEngine.addEntity(new masterchief(gameEngine));
+	gameEngine.addEntity(new Grunt(gameEngine, 200, 200));
+	gameEngine.addEntity(new Grunt(gameEngine, 100, 300));
+	gameEngine.addEntity(new Grunt(gameEngine, 173, 97));
+    gameEngine.addEntity(new masterchief(gameEngine, 100, 100));
 
 	new SceneManager(gameEngine);
 	gameEngine.start();
