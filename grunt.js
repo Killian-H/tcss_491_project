@@ -54,12 +54,12 @@ class Grunt extends AbstractEnemy {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief && that.dead == false) {
-                if (that.BB.left > entity.BB.left) {
-                    that.facing = 1;
-                } else {
-                    that.facing = 0;
-                }
                 if (canSee(that, entity)) {
+                    if (that.BB.left > entity.BB.left) {
+                    that.facing = 1;
+                    } else {
+                        that.facing = 0;
+                    }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
                     console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);

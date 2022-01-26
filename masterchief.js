@@ -1,7 +1,5 @@
 class masterchief {
 
-    X_DEFAULT = 100;
-    Y_DEFAULT = 100;
     AMMO_DEFAULT = 32;
     SCALE = 1.6;
     LEFT = 1;
@@ -45,8 +43,8 @@ class masterchief {
         this.radius = 10;
         this.armRotation = 0;
         this.headOrientation = this.RIGHT;
-        this.x = this.X_DEFAULT;
-        this.y = this.Y_DEFAULT;
+        this.x = x;
+        this.y = y;
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
@@ -174,7 +172,7 @@ class masterchief {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.ammo -= 1;
-            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x,this.game.mouse.y, this.armRotation));
+            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
             //this.game.click = null
         }
 
