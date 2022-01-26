@@ -262,31 +262,27 @@ class masterchief {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
-                    if ((entity instanceof Grunt) && that.lastBB.bottom >= entity.BB.top) {
-                        that.velocity.y === 0;
-                        that.y = entity.BB.top - 58;
+                    if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
+                        that.velocity.x === 0;
+                        that.x = entity.BB.left - 30;
                     }
                 }
                 else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
-                    if ((entity instanceof Grunt) && that.lastBB.bottom >= entity.BB.top) {
-                        that.velocity.y === 0;
-                        that.y = entity.BB.top - 58;
+                    if ((entity instanceof Grunt) && that.lastBB.left <= entity.BB.right) {
+                        that.velocity.x === 0;
+                        that.x = entity.BB.right + 7;
                     }
                 }
                 else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
-                    if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom && that.lastBB.right >= entity.BB.left) {
-                        that.x === 0;
+                    if ((entity instanceof Grunt) && that.lastBB.right >= entity.BB.left) {
+                        that.velocity.x === 0;
                         that.x = entity.BB.left - 30;
-                    }
-                    else if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
-                        that.velocity.y === 0;
-                        that.y = entity.BB.bottom + 20;
                     }
                 }
                 else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
-                    if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
-                        that.velocity.y === 0;
-                        that.y = entity.BB.bottom + 20;
+                    if (entity instanceof Grunt && that.lastBB.left <= entity.BB.right) {
+                        that.velocity.x = 0;
+                        that.x = entity.BB.right + 7;
                     }
                 }
                 else if (that.velocity.y > 0) { // Traveling down.
@@ -298,7 +294,7 @@ class masterchief {
                         }
                         that.updateBoundBox();
                 } 
-                else if (that.velocity.y < 0 && that.velocity.x == 0) { // traveling up.
+                else if (that.velocity.y < 0) { // traveling up.
                     if ((entity instanceof Grunt) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
                                 that.velocity.y === 0;

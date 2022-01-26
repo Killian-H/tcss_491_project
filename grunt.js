@@ -1,4 +1,4 @@
-class Grunt {
+class Grunt extends AbstractEnemy {
 
     X_DEFAULT = 200;
     Y_DEFAULT = 200;
@@ -27,6 +27,7 @@ class Grunt {
     DEAD_LEFT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_dead_left.png");
 
     constructor(game, x, y) {
+        super(game, x, y);
         Object.assign(this, {game, x, y});
         this.x = x;
         this.y = y;
