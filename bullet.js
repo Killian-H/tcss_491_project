@@ -1,5 +1,5 @@
 class bullet {
-    constructor(game,x,y,clickX,clickY, rotation){
+    constructor(game, x, y, clickX, clickY, rotation) {
         Object.assign(this, {game, x, y, clickX, clickY, rotation})
         //this.game = game;
         //this.radius = 2;

@@ -1,4 +1,4 @@
-class Grunt {
+class Grunt extends AbstractEnemy {
 
     X_DEFAULT = 200;
     Y_DEFAULT = 200;
@@ -27,6 +27,7 @@ class Grunt {
     DEAD_LEFT = ASSET_MANAGER.getAsset("./sprites/grunt/grunt_dead_left.png");
 
     constructor(game, x, y) {
+        super(game, x, y);
         Object.assign(this, {game, x, y});
         this.x = x;
         this.y = y;
@@ -53,12 +54,12 @@ class Grunt {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief && that.dead == false) {
-                if (that.BB.left > entity.BB.left) {
-                    that.facing = 1;
-                } else {
-                    that.facing = 0;
-                }
                 if (canSee(that, entity)) {
+                    if (that.BB.left > entity.BB.left) {
+                    that.facing = 1;
+                    } else {
+                        that.facing = 0;
+                    }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
                     //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
