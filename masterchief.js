@@ -1,7 +1,7 @@
 class masterchief {
 
-    X_DEFAULT = 100;
-    Y_DEFAULT = 100;
+    X_DEFAULT = 512;
+    Y_DEFAULT = 270;
     AMMO_DEFAULT = 32;
     SCALE = 1.6;
     LEFT = 1;
@@ -177,7 +177,10 @@ class masterchief {
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x,this.game.mouse.y, this.armRotation));
             //this.game.click = null
         }
-
+        //console.log("velocity x: " + this.velocity.x);
+        //console.log("velocity y: " + this.velocity.y);
+        console.log("x:" + this.x);
+        console.log("y:" + this.y);
         //moving left/right/up/down
         if (this.game.right) { //right
             this.state = this.WALK;
@@ -234,6 +237,7 @@ class masterchief {
             this.velocity.x = 1;
             this.velocity.y = -1;
         }
+        
         if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
@@ -241,6 +245,7 @@ class masterchief {
             this.velocity.x = 1;
             this.velocity.y = 1;
         }
+        
         if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
@@ -248,6 +253,7 @@ class masterchief {
             this.velocity.x = -1;
             this.velocity.y = -1;
         }
+        
         if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
@@ -255,6 +261,7 @@ class masterchief {
             this.velocity.x = -1;
             this.velocity.y = 1;
         }
+        
         this.updateBoundBox();
         
        
