@@ -37,13 +37,24 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_melee_left.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_left.png");
 
+// bullet
 ASSET_MANAGER.queueDownload("./sprites/bullet.png");
+
+// music
+//ASSET_MANAGER.queueDownload("./music/halo 3 theme");
+
+// sound effects
+ASSET_MANAGER.queueDownload("./audio/ar reload.mp3");
+ASSET_MANAGER.queueDownload("./audio/ar fire.mp3");
+ASSET_MANAGER.queueDownload("./audio/walking.mp3");
+ASSET_MANAGER.queueDownload("./audio/ar single.mp3");
+
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
-
+	//ASSET_MANAGER.autoRepeat("./music/halo 3 theme");
 	PARAMS.CANVAS_WIDTH = canvas.width;
 
 	gameEngine.init(ctx);

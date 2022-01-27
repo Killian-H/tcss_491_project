@@ -175,12 +175,16 @@ class masterchief {
             this.clickcount = 1;
             this.ammo -= 1;
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+            ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
         //console.log("velocity x: " + this.velocity.x);
         //console.log("velocity y: " + this.velocity.y);
-        console.log("x:" + this.x);
-        console.log("y:" + this.y);
+        //console.log("x:" + this.x);
+        //console.log("y:" + this.y);
+        if (this.game.right || this.game.left || this.game.up || this.game.down) {
+            ASSET_MANAGER.playAsset("./audio/walking.mp3");
+        }
         //moving left/right/up/down
         if (this.game.right) { //right
             this.state = this.WALK;
@@ -225,6 +229,7 @@ class masterchief {
 
         if (this.game.reload) {
             let stopShoot = setInterval(() => {this.canshoot = false}, 1);
+            ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2000);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
