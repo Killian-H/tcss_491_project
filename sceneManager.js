@@ -19,7 +19,7 @@ class SceneManager {
     };
 
     draw(ctx) {
-        if (PARAMS.DEBUG) {
+        if (PARAMS.DEBUG == true) {
             
             //ctx.fillText(xV, 1.5 * PARAMS.BLOCKWIDTH, 2.5 * PARAMS.BLOCKWIDTH);
             //ctx.fillText(yV, 1.5 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);

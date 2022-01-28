@@ -117,4 +117,8 @@ class AssetManager {
             aud.play();
         });
     };
+    
+    getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
 };

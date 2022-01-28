@@ -25,12 +25,19 @@ class bullet {
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
         this.updateBoundCircle();
-
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof Grunt) {
+                    let r = ASSET_MANAGER.getRandomInt(101);
+                    console.log("r = " + r);
                     entity.health = entity.health - 10;
+                    if (r <= 15) {
+                        ASSET_MANAGER.playAsset("./audio/gruntscream.mp3");
+                    }
+                    if (r == 100) {
+                        ASSET_MANAGER.playAsset("./audio/gruntpee.mp3");
+                    }
                     that.removeFromWorld = true;
                 } else {
                 }

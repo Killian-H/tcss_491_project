@@ -48,6 +48,8 @@ ASSET_MANAGER.queueDownload("./audio/ar reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar fire.mp3");
 ASSET_MANAGER.queueDownload("./audio/walking.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar single.mp3");
+ASSET_MANAGER.queueDownload("./audio/gruntscream.mp3");
+ASSET_MANAGER.queueDownload("./audio/gruntpee.mp3");
 
 
 ASSET_MANAGER.downloadAll(() => {
@@ -56,7 +58,8 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 	PARAMS.CANVAS_WIDTH = canvas.width;
-	ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");//play theme
+	ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
+	//AssetManager.("./music/halo 3 theme.mp3");//play theme
 
 	gameEngine.init(ctx);
 
