@@ -41,7 +41,7 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_left.png");
 ASSET_MANAGER.queueDownload("./sprites/bullet.png");
 
 // music
-//ASSET_MANAGER.queueDownload("./music/halo 3 theme");
+ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
 
 // sound effects
 ASSET_MANAGER.queueDownload("./audio/ar reload.mp3");
@@ -51,11 +51,12 @@ ASSET_MANAGER.queueDownload("./audio/ar single.mp3");
 
 
 ASSET_MANAGER.downloadAll(() => {
+	//ASSET_MANAGER.("./music/halo 3 theme");
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
-	//ASSET_MANAGER.autoRepeat("./music/halo 3 theme");
 	PARAMS.CANVAS_WIDTH = canvas.width;
+	ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");//play theme
 
 	gameEngine.init(ctx);
 
