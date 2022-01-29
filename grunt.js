@@ -1,8 +1,5 @@
 class Grunt extends AbstractEnemy {
 
-    X_DEFAULT = 200;
-    Y_DEFAULT = 200;
-
     SCALE = 1.2;
 
     IDLE = 0;

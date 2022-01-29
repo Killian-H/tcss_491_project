@@ -1,0 +1,49 @@
+Assault Rifle                                    // Each weapon should be its own class extending an abstract or interface.
+- Auto                                           // Chief should have a current weapon field which can be swapped to another
+- 32 bullets                                     // weapon if he equips it. Could make projectile and weapon separate class.
+- fire rate (very fast)                          // utils.js needs to have both auto and semi auto functionality. Pass whether
+- ammo/arm png                                   // weapon is auto or not so it can choose which to use.
+- damage
+- sound
+
+Battle Rifle (?) (maybe DMR)
+- semi auto
+- 36 bullets
+- fire rate (med)
+- arm png
+- damage
+- sound
+
+Pistol
+- semi auto
+- 10 bullets
+- fire rate (fast)
+- arm png
+- damage
+- sound
+
+ENEMY WEAPONS
+
+Plasma Rifle
+- full auto
+- 30 bullets
+- fire rate (very fast)
+- ammo png
+- damage
+- sound
+
+Plasma Pistol
+- semi auto
+- 10 bullets
+- fire rate (fast)
+- ammo png
+- damage
+- sound
+
+Spiker
+- full auto
+- 40 bullets
+- fire rate (fast)
+- ammo png
+- damage
+- sound

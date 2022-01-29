@@ -225,28 +225,28 @@ class masterchief {
         }
         //moving diagonal
         //adjust x (50) for more left/right, adjust y for more up/down
-        if (this.game.right && this.game.up) { //right/up
+        if (this.game.right && this.game.up) { //right / up
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
             this.velocity.x = 1;
             this.velocity.y = -1;
         }
-        if (this.game.right && this.game.down) { //right/down
+        if (this.game.right && this.game.down) { //right / down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
             this.velocity.x = 1;
             this.velocity.y = 1;
         }
-        if (this.game.left && this.game.up) { //left/up
+        if (this.game.left && this.game.up) { //left / up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
             this.velocity.x = -1;
             this.velocity.y = -1;
         }
-        if (this.game.left && this.game.down) { //left/down
+        if (this.game.left && this.game.down) { //left / down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
