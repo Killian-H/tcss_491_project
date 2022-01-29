@@ -1,5 +1,7 @@
 class masterchief {
 
+    X_DEFAULT = 512;
+    Y_DEFAULT = 270;
     AMMO_DEFAULT = 32;
     SCALE = 1.6;
     LEFT = 1;
@@ -173,9 +175,16 @@ class masterchief {
             this.clickcount = 1;
             this.ammo -= 1;
             this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+            ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
-
+        //console.log("velocity x: " + this.velocity.x);
+        //console.log("velocity y: " + this.velocity.y);
+        //console.log("x:" + this.x);
+        //console.log("y:" + this.y);
+        if (this.game.right || this.game.left || this.game.up || this.game.down) {
+            ASSET_MANAGER.playAsset("./audio/walking.mp3");
+        }
         //moving left/right/up/down
         if (this.game.right) { //right
             this.state = this.WALK;
@@ -220,6 +229,7 @@ class masterchief {
 
         if (this.game.reload) {
             let stopShoot = setInterval(() => {this.canshoot = false}, 1);
+            ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2000);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
@@ -232,27 +242,31 @@ class masterchief {
             this.velocity.x = 1;
             this.velocity.y = -1;
         }
-        if (this.game.right && this.game.down) { //right / down
+        
+        if (this.game.right && this.game.down) { //right/down
             this.state = this.WALK;
             this.x += ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
             this.velocity.x = 1;
             this.velocity.y = 1;
         }
-        if (this.game.left && this.game.up) { //left / up
+        
+        if (this.game.left && this.game.up) { //left/up
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
             this.velocity.x = -1;
             this.velocity.y = -1;
         }
-        if (this.game.left && this.game.down) { //left / down
+        
+        if (this.game.left && this.game.down) { //left/down
             this.state = this.WALK;
             this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
             this.y += ((150 * TICK) / 2) * Math.sqrt(2);
             this.velocity.x = -1;
             this.velocity.y = 1;
         }
+        
         this.updateBoundBox();
         
        

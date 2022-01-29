@@ -1,6 +1,8 @@
 /** Global Parameters Object */
 const PARAMS = { 
-    DEBUG: true
+    DEBUG: true,
+    BLOCKWIDTH: 48,
+    MUTE: false
 };
 
 /** Easy access to math functions */

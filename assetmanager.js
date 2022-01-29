@@ -92,6 +92,15 @@ class AssetManager {
         }
     };
 
+    unmuteAudio(mute) {
+        for (var key in this.cache) {
+            let asset = this.cache[key];
+            if (asset instanceof Audio) {
+                asset.muted = mute;
+            }
+        }
+    }
+
     adjustVolume(volume) {
         for (var key in this.cache) {
             let asset = this.cache[key];
@@ -117,4 +126,8 @@ class AssetManager {
             aud.play();
         });
     };
+
+    getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
 };

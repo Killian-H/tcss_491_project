@@ -11,20 +11,26 @@ class SceneManager {
         this.game.addEntity(this.grunt);
         this.game.addEntity(this.grunt2);
     };
+    updateAudio() {
+        if (PARAMS.MUTE == true) {
+            ASSET_MANAGER.muteAudio(PARAMS.MUTE)
+        }
+    }
 
     update() {
-        let midpoint = PARAMS.CANVAS_WIDTH/2;
+        this.updateAudio();
+        let midpoint = 1024/2;
 
         this.x = this.masterchief.x - midpoint;
     };
 
     draw(ctx) {
-        if (PARAMS.DEBUG) {
+        if (PARAMS.DEBUG == true) {
             
             //ctx.fillText(xV, 1.5 * PARAMS.BLOCKWIDTH, 2.5 * PARAMS.BLOCKWIDTH);
             //ctx.fillText(yV, 1.5 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);
             ctx.fillStyle = "White";
-            //ctx.translate(0, -10); // hack to move elements up by 10 pixels instead of adding -10 to all y coordinates below
+            ctx.translate(0, -10); // hack to move elements up by 10 pixels instead of adding -10 to all y coordinates below
             ctx.strokeStyle = "White";
             ctx.lineWidth = 2;
             ctx.strokeStyle = this.game.left ? "White" : "Grey";

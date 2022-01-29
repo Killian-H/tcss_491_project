@@ -180,6 +180,15 @@ class GameEngine {
         this.entities.forEach(entity => entity.update(this));
 
         PARAMS.DEBUG = document.getElementById("debug").checked;
+        
+        PARAMS.MUTE = document.getElementById("mute").checked;
+        var volume = document.getElementById("volume").value;
+
+        ASSET_MANAGER.muteAudio(PARAMS.MUTE);
+        ASSET_MANAGER.adjustVolume(volume);
+        
+        
+        //var volume = document.getElementById("volume").value;
 
         // Remove dead things
         this.entities = this.entities.filter(entity => !entity.removeFromWorld);

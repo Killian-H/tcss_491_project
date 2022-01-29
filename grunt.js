@@ -59,12 +59,12 @@ class Grunt extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
-                    console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
+                    //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
                     that.armRotation =  Math.atan2 (
                         that.aimingX - that.x, 
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
-                    console.log("Arm Rotation: " + that.armRotation);
+                    //console.log("Arm Rotation: " + that.armRotation);
                 }
             }
 
