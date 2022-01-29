@@ -70,11 +70,11 @@ class Grunt extends AbstractEnemy {
                         that.aimingX - that.x, 
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
+                    if (that.elapsedTime >= that.firerate) {
+                        that.elapsedTime = 0;
+                        that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation));
+                    }
                 }
-            }
-            if (that.elapsedTime >= that.firerate) {
-                that.elapsedTime = 0;
-                that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation));
             }
         });
     };

@@ -16,6 +16,7 @@ class EnemyBullet {
     update() {
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
+        this.updateBoundCircle();
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
