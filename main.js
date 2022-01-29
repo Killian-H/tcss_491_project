@@ -17,6 +17,7 @@ ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_dead_left.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_idle_left.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_scared_left.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_walk_left.png");
+ASSET_MANAGER.queueDownload("./sprites/grunt/plasma_shot.png");
 
 // Chief
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");

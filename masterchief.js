@@ -3,6 +3,7 @@ class masterchief {
     X_DEFAULT = 512;
     Y_DEFAULT = 270;
     AMMO_DEFAULT = 32;
+    MAX_HEALTH = 300;
     SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
@@ -47,6 +48,9 @@ class masterchief {
         this.headOrientation = this.RIGHT;
         this.x = x;
         this.y = y;
+
+        this.health = this.MAX_HEALTH;
+
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
@@ -168,7 +172,7 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        // console.log(this.elapsedtime);
+        console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;

@@ -32,6 +32,8 @@ class Grunt extends AbstractEnemy {
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
 
+        this.firerate = 1;
+        this.seen = false;
         this.aimingX = 0;
         this.aimingY = 0;
         this.game = game;
@@ -43,15 +45,19 @@ class Grunt extends AbstractEnemy {
         this.deadRight = new Animator(this.DEAD_RIGHT, 8, 0, 45, 35, 5, 0.12, false, false);
         this.velocity = { x: 0, y: 0};
         this.animations = [];
+        this.elapsedTime = 0;
         this.loadAnimations();
         this.updateBoundBox();
     };
 
     update() {
+        this.elapsedTime += this.game.clockTick;
+        console.log(this.elapsedTime);
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity instanceof masterchief && that.dead == false) {
-                if (canSee(that, entity)) {
+            if (entity instanceof masterchief  && that.dead == false) {
+                if (canSee(that, entity) || that.seen) {
+                    that.seen = true;
                     if (that.BB.left > entity.BB.left) {
                     that.facing = 1;
                     } else {
@@ -64,15 +70,12 @@ class Grunt extends AbstractEnemy {
                         that.aimingX - that.x, 
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
-                    //console.log("Arm Rotation: " + that.armRotation);
                 }
             }
-
-            if (entity.BB && that.BB.collide(entity.BB)) {
-                if (entity instanceof masterchief) {
-
-                }
-            };
+            if (that.elapsedTime >= that.firerate) {
+                that.elapsedTime = 0;
+                that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation));
+            }
         });
     };
 

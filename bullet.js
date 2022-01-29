@@ -39,7 +39,6 @@ class bullet {
                         ASSET_MANAGER.playAsset("./audio/gruntpee.mp3");
                     }
                     that.removeFromWorld = true;
-                } else {
                 }
 
             }
