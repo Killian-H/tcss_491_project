@@ -30,7 +30,7 @@ class SceneManager {
         ctx.fillStyle = "White";
         ctx.strokeStyle = "White";
         ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 900, 500);
-        ctx.fillText((this.masterchief.health+""), 100, 500);
+        ctx.fillText(("+ "+this.masterchief.health), 25, 500);
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
             
@@ -43,19 +43,19 @@ class SceneManager {
             ctx.strokeStyle = this.game.left ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
             ctx.strokeRect(6 * PARAMS.BLOCKWIDTH - 2, 2.5 * PARAMS.BLOCKWIDTH - 2, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("L", 6 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);
+            ctx.fillText("W", 6 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);
             ctx.strokeStyle = this.game.down ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
             ctx.strokeRect(6.5 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("D", 6.5 * PARAMS.BLOCKWIDTH + 2, 3.5 * PARAMS.BLOCKWIDTH + 2);
+            ctx.fillText("S", 6.5 * PARAMS.BLOCKWIDTH + 2, 3.5 * PARAMS.BLOCKWIDTH + 2);
             ctx.strokeStyle = this.game.up ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
             ctx.strokeRect(6.5 * PARAMS.BLOCKWIDTH, 2 * PARAMS.BLOCKWIDTH - 4, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("U", 6.5 * PARAMS.BLOCKWIDTH + 2, 2.5 * PARAMS.BLOCKWIDTH - 2);
+            ctx.fillText("N", 6.5 * PARAMS.BLOCKWIDTH + 2, 2.5 * PARAMS.BLOCKWIDTH - 2);
             ctx.strokeStyle = this.game.right ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
             ctx.strokeRect(7 * PARAMS.BLOCKWIDTH + 2, 2.5 * PARAMS.BLOCKWIDTH - 2, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("R", 7 * PARAMS.BLOCKWIDTH + 4, 3 * PARAMS.BLOCKWIDTH);
+            ctx.fillText("E", 7 * PARAMS.BLOCKWIDTH + 4, 3 * PARAMS.BLOCKWIDTH);
 
 
             ctx.translate(0, 10);
