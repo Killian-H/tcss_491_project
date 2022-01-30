@@ -22,7 +22,12 @@ class EnemyBullet {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pp") {
                 if (entity instanceof masterchief) {
-                    entity.health = entity.health - 20;
+                    if(entity.health > 0 && entity.armor == 0){
+                        entity.health = entity.health - 20;
+                    }
+                    else if(entity.armor > 0){
+                        entity.armor = entity.armor - 20;
+                    }
                     that.removeFromWorld = true;
                 }
 

@@ -53,7 +53,7 @@ class Grunt extends AbstractEnemy {
     update() {
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
-        console.log(this.randomFireRate);
+        //console.log(this.randomFireRate);
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief  && that.dead == false) {
@@ -72,9 +72,14 @@ class Grunt extends AbstractEnemy {
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
-                        console.log()
+                        //console.log()
                         that.elapsedTime = 0;
+<<<<<<< HEAD
                         that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
+=======
+                        that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation));
+                        ASSET_MANAGER.playAsset("./audio/plasma pistol shot.mp3");
+>>>>>>> e9cb83f1df688b41ee7c35123215b13efd5c21bf
                     }
                 }
             }

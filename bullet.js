@@ -29,7 +29,7 @@ class bullet {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof Grunt) {
-                    let r = 100//ASSET_MANAGER.getRandomInt(101);
+                    let r = ASSET_MANAGER.getRandomInt(101);
                     console.log("r = " + r);
                     entity.health = entity.health - 10;
                     if (r <= 15) {
