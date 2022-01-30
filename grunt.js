@@ -74,6 +74,7 @@ class Grunt extends AbstractEnemy {
                         //console.log()
                         that.elapsedTime = 0;
                         that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation));
+                        ASSET_MANAGER.playAsset("./audio/plasma pistol shot.mp3");
                     }
                 }
             }
