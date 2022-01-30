@@ -29,9 +29,9 @@ class SceneManager {
         ctx.font = 'bold 48px serif';
         ctx.fillStyle = "White";
         ctx.strokeStyle = "White";
-        ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 900, 500);
-        ctx.fillText(("A "+this.masterchief.armor), 25, 460);
-        ctx.fillText(("+ "+this.masterchief.health), 25, 500);
+        ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
+        ctx.fillText(("A "+this.masterchief.armor), 875, 50);
+        ctx.fillText(("+ "+this.masterchief.health), 875, 100);
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
             
