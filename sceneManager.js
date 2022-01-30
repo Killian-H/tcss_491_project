@@ -30,8 +30,8 @@ class SceneManager {
         ctx.fillStyle = "White";
         ctx.strokeStyle = "White";
         ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
-        ctx.fillText(("A "+this.masterchief.armor), 875, 50);
-        ctx.fillText(("+ "+this.masterchief.health), 875, 100);
+        ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
+        ctx.fillText(("➕ "+this.masterchief.health), 836, 110);
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
             
