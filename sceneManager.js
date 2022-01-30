@@ -31,32 +31,32 @@ class SceneManager {
         ctx.strokeStyle = "White";
         ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
         ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
-        ctx.fillText(("➕ "+this.masterchief.health), 836, 110);
+        ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
             
-            //ctx.fillText(xV, 1.5 * PARAMS.BLOCKWIDTH, 2.5 * PARAMS.BLOCKWIDTH);
-            //ctx.fillText(yV, 1.5 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);
             ctx.fillStyle = "White";
             ctx.translate(0, -10); // hack to move elements up by 10 pixels instead of adding -10 to all y coordinates below
             ctx.strokeStyle = "White";
             ctx.lineWidth = 2;
             ctx.strokeStyle = this.game.left ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.strokeRect(6 * PARAMS.BLOCKWIDTH - 2, 2.5 * PARAMS.BLOCKWIDTH - 2, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("W", 6 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);
+            ctx.fillText("Left", 5.5 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);
             ctx.strokeStyle = this.game.down ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.strokeRect(6.5 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("S", 6.5 * PARAMS.BLOCKWIDTH + 2, 3.5 * PARAMS.BLOCKWIDTH + 2);
+            ctx.fillText("Down", 6.2 * PARAMS.BLOCKWIDTH + 2, 4 * PARAMS.BLOCKWIDTH + 2);
             ctx.strokeStyle = this.game.up ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.strokeRect(6.5 * PARAMS.BLOCKWIDTH, 2 * PARAMS.BLOCKWIDTH - 4, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("N", 6.5 * PARAMS.BLOCKWIDTH + 2, 2.5 * PARAMS.BLOCKWIDTH - 2);
+            ctx.fillText("Up", 6.8 * PARAMS.BLOCKWIDTH + 2, 2 * PARAMS.BLOCKWIDTH - 2);
             ctx.strokeStyle = this.game.right ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.strokeRect(7 * PARAMS.BLOCKWIDTH + 2, 2.5 * PARAMS.BLOCKWIDTH - 2, 0.5 * PARAMS.BLOCKWIDTH + 2, 0.5 * PARAMS.BLOCKWIDTH + 2);
-            ctx.fillText("E", 7 * PARAMS.BLOCKWIDTH + 4, 3 * PARAMS.BLOCKWIDTH);
+            ctx.fillText("Right", 7.5 * PARAMS.BLOCKWIDTH + 4, 3 * PARAMS.BLOCKWIDTH);
+            ctx.strokeStyle = this.game.reload ? "White" : "Grey";
+            ctx.fillStyle = ctx.strokeStyle;
+            ctx.fillText("Reload", 8.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
+            ctx.strokeStyle = this.game.click ? "White" : "Grey";
+            ctx.fillStyle = ctx.strokeStyle;
+            ctx.fillText("Click", 4.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
 
 
             ctx.translate(0, 10);
