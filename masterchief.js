@@ -52,7 +52,6 @@ class masterchief {
 
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
-
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
@@ -135,12 +134,12 @@ class masterchief {
 
         // dead right = 5
         // facing right = 1
-        this.animations[5][1] = new Animator(this.DEAD_LEFT, 25, 0, 58, 50, 4, 0.14, true, false);
+        this.animations[5][1] = new Animator(this.DEAD_LEFT, 25, 0, 58, 50, 4, 0.14, false, false);
     };
 
     update() {
         const TICK = this.game.clockTick;
-        if (this.health < 0) {
+        if (this.health <= 0) {
             this.dead = true;
             this.state = this.DEAD;
         }
@@ -178,7 +177,7 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-       // console.log(this.elapsedtime);
+        console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
@@ -236,15 +235,11 @@ class masterchief {
             this.velocity.x = 0;
             this.velocity.y = 0;
         }
-        
-        if(this.health==0){
-            this.dead = true;
-        }
 
         if (this.game.reload) {
             let stopShoot = setInterval(() => {this.canshoot = false}, 1);
             ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
-            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2500);
+            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2000);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
         //moving diagonal
