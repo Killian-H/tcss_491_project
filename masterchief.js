@@ -3,7 +3,8 @@ class masterchief {
     X_DEFAULT = 512;
     Y_DEFAULT = 270;
     AMMO_DEFAULT = 32;
-    MAX_HEALTH = 300;
+    MAX_HEALTH = 100;
+    MAX_ARMOR = 200;
     SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
@@ -50,6 +51,7 @@ class masterchief {
         this.y = y;
 
         this.health = this.MAX_HEALTH;
+        this.armor = this.MAX_ARMOR;
 
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
