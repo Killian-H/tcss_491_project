@@ -1,9 +1,10 @@
 class EnemyBullet {
 
     PLASMA_SHOT = ASSET_MANAGER.getAsset("./sprites/grunt/plasma_shot.png");
-    constructor(game, x, y, target, rotation) {
-        Object.assign(this, {game, x, y, target, rotation});
+    constructor(game, x, y, target, rotation, weapon) {
+        Object.assign(this, {game, x, y, target, rotation, weapon});
 
+        this.weapon = weapon;
         this.maxSpeed = 300;
         var dist = getDistance(this.x, this.y, target.x, target.y);
 
@@ -19,7 +20,7 @@ class EnemyBullet {
         this.updateBoundCircle();
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity.BB && that.BC.collisionCircle(entity.BB)) {
+            if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pp") {
                 if (entity instanceof masterchief) {
                     entity.health = entity.health - 20;
                     that.removeFromWorld = true;

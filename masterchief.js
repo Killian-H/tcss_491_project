@@ -129,15 +129,19 @@ class masterchief {
 
         // dead right = 5
         // facing right = 0
-        this.animations[5][0] = new Animator(this.DEAD_RIGHT, 0, 1, 47, 43, 4, 0.14, false, false);
+        this.animations[5][0] = new Animator(this.DEAD_RIGHT, 0, 1, 58, 50, 4, 0.14, false, false);
 
         // dead right = 5
         // facing right = 1
-        this.animations[5][1] = new Animator(this.DEAD_LEFT, 30, 1, 50, 43, 4, 0.14, true, false);
+        this.animations[5][1] = new Animator(this.DEAD_LEFT, 25, 0, 58, 50, 4, 0.14, true, false);
     };
 
     update() {
         const TICK = this.game.clockTick;
+        if (this.health < 0) {
+            this.dead = true;
+            this.state = this.DEAD;
+        }
         //console.log("velocity x: " + this.velocity.x);
         //console.log("velocity y: " + this.velocity.y);
         if(this.game.mouse != null) {
@@ -361,55 +365,60 @@ class masterchief {
 
         //Drawing Body
         ctx.save();
-        this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2* 7.5, this.y -12.5, this.SCALE);
-        if (PARAMS.DEBUG == true) {
-            ctx.strokeStyle = 'Red';
-            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
-        }
-        ctx.save();
-        ctx.restore();
-        //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
+        if (!this.dead) {
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2* 7.5, this.y -12.5, this.SCALE);
+            if (PARAMS.DEBUG == true) {
+                ctx.strokeStyle = 'Red';
+                ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+            }
+            ctx.save();
+            ctx.restore();
+            //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
     
-        ctx.translate(
-            this.x,
-            this.y
-        );
-        if (this.facing == this.LEFT) {
-            ctx.scale(-1,1);
-            ctx.save();
-            ctx.translate(-34, -33); 
-            if (this.headOrientation == this.TILT_UP) {
-                ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
-            } else if (this.headOrientation == this.FORWARD){
-                ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
-            } else {
-                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
-
-            }
-            ctx.restore();
             ctx.translate(
-                -20,
-                1
+                this.x,
+                this.y
             );
-            ctx.rotate(-this.armRotation + 2 *1.5708);
-            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+            if (this.facing == this.LEFT) {
+                ctx.scale(-1,1);
+                ctx.save();
+                ctx.translate(-34, -33); 
+                if (this.headOrientation == this.TILT_UP) {
+                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+                } else if (this.headOrientation == this.FORWARD){
+                    ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
+                } else {
+                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
 
-        } else {
-            ctx.save();
-            ctx.translate(-12.5, -32.5); 
-            if (this.headOrientation == this.TILT_UP) {
-                ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+                }
+                ctx.restore();
+                ctx.translate(
+                    -20,
+                    1
+                );
+                ctx.rotate(-this.armRotation + 2 *1.5708);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+
+            } else {
+                ctx.save();
+                ctx.translate(-12.5, -32.5); 
+                if (this.headOrientation == this.TILT_UP) {
+                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
             } else if (this.headOrientation == this.FORWARD){
                 ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
             } else {
                 ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
 
+                }
+                ctx.restore();
+                ctx.rotate(this.armRotation);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
             }
             ctx.restore();
-            ctx.rotate(this.armRotation);
-            ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
-        }
-        ctx.restore();
+        } else {
+                this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2 * 7.5, this.y -12.5, this.SCALE);
+                setTimeout(() => {this.removeFromWorld = true}, 800);
+            }
     };
     
 

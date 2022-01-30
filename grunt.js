@@ -32,6 +32,7 @@ class Grunt extends AbstractEnemy {
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
 
+        this.weapon = "pp";
         this.seen = false;
         this.aimingX = 0;
         this.aimingY = 0;
@@ -73,7 +74,7 @@ class Grunt extends AbstractEnemy {
                     if (that.elapsedTime >= that.randomFireRate) {
                         console.log()
                         that.elapsedTime = 0;
-                        that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation));
+                        that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
                     }
                 }
             }
