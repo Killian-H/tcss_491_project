@@ -140,6 +140,7 @@ class masterchief {
     update() {
         const TICK = this.game.clockTick;
         if (this.health <= 0) {
+            ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
             this.dead = true;
             this.state = this.DEAD;
         }
