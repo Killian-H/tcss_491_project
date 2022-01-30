@@ -25,6 +25,13 @@ class SceneManager {
     };
 
     draw(ctx) {
+        //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
+        ctx.font = 'bold 48px serif';
+        ctx.fillStyle = "White";
+        ctx.strokeStyle = "White";
+        ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 900, 500);
+        ctx.fillText((this.masterchief.health+""), 100, 500);
+        //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
             
             //ctx.fillText(xV, 1.5 * PARAMS.BLOCKWIDTH, 2.5 * PARAMS.BLOCKWIDTH);

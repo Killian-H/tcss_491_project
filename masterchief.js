@@ -172,7 +172,7 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        console.log(this.elapsedtime);
+       // console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
@@ -230,11 +230,15 @@ class masterchief {
             this.velocity.x = 0;
             this.velocity.y = 0;
         }
+        
+        if(this.health==0){
+            this.dead = true;
+        }
 
         if (this.game.reload) {
             let stopShoot = setInterval(() => {this.canshoot = false}, 1);
             ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
-            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2000);
+            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2500);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
         //moving diagonal
