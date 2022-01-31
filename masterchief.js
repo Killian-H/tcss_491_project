@@ -56,7 +56,6 @@ class masterchief {
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
-        this.elapsedtime2 = 0;
         this.firerate = .1;
         this.clickcount = 0;
         this.ammo = this.AMMO_DEFAULT;
