@@ -52,6 +52,7 @@ ASSET_MANAGER.queueDownload("./audio/ar single.mp3");
 ASSET_MANAGER.queueDownload("./audio/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/gruntpee.mp3");
 ASSET_MANAGER.queueDownload("./audio/plasma pistol shot.mp3");
+ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
