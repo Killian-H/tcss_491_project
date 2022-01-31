@@ -32,6 +32,9 @@ class SceneManager {
         ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
         ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
         ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
+        if(this.masterchief.health == 0){
+            ctx.fillText("Game Over 💀", 350, 250);
+        }
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
             
