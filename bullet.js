@@ -30,8 +30,8 @@ class bullet {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof Grunt) {
                     let r = ASSET_MANAGER.getRandomInt(101);
-                    console.log("r = " + r);
                     entity.health = entity.health - 10;
+                    entity.beenShot = true;
                     if (r <= 15) {
                         ASSET_MANAGER.playAsset("./audio/gruntscream.mp3");
                     }

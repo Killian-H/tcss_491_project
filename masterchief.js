@@ -49,6 +49,7 @@ class masterchief {
         this.headOrientation = this.RIGHT;
         this.x = x;
         this.y = y;
+        this.beenShot = false;
 
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
@@ -134,24 +135,21 @@ class masterchief {
 
         // dead right = 5
         // facing right = 1
-        this.animations[5][1] = new Animator(this.DEAD_LEFT, 25, 0, 58, 50, 4, 0.14, false, false);
+        this.animations[5][1] = new Animator(this.DEAD_LEFT, 25, 0, 58, 50, 4, 0.14, true, false);
     };
 
     update() {
         const TICK = this.game.clockTick;
+
         if (this.health <= 0) {
             this.dead = true;
             this.state = this.DEAD;
         }
-        //console.log("velocity x: " + this.velocity.x);
-        //console.log("velocity y: " + this.velocity.y);
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
                 this.game.mouse.x - this.x, 
                 - (this.game.mouse.y - this.y)
             ) - Math.PI / 2;
-
-            //console.log(this.armRotation);
             if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
                 this.facing = this.RIGHT;
                 if (this.armRotation < -(Math.PI / 6)) {
@@ -161,8 +159,6 @@ class masterchief {
                 } else {
                     this.headOrientation = this.TILT_DOWN;
                 }
-
-                //console.log("Orientation right");
             } else {
                 this.facing = this.LEFT;
                 if (this.armRotation > (-(Math.PI) + (Math.PI/ 6)) && this.armRotation < Math.PI /2) {
@@ -172,14 +168,11 @@ class masterchief {
                 } else {
                     this.headOrientation = this.TILT_DOWN;
                 }
-                //console.log("Orientation left");
             }
         }
 
         this.elapsedtime += this.game.clockTick;
-        console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
-            //console.log("click at x: "+this.game.click.x + " y: " +this.game.click.y)
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.ammo -= 1;
@@ -187,10 +180,6 @@ class masterchief {
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
-        //console.log("velocity x: " + this.velocity.x);
-        //console.log("velocity y: " + this.velocity.y);
-        //console.log("x:" + this.x);
-        //console.log("y:" + this.y);
         if (this.game.right || this.game.left || this.game.up || this.game.down) {
             ASSET_MANAGER.playAsset("./audio/walking.mp3");
         }
@@ -199,7 +188,6 @@ class masterchief {
             this.state = this.WALK;
             this.x += 220 * TICK;
             this.velocity.x = 1;
-            //console.log("velocity: " + this.velocity.x)
             if (this.x > 1024) {
                 this.x = 0;
             }
@@ -208,7 +196,6 @@ class masterchief {
             this.state = this.WALK;
             this.x -= 220 * TICK;
             this.velocity.x = -1;
-            //console.log("velocity" + this.velocity.x)
             if (this.x < 0) {
                 this.x = 1024;
                 //this.velocity.x = 0;
