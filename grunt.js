@@ -52,7 +52,6 @@ class Grunt extends AbstractEnemy {
 
     update() {
         this.elapsedTime += this.game.clockTick;
-        console.log(this.elapsedTime);
         this.randomFireRate = Math.random() * (4 - .3) + .3;
         //console.log(this.randomFireRate);
         var that = this;

@@ -54,6 +54,12 @@ ASSET_MANAGER.queueDownload("./audio/gruntpee.mp3");
 ASSET_MANAGER.queueDownload("./audio/plasma pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
 
+// terrain
+ASSET_MANAGER.queueDownload("./sprites/terrain/grass_1.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/grass_2.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/grass_3.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/tree.png");
+
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
