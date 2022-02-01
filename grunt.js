@@ -123,9 +123,9 @@ class Grunt extends AbstractEnemy {
         if (this.health <= 0) {
             this.dead = true;
             if (this.facing === this.RIGHT) {
-                this.deadRight.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
+                this.deadRight.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             } else if (this.facing === this.LEFT) {
-                this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
+                this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             }
             setTimeout(() => {this.removeFromWorld = true}, 800);
         } else {
@@ -153,14 +153,14 @@ class Grunt extends AbstractEnemy {
                     27.5
                 );
                 ctx.rotate(-this.armRotation + Math.PI);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE, -this.armImg.width - this.game.camera.x, -this.armImg.height - this.game.camera.y, 50, 50);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, -this.armImg.width - this.game.camera.x, -this.armImg.height - this.game.camera.y, 50, 50);
             } else {
                 ctx.translate(
                     15,
                     27.5
                 );
                 ctx.rotate(this.armRotation);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE, -this.armImg.width - this.game.camera.x, -this.armImg.height - this.game.camera.y, 50, 50);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, -this.armImg.width - this.game.camera.x, -this.armImg.height - this.game.camera.y, 50, 50);
             }
             ctx.restore();
         }
