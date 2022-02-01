@@ -59,6 +59,7 @@ ASSET_MANAGER.queueDownload("./sprites/terrain/grass_1.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/grass_2.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/grass_3.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/tree.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/rock.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");

@@ -7,6 +7,34 @@ class Tree {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.BB = new BoundingBox(this.x + 46, this.y + 128, 36, -20);
+    };
+    
+    update() {
+
+    };
+
+
+
+    draw(ctx) {
+        ctx.drawImage(this.PINE_TREE, this.x, this.y);
+        if (PARAMS.DEBUG == true) {
+            ctx.strokeStyle = 'Red';
+            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+        }
+    };
+};
+
+class Rock {
+
+    ROCK = ASSET_MANAGER.getAsset("./sprites/terrain/rock.png");
+
+    constructor(game, x, y) {
+        Object.assign(this, {game, x, y});
+        this.game = game;
+        this.x = x;
+        this.y = y;
+        this.BB = new BoundingBox(this.x + 16, this.y + 28, 36, 12);
     };
     
     update() {
@@ -14,7 +42,11 @@ class Tree {
     };
 
     draw(ctx) {
-        ctx.drawImage(this.PINE_TREE, this.x, this.y);
+        ctx.drawImage(this.ROCK, this.x, this.y);
+        if (PARAMS.DEBUG == true) {
+            ctx.strokeStyle = 'Red';
+            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+        }
     };
 };
 
