@@ -9,6 +9,8 @@ class SceneManager {
         this.rock = new Rock(game, 128, 128);
         this.terrain = new Terrain(game, 0, 0);
         this.terrain2 = new Terrain(game, 128, 128);
+        this.terrain3 = new Terrain(game, 0, 128);
+        this.terrain4 = new Terrain(game, 128, 0);
         this.rock = new Rock(game, 128, 128);
         this.game.addEntity(this.pine);
         this.game.addEntity(this.rock);
@@ -19,6 +21,9 @@ class SceneManager {
         this.game.addEntity(this.grunt2);
         this.game.addEntity(this.terrain);
         this.game.addEntity(this.terrain2);
+        this.game.addEntity(this.terrain3);
+        this.game.addEntity(this.terrain4);
+
     };
     updateAudio() {
         if (PARAMS.MUTE == true) {
