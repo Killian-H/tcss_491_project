@@ -7,7 +7,7 @@ class Tree {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.BB = new BoundingBox(this.x + 46, this.y + 128, 36, -20);
+        this.BB = new BoundingBox(this.x + 13, this.y + 108, 36, 20);
     };
     
     update() {
@@ -34,7 +34,7 @@ class Rock {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.BB = new BoundingBox(this.x + 16, this.y + 28, 36, 12);
+        this.BB = new BoundingBox(this.x, this.y + 20, 40, 12);
     };
     
     update() {
