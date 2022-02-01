@@ -14,7 +14,7 @@ class Tree {
     };
 
     draw(ctx) {
-        ctx.drawImage(this.PINE_TREE, this.x, this.y);
+        //ctx.drawImage(this.PINE_TREE, this.x, this.y);
     };
 };
 
@@ -36,6 +36,6 @@ class Terrain {
     };
 
     draw(ctx) {
-        ctx.drawImage(this.GRASS_1, this.x, this.y);
+        //ctx.drawImage(this.GRASS_1, this.x, this.y);
     };
 }

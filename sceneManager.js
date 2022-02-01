@@ -14,6 +14,8 @@ class SceneManager {
         this.game.addEntity(this.grunt2);
         this.terrain = new Terrain(game, 0, 0);
         this.game.addEntity(this.terrain);
+        this.background = new Background(game, 0, 0);
+        this.game.addEntity(this.background);
     };
     updateAudio() {
         if (PARAMS.MUTE == true) {
@@ -23,9 +25,11 @@ class SceneManager {
 
     update() {
         this.updateAudio();
-        let midpoint = 1024/2;
+        let midpointX = 1024/2;
+        let midpointY = 540/2;
 
-        this.x = this.masterchief.x - midpoint;
+        this.x = this.masterchief.x - midpointX;
+        this.y = this.masterchief.y - midpointY;
     };
 
     draw(ctx) {
