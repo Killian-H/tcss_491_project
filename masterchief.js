@@ -374,9 +374,9 @@ class masterchief {
                 ctx.save();
                 ctx.translate(-34, -33); 
                 if (this.headOrientation == this.TILT_UP) {
-                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE)//, this.x - this.game.camera.x, this.y - this.game.camera.y, 50,50);
+                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE, this.x - this.game.camera.x, this.y - this.game.camera.y, 50,50);
                 } else if (this.headOrientation == this.FORWARD){
-                    ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE)//, this.x - this.game.camera.x, this.y - this.game.camera.y, 50,50);
+                    ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE, this.x - this.game.camera.x, this.y - this.game.camera.y, 50,50);
                 } else {
                 ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE)//, this.x - this.game.camera.x, this.y - this.game.camera.y, 50,50);
 
@@ -387,7 +387,7 @@ class masterchief {
                     1
                 );
                 ctx.rotate(-this.armRotation + 2 *1.5708);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, this.x - this.game.camera.x, this.y - this.game.camera.y, 50, 50);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE, this.x - this.game.camera.x, this.y - this.game.camera.y, 50, 50);
 
             } else {
                 ctx.save();
