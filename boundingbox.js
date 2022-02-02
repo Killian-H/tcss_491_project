@@ -15,4 +15,9 @@ class BoundingBox {
         }
         return isCollide;
     };
+
+    draw(ctx) {
+        ctx.strokeStyle = 'Red';
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
+    }
 };

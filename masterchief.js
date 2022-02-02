@@ -12,6 +12,7 @@ class masterchief {
     FORWARD = 0.2;
     TILT_DOWN = 0.3;
     IDLE = 0;
+    SET_VELOCITY = {x: 300, y: 300};
     WALK = 1;
     CROUCH = 2;
     CROUCH_WALK = 3;
@@ -49,6 +50,9 @@ class masterchief {
         this.headOrientation = this.RIGHT;
         this.x = x;
         this.y = y;
+        this.positionx = this.x - this.game.camera.x;
+        this.positiony = this.x - this.game.camera.y;
+        this.velocity = { x: 0, y: 0};
         this.beenShot = false;
 
         this.health = this.MAX_HEALTH;
@@ -171,59 +175,60 @@ class masterchief {
             }
         }
 
-        console.log("x " + this.x);
-        console.log("y " + this.y);
         this.elapsedtime += this.game.clockTick;
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.ammo -= 1;
-            this.game.addEntity(new bullet(this.game, this.x - this.game.camera.x, this.y - this.game.camera.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+
+            this.game.addEntityToFront(new bullet(this.game, this.x - this.game.camera.x, this.y - this.game.camera.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
         if (this.game.right || this.game.left || this.game.up || this.game.down) {
             ASSET_MANAGER.playAsset("./audio/walking.mp3");
         }
-        //moving left/right/up/down
-        if (this.game.right) { //right
-            this.state = this.WALK;
-            this.game.camera.x += 220 * TICK;
-            this.velocity.x = 1;
-            // if (this.x > 1024) {
-            //     this.x = 0;
-            // }
-        }
-        else if (this.game.left) { //left
-            this.state = this.WALK;
-            this.x -= 220 * TICK;
-            this.velocity.x = -1;
-            // if (this.x < 0) {
-            //     this.x = 1024;
-            //     //this.velocity.x = 0;
-            // }
-        }
-        else if (this.game.up) { //up
-            this.state = this.WALK;
-            this.y -= 220 * TICK;
-            this.velocity.y = -1;
-            // if (this.y < 0) {
-            //     this.y = 540;
-            // }
-        }
-        else if (this.game.down) { //down
-            this.state = this.WALK;
-            this.y += 220 * TICK;
-            this.velocity.y = 1;
-            // if (this.y > 540) {
-            //     this.y = 0;
-            // } 
-        }
-        else {
-            this.state = this.IDLE;
-            this.velocity.x = 0;
+
+        var isMoving = false;
+
+        if (this.game.up) {
+            this.velocity.y = -1 * (this.SET_VELOCITY.y * this.game.clockTick);
+            isMoving = true;
+        } else if (this.game.down) {
+            this.velocity.y = this.SET_VELOCITY.y * this.game.clockTick;
+            isMoving = true;
+        } else {
             this.velocity.y = 0;
         }
+        if (this.game.left) {
+            this.velocity.x = -1 * (this.SET_VELOCITY.x * this.game.clockTick);
+            isMoving = true;
+        } else if (this.game.right) {
+            this.velocity.x = this.SET_VELOCITY.x * this.game.clockTick;
+            isMoving = true;
+        } else {
+            this.velocity.x = 0;
+        }
+
+        if ((this.game.left || this.game.right) && (this.game.up || this.game.down)) {
+            this.velocity.x = (this.velocity.x / 2) * Math.sqrt(2);
+            this.velocity.y = (this.velocity.y / 2) * Math.sqrt(2);
+            isMoving = true;
+        }
+
+        if (isMoving) {
+            this.state = this.WALK;
+        } else {
+            this.state = this.IDLE;
+        }
+
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+
+        this.positionx = this.x - this.game.camera.x;
+        this.positiony = this.y - this.game.camera.y;
+        this.updateBoundBox();
+
 
         if (this.game.reload) {
             let stopShoot = setInterval(() => {this.canshoot = false}, 1);
@@ -231,41 +236,6 @@ class masterchief {
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2500);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
-        //moving diagonal
-        //adjust x (50) for more left/right, adjust y for more up/down
-        if (this.game.right && this.game.up) { //right / up
-            this.state = this.WALK;
-            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = 1;
-            this.velocity.y = -1;
-        }
-        
-        if (this.game.right && this.game.down) { //right/down
-            this.state = this.WALK;
-            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = 1;
-            this.velocity.y = 1;
-        }
-        
-        if (this.game.left && this.game.up) { //left/up
-            this.state = this.WALK;
-            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = -1;
-            this.velocity.y = -1;
-        }
-        
-        if (this.game.left && this.game.down) { //left/down
-            this.state = this.WALK;
-            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = -1;
-            this.velocity.y = 1;
-        }
-        
-        this.updateBoundBox();
         
        
         var that = this;
@@ -358,8 +328,7 @@ class masterchief {
         if (!this.dead) {
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x - 2 * 7.5, this.y - this.game.camera.y - 12.5, this.SCALE);//this.x -2* 7.5, this.y -12.5
             if (PARAMS.DEBUG == true) {
-                ctx.strokeStyle = 'Red';
-                ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+                this.BB.draw(ctx);
                 ctx.fillText(("X: "+this.game.camera.x), 850, 160);
                 ctx.fillText(("Y: "+this.game.camera.y), 850, 210);
                 ctx.fillText(("Chief X: "+this.x), 750, 270);

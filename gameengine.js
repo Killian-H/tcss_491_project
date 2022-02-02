@@ -203,6 +203,9 @@ class GameEngine {
         this.camera.update();
     };
     
+    addEntityToFront(entity) {
+        this.entities.splice(3, 0, entity);
+    };
 
     loop() {
         this.clockTick = this.timer.tick();
