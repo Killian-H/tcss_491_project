@@ -81,7 +81,6 @@ class masterchief {
     updateBoundBox() {
         this.lastBB = this.BB;
         this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 78);
-        console.log(this.BB);
     };
 
     loadAnimations() {
@@ -241,35 +240,36 @@ class masterchief {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
-                    if ((entity instanceof AbstractEnemy) && that.lastBB.right >= entity.BB.left) {
-                        that.velocity.x === 0;
-                        that.x = entity.BB.left - 30;
-                    }
-                }
-                else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
-                    if ((entity instanceof AbstractEnemy) && that.lastBB.left <= entity.BB.right) {
-                        that.velocity.x === 0;
-                        that.x = entity.BB.right + 7;
-                    }
-                }
-                else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
-                    if ((entity instanceof AbstractEnemy) && that.lastBB.right >= entity.BB.left) {
-                        that.velocity.x === 0;
-                        that.x = entity.BB.left - 30;
-                    }
-                }
-                else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
-                    if (entity instanceof Grunt && that.lastBB.left <= entity.BB.right) {
-                        that.velocity.x === 0;
-                        that.x = entity.BB.right + 7;
-                    }
-                }
-                else if (that.velocity.y > 0) { // Traveling down.
+                // if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
+                //     if ((entity instanceof AbstractEnemy) && that.lastBB.right >= entity.BB.left) {
+                //         that.velocity.x === 0;
+                //         that.x = entity.BB.left - 30;
+                //     }
+                // }
+                // else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
+                //     if ((entity instanceof AbstractEnemy) && that.lastBB.left <= entity.BB.right) {
+                //         that.velocity.x === 0;
+                //         that.x = entity.BB.right + 7;
+                //     }
+                // }
+                // else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
+                //     if ((entity instanceof AbstractEnemy) && that.lastBB.right >= entity.BB.left) {
+                //         that.velocity.x === 0;
+                //         that.x = entity.BB.left - 30;
+                //     }
+                // }
+                // else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
+                //     if (entity instanceof Grunt && that.lastBB.left <= entity.BB.right) {
+                //         that.velocity.x === 0;
+                //         that.x = entity.BB.right + 7;
+                //     }
+                // }
+                if (that.velocity.y > 0) { // Traveling down.
                     if ((entity instanceof AbstractEnemy) && (that.lastBB.bottom >= entity.BB.top)) {
                             if (that.velocity.y > 0) {
                                 that.y = entity.BB.top - 58;
                                 that.velocity.y === 0;
+                                console.log("top" + entity.BB.top);
                             }
                         }
                         that.updateBoundBox();
@@ -279,6 +279,7 @@ class masterchief {
                             if (that.velocity.y < 0) {
                                 that.velocity.y === 0;
                                 that.y = entity.BB.bottom + 20;
+                                console.log("bottom" + entity.BB.bottom);
                             }
                         }
                         that.updateBoundBox();
@@ -288,6 +289,7 @@ class masterchief {
                             if (that.velocity.x > 0) {
                                 that.velocity.x === 0;
                                 that.x = entity.BB.left - 30;
+                                console.log("left" + entity.BB.left);
                             }
                         }
                         that.updateBoundBox();
@@ -297,6 +299,7 @@ class masterchief {
                             if (that.velocity.x < 0) {
                                 that.velocity.x === 0;
                                 that.x = entity.BB.right + 7;
+                                console.log("right" + entity.BB.right);
                             }
                         }
                         that.updateBoundBox();
@@ -330,8 +333,8 @@ class masterchief {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
                 ctx.strokeRect(this.x - 6 - this.game.camera.x, this.y - 20 - this.game.camera.y, this.BB.width, this.BB.height);
-                ctx.fillText(("X: "+this.game.camera.x), 850, 160);
-                ctx.fillText(("Y: "+this.game.camera.y), 850, 210);
+                ctx.fillText(("X: "+this.velocity.x), 850, 160);
+                ctx.fillText(("Y: "+this.velocity.y), 850, 210);
                 ctx.fillText(("Chief X: "+this.x), 750, 270);
                 ctx.fillText(("Chief Y: "+this.y), 750, 330);
             }

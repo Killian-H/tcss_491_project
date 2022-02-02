@@ -52,18 +52,15 @@ class Grunt extends AbstractEnemy {
     };
 
     update() {
-        this.x += 1;
-        this.y += 1;
+        this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
-        console.log(this.x + " " + this.y);
-        //console.log(this.randomFireRate);
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief  && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
                     that.seen = true;
-                    if (that.BB.left > entity.BB.left) {
+                    if (that.BB.left > entity.BB.left - that.game.camera.x) {
                     that.facing = 1;
                     } else {
                         that.facing = 0;
@@ -76,20 +73,18 @@ class Grunt extends AbstractEnemy {
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
-                        //console.log()
                         that.elapsedTime = 0;
                         that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
                         ASSET_MANAGER.playAsset("./audio/plasma pistol shot.mp3");
                     }
                 }
             }
-            that.updateBoundBox();
         });
     };
 
     updateBoundBox() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x - this.game.camera.x, this.y - this.game.camera.y, 35, 48);
+        this.BB = new BoundingBox(this.x, this.y, 35, 48);
     };
 
     loadAnimations() {
