@@ -80,11 +80,13 @@ class Grunt extends AbstractEnemy {
                     }
                 }
             }
+            that.updateBoundBox();
         });
     };
 
     updateBoundBox() {
-        this.BB = new BoundingBox(this.x, this.y, 35, 48);
+        this.lastBB = this.BB;
+        this.BB = new BoundingBox(this.x - this.game.camera.x, this.y - this.game.camera.y, 35, 48);
     };
 
     loadAnimations() {
