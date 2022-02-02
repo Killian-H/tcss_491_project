@@ -69,8 +69,8 @@ class Grunt extends AbstractEnemy {
                     that.aimingY = entity.y;
                     //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
                     that.armRotation =  Math.atan2 (
-                        that.aimingX - that.x + that.game.camera.x, 
-                        - (that.aimingY - that.y + that.game.camera.y)
+                        that.aimingX - that.x, 
+                        - (that.aimingY - that.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
                         //console.log()
