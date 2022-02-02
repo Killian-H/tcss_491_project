@@ -54,13 +54,13 @@ class EnemyBullet {
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = "Red";
             ctx.beginPath();
-            ctx.arc(this.BC.x, this.BC.y, this.BC.radius, 0, 2 * Math.PI);
+            ctx.arc(this.BC.x - this.game.camera.x, this.BC.y - this.game.camera.y, this.BC.radius, 0, 2 * Math.PI);
             ctx.closePath();
             ctx.stroke();
         }
 
         ctx.save();
-        ctx.translate(this.x, this.y);
+        ctx.translate(this.x - this.game.camera.x, this.y - this.game.camera.y);
         ctx.rotate(this.rotation);
         ctx.drawImage(this.PLASMA_SHOT, -this.PLASMA_SHOT.width / 2, -this.PLASMA_SHOT.height/2);
         ctx.restore();

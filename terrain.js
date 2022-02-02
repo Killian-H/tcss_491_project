@@ -9,7 +9,7 @@ class Tree {
         this.y = y;
         this.BB = new BoundingBox(this.x + 13, this.y + 108, 36, 20);
     };
-    
+
     update() {
 
     };
@@ -17,10 +17,10 @@ class Tree {
 
 
     draw(ctx) {
-        ctx.drawImage(this.PINE_TREE, this.x, this.y);
+        ctx.drawImage(this.PINE_TREE, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
-            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
         }
     };
 };
@@ -36,16 +36,16 @@ class Rock {
         this.y = y;
         this.BB = new BoundingBox(this.x, this.y + 20, 40, 12);
     };
-    
+
     update() {
 
     };
 
     draw(ctx) {
-        ctx.drawImage(this.ROCK, this.x, this.y);
+        ctx.drawImage(this.ROCK, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
-            ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
         }
     };
 };
@@ -68,6 +68,6 @@ class Terrain {
     };
 
     draw(ctx) {
-        ctx.drawImage(this.GRASS_1, this.x, this.y);
+        ctx.drawImage(this.GRASS_1, this.x - this.game.camera.x, this.y - this.game.camera.y);
     };
 }

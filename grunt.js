@@ -52,8 +52,11 @@ class Grunt extends AbstractEnemy {
     };
 
     update() {
+        this.x += 1;
+        this.y += 1;
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
+        console.log(this.x + " " + this.y);
         //console.log(this.randomFireRate);
         var that = this;
         this.game.entities.forEach(function (entity) {
@@ -80,11 +83,13 @@ class Grunt extends AbstractEnemy {
                     }
                 }
             }
+            that.updateBoundBox();
         });
     };
 
     updateBoundBox() {
-        this.BB = new BoundingBox(this.x, this.y, 35, 48);
+        this.lastBB = this.BB;
+        this.BB = new BoundingBox(this.x - this.game.camera.x, this.y - this.game.camera.y, 35, 48);
     };
 
     loadAnimations() {
@@ -124,28 +129,28 @@ class Grunt extends AbstractEnemy {
         if (this.health <= 0) {
             this.dead = true;
             if (this.facing === this.RIGHT) {
-                this.deadRight.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
+                this.deadRight.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             } else if (this.facing === this.LEFT) {
-                this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
+                this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             }
             setTimeout(() => {this.removeFromWorld = true}, 800);
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
-                ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+                ctx.strokeRect(this.x - this.game.camera.x, this.y - this.game.camera.y, this.BB.width, this.BB.height);
 
                 ctx.setLineDash([5, 15]);
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.visualRadius, 0, 2 * Math.PI);
+                ctx.arc(this.x - this.game.camera.x, this.y - this.game.camera.y, this.visualRadius, 0, 2 * Math.PI);
                 ctx.closePath();
                 ctx.stroke();
                 ctx.setLineDash([]);
             }
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x, this.y, 1.25);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             ctx.save();
             ctx.translate(
-                this.x,
-                this.y
+                this.x - this.game.camera.x,
+                this.y - this.game.camera.y
             );
             if (this.facing === this.LEFT) {
                 ctx.scale(-1,1);
@@ -154,14 +159,14 @@ class Grunt extends AbstractEnemy {
                     27.5
                 );
                 ctx.rotate(-this.armRotation + Math.PI);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             } else {
                 ctx.translate(
                     15,
                     27.5
                 );
                 ctx.rotate(this.armRotation);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             }
             ctx.restore();
         }

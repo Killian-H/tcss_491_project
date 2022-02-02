@@ -2,8 +2,8 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
+// background
 ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
-
 
 // Grunt
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arms.png");
