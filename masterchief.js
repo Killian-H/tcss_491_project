@@ -1,7 +1,7 @@
 class masterchief {
 
-    X_DEFAULT = 512;
-    Y_DEFAULT = 270;
+    X_DEFAULT = 0;
+    Y_DEFAULT = 0;
     AMMO_DEFAULT = 32;
     MAX_HEALTH = 100;
     MAX_ARMOR = 200;
@@ -12,6 +12,7 @@ class masterchief {
     FORWARD = 0.2;
     TILT_DOWN = 0.3;
     IDLE = 0;
+    SET_VELOCITY = {x: 300, y: 300};
     WALK = 1;
     CROUCH = 2;
     CROUCH_WALK = 3;
@@ -41,6 +42,7 @@ class masterchief {
     constructor(game, x, y) {
         Object.assign(this, {game, x, y});
         this.game = game;
+        this.game.player = this;
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
         this.dead = false; // not dead initially
@@ -49,6 +51,9 @@ class masterchief {
         this.headOrientation = this.RIGHT;
         this.x = x;
         this.y = y;
+        this.positionx = this.x - this.game.camera.x;
+        this.positiony = this.x - this.game.camera.y;
+        this.velocity = { x: 0, y: 0};
         this.beenShot = false;
 
         this.health = this.MAX_HEALTH;
@@ -76,6 +81,7 @@ class masterchief {
     updateBoundBox() {
         this.lastBB = this.BB;
         this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 78);
+        console.log(this.BB);
     };
 
     loadAnimations() {
@@ -147,8 +153,8 @@ class masterchief {
         }
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
-                this.game.mouse.x - this.x, 
-                - (this.game.mouse.y - this.y)
+                this.game.mouse.x - this.x + this.game.camera.x, 
+                - (this.game.mouse.y - this.y + this.game.camera.y)
             ) - Math.PI / 2;
             if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
                 this.facing = this.RIGHT;
@@ -176,52 +182,53 @@ class masterchief {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.ammo -= 1;
-            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+
+            this.game.addEntityToFront(new bullet(this.game, this.x - this.game.camera.x, this.y - this.game.camera.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
-        if (this.game.right || this.game.left || this.game.up || this.game.down) {
-            ASSET_MANAGER.playAsset("./audio/walking.mp3");
-        }
-        //moving left/right/up/down
-        if (this.game.right) { //right
-            this.state = this.WALK;
-            this.x += 220 * TICK;
-            this.velocity.x = 1;
-            if (this.x > 1024) {
-                this.x = 0;
-            }
-        }
-        else if (this.game.left) { //left
-            this.state = this.WALK;
-            this.x -= 220 * TICK;
-            this.velocity.x = -1;
-            if (this.x < 0) {
-                this.x = 1024;
-                //this.velocity.x = 0;
-            }
-        }
-        else if (this.game.up) { //up
-            this.state = this.WALK;
-            this.y -= 220 * TICK;
-            this.velocity.y = -1;
-            if (this.y < 0) {
-                this.y = 540;
-            }
-        }
-        else if (this.game.down) { //down
-            this.state = this.WALK;
-            this.y += 220 * TICK;
-            this.velocity.y = 1;
-            if (this.y > 540) {
-                this.y = 0;
-            } 
-        }
-        else {
-            this.state = this.IDLE;
-            this.velocity.x = 0;
+        
+        var isMoving = false;
+
+        if (this.game.up) {
+            this.velocity.y = -1 * (this.SET_VELOCITY.y * this.game.clockTick);
+            isMoving = true;
+        } else if (this.game.down) {
+            this.velocity.y = this.SET_VELOCITY.y * this.game.clockTick;
+            isMoving = true;
+        } else {
             this.velocity.y = 0;
         }
+        if (this.game.left) {
+            this.velocity.x = -1 * (this.SET_VELOCITY.x * this.game.clockTick);
+            isMoving = true;
+        } else if (this.game.right) {
+            this.velocity.x = this.SET_VELOCITY.x * this.game.clockTick;
+            isMoving = true;
+        } else {
+            this.velocity.x = 0;
+        }
+
+        if ((this.game.left || this.game.right) && (this.game.up || this.game.down)) {
+            this.velocity.x = (this.velocity.x / 2) * Math.sqrt(2);
+            this.velocity.y = (this.velocity.y / 2) * Math.sqrt(2);
+            isMoving = true;
+        }
+
+        if (isMoving) {
+            this.state = this.WALK;
+            ASSET_MANAGER.playAsset("./audio/walking.mp3");
+        } else {
+            this.state = this.IDLE;
+        }
+
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+
+        this.positionx = this.x - this.game.camera.x;
+        this.positiony = this.y - this.game.camera.y;
+        this.updateBoundBox();
+
 
         if (this.game.reload) {
             let stopShoot = setInterval(() => {this.canshoot = false}, 1);
@@ -229,41 +236,6 @@ class masterchief {
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2500);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
-        //moving diagonal
-        //adjust x (50) for more left/right, adjust y for more up/down
-        if (this.game.right && this.game.up) { //right / up
-            this.state = this.WALK;
-            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = 1;
-            this.velocity.y = -1;
-        }
-        
-        if (this.game.right && this.game.down) { //right/down
-            this.state = this.WALK;
-            this.x += ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = 1;
-            this.velocity.y = 1;
-        }
-        
-        if (this.game.left && this.game.up) { //left/up
-            this.state = this.WALK;
-            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y -= ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = -1;
-            this.velocity.y = -1;
-        }
-        
-        if (this.game.left && this.game.down) { //left/down
-            this.state = this.WALK;
-            this.x -= ((50 * TICK) / 2) * Math.sqrt(2);
-            this.y += ((150 * TICK) / 2) * Math.sqrt(2);
-            this.velocity.x = -1;
-            this.velocity.y = 1;
-        }
-        
-        this.updateBoundBox();
         
        
         var that = this;
@@ -354,29 +326,32 @@ class masterchief {
         //Drawing Body
         ctx.save();
         if (!this.dead) {
-            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2* 7.5, this.y -12.5, this.SCALE);
+            this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x - 2 * 7.5, this.y - this.game.camera.y - 12.5, this.SCALE);//this.x -2* 7.5, this.y -12.5
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
-                ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+                ctx.strokeRect(this.x - 6 - this.game.camera.x, this.y - 20 - this.game.camera.y, this.BB.width, this.BB.height);
+                ctx.fillText(("X: "+this.game.camera.x), 850, 160);
+                ctx.fillText(("Y: "+this.game.camera.y), 850, 210);
+                ctx.fillText(("Chief X: "+this.x), 750, 270);
+                ctx.fillText(("Chief Y: "+this.y), 750, 330);
             }
             ctx.save();
             ctx.restore();
-            //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
     
             ctx.translate(
-                this.x,
-                this.y
+                this.x - this.game.camera.x,
+                this.y - this.game.camera.y
             );
             if (this.facing == this.LEFT) {
                 ctx.scale(-1,1);
                 ctx.save();
                 ctx.translate(-34, -33); 
                 if (this.headOrientation == this.TILT_UP) {
-                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
                 } else if (this.headOrientation == this.FORWARD){
-                    ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
+                    ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE);
                 } else {
-                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
+                    ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE)//, this.x - this.game.camera.x, this.y - this.game.camera.y, 50,50);
 
                 }
                 ctx.restore();
@@ -385,26 +360,26 @@ class masterchief {
                     1
                 );
                 ctx.rotate(-this.armRotation + 2 *1.5708);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, this.x-  this.game.camera.x, this.y - this.game.camera.y, 50, 50);
 
             } else {
                 ctx.save();
                 ctx.translate(-12.5, -32.5); 
                 if (this.headOrientation == this.TILT_UP) {
-                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE );
+                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE)
             } else if (this.headOrientation == this.FORWARD){
-                ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE );
+                ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE)
             } else {
-                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE );
+                ctx.drawImage(this.HEAD_TILT_DOWN, this.HEAD_TILT_DOWN.width, this.HEAD_TILT_DOWN.height, this.HEAD_TILT_DOWN.width * this.SCALE, this.HEAD_TILT_DOWN.height * this.SCALE)
 
                 }
                 ctx.restore();
                 ctx.rotate(this.armRotation);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             }
             ctx.restore();
         } else {
-                this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x -2 * 7.5, this.y -12.5, this.SCALE);
+                this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x -2 * 7.5, this.y - this.game.camera.y -12.5, this.SCALE);
                 setTimeout(() => {this.removeFromWorld = true}, 800);
             }
     };

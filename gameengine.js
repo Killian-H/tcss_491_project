@@ -167,7 +167,7 @@ class GameEngine {
     draw() {
         // Clear the whole canvas with transparent color (rgba(0, 0, 0, 0))
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-
+        //this.camera.draw(this.ctx);
         // Draw latest things first
         for (let i = this.entities.length - 1; i >= 0; i--) {
             this.entities[i].draw(this.ctx, this);
@@ -203,6 +203,9 @@ class GameEngine {
         this.camera.update();
     };
     
+    addEntityToFront(entity) {
+        this.entities.splice(3, 0, entity);
+    };
 
     loop() {
         this.clockTick = this.timer.tick();
