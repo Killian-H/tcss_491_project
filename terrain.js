@@ -7,14 +7,19 @@ class Tree {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.BB = new BoundingBox(this.x + 13, this.y + 108, 36, 20);
     };
     
     update() {
 
     };
 
+
+
     draw(ctx) {
+
         //ctx.drawImage(this.PINE_TREE, this.x, this.y);
+
     };
 };
 

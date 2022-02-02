@@ -8,11 +8,19 @@ class SceneManager {
         this.game.camera = this;
         this.masterchief = new masterchief(game, this.x, this.y);
         this.pine = new Tree(game, 0, 0);
+        this.rock = new Rock(game, 128, 128);
+        this.terrain = new Terrain(game, 0, 0);
+        this.terrain2 = new Terrain(game, 128, 128);
+        this.terrain3 = new Terrain(game, 0, 128);
+        this.terrain4 = new Terrain(game, 128, 0);
+        this.rock = new Rock(game, 128, 128);
         this.game.addEntity(this.pine);
+        this.game.addEntity(this.rock);
         this.game.addEntity(this.masterchief);
         this.grunt = new Grunt(game, 200, 200);
         //this.grunt2 = new Grunt(game, 600, 100);
         this.game.addEntity(this.grunt);
+
         //this.game.addEntity(this.grunt2);
         this.terrain = new Terrain(game, 0, 0);
         this.game.addEntity(this.terrain);
