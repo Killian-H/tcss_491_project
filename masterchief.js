@@ -79,7 +79,8 @@ class masterchief {
 
     updateBoundBox() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x - 6 -this.game.camera.x, this.y - 20 - this.game.camera.y, 35, 78);
+        this.BB = new BoundingBox(this.positionx - 6 -this.game.camera.x, this.positiony - 20 - this.game.camera.y, 35, 78);
+        console.log(this.BB);
     };
 
     loadAnimations() {
