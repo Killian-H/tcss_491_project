@@ -53,6 +53,7 @@ class Grunt extends AbstractEnemy {
     update() {
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
+        console.log(this.x + " " + this.y);
         //console.log(this.randomFireRate);
         var that = this;
         this.game.entities.forEach(function (entity) {
@@ -135,7 +136,7 @@ class Grunt extends AbstractEnemy {
 
                 ctx.setLineDash([5, 15]);
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.visualRadius, 0, 2 * Math.PI);
+                ctx.arc(this.x - this.game.camera.x, this.y - this.game.camera.y, this.visualRadius, 0, 2 * Math.PI);
                 ctx.closePath();
                 ctx.stroke();
                 ctx.setLineDash([]);
