@@ -216,11 +216,13 @@ class masterchief {
 
         if (isMoving) {
             this.state = this.WALK;
-            ASSET_MANAGER.playAsset("./audio/walking.mp3");
+            ASSET_MANAGER.playAsset("./audio/stopping.mp3");
         } else {
+            ASSET_MANAGER.playAsset("./audio/walking.mp3");
+            ASSET_MANAGER.autoRepeat("./audio/walking.mp3");
             this.state = this.IDLE;
         }
-
+        
         this.x += this.velocity.x;
         this.y += this.velocity.y;
 

@@ -83,6 +83,12 @@ class AssetManager {
         audio.play();
     };
 
+    stopAsset(path) {
+        let audio = this.cache[path];
+        audio.currentTime = 0;
+        audio.stop();
+    }
+
     muteAudio(mute) {
         for (var key in this.cache) {
             let asset = this.cache[key];
