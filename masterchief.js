@@ -187,10 +187,7 @@ class masterchief {
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
-        if (this.game.right || this.game.left || this.game.up || this.game.down) {
-            ASSET_MANAGER.playAsset("./audio/walking.mp3");
-        }
-
+        
         var isMoving = false;
 
         if (this.game.up) {
@@ -220,6 +217,7 @@ class masterchief {
 
         if (isMoving) {
             this.state = this.WALK;
+            ASSET_MANAGER.playAsset("./audio/walking.mp3");
         } else {
             this.state = this.IDLE;
         }
