@@ -10,7 +10,6 @@ class GameEngine {
         this.entities = [];
         // Entities to be added at the end of each update
         this.entitiesToAdd = [];
-
         // Information on the input
         this.click = null;
         this.mouse = null;
@@ -161,7 +160,8 @@ class GameEngine {
     };
 
     addEntity(entity) {
-        this.entitiesToAdd.push(entity);
+       // this.entitiesToAdd.enqueue(entity);
+       this.entitiesToAdd.push(entity);
     };
 
     draw() {
@@ -194,6 +194,7 @@ class GameEngine {
         this.entities = this.entities.filter(entity => !entity.removeFromWorld);
 
         // Add new things
+
         this.entities = this.entities.concat(this.entitiesToAdd);
         this.entitiesToAdd = [];
 
@@ -208,6 +209,11 @@ class GameEngine {
         this.clockTick = this.timer.tick();
         this.update();
         this.draw();
+    };
+
+    addEntityToFront(entity) {
+        
+        this.entities.splice(3, 0, entity);
     };
 
     get["deltaTime"]() { return this.clockTick; }

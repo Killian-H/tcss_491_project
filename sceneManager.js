@@ -12,8 +12,8 @@ class SceneManager {
         this.terrain3 = new Terrain(game, 0, 128);
         this.terrain4 = new Terrain(game, 128, 0);
         this.rock = new Rock(game, 128, 128);
-        this.game.addEntity(this.pine);
-        this.game.addEntity(this.rock);
+        this.game.addEntityToFront(this.pine);
+        this.game.addEntityToFront(this.rock);
         this.game.addEntity(this.masterchief);
         this.grunt = new Grunt(game, 200, 200);
         this.grunt2 = new Grunt(game, 600, 100);

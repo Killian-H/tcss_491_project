@@ -41,6 +41,7 @@ class Grunt extends AbstractEnemy {
         this.state = this.IDLE; // 0 = idle, 1 = walk, 2 = scared
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.dead = false;
+        this.beenShot = false;
         this.deadLeft = new Animator(this.DEAD_LEFT, 7, 0, 47, 35, 5, 0.12, true, false);
         this.deadRight = new Animator(this.DEAD_RIGHT, 8, 0, 45, 35, 5, 0.12, false, false);
         this.velocity = { x: 0, y: 0};
@@ -57,7 +58,7 @@ class Grunt extends AbstractEnemy {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief  && that.dead == false) {
-                if (canSee(that, entity) || that.seen) {
+                if (canSee(that, entity) || that.seen || that.beenShot) {
                     that.seen = true;
                     if (that.BB.left > entity.BB.left) {
                     that.facing = 1;
@@ -74,7 +75,7 @@ class Grunt extends AbstractEnemy {
                     if (that.elapsedTime >= that.randomFireRate) {
                         //console.log()
                         that.elapsedTime = 0;
-                        that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
+                        that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
                         ASSET_MANAGER.playAsset("./audio/plasma pistol shot.mp3");
                     }
                 }
