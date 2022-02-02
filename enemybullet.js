@@ -60,7 +60,7 @@ class EnemyBullet {
         }
 
         ctx.save();
-        ctx.translate(this.x, this.y);
+        ctx.translate(this.x - this.game.camera.x, this.y - this.game.camera.y);
         ctx.rotate(this.rotation);
         ctx.drawImage(this.PLASMA_SHOT, -this.PLASMA_SHOT.width / 2, -this.PLASMA_SHOT.height/2);
         ctx.restore();
