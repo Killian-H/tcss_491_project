@@ -183,7 +183,7 @@ class masterchief {
             this.clickcount = 1;
             this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x - this.game.camera.x, this.y - this.game.camera.y, this.game.mouse.x - this.game.camera.x, this.game.mouse.y - this.game.camera.y, this.armRotation));
+            this.game.addEntityToFront(new bullet(this.game, this.x - this.game.camera.x, this.y - this.game.camera.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
