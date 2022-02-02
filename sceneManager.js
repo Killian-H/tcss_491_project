@@ -1,17 +1,19 @@
 class SceneManager {
+    MID_POINT_X = 1024/2;
+    MID_POINT_Y = 540/2;
     constructor(game) {
         this.game = game;
+        this.x = this.MID_POINT_X;
+        this.y = this.MID_POINT_Y;
         this.game.camera = this;
-        this.x = 0;
-        this.y = 0;
-        this.masterchief = new masterchief(game, 100, 100);
+        this.masterchief = new masterchief(game, this.x, this.y);
         this.pine = new Tree(game, 0, 0);
         this.game.addEntity(this.pine);
         this.game.addEntity(this.masterchief);
         this.grunt = new Grunt(game, 200, 200);
-        this.grunt2 = new Grunt(game, 600, 100);
+        //this.grunt2 = new Grunt(game, 600, 100);
         this.game.addEntity(this.grunt);
-        this.game.addEntity(this.grunt2);
+        //this.game.addEntity(this.grunt2);
         this.terrain = new Terrain(game, 0, 0);
         this.game.addEntity(this.terrain);
         this.background = new Background(game, 0, 0);
@@ -25,11 +27,9 @@ class SceneManager {
 
     update() {
         this.updateAudio();
-        let midpointX = 1024/2;
-        let midpointY = 540/2;
 
-        this.x = this.masterchief.x - midpointX;
-        this.y = this.masterchief.y - midpointY;
+        this.x = this.masterchief.x - this.MID_POINT_X
+        this.y = this.masterchief.y - this.MID_POINT_Y;
     };
 
     draw(ctx) {

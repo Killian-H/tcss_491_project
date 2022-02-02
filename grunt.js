@@ -68,13 +68,13 @@ class Grunt extends AbstractEnemy {
                     that.aimingY = entity.y;
                     //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
                     that.armRotation =  Math.atan2 (
-                        that.aimingX - that.x, 
-                        - (that.aimingY - that.y)
+                        that.aimingX - that.x + that.game.camera.x, 
+                        - (that.aimingY - that.y + that.game.camera.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
                         //console.log()
                         that.elapsedTime = 0;
-                        that.game.addEntity(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
+                        that.game.addEntity(new EnemyBullet(that.game, that.x -  that.game.camera.x, that.y - that.game.camera.y, entity, that.armRotation, that.weapon));
                         ASSET_MANAGER.playAsset("./audio/plasma pistol shot.mp3");
                     }
                 }
@@ -83,7 +83,7 @@ class Grunt extends AbstractEnemy {
     };
 
     updateBoundBox() {
-        this.BB = new BoundingBox(this.x, this.y, 35, 48);
+        this.BB = new BoundingBox(this.x - this.game.camera.x, this.y - this.game.camera.y , 35, 48);
     };
 
     loadAnimations() {
@@ -131,7 +131,7 @@ class Grunt extends AbstractEnemy {
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
-                ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+                ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
                 ctx.setLineDash([5, 15]);
                 ctx.beginPath();
@@ -143,8 +143,8 @@ class Grunt extends AbstractEnemy {
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             ctx.save();
             ctx.translate(
-                this.x,
-                this.y
+                this.x - this.game.camera.x,
+                this.y - this.game.camera.y
             );
             if (this.facing === this.LEFT) {
                 ctx.scale(-1,1);

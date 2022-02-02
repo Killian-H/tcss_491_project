@@ -1,7 +1,7 @@
 class masterchief {
 
-    X_DEFAULT = 512;
-    Y_DEFAULT = 270;
+    X_DEFAULT = 0;
+    Y_DEFAULT = 0;
     AMMO_DEFAULT = 32;
     MAX_HEALTH = 100;
     MAX_ARMOR = 200;
@@ -75,7 +75,7 @@ class masterchief {
 
     updateBoundBox() {
         this.lastBB = this.BB;
-        this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 78);
+        this.BB = new BoundingBox(this.x - 6 -this.game.camera.x, this.y - 20 - this.game.camera.y, 35, 78);
     };
 
     loadAnimations() {
@@ -147,8 +147,8 @@ class masterchief {
         }
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
-                this.game.mouse.x - this.x, 
-                - (this.game.mouse.y - this.y)
+                this.game.mouse.x - this.x + this.game.camera.x, 
+                - (this.game.mouse.y - this.y + this.game.camera.y)
             ) - Math.PI / 2;
             if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
                 this.facing = this.RIGHT;
@@ -178,7 +178,7 @@ class masterchief {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.ammo -= 1;
-            this.game.addEntity(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+            this.game.addEntity(new bullet(this.game, this.x - this.game.camera.x, this.y - this.game.camera.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
@@ -188,36 +188,36 @@ class masterchief {
         //moving left/right/up/down
         if (this.game.right) { //right
             this.state = this.WALK;
-            this.x += 220 * TICK;
+            this.game.camera.x += 220 * TICK;
             this.velocity.x = 1;
-            if (this.x > 1024) {
-                this.x = 0;
-            }
+            // if (this.x > 1024) {
+            //     this.x = 0;
+            // }
         }
         else if (this.game.left) { //left
             this.state = this.WALK;
             this.x -= 220 * TICK;
             this.velocity.x = -1;
-            if (this.x < 0) {
-                this.x = 1024;
-                //this.velocity.x = 0;
-            }
+            // if (this.x < 0) {
+            //     this.x = 1024;
+            //     //this.velocity.x = 0;
+            // }
         }
         else if (this.game.up) { //up
             this.state = this.WALK;
             this.y -= 220 * TICK;
             this.velocity.y = -1;
-            if (this.y < 0) {
-                this.y = 540;
-            }
+            // if (this.y < 0) {
+            //     this.y = 540;
+            // }
         }
         else if (this.game.down) { //down
             this.state = this.WALK;
             this.y += 220 * TICK;
             this.velocity.y = 1;
-            if (this.y > 540) {
-                this.y = 0;
-            } 
+            // if (this.y > 540) {
+            //     this.y = 0;
+            // } 
         }
         else {
             this.state = this.IDLE;
@@ -360,14 +360,18 @@ class masterchief {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
                 ctx.strokeRect(this.BB.x, this.BB.y, this.BB.width, this.BB.height);
+                ctx.fillText(("X: "+this.game.camera.x), 850, 160);
+                ctx.fillText(("Y: "+this.game.camera.y), 850, 210);
+                ctx.fillText(("Chief X: "+this.x), 750, 270);
+                ctx.fillText(("Chief Y: "+this.y), 750, 330);
             }
             ctx.save();
             ctx.restore();
             //this.game.clockTick, ctx, this.X_DEFAULT -2.5* 7.5, this.Y_DEFAULT -7.5, this.SCALE
     
             ctx.translate(
-                this.x,
-                this.y
+                this.x - this.game.camera.x,
+                this.y - this.game.camera.y
             );
             if (this.facing == this.LEFT) {
                 ctx.scale(-1,1);
@@ -387,7 +391,7 @@ class masterchief {
                     1
                 );
                 ctx.rotate(-this.armRotation + 2 *1.5708);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, this.x - this.game.camera.x, this.y - this.game.camera.y, 50, 50);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, this.x-  this.game.camera.x, this.y - this.game.camera.y, 50, 50);
 
             } else {
                 ctx.save();
