@@ -16,6 +16,6 @@ class Background {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.BACKGROUND, this.x, this.y, this.WIDTH, this.HEIGHT, this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH * 4 , this.HEIGHT * 4);
+        ctx.drawImage(this.BACKGROUND, this.x + 200, this.y + 100, this.WIDTH, this.HEIGHT, this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH * 4 , this.HEIGHT * 5);
     }
 }

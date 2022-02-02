@@ -158,14 +158,14 @@ class Grunt extends AbstractEnemy {
                     27.5
                 );
                 ctx.rotate(-this.armRotation + Math.PI);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, -this.armImg.width - this.game.camera.x, -this.armImg.height - this.game.camera.y, 50, 50);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             } else {
                 ctx.translate(
                     15,
                     27.5
                 );
                 ctx.rotate(this.armRotation);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, -this.armImg.width - this.game.camera.x, -this.armImg.height - this.game.camera.y, 50, 50);
+                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             }
             ctx.restore();
         }
