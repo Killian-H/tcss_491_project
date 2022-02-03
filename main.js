@@ -2,8 +2,9 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
-// background
+// images
 ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
+ASSET_MANAGER.queueDownload("./images/menu pic.jpg");
 
 // Grunt
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arms.png");
@@ -73,7 +74,9 @@ ASSET_MANAGER.downloadAll(() => {
 	
 	gameEngine.init(ctx);
 
-	new SceneManager(gameEngine);
+	this.scene = new SceneManager(gameEngine);
+	gameEngine.addEntity(scene);
+	this.scene.loadStartMenu(); //new
 	gameEngine.start();
 
 	
