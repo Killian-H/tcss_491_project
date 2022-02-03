@@ -35,9 +35,14 @@ class SceneManager {
 
     update() {
         this.updateAudio();
-
+        var lastX = this.x;
+        var lastY = this.y;
         this.x = this.masterchief.x - this.MID_POINT_X
         this.y = this.masterchief.y - this.MID_POINT_Y;
+        if (this.game.mouse) {
+            this.game.mouse.x -= lastX - this.x;
+            this.game.mouse.y -= lastY - this.y;
+        }
     };
 
     draw(ctx) {

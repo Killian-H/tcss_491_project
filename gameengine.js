@@ -57,8 +57,8 @@ class GameEngine {
         var that = this;
 
         const getXandY = e => ({
-            x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
-            y: e.clientY - this.ctx.canvas.getBoundingClientRect().top
+            x: e.clientX - this.ctx.canvas.getBoundingClientRect().left + this.camera.x,
+            y: e.clientY - this.ctx.canvas.getBoundingClientRect().top + this.camera.y
         });
 
         this.ctx.canvas.addEventListener("mousemove", e => {
@@ -105,7 +105,6 @@ class GameEngine {
         });
 
         this.ctx.canvas.addEventListener("keydown", function (e) {
-            console.log(e);
             switch (e.code) {
                 case "ArrowLeft":
                 case "KeyA":

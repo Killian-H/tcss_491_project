@@ -152,8 +152,8 @@ class masterchief {
         }
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
-                this.game.mouse.x - this.x + this.game.camera.x, 
-                - (this.game.mouse.y - this.y + this.game.camera.y)
+                this.game.mouse.x - this.x, 
+                - (this.game.mouse.y - this.y)
             ) - Math.PI / 2;
             if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
                 this.facing = this.RIGHT;
@@ -182,7 +182,7 @@ class masterchief {
             this.clickcount = 1;
             this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x - this.game.camera.x, this.y - this.game.camera.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }
@@ -266,20 +266,17 @@ class masterchief {
                 // }
                 if (that.velocity.y > 0) { // Traveling down.
                     if ((entity instanceof AbstractEnemy) && (that.lastBB.bottom >= entity.BB.top)) {
-                            if (that.velocity.y > 0) {
-                                that.y = entity.BB.top - 58;
-                                that.velocity.y === 0;
-                                console.log("top" + entity.BB.top);
-                            }
+                        if (that.velocity.y < 0) {
+                            that.velocity.y === 0;
                         }
                         that.updateBoundBox();
+                    }
                 } 
                 else if (that.velocity.y < 0) { // traveling up.
                     if ((entity instanceof AbstractEnemy) && that.lastBB.top <= entity.BB.bottom) {
                             if (that.velocity.y < 0) {
                                 that.velocity.y === 0;
                                 that.y = entity.BB.bottom + 20;
-                                console.log("bottom" + entity.BB.bottom);
                             }
                         }
                         that.updateBoundBox();
@@ -289,7 +286,6 @@ class masterchief {
                             if (that.velocity.x > 0) {
                                 that.velocity.x === 0;
                                 that.x = entity.BB.left - 30;
-                                console.log("left" + entity.BB.left);
                             }
                         }
                         that.updateBoundBox();
@@ -299,7 +295,6 @@ class masterchief {
                             if (that.velocity.x < 0) {
                                 that.velocity.x === 0;
                                 that.x = entity.BB.right + 7;
-                                console.log("right" + entity.BB.right);
                             }
                         }
                         that.updateBoundBox();

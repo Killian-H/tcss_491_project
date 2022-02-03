@@ -52,9 +52,13 @@ class Grunt extends AbstractEnemy {
     };
 
     update() {
+        this.state = this.WALK;
+        this.x += .1;
+        this.y += .1;
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
+        //console.log(this.randomFireRate);a
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief  && that.dead == false) {
@@ -73,6 +77,7 @@ class Grunt extends AbstractEnemy {
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
+                        //console.log()
                         that.elapsedTime = 0;
                         that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
                         ASSET_MANAGER.playAsset("./audio/plasma pistol shot.mp3");
@@ -132,7 +137,7 @@ class Grunt extends AbstractEnemy {
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
-                ctx.strokeRect(this.x - this.game.camera.x, this.y - this.game.camera.y, this.BB.width, this.BB.height);
+                ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
 
                 ctx.setLineDash([5, 15]);
                 ctx.beginPath();
