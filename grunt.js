@@ -64,7 +64,7 @@ class Grunt extends AbstractEnemy {
             if (entity instanceof masterchief  && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
                     that.seen = true;
-                    if (that.BB.left > entity.BB.left - that.game.camera.x) {
+                    if (that.BB.left > entity.BB.left) {
                     that.facing = 1;
                     } else {
                         that.facing = 0;
