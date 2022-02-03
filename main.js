@@ -48,6 +48,7 @@ ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar fire.mp3");
 ASSET_MANAGER.queueDownload("./audio/walking.mp3");
+ASSET_MANAGER.queueDownload("./audio/stopping.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar single.mp3");
 ASSET_MANAGER.queueDownload("./audio/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/gruntpee.mp3");
