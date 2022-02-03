@@ -87,9 +87,9 @@ class SceneManager {
         ctx.fillStyle = "White";
         ctx.strokeStyle = "White";
         //commented out because it appears on home screen
-        ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
-        ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
-        ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
+        //ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
+        //ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
+        //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
         if(this.masterchief.health == 0){
             ctx.fillText("Game Over 💀", 350, 250);
         }
