@@ -7,25 +7,6 @@ class SceneManager {
         this.y = this.MID_POINT_Y;
         this.game.camera = this;
         this.masterchief = new masterchief(game, this.x, this.y);
-        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
-        // this.pine = new Tree(game, 0, 0);
-        // this.rock = new Rock(game, 128, 128);
-        // this.terrain = new Terrain(game, 0, 0);
-        // this.terrain2 = new Terrain(game, 128, 128);
-        // this.terrain3 = new Terrain(game, 0, 128);
-        // this.terrain4 = new Terrain(game, 128, 0);
-        // this.rock = new Rock(game, 128, 128);
-        //this.game.addEntityToFront(this.pine);
-        //this.game.addEntityToFront(this.rock);
-        //this.game.addEntity(this.masterchief);
-        //this.grunt = new Grunt(game, 200, 200);
-        //this.grunt2 = new Grunt(game, 600, 100);
-        //this.game.addEntity(this.grunt);
-        //this.game.addEntity(this.grunt2);
-        //this.terrain = new Terrain(game, 0, 0);
-        //this.game.addEntity(this.terrain);
-        //this.background = new Background(game, 0, 0);
-        //this.game.addEntity(this.background);
     };
 
     clearEntities() {
@@ -49,8 +30,6 @@ class SceneManager {
 
     loadLevel() {
         this.clearEntities();
-        this.masterchief = new masterchief(this.game, this.x, this.y);
-        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         // this.pine = new Tree(this/game, 0, 0);
         // this.rock = new Rock(this.game, 128, 128);
         // this.terrain = new Terrain(this.game, 0, 0);
