@@ -7,6 +7,7 @@ class SceneManager {
         this.y = this.MID_POINT_Y;
         this.game.camera = this;
         this.masterchief = new masterchief(game, this.x, this.y);
+        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
     };
 
     clearEntities() {
