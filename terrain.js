@@ -1,8 +1,15 @@
-class Tree {
+class AbstractEnvironment {
+    constructor(game, x, y) {
+        Object.assign(game, x, y);
+    }
+}
+
+class Tree extends AbstractEnvironment {
 
     PINE_TREE = ASSET_MANAGER.getAsset("./sprites/terrain/tree.png");
 
     constructor(game, x, y) {
+        super(game, x, y);
         Object.assign(this, {game, x, y});
         this.game = game;
         this.x = x;
@@ -25,16 +32,17 @@ class Tree {
     };
 };
 
-class BigTree {
+class BigTree extends AbstractEnvironment {
 
     PINE_TREE = ASSET_MANAGER.getAsset("./sprites/terrain/big_tree.png");
 
     constructor(game, x, y) {
+        super(game, x, y);
         Object.assign(this, {game, x, y});
         this.game = game;
         this.x = x;
         this.y = y;
-        this.BB = new BoundingBox(this.x, this.y, 256, 256);
+        this.BB = new BoundingBox(this.x + 28, this.y + 13, 200, 226);
     };
 
     update() {
@@ -52,11 +60,12 @@ class BigTree {
     };
 };
 
-class Rock {
+class Rock extends AbstractEnvironment {
 
     ROCK = ASSET_MANAGER.getAsset("./sprites/terrain/rock.png");
 
     constructor(game, x, y) {
+        super(game, x, y);
         Object.assign(this, {game, x, y});
         this.game = game;
         this.x = x;
@@ -77,16 +86,17 @@ class Rock {
     };
 };
 
-class WallTop {
+class WallTop extends AbstractEnvironment {
 
     WALL_TOP = ASSET_MANAGER.getAsset("./sprites/terrain/dirt_wall_top.png");
 
     constructor(game, x, y) {
+        super(game, x, y);
         Object.assign(this, {game, x, y});
         this.game = game;
         this.x = x;
         this.y = y;
-        // this.BB = new BoundingBox(this.x, this.y + 20, 128, 128);
+        this.BB = new BoundingBox(this.x, this.y + 8, 128, 120);
     };
 
     update() {
@@ -97,21 +107,22 @@ class WallTop {
         ctx.drawImage(this.WALL_TOP, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
-            // ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
         }
     };
 };
 
-class Wall {
+class Wall extends AbstractEnvironment {
 
     WALL = ASSET_MANAGER.getAsset("./sprites/terrain/dirt_wall.png");
 
     constructor(game, x, y) {
+        super(game, x, y);
         Object.assign(this, {game, x, y});
         this.game = game;
         this.x = x;
         this.y = y;
-        // this.BB = new BoundingBox(this.x, this.y + 20, 128, 128);
+        this.BB = new BoundingBox(this.x, this.y, 128, 128);
     };
 
     update() {
@@ -122,7 +133,7 @@ class Wall {
         ctx.drawImage(this.WALL, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = 'Red';
-            // ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
         }
     };
 };

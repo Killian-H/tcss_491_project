@@ -248,37 +248,37 @@ class masterchief {
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
         
+        var collisionx = 1;
+        var collisiony = 1;
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                // if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
-                //     if ((entity instanceof AbstractEnemy) && that.lastBB.right >= entity.BB.left) {
-                //         that.velocity.x === 0;
-                //         that.x = entity.BB.left - 30;
-                //     }
-                // }
-                // else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
-                //     if ((entity instanceof AbstractEnemy) && that.lastBB.left <= entity.BB.right) {
-                //         that.velocity.x === 0;
-                //         that.x = entity.BB.right + 7;
-                //     }
-                // }
-                // else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
-                //     if ((entity instanceof AbstractEnemy) && that.lastBB.right >= entity.BB.left) {
-                //         that.velocity.x === 0;
-                //         that.x = entity.BB.left - 30;
-                //     }
-                // }
-                // else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
-                //     if (entity instanceof Grunt && that.lastBB.left <= entity.BB.right) {
-                //         that.velocity.x === 0;
-                //         that.x = entity.BB.right + 7;
-                //     }
-                // }
-                if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
+                if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
+                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.right >= entity.BB.left) {
+                        if (that.lastBB.right >= entity.BB.left) {
+                            collisionx = 0;
+                        }
+                    }
+                }
+                else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
+                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.left <= entity.BB.right) {
+                        collisionx = 0;
+                    }
+                }
+                else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
+                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.right >= entity.BB.left) {
+                        collisionx = 0;
+                    }
+                }
+                else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
+                    if ((entity instanceof Grunt || entity instanceof BigTree) && that.lastBB.left <= entity.BB.right) {
+                        collisionx = 0;
+                    }
+                }
+                else if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
                     if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && (that.lastBB.bottom > entity.BB.top)) {
                         if (that.game.down && that.BB.bottom < entity.BB.bottom) {
-                            that.velocity.y = 0;
+                            collisiony = 0;
                         }
                             that.updateBoundBox();
                     }
@@ -286,7 +286,7 @@ class masterchief {
                 else if (that.velocity.y < 0) { // traveling up.
                     if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.top <= entity.BB.bottom) {
                         if (that.game.up) {
-                            that.velocity.y = 0;
+                            collisiony = 0;
                         }
                             that.updateBoundBox();
                         }
@@ -294,21 +294,21 @@ class masterchief {
                 else if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
                     if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.right >= entity.BB.left) {
                             if (that.game.right && that.BB.right < entity.BB.right) {
-                                that.velocity.x = 0;
+                                collisionx = 0;
                             }
                         }
                         that.updateBoundBox();
                 }
                 else if (that.velocity.x < 0) { // traveling left.
                     if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.left <= entity.BB.right) {
-                        that.velocity.x = 0;
+                        collisionx = 0;
                         }
                         that.updateBoundBox();
                 }
             }
         })
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        this.x += this.velocity.x * collisionx;
+        this.y += this.velocity.y * collisiony;
 
         this.positionx = this.x - this.game.camera.x;
         this.positiony = this.y - this.game.camera.y;
