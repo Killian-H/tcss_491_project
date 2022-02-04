@@ -14,7 +14,7 @@ class StartMenu {
 
     update() {
         if (this.game.mouse != null) {
-            if ((this.game.mouse.x >= this.START_POSITION.x && this.game.mouse.x <= this.START_POSITION.x + 108) && (this.game.mouse.y >= this.START_POSITION.y - 40 && this.game.mouse.y <= this.START_POSITION.y)
+            if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 108) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
                 && (this.game.click)) {
                 //play click audio
                 this.game.camera.loadLevel();
@@ -32,7 +32,7 @@ class StartMenu {
         ctx.fillStyle = "Black";
         
         if (this.game.mouse != null) {
-            if ((this.game.mouse.x >= this.START_POSITION.x && this.game.mouse.x <= this.START_POSITION.x + 108) && (this.game.mouse.y >= this.START_POSITION.y - 40 && this.game.mouse.y <= this.START_POSITION.y)) {
+            if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 108) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)) {
                 ctx.fillStyle = "Red";
                 ctx.fillText("Start", this.START_POSITION.x, this.START_POSITION.y);
             }

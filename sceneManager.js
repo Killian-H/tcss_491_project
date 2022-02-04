@@ -19,6 +19,11 @@ class SceneManager {
             ASSET_MANAGER.muteAudio(PARAMS.MUTE)
         }
     }
+    resetXanyY() {
+        this.x = this.masterchief.x - this.MID_POINT_X;
+        this.y = this.masterchief.y - this.MID_POINT_Y;
+
+    }
 
     loadStartMenu() {
         this.clearEntities();
@@ -86,7 +91,7 @@ class SceneManager {
         this.updateAudio();
         var lastX = this.x;
         var lastY = this.y;
-        this.x = this.masterchief.x - this.MID_POINT_X
+        this.x = this.masterchief.x - this.MID_POINT_X;
         this.y = this.masterchief.y - this.MID_POINT_Y;
         if (this.game.mouse) {
             this.game.mouse.x -= lastX - this.x;
