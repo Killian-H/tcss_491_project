@@ -7,6 +7,7 @@ class SceneManager {
         this.y = this.MID_POINT_Y;
         this.game.camera = this;
         this.masterchief = new masterchief(game, this.x, this.y);
+        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
     };
 
     clearEntities() {
@@ -53,6 +54,7 @@ class SceneManager {
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
+        this.game.addEntity(this.hud);
         this.game.addEntity(this.masterchief);
         this.grunt = new Grunt(this.game, 200, 200);
         //this.grunt2 = new Grunt(game, 600, 100);
@@ -79,15 +81,15 @@ class SceneManager {
 
     draw(ctx) {
         //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
-        ctx.font = 'bold 48px serif';
-        ctx.fillStyle = "White";
-        ctx.strokeStyle = "White";
+       // ctx.font = 'bold 48px serif';
+        //ctx.fillStyle = "White";
+        //ctx.strokeStyle = "White";
         //commented out because it appears on home screen
-        ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
-        ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
-        ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
+        //ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
+        //ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
+        //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
         //if(this.masterchief.health == 0){
-        //    ctx.fillText("Game Over 💀", 350, 250);
+            //ctx.fillText("Game Over 💀", 350, 250);
         //}
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
