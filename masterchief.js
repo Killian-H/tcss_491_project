@@ -78,6 +78,22 @@ class masterchief {
 
     };
 
+    resetHealth() {
+        this.health = this.MAX_HEALTH;
+    }
+
+    resetAmmo() {
+        this.ammo = this.AMMO_DEFAULT;
+    }
+
+    resetShield() {
+        this.armor = this.MAX_ARMOR;
+    }
+
+    resetState() {
+        this.state = this.IDLE;
+    }
+
     updateBoundBox() {
         this.lastBB = this.BB;
         this.BB = new BoundingBox(this.x - 6, this.y - 20, 35, 78);
@@ -149,6 +165,7 @@ class masterchief {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
             this.dead = true;
             this.state = this.DEAD;
+            this.game.camera.loadDeathMenu();
         }
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (

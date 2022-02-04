@@ -24,7 +24,7 @@ class EnemyBullet {
                 if (entity instanceof masterchief) {
                     entity.beenShot = true;
                     if(entity.health > 0 && entity.armor == 0){
-                       // entity.health = entity.health - 20;
+                        entity.health = entity.health - 20;
                     }
                     else if(entity.armor > 0){
                         entity.armor = entity.armor - 20;

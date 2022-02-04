@@ -5,6 +5,8 @@ const ASSET_MANAGER = new AssetManager();
 // images
 ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 ASSET_MANAGER.queueDownload("./images/menu pic.jpg");
+ASSET_MANAGER.queueDownload("./images/troy.jpg");
+ASSET_MANAGER.queueDownload("./images/gameoverscreen.jpg");
 
 // Grunt
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arms.png");
@@ -55,6 +57,7 @@ ASSET_MANAGER.queueDownload("./audio/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/gruntpee.mp3");
 ASSET_MANAGER.queueDownload("./audio/plasma pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
+ASSET_MANAGER.queueDownload("./audio/gameover.mp3");
 
 // terrain
 ASSET_MANAGER.queueDownload("./sprites/terrain/grass_1.png");
@@ -73,7 +76,8 @@ ASSET_MANAGER.downloadAll(() => {
 
 	this.scene = new SceneManager(gameEngine);
 	gameEngine.addEntity(scene);
-	this.scene.loadStartMenu(); //new
+	this.scene.loadStartMenu(); 
+	//this.scene.loadDeathMenu(); //for testing death menu
 	gameEngine.start();
 
 	

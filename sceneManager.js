@@ -28,6 +28,16 @@ class SceneManager {
         this.update();
     }
 
+    loadDeathMenu() {
+        this.clearEntities();
+        this.deathmenu = new DeathMenu(this.game, 0, 0);
+        this.game.addEntity(this.deathmenu);
+        ASSET_MANAGER.pauseBackgroundMusic();
+        ASSET_MANAGER.playAsset("./audio/gameover.mp3");
+        this.update();
+
+    }
+
     loadLevel() {
         this.clearEntities();
         // this.pine = new Tree(this/game, 0, 0);
@@ -39,6 +49,10 @@ class SceneManager {
         // this.rock = new Rock(this.game, 128, 128);
         // this.game.addEntityToFront(this.pine);
         // this.game.addEntityToFront(this.rock);
+        this.masterchief.resetHealth();
+        this.masterchief.resetShield();
+        this.masterchief.resetAmmo();
+        this.masterchief.resetState();
         this.game.addEntity(this.masterchief);
         this.grunt = new Grunt(this.game, 200, 200);
         //this.grunt2 = new Grunt(game, 600, 100);
@@ -69,12 +83,12 @@ class SceneManager {
         ctx.fillStyle = "White";
         ctx.strokeStyle = "White";
         //commented out because it appears on home screen
-        //ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
-        //ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
-        //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
-        if(this.masterchief.health == 0){
-            ctx.fillText("Game Over 💀", 350, 250);
-        }
+        ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
+        ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
+        ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
+        //if(this.masterchief.health == 0){
+        //    ctx.fillText("Game Over 💀", 350, 250);
+        //}
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         if (PARAMS.DEBUG == true) {
             
