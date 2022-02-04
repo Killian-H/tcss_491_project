@@ -254,29 +254,29 @@ class masterchief {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
-                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.right >= entity.BB.left) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
                         if (that.lastBB.right >= entity.BB.left) {
                             collisionx = 0;
                         }
                     }
                 }
                 else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
-                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.left <= entity.BB.right) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
                         collisionx = 0;
                     }
                 }
                 else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
-                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.right >= entity.BB.left) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
                         collisionx = 0;
                     }
                 }
                 else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
-                    if ((entity instanceof Grunt || entity instanceof BigTree) && that.lastBB.left <= entity.BB.right) {
+                    if ((entity instanceof Grunt || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
                         collisionx = 0;
                     }
                 }
                 else if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
-                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && (that.lastBB.bottom > entity.BB.top)) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.lastBB.bottom > entity.BB.top)) {
                         if (that.game.down && that.BB.bottom < entity.BB.bottom) {
                             collisiony = 0;
                         }
@@ -284,7 +284,7 @@ class masterchief {
                     }
                 } 
                 else if (that.velocity.y < 0) { // traveling up.
-                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.top <= entity.BB.bottom) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.top <= entity.BB.bottom) {
                         if (that.game.up) {
                             collisiony = 0;
                         }
@@ -292,7 +292,7 @@ class masterchief {
                         }
                 } 
                 else if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
-                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.right >= entity.BB.left) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
                             if (that.game.right && that.BB.right < entity.BB.right) {
                                 collisionx = 0;
                             }
@@ -300,7 +300,7 @@ class masterchief {
                         that.updateBoundBox();
                 }
                 else if (that.velocity.x < 0) { // traveling left.
-                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.left <= entity.BB.right) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
                         collisionx = 0;
                         }
                         that.updateBoundBox();
