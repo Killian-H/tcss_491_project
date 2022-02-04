@@ -67,10 +67,7 @@ ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
-	PARAMS.CANVAS_WIDTH = canvas.width;
-	
-	//ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
-	
+	PARAMS.CANVAS_WIDTH = canvas.width;	
 	
 	gameEngine.init(ctx);
 
