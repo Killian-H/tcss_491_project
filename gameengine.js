@@ -215,7 +215,7 @@ class GameEngine {
 
     addEntityToFront(entity) {
         
-        this.entities.splice(3, 0, entity);
+        this.entities.splice(1, 0, entity);
     };
 
     get["deltaTime"]() { return this.clockTick; }
