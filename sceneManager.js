@@ -24,27 +24,33 @@ class SceneManager {
         this.y = this.masterchief.y - this.MID_POINT_Y;
 
     }
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     loadStartMenu() {
         this.clearEntities();
         this.startmenu = new StartMenu(this.game, 0, 0);
         this.game.addEntity(this.startmenu);
         ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
+        ASSET_MANAGER.autoRepeat("./music/halo 3 theme.mp3");
         this.update();
     }
 
     loadDeathMenu() {
-        this.clearEntities();
-        this.deathmenu = new DeathMenu(this.game, 0, 0);
-        this.game.addEntity(this.deathmenu);
-        ASSET_MANAGER.pauseBackgroundMusic();
-        ASSET_MANAGER.playAsset("./audio/gameover.mp3");
-        this.update();
-
+        this.sleep(2000).then(() => {
+            this.clearEntities();
+            ASSET_MANAGER.pauseBackgroundMusic();
+            this.deathmenu = new DeathMenu(this.game, 0, 0);
+            this.game.addEntityToFront(this.deathmenu);
+            this.update();
+            ASSET_MANAGER.playAsset("./audio/gameover.mp3");
+        });
     }
 
     loadLevel() {
         this.clearEntities();
+        this.resetXanyY();
         this.pine = new Tree(this.game, 0, 0);
         this.rock = new Rock(this.game, 128, 100);
         this.wall_top = new WallTop(this.game, 0, 128);
@@ -63,6 +69,7 @@ class SceneManager {
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
+        this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
         this.game.addEntity(this.pine);

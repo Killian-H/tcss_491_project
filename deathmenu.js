@@ -18,6 +18,7 @@ class DeathMenu {
                 && (this.game.click)) {
                 //play click audio
                 this.game.camera.loadLevel();
+                ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
             }
             if ((this.game.mouse.x - this.game.camera.x >= this.QUIT_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.QUIT_POSITION.x + 95) && (this.game.mouse.y - this.game.camera.y >= this.QUIT_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.QUIT_POSITION.y)
                 && (this.game.click)) {
@@ -29,7 +30,6 @@ class DeathMenu {
 
     draw(ctx) {
         ctx.drawImage(this.DEATHPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.6, this.CANVAS.h * 1.2);
-
         if (this.game.mouse != null) {
             if ((this.game.mouse.x - this.game.camera.x >= this.RESTART_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.RESTART_POSITION.x + 155) && (this.game.mouse.y - this.game.camera.y >= this.RESTART_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.RESTART_POSITION.y)) {
                 ctx.fillStyle = "Blue";
