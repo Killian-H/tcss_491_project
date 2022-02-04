@@ -239,13 +239,6 @@ class masterchief {
             ASSET_MANAGER.autoRepeat("./audio/walking.mp3");
             this.state = this.IDLE;
         }
-        
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
-
-        this.positionx = this.x - this.game.camera.x;
-        this.positiony = this.y - this.game.camera.y;
-        this.updateBoundBox();
 
 
         if (this.game.reload) {
@@ -255,7 +248,6 @@ class masterchief {
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
         
-       
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
@@ -284,42 +276,37 @@ class masterchief {
                 //     }
                 // }
                 if (that.velocity.y > 0) { // Traveling down.
-                    if ((entity instanceof AbstractEnemy) && (that.lastBB.bottom >= entity.BB.top)) {
-                        if (that.velocity.y < 0) {
-                            that.velocity.y === 0;
-                        }
+                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && (that.lastBB.bottom > entity.BB.top)) {
+                        that.velocity.y = 0;
                         that.updateBoundBox();
                     }
                 } 
                 else if (that.velocity.y < 0) { // traveling up.
-                    if ((entity instanceof AbstractEnemy) && that.lastBB.top <= entity.BB.bottom) {
-                            if (that.velocity.y < 0) {
-                                that.velocity.y === 0;
-                                that.y = entity.BB.bottom + 20;
-                            }
+                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.top <= entity.BB.bottom) {
+                            that.velocity.y = 0;
+                            that.updateBoundBox();
                         }
-                        that.updateBoundBox();
                 } 
                 else if (that.velocity.x > 0) { // traveling right.
-                    if ((entity instanceof AbstractEnemy) && that.lastBB.right >= entity.BB.left) {
-                            if (that.velocity.x > 0) {
-                                that.velocity.x === 0;
-                                that.x = entity.BB.left - 30;
-                            }
+                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.right >= entity.BB.left) {
+                            that.velocity.x = 0;
                         }
                         that.updateBoundBox();
                 }
                 else if (that.velocity.x < 0) { // traveling left.
-                    if ((entity instanceof AbstractEnemy) && that.lastBB.left <= entity.BB.right) {
-                            if (that.velocity.x < 0) {
-                                that.velocity.x === 0;
-                                that.x = entity.BB.right + 7;
-                            }
+                    if ((entity instanceof AbstractEnemy || entity instanceof BigTree) && that.lastBB.left <= entity.BB.right) {
+                        that.velocity.x = 0;
                         }
                         that.updateBoundBox();
                 }
             }
         })
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
+
+        this.positionx = this.x - this.game.camera.x;
+        this.positiony = this.y - this.game.camera.y;
+        this.updateBoundBox();
     };
 
     // calculateWeaponLocationX() {
@@ -336,7 +323,7 @@ class masterchief {
     //     } else {
     //         return this.x;
     //     }
-    // }
+    // 
 
     draw(ctx) {
 

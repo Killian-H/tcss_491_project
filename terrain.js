@@ -34,7 +34,7 @@ class BigTree {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.BB = new BoundingBox(this.x, this.y, 128, 128);
+        this.BB = new BoundingBox(this.x, this.y, 256, 256);
     };
 
     update() {

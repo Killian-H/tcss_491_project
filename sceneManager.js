@@ -59,6 +59,7 @@ class SceneManager {
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
+        this.game.addEntity(this.hud);
         this.game.addEntity(this.pine);
         this.game.addEntity(this.big_tree);
         this.game.addEntity(this.rock);
@@ -69,7 +70,6 @@ class SceneManager {
         this.game.addEntity(new WallTop(this.game, 128, 128));
         this.game.addEntity(new Wall(this.game, 128, 256));
         this.game.addEntity(this.wall);
-        this.game.addEntity(this.hud);
         this.game.addEntity(this.terrain);
         this.game.addEntity(new Terrain(this.game, 0, 384));
         this.game.addEntity(this.dirt);
