@@ -7,7 +7,6 @@ class SceneManager {
         this.y = this.MID_POINT_Y;
         this.game.camera = this;
         this.masterchief = new masterchief(game, this.x, this.y);
-        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
     };
 
     clearEntities() {
@@ -54,6 +53,7 @@ class SceneManager {
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
+        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
         this.game.addEntity(this.masterchief);
         this.grunt = new Grunt(this.game, 200, 200);
