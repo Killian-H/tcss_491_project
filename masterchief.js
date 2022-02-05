@@ -253,29 +253,29 @@ class masterchief {
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
-                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                        if (that.lastBB.right >= entity.BB.left) {
-                            collisionx = 0;
-                        }
-                    }
-                }
-                else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
-                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
-                        collisionx = 0;
-                    }
-                }
-                else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
-                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                        collisionx = 0;
-                    }
-                }
-                else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
-                    if ((entity instanceof Grunt || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
-                        collisionx = 0;
-                    }
-                }
-                else if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
+                // if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
+                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
+                //         if (that.lastBB.right >= entity.BB.left) {
+                //             collisionx = 0;
+                //         }
+                //     }
+                // }
+                // else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
+                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
+                //         collisionx = 0;
+                //     }
+                // }
+                // else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
+                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
+                //         collisionx = 0;
+                //     }
+                // }
+                // else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
+                //     if ((entity instanceof Grunt || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
+                //         collisionx = 0;
+                //     }
+                // }
+                if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.lastBB.bottom > entity.BB.top)) {
                         if (that.game.down && that.BB.bottom < entity.BB.bottom) {
                             collisiony = 0;
