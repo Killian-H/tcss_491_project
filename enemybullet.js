@@ -62,7 +62,9 @@ class EnemyBullet {
                     }
                     that.removeFromWorld = true;
                 }
-
+                if (entity instanceof AbstractEnvironment) {
+                    that.removeFromWorld = true;
+                }
             }
         });
     };

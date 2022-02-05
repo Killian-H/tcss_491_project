@@ -280,7 +280,6 @@ class masterchief {
                         if (that.game.down && that.BB.bottom < entity.BB.bottom) {
                             collisiony = 0;
                         }
-                            that.updateBoundBox();
                     }
                 } 
                 else if (that.velocity.y < 0) { // traveling up.
@@ -288,25 +287,23 @@ class masterchief {
                         if (that.game.up) {
                             collisiony = 0;
                         }
-                            that.updateBoundBox();
                         }
                 } 
                 else if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
                             if (that.game.right && that.BB.right < entity.BB.right) {
-                                collisionx = 0;
+                               collisionx = 0;
                             }
                         }
-                        that.updateBoundBox();
                 }
                 else if (that.velocity.x < 0) { // traveling left.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
                         collisionx = 0;
                         }
-                        that.updateBoundBox();
                 }
             }
         })
+        this.updateBoundBox();
         this.x += this.velocity.x * collisionx;
         this.y += this.velocity.y * collisiony;
 

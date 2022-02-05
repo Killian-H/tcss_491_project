@@ -39,7 +39,7 @@ class bullet {
             offScreenCtx.translate(16, 16);
             offScreenCtx.rotate(radians);
             offScreenCtx.translate(-16, -16);
-            offScreenCtx.drawImage(this.spritesheet, this.spritesheet.width / 2, this.spritesheet.height / 2);
+            offScreenCtx.drawImage(this.spritesheet, this.spritesheet.width, this.spritesheet.height);
             offScreenCtx.restore();
             this.cache[rotation] = offScreenCanvas;
         }
@@ -48,32 +48,6 @@ class bullet {
 
         ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y);
     }
-    update() {
-        this.x += this.velocity.x * this.game.clockTick;
-        this.y += this.velocity.y * this.game.clockTick;
-        this.updateBoundCircle();
-        var that = this;
-        this.game.entities.forEach(function (entity) {
-            if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pp") {
-                if (entity instanceof masterchief) {
-                    entity.beenShot = true;
-                    if(entity.health > 0 && entity.armor == 0){
-                        entity.health = entity.health - 20;
-                    }
-                    else if(entity.armor > 0){
-                        entity.armor = entity.armor - 20;
-                    }
-                    that.removeFromWorld = true;
-                }
-
-            }
-        });
-        if (this.target instanceof masterchief && this.target.beenShot == false) {
-            while (this.target.health < this.target.MAX_HEALTH) {
-                this.target.health += 1;
-            }
-        }
-    };
 
     update() {
         this.x += this.velocity.x * this.game.clockTick;
@@ -95,7 +69,9 @@ class bullet {
                     }
                     that.removeFromWorld = true;
                 }
-
+                if (entity instanceof AbstractEnvironment) {
+                    that.removeFromWorld = true;
+                }
             }
         });   
     };
@@ -115,8 +91,8 @@ class bullet {
         }
 
         let angle = Math.atan2(this.velocity.y, this.velocity.x);
-        if (angle < 0) angle += Math.PI * 2;
-        let degrees = Math.floor(angle / Math.PI / 2 *360);
+        if (this.rotation < 0) this.rotation += Math.PI * 2;
+        let degrees = Math.floor(this.rotation / Math.PI / 2 *360);
 
         this.drawAngle(ctx, degrees);
         // ctx.save();
