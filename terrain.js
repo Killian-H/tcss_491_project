@@ -70,7 +70,7 @@ class Rock extends AbstractEnvironment {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.BB = new BoundingBox(this.x, this.y + 20, 40, 12);
+        this.BB = new BoundingBox(this.x, this.y + 2, 40, 34);
     };
 
     update() {

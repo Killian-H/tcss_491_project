@@ -382,7 +382,7 @@ class masterchief {
                 }
                 ctx.restore();
                 ctx.rotate(this.armRotation);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
+                ctx.drawImage(this.armImg, -this.armImg.width /2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             }
             ctx.restore();
         } else {
