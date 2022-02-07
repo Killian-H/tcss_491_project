@@ -242,7 +242,7 @@ class masterchief {
         }
 
 
-        if (this.game.reload) {
+        if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)) {
             let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1}, 1);
             ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloadTime = 0}, 2500);

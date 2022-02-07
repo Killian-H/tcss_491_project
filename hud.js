@@ -35,6 +35,10 @@ class hud {
         ctx.fillStyle = "Yellow";
         var ratio4 = this.masterchief.reloadTime / 2500;
         ctx.fillRect(this.masterchief.positionx-35 , this.masterchief.positiony+55, 20*ratio4, 10);
+        ctx.fillStyle = "Purple";
+        if(this.masterchief.ammo == 0 && this.masterchief.canshoot){
+            ctx.fillText(("RELOAD!"), this.masterchief.positionx-42, this.masterchief.positiony+75);
+        }
         ctx.font = 'bold 48px serif';
         if (PARAMS.DEBUG == true) {
             ctx.fillStyle = "Black";
@@ -42,8 +46,8 @@ class hud {
             ctx.font = 'bold 48px serif';
             ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
             ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
-            var ratio3 = this.masterchief.ammo / this.masterchief.AMMO_DEFAULT;
-            ctx.fillRect(50, 25, 150*ratio3, 40);
+            //var ratio3 = this.masterchief.ammo / this.masterchief.AMMO_DEFAULT;
+            //ctx.fillRect(50, 25, 150*ratio3, 40);
         }
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
 
