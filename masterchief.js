@@ -65,6 +65,7 @@ class masterchief {
         this.clickcount = 0;
         this.ammo = this.AMMO_DEFAULT;
         this.canshoot = true;
+        this.reloadTime = 0;
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
@@ -242,12 +243,11 @@ class masterchief {
 
 
         if (this.game.reload) {
-            let stopShoot = setInterval(() => {this.canshoot = false}, 1);
+            let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1}, 1);
             ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
-            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2500);
+            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloadTime = 0}, 2500);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
-        
         var collisionx = 1;
         var collisiony = 1;
         var that = this;
