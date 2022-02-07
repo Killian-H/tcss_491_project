@@ -1,7 +1,7 @@
 class StartMenu {
     CANVAS = {w: 1024, h: 540};
-    TITLE_POSITION = {x: (1024 / 2) - 20, y: 75};
-    START_POSITION = {x: (1024 / 2) + 170, y: 150};
+    TITLE_POSITION = {x: (1024 / 2) - 325, y: 75};
+    START_POSITION = {x: (1024 / 2) - 60, y: 150};
     STARTPIC = ASSET_MANAGER.getAsset("./images/menu pic.jpg");
 
 
@@ -14,7 +14,7 @@ class StartMenu {
 
     update() {
         if (this.game.mouse != null) {
-            if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 108) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
+            if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 160) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
                 && (this.game.click)) {
                 //play click audio
                 this.game.camera.loadLevel();
@@ -25,14 +25,14 @@ class StartMenu {
     draw(ctx) {
         ctx.drawImage(this.STARTPIC, this.x + 200, this.y + 100, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.1, this.CANVAS.h);
 
-        ctx.font = 56 + 'px "Alegreya Sans"';
+        ctx.font = 56 + 'px "Black Ops One"';
         ctx.fillStyle = "Black";
         ctx.fillText("Halo: Combat Devolved", this.TITLE_POSITION.x, this.TITLE_POSITION.y);
 
         ctx.fillStyle = "Black";
         
         if (this.game.mouse != null) {
-            if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 108) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)) {
+            if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 160) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)) {
                 ctx.fillStyle = "Red";
                 ctx.fillText("Start", this.START_POSITION.x, this.START_POSITION.y);
             }

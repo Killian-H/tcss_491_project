@@ -32,7 +32,7 @@ class SceneManager {
         this.clearEntities();
         this.startmenu = new StartMenu(this.game, 0, 0);
         this.game.addEntity(this.startmenu);
-        ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
+        //ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
         ASSET_MANAGER.autoRepeat("./music/halo 3 theme.mp3");
         this.update();
     }
@@ -85,8 +85,8 @@ class SceneManager {
         this.game.addEntity(this.terrain);
         this.game.addEntity(new Terrain(this.game, 0, 384));
         this.game.addEntity(this.dirt);
-        //this.grunt2 = new Grunt(game, 600, 100);;
-        // //this.game.addEntity(this.grunt2);
+        this.grunt2 = new Grunt(this.game, 600, 100);;
+        this.game.addEntity(this.grunt2);
         // this.terrain = new Terrain(game, 0, 0);
         // //this.game.addEntity(this.terrain);
         this.background = new Background(this.game, 0, 0);
