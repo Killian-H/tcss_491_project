@@ -39,6 +39,8 @@ class hud {
             ctx.font = 'bold 48px serif';
             ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
             ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
+            var ratio3 = this.masterchief.ammo / this.masterchief.AMMO_DEFAULT;
+            ctx.fillRect(50, 25, 150*ratio3, 40);
         }
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
 
