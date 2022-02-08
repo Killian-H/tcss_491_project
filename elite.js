@@ -1,6 +1,6 @@
 class Elite extends AbstractEnemy {
 
-    SCALE = 1.2;
+    SCALE = 1.65;
 
     IDLE = 0;
     WALK = 1;
@@ -142,15 +142,15 @@ class Elite extends AbstractEnemy {
             if (this.facing === this.LEFT) {
                 ctx.scale(-1,1);
                 ctx.translate(
-                    -20,
-                    27.5
+                    -40,
+                    30.5
                 );
                 ctx.rotate(-this.armRotation + Math.PI);
                 ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             } else {
                 ctx.translate(
-                    15,
-                    27.5
+                    34,
+                    30.5
                 );
                 ctx.rotate(this.armRotation);
                 ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
