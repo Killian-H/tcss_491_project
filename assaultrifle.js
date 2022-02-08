@@ -1,9 +1,10 @@
-class AssaultRifle {
+class AssaultRifle extends AbstractWeapon {
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
     SCALE = 1.6;
 
     constructor(game, chiefX, chiefY, chiefFacing) {
+        super(game, chiefX, chiefY);
         Object.assign(this, {game, chiefX, chiefY, chiefFacing});
         this.game = game;
         this.x = chiefX;
@@ -12,7 +13,7 @@ class AssaultRifle {
         this.scale = this.SCALE;
         this.canshoot = true;
         this.facing = chiefFacing;
-    }
+    };
 
     update() {
         const TICK = this.game.clockTick;
@@ -21,7 +22,7 @@ class AssaultRifle {
                 this.game.mouse.x - this.x, 
                 - (this.game.mouse.y - this.y)
             ) - Math.PI / 2;
-        }
+        };
 
         this.elapsedtime += TICK;
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
@@ -40,9 +41,17 @@ class AssaultRifle {
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true}, 2500);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
-    }
+    };
 
-    getAngle() {
+    getArmRotation() {
         return this.armRotation;
+    };
+
+    draw(ctx) {
+        if (this.facing == 1) {
+
+        } else {
+            
+        }
     }
 }

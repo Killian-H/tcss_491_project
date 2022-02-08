@@ -22,6 +22,16 @@ ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_scared_left.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_walk_left.png");
 ASSET_MANAGER.queueDownload("./sprites/grunt/plasma_shot.png");
 
+// Elite
+ASSET_MANAGER.queueDownload("./sprites/elite/elite_idle_right.png");
+ASSET_MANAGER.queueDownload("./sprites/elite/elite_walk_right.png");
+ASSET_MANAGER.queueDownload("./sprites/elite/elite_die_right.png");
+ASSET_MANAGER.queueDownload("./sprites/elite/elite_arm_plasma_rifle.png");
+ASSET_MANAGER.queueDownload("./sprites/elite/plasma_rifle_shot.png");
+ASSET_MANAGER.queueDownload("./sprites/elite/elite_idle_left.png");
+ASSET_MANAGER.queueDownload("./sprites/elite/elite_walk_left.png");
+ASSET_MANAGER.queueDownload("./sprites/elite/elite_die_left.png");
+
 // Chief
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_top_right.png");

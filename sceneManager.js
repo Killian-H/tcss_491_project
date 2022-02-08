@@ -77,6 +77,7 @@ class SceneManager {
         this.game.addEntity(this.rock);
         this.game.addEntity(this.masterchief);
         this.game.addEntity(this.grunt)
+        this.game.addEntity(new Elite(this.game, 250, 50));
         this.game.addEntity(this.wall_top);
         this.game.addEntity(this.wall);
         this.game.addEntity(new WallTop(this.game, 128, 128));
