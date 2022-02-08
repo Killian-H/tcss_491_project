@@ -34,7 +34,7 @@ class hud {
         ctx.fillRect(850, 25, 150*ratio2, 40);
         ctx.fillStyle = "Yellow";
         var ratio4 = this.masterchief.reloadTime / 2500;
-        ctx.fillRect(this.masterchief.positionx-35 , this.masterchief.positiony+55, 20*ratio4, 10);
+        ctx.fillRect(this.masterchief.positionx-13 , this.masterchief.positiony+55, 200*ratio4, 10);
         ctx.fillStyle = "Purple";
         if(this.masterchief.ammo == 0 && this.masterchief.canshoot){
             ctx.fillText(("RELOAD!"), this.masterchief.positionx-42, this.masterchief.positiony+75);
