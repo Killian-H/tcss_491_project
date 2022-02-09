@@ -38,7 +38,7 @@ class SceneManager {
     }
 
     loadDeathMenu() {
-        this.sleep(2000).then(() => {
+        this.sleep(700).then(() => {
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.deathmenu = new DeathMenu(this.game, 0, 0);

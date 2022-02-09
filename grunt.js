@@ -31,7 +31,6 @@ class Grunt extends AbstractEnemy {
         this.visualRadius = 300;
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
-
         this.weapon = "pp";
         this.seen = false;
         this.aimingX = 0;

@@ -55,18 +55,20 @@ class masterchief {
         this.positiony = this.x - this.game.camera.y;
         this.velocity = { x: 0, y: 0};
         this.beenShot = false;
-
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
-        this.firerate = .1;
-        this.clickcount = 0;
-        this.ammo = this.AMMO_DEFAULT;
+        // this.firerate = .1;
+        // this.clickcount = 0;
+        // this.ammo = this.AMMO_DEFAULT;
         this.canshoot = true;
         this.reloadTime = 0;
         this.reloading = false;
+        this.weaponArray = [];
+        this.weaponArray[1] = new AssaultRifle(this.game, this.x, this.y, this.facing);
+        this.weapon = this.weaponArray[1];
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
@@ -162,7 +164,7 @@ class masterchief {
 
     update() {
         const TICK = this.game.clockTick;
-
+        this.weapon.update();
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
             this.dead = true;
@@ -170,24 +172,20 @@ class masterchief {
             this.game.camera.loadDeathMenu();
         }
         if(this.game.mouse != null) {
-            this.armRotation = Math.atan2 (
-                this.game.mouse.x - this.x, 
-                - (this.game.mouse.y - this.y)
-            ) - Math.PI / 2;
-            if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
+            if(this.weapon.getArmRotation() > -(Math.PI / 2) && this.weapon.getArmRotation() < Math.PI / 2) {
                 this.facing = this.RIGHT;
-                if (this.armRotation < -(Math.PI / 6)) {
+                if (this.weapon.getArmRotation() < -(Math.PI / 6)) {
                     this.headOrientation = this.TILT_UP;
-                } else if (this.armRotation < (Math.PI / 6)) {
+                } else if (this.weapon.getArmRotation() < (Math.PI / 6)) {
                     this.headOrientation = this.FORWARD;
                 } else {
                     this.headOrientation = this.TILT_DOWN;
                 }
             } else {
                 this.facing = this.LEFT;
-                if (this.armRotation > (-(Math.PI) + (Math.PI/ 6)) && this.armRotation < Math.PI /2) {
+                if (this.weapon.getArmRotation() > (-(Math.PI) + (Math.PI/ 6)) && this.weapon.getArmRotation() < Math.PI /2) {
                     this.headOrientation = this.TILT_UP;
-                } else if (this.armRotation > -(Math.PI) - (Math.PI/ 6) && this.armRotation < Math.PI /2) {
+                } else if (this.weapon.getArmRotation() > -(Math.PI) - (Math.PI/ 6) && this.weapon.getArmRotation() < Math.PI /2) {
                     this.headOrientation = this.FORWARD;
                 } else {
                     this.headOrientation = this.TILT_DOWN;
@@ -196,15 +194,15 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
-            this.elapsedtime = 0;
-            this.clickcount = 1;
-            this.ammo -= 1;
+        // if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
+        //     this.elapsedtime = 0;
+        //     this.clickcount = 1;
+        //     this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
-            ASSET_MANAGER.playAsset("./audio/ar single.mp3");
-            //this.game.click = null
-        }
+        //     this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+        //     ASSET_MANAGER.playAsset("./audio/ar single.mp3");
+        //     //this.game.click = null
+        // }
         
         var isMoving = false;
 
@@ -243,12 +241,12 @@ class masterchief {
         }
 
 
-        if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
-            let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-            ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
-            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, 2500);
-            //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
-        }
+        // if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
+        //     let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
+        //     ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
+        //     setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, 2500);
+        //     //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
+        // }
         var collisionx = 1;
         var collisiony = 1;
         var that = this;
@@ -367,7 +365,7 @@ class masterchief {
                     -20,
                     1
                 );
-                ctx.rotate(-this.armRotation + 2 *1.5708);
+                ctx.rotate(-this.weapon.getArmRotation() + 2 *1.5708);
                 ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, this.x-  this.game.camera.x, this.y - this.game.camera.y, 50, 50);
 
             } else {
@@ -382,13 +380,13 @@ class masterchief {
 
                 }
                 ctx.restore();
-                ctx.rotate(this.armRotation);
+                ctx.rotate(this.weapon.getArmRotation());
                 ctx.drawImage(this.armImg, -this.armImg.width /2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             }
             ctx.restore();
         } else {
                 this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x -2 * 7.5, this.y - this.game.camera.y -12.5, this.SCALE);
-                setTimeout(() => {this.removeFromWorld = true}, 800);
+                setTimeout(() => {this.removeFromWorld = true}, 700);
             }
     };
     
