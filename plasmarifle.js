@@ -1,9 +1,9 @@
-class AssaultRifle extends AbstractWeapon {
+class PlasmaRifle extends AbstractWeapon {
 
-    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
-    BULLET_SPRITE = ASSET_MANAGER.getAsset("./sprites/bullet.png");
+    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_plasma_rifle.png");
+    PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/plasma_rifle_red_shot.png");
     SCALE = 1.6;
-    AMMO_DEFAULT = 32;
+    AMMO_DEFAULT = 20;
 
     constructor(game, chiefX, chiefY) {
         super(game, chiefX, chiefY);
@@ -13,10 +13,10 @@ class AssaultRifle extends AbstractWeapon {
         this.y = chiefY;
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
-        this.speed = 650;
-        this.shieldDamage = 8;
-        this.healthDamage = 10;
-        this.firerate = .1;
+        this.speed = 500;
+        this.shieldDamage = 16;
+        this.healthDamage = 9;
+        this.firerate = .2;
         this.scale = this.SCALE;
         this.canshoot = true;
         this.reloading = false;
@@ -43,7 +43,7 @@ class AssaultRifle extends AbstractWeapon {
             this.clickcount = 1;
             this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation, this.speed, this.BULLET_SPRITE, this.shieldDamage, this.healthDamage));
+            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation, this.PR_BULLET, this.shieldDamage, this.healthDamage));
             ASSET_MANAGER.playAsset("./audio/ar single.mp3");
             //this.game.click = null
         }

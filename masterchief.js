@@ -67,7 +67,8 @@ class masterchief {
         this.reloadTime = 0;
         this.reloading = false;
         this.weaponArray = [];
-        this.weaponArray[1] = new AssaultRifle(this.game, this.x, this.y, this.facing);
+        this.weaponArray[1] = new AssaultRifle(this.game, this.x, this.y);
+        this.weaponArray[2] = new PlasmaRifle(this.game, this.x, this.y);
         this.weapon = this.weaponArray[1];
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
