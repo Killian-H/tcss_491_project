@@ -22,6 +22,7 @@ class GameEngine {
         this.down = false;
         this.reload = false;
         this.pointer = null;
+        this.escape = false;
 
         // THE KILL SWITCH
         this.running = false;
