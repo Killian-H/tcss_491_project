@@ -31,7 +31,6 @@ class Grunt extends AbstractEnemy {
         this.visualRadius = 300;
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
-
         this.weapon = "pp";
         this.seen = false;
         this.aimingX = 0;
@@ -63,6 +62,23 @@ class Grunt extends AbstractEnemy {
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief  && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
+                    let r = ASSET_MANAGER.getRandomInt(25001);
+                    if (r < 10) {
+                        ASSET_MANAGER.playAsset("./audio/grunt/gruntdiedevil.mp3");
+                    }
+                    if (r >= 10 && r < 20) {
+                        ASSET_MANAGER.playAsset("./audio/grunt/gruntitdies.mp3");
+                    }
+                    if (r >= 20 && r < 30) {
+                        ASSET_MANAGER.playAsset("./audio/grunt/gruntlookout.mp3");
+                    }
+                    if (r >= 30 && r < 40) {
+                        ASSET_MANAGER.playAsset("./audio/grunt/gruntpee.mp3");
+                    }
+                    if (r >= 40 && r < 50) {
+                        ASSET_MANAGER.playAsset("./audio/grunt/gruntscream.mp3");
+                    }
+
                     that.seen = true;
                     if (that.BB.left > entity.BB.left) {
                     that.facing = 1;
@@ -77,10 +93,9 @@ class Grunt extends AbstractEnemy {
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
-                        //console.log()
                         that.elapsedTime = 0;
                         that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
-                        ASSET_MANAGER.playAsset("./audio/plasma pistol shot.mp3");
+                        ASSET_MANAGER.playAsset("./audio/weapons/plasma pistol shot.mp3");
                     }
                 }
             }

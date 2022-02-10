@@ -1,17 +1,19 @@
 class bullet {
-    constructor(game, x, y, clickX, clickY, rotation) {
-        Object.assign(this, {game, x, y, clickX, clickY, rotation})
+    constructor(game, x, y, clickX, clickY, rotation, speed, sprite, dmgShield, dmgHealth) {
+        Object.assign(this, {game, x, y, clickX, clickY, rotation, speed, sprite, dmgShield, dmgHealth})
         //this.game = game;
         //this.radius = 2;
         //this.smooth = false;
-        this.spritesheet = ASSET_MANAGER.getAsset("./sprites/bullet.png");
+        this.spritesheet = sprite;
+        this.shieldDamage = dmgShield;
+        this.healthDamage = dmgHealth;
         //this.target = {x: clickX, y: clickY};
         var dist = Math.sqrt(pow((clickX-x),2)+pow((clickY-y),2));
         this.cache = [];
         
         //var dist = math.distance()
         //console.log(dist);
-        this.maxSpeed  = 400;
+        this.maxSpeed  = this.speed;
         //this.velocity = {x: clickX, y: clickY};
         this.velocity = {x: (this.clickX - this.x) / dist * this.maxSpeed, y: (this.clickY - this.y) / dist * this.maxSpeed};
         // this.chache = [];
@@ -59,14 +61,8 @@ class bullet {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof AbstractEnemy) {
                     // let r = ASSET_MANAGER.getRandomInt(101);
-                    entity.health = entity.health - 10;
+                    entity.health = entity.health - that.healthDamage;
                     entity.beenShot = true;
-                    // if (r <= 15) {
-                    //     ASSET_MANAGER.playAsset("./audio/gruntscream.mp3");
-                    // }
-                    // if (r == 100) {
-                    //     ASSET_MANAGER.playAsset("./audio/gruntpee.mp3");
-                    // }
                     that.removeFromWorld = true;
                 }
                 if (entity instanceof AbstractEnvironment) {

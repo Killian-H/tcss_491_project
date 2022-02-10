@@ -38,7 +38,7 @@ class SceneManager {
     }
 
     loadDeathMenu() {
-        this.sleep(2000).then(() => {
+        this.sleep(700).then(() => {
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.deathmenu = new DeathMenu(this.game, 0, 0);
@@ -46,6 +46,20 @@ class SceneManager {
             this.update();
             ASSET_MANAGER.playAsset("./audio/gameover.mp3");
         });
+    }
+
+    loadControls() {
+        this.clearEntities();
+        this.controls = new Controls(this.game, 0, 0);
+        this.game.addEntityToFront(this.controls);
+        this.update();
+    }
+
+    loadCredits() {
+        this.clearEntities();
+        this.credits = new Credits(this.game, 0, 0);
+        this.game.addEntityToFront(this.credits);
+        this.update();
     }
 
     loadLevel() {

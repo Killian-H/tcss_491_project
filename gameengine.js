@@ -126,8 +126,22 @@ class GameEngine {
                 case "KeyR":
                     that.reload = true;
                     break;
+<<<<<<< HEAD
                 case "Escape":
                     that.escape = true;
+=======
+                case "Digit1":
+                    that.weaponOne = true;
+                    break;
+                case "Digit2":
+                    that.weaponTwo = true;
+                    break;
+                case "Digit3":
+                    that.weaponThree = true;
+                    break;
+                case "Digit4":
+                    that.weaponFour = true;
+>>>>>>> a717b28608e698e53d24255e249870beef96bdc3
                     break;
             }
         }, false);
@@ -154,9 +168,20 @@ class GameEngine {
                 case "KeyR":
                     that.reload = false;
                     break;
+<<<<<<< HEAD
                 case "Escape":
                     that.escape = false;
                     break;
+=======
+                case "Digit1":
+                    that.weaponOne = false;
+                case "Digit2":
+                    that.weaponTwo = false;
+                case "Digit3":
+                    that.weaponThree = false;
+                case "Digit4":
+                    that.weaponFour = false;
+>>>>>>> a717b28608e698e53d24255e249870beef96bdc3
             }
         }, false);
         

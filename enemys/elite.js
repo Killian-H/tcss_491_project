@@ -85,9 +85,23 @@ class Elite extends AbstractEnemy {
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
         var that = this;
+
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief  && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
+                    let r = ASSET_MANAGER.getRandomInt(25001);
+                    if (r < 10) {
+                        ASSET_MANAGER.playAsset("./audio/elite/elitelaugh1.mp3");
+                    }
+                    if (r >= 10 && r < 20) {
+                        ASSET_MANAGER.playAsset("./audio/elite/elitewut.mp3");
+                    }
+                    if (r >= 20 && r < 30) {
+                        ASSET_MANAGER.playAsset("./audio/elite/eliteRIH.mp3");
+                    }
+                    if (r >= 30 && r < 40) {
+                        ASSET_MANAGER.playAsset("./audio/elite/elitemad.mp3");
+                    }
                     that.seen = true;
                     if (that.BB.left > entity.BB.left) {
                     that.facing = 1;
@@ -105,6 +119,7 @@ class Elite extends AbstractEnemy {
                         //console.log()
                         that.elapsedTime = 0;
                         that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
+                        ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
                     }
 
                 }

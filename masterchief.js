@@ -55,18 +55,23 @@ class masterchief {
         this.positiony = this.x - this.game.camera.y;
         this.velocity = { x: 0, y: 0};
         this.beenShot = false;
-
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
-        this.firerate = .1;
-        this.clickcount = 0;
-        this.ammo = this.AMMO_DEFAULT;
+        // this.firerate = .1;
+        // this.clickcount = 0;
+        // this.ammo = this.AMMO_DEFAULT;
         this.canshoot = true;
         this.reloadTime = 0;
         this.reloading = false;
+        this.weaponArray = [];
+        this.weaponArray[0] = new AssaultRifle(this.game, this.x, this.y);
+        this.weaponArray[1] = new Pistol(this.game, this.x, this.y);
+        this.weaponArray[2] = new DMR(this.game, this.x, this.y);
+        this.weaponArray[3] = new PlasmaRifle(this.game, this.x, this.y);
+        this.weapon = this.weaponArray[0];
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
@@ -162,7 +167,20 @@ class masterchief {
 
     update() {
         const TICK = this.game.clockTick;
-
+        this.weapon.update();
+        if (this.game.weaponOne) {
+            ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
+            this.weapon = this.weaponArray[0]
+        } else if (this.game.weaponTwo) {
+            ASSET_MANAGER.playAsset("./audio/weapons/pistol switch.mp3");
+            this.weapon = this.weaponArray[1]
+        } else if (this.game.weaponThree) {
+            this.weapon = this.weaponArray[2];
+            ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
+        } else if (this.game.weaponFour) {
+            this.weapon = this.weaponArray[3];
+            ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
+        }
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
             this.dead = true;
@@ -170,24 +188,20 @@ class masterchief {
             this.game.camera.loadDeathMenu();
         }
         if(this.game.mouse != null) {
-            this.armRotation = Math.atan2 (
-                this.game.mouse.x - this.x, 
-                - (this.game.mouse.y - this.y)
-            ) - Math.PI / 2;
-            if(this.armRotation > -(Math.PI / 2) && this.armRotation < Math.PI / 2) {
+            if(this.weapon.getArmRotation() > -(Math.PI / 2) && this.weapon.getArmRotation() < Math.PI / 2) {
                 this.facing = this.RIGHT;
-                if (this.armRotation < -(Math.PI / 6)) {
+                if (this.weapon.getArmRotation() < -(Math.PI / 6)) {
                     this.headOrientation = this.TILT_UP;
-                } else if (this.armRotation < (Math.PI / 6)) {
+                } else if (this.weapon.getArmRotation() < (Math.PI / 6)) {
                     this.headOrientation = this.FORWARD;
                 } else {
                     this.headOrientation = this.TILT_DOWN;
                 }
             } else {
                 this.facing = this.LEFT;
-                if (this.armRotation > (-(Math.PI) + (Math.PI/ 6)) && this.armRotation < Math.PI /2) {
+                if (this.weapon.getArmRotation() > (-(Math.PI) + (Math.PI/ 6)) && this.weapon.getArmRotation() < Math.PI /2) {
                     this.headOrientation = this.TILT_UP;
-                } else if (this.armRotation > -(Math.PI) - (Math.PI/ 6) && this.armRotation < Math.PI /2) {
+                } else if (this.weapon.getArmRotation() > -(Math.PI) - (Math.PI/ 6) && this.weapon.getArmRotation() < Math.PI /2) {
                     this.headOrientation = this.FORWARD;
                 } else {
                     this.headOrientation = this.TILT_DOWN;
@@ -196,15 +210,15 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
-            this.elapsedtime = 0;
-            this.clickcount = 1;
-            this.ammo -= 1;
+        // if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
+        //     this.elapsedtime = 0;
+        //     this.clickcount = 1;
+        //     this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
-            ASSET_MANAGER.playAsset("./audio/ar single.mp3");
-            //this.game.click = null
-        }
+        //     this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
+        //     ASSET_MANAGER.playAsset("./audio/ar single.mp3");
+        //     //this.game.click = null
+        // }
         
         var isMoving = false;
 
@@ -243,12 +257,12 @@ class masterchief {
         }
 
 
-        if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
-            let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-            ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
-            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, 2500);
-            //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
-        }
+        // if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
+        //     let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
+        //     ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
+        //     setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, 2500);
+        //     //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
+        // }
         var collisionx = 1;
         var collisiony = 1;
         var that = this;
@@ -283,21 +297,21 @@ class masterchief {
                         }
                     }
                 } 
-                else if (that.velocity.y < 0) { // traveling up.
+                if (that.velocity.y < 0) { // traveling up.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.top <= entity.BB.bottom) {
                         if (that.game.up) {
                             collisiony = 0;
                         }
                         }
                 } 
-                else if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
+                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
                             if (that.game.right && that.BB.right < entity.BB.right) {
                                collisionx = 0;
                             }
                         }
                 }
-                else if (that.velocity.x < 0) { // traveling left.
+                if (that.velocity.x < 0) { // traveling left.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
                         collisionx = 0;
                         }
@@ -367,14 +381,14 @@ class masterchief {
                     -20,
                     1
                 );
-                ctx.rotate(-this.armRotation + 2 *1.5708);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, this.x-  this.game.camera.x, this.y - this.game.camera.y, 50, 50);
+                ctx.rotate(-this.weapon.getArmRotation() + 2 *1.5708);
+                ctx.drawImage(this.weapon.draw, -this.weapon.draw.width / 2, -this.weapon.draw.height/2, this.weapon.draw.width * this.SCALE, this.weapon.draw.height * this.SCALE)//, this.x-  this.game.camera.x, this.y - this.game.camera.y, 50, 50);
 
             } else {
                 ctx.save();
                 ctx.translate(-12.5, -32.5); 
                 if (this.headOrientation == this.TILT_UP) {
-                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE)
+                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
             } else if (this.headOrientation == this.FORWARD){
                 ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE)
             } else {
@@ -382,13 +396,13 @@ class masterchief {
 
                 }
                 ctx.restore();
-                ctx.rotate(this.armRotation);
-                ctx.drawImage(this.armImg, -this.armImg.width /2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
+                ctx.rotate(this.weapon.getArmRotation());
+                ctx.drawImage(this.weapon.draw, -this.weapon.draw.width / 2, -this.weapon.draw.height/2, this.weapon.draw.width * this.SCALE, this.weapon.draw.height * this.SCALE);
             }
             ctx.restore();
         } else {
                 this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x -2 * 7.5, this.y - this.game.camera.y -12.5, this.SCALE);
-                setTimeout(() => {this.removeFromWorld = true}, 800);
+                setTimeout(() => {this.removeFromWorld = true}, 700);
             }
     };
     
