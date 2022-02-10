@@ -210,16 +210,6 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        // if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
-        //     this.elapsedtime = 0;
-        //     this.clickcount = 1;
-        //     this.ammo -= 1;
-
-        //     this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
-        //     ASSET_MANAGER.playAsset("./audio/ar single.mp3");
-        //     //this.game.click = null
-        // }
-        
         var isMoving = false;
 
         if (this.game.up) {
@@ -256,40 +246,11 @@ class masterchief {
             this.state = this.IDLE;
         }
 
-
-        // if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
-        //     let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-        //     ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
-        //     setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, 2500);
-        //     //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
-        // }
         var collisionx = 1;
         var collisiony = 1;
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                // if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
-                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                //         if (that.lastBB.right >= entity.BB.left) {
-                //             collisionx = 0;
-                //         }
-                //     }
-                // }
-                // else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
-                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
-                //         collisionx = 0;
-                //     }
-                // }
-                // else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
-                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                //         collisionx = 0;
-                //     }
-                // }
-                // else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
-                //     if ((entity instanceof Grunt || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
-                //         collisionx = 0;
-                //     }
-                // }
                 if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.lastBB.bottom > entity.BB.top)) {
                         if (that.game.down && that.BB.bottom < entity.BB.bottom) {

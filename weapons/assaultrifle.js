@@ -44,7 +44,7 @@ class AssaultRifle extends AbstractWeapon {
             this.clickcount = 1;
             this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation, this.speed, this.BULLET_SPRITE, this.shieldDamage, this.healthDamage));
+            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + getRandomRange(-50, 50), this.game.mouse.y + getRandomRange(-50, 50), this.armRotation, this.speed, this.BULLET_SPRITE, this.shieldDamage, this.healthDamage));
             ASSET_MANAGER.playAsset("./audio/weapons/ar single.mp3");
             //this.game.click = null
         }
