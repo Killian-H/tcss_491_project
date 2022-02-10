@@ -11,6 +11,7 @@ class AssaultRifle extends AbstractWeapon {
         this.x = chiefX;
         this.y = chiefY;
         this.armRotation = 0;
+        this.draw = this.ARMS_ASSAULT;
         this.firerate = .1;
         this.scale = this.SCALE;
         this.canshoot = true;
@@ -22,8 +23,8 @@ class AssaultRifle extends AbstractWeapon {
     };
 
     update() {
-        this.x += this.game.player.velocity.x;
-        this.y += this.game.player.velocity.y;
+        this.x = this.game.player.x;
+        this.y = this.game.player.y;
         const TICK = this.game.clockTick;
         if(this.game.mouse != null) {
             this.armRotation = Math.atan2 (
