@@ -67,9 +67,9 @@ class masterchief {
         this.reloadTime = 0;
         this.reloading = false;
         this.weaponArray = [];
-        this.weaponArray[1] = new AssaultRifle(this.game, this.x, this.y);
-        this.weaponArray[2] = new PlasmaRifle(this.game, this.x, this.y);
-        this.weapon = this.weaponArray[1];
+        this.weaponArray[0] = new AssaultRifle(this.game, this.x, this.y);
+        this.weaponArray[1] = new PlasmaRifle(this.game, this.x, this.y);
+        this.weapon = this.weaponArray[0];
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
         
@@ -166,6 +166,11 @@ class masterchief {
     update() {
         const TICK = this.game.clockTick;
         this.weapon.update();
+        if (this.game.weaponOne) {
+            this.weapon = this.weaponArray[0]
+        } else if (this.game.weaponTwo) {
+            this.weapon = this.weaponArray[1]
+        }
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
             this.dead = true;
