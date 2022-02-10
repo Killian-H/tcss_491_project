@@ -167,8 +167,10 @@ class masterchief {
         const TICK = this.game.clockTick;
         this.weapon.update();
         if (this.game.weaponOne) {
+            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
             this.weapon = this.weaponArray[0]
         } else if (this.game.weaponTwo) {
+            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
             this.weapon = this.weaponArray[1]
         }
         if (this.health <= 0) {

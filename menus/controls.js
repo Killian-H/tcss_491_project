@@ -1,9 +1,10 @@
 class Controls {
     CANVAS = {w: 1024, h: 540};
-    WASD = {x: 10, y: 150};
-    RELOAD = {x: 10, y: 250};
-    AIM = {x: 10, y: 350};
-    LEFT_CLICK = {x: 10, y: 450};
+    WASD = {x: 10, y: 120};
+    RELOAD = {x: 10, y: 200};
+    AIM = {x: 10, y: 280};
+    LEFT_CLICK = {x: 10, y: 360};
+    NUMBERS = {x: 10, y: 440};
     BACK = {x: 10, y: 50};
     CONTROLSPIC = ASSET_MANAGER.getAsset("./images/controlsimage.jpg");
 
@@ -33,6 +34,8 @@ class Controls {
         ctx.fillText("R = Reload", this.RELOAD.x, this.RELOAD.y);
         ctx.fillText("Aim = Move Mouse", this.AIM.x, this.AIM.y);
         ctx.fillText("Left Click = Shoot Weapon", this.LEFT_CLICK.x, this.LEFT_CLICK.y);
+        ctx.fillText("1 = Assault Rifle, 2 = Plasma Rifle", this.NUMBERS.x, this.NUMBERS.y);
+        
 
         if (this.game.mouse != null) {
             if ((this.game.mouse.x - this.game.camera.x >= this.BACK.x && this.game.mouse.x - this.game.camera.x <= this.BACK.x + 185) && (this.game.mouse.y - this.game.camera.y >= this.BACK.y - 40 && this.game.mouse.y - this.game.camera.y <= this.BACK.y)) {

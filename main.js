@@ -66,6 +66,9 @@ ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
 // sound effects
 ASSET_MANAGER.queueDownload("./audio/ar reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar fire.mp3");
+ASSET_MANAGER.queueDownload("./audio/pr reload.mp3");
+ASSET_MANAGER.queueDownload("./audio/pr single shot.mp3");
+ASSET_MANAGER.queueDownload("./audio/swap weapon.mp3");
 ASSET_MANAGER.queueDownload("./audio/walking.mp3");
 ASSET_MANAGER.queueDownload("./audio/stopping.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar single.mp3");
