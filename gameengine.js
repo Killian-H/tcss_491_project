@@ -125,6 +125,12 @@ class GameEngine {
                 case "KeyR":
                     that.reload = true;
                     break;
+                case "Digit1":
+                    that.weaponOne = true;
+                    break;
+                case "Digit2":
+                    that.weaponTwo = true;
+                    break;
             }
         }, false);
 
@@ -150,6 +156,10 @@ class GameEngine {
                 case "KeyR":
                     that.reload = false;
                     break;
+                case "Digit1":
+                    that.weaponOne = false;
+                case "Digit2":
+                    that.weaponTwo = false;
             }
         }, false);
         

@@ -41,6 +41,8 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_top_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_bottom_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_arms_assault_rifle.png");
+ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_plasma_rifle.png");
+ASSET_MANAGER.queueDownload("./sprites/weapons/plasma_rifle_red_shot.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_left.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_walk_right.png");
