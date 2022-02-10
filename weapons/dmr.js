@@ -1,9 +1,9 @@
-class Pistol extends AbstractWeapon {
+class DMR extends AbstractWeapon {
 
-    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_pistol.png");
-    PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/pistol_bullet.png");
+    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_dmr.png");
+    PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/dmr_bullet.png");
     SCALE = 1.6;
-    AMMO_DEFAULT = 12;
+    AMMO_DEFAULT = 15;
 
     constructor(game, chiefX, chiefY) {
         super(game, chiefX, chiefY);
@@ -13,10 +13,10 @@ class Pistol extends AbstractWeapon {
         this.y = chiefY;
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
-        this.speed = 700;
-        this.shieldDamage = 10;
-        this.healthDamage = 34;
-        this.firerate = .2;
+        this.speed = 750;
+        this.shieldDamage = 30;
+        this.healthDamage = 50;
+        this.firerate = .35;
         this.scale = this.SCALE;
         this.canshoot = true;
         this.reloading = false;
@@ -37,7 +37,7 @@ class Pistol extends AbstractWeapon {
         }
 
         this.elapsedtime += TICK;
-        console.log(this.elapsedtime);
+        //console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             this.elapsedtime = 0;
             this.clickcount = 1;

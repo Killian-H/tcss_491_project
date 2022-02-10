@@ -169,17 +169,17 @@ class masterchief {
         const TICK = this.game.clockTick;
         this.weapon.update();
         if (this.game.weaponOne) {
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
             this.weapon = this.weaponArray[0]
         } else if (this.game.weaponTwo) {
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/pistol switch.mp3");
             this.weapon = this.weaponArray[1]
         } else if (this.game.weaponThree) {
             this.weapon = this.weaponArray[2];
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
         } else if (this.game.weaponFour) {
             this.weapon = this.weaponArray[3];
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
         }
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
