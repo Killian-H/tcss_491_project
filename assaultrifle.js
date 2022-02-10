@@ -33,7 +33,7 @@ class AssaultRifle extends AbstractWeapon {
         }
 
         this.elapsedtime += TICK;
-        console.log(this.elapsedtime);
+        //console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             this.elapsedtime = 0;
             this.clickcount = 1;

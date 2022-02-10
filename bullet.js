@@ -58,15 +58,18 @@ class bullet {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof AbstractEnemy) {
-                    // let r = ASSET_MANAGER.getRandomInt(101);
+                    if (entity instanceof Grunt) {
+                        let r = ASSET_MANAGER.getRandomInt(101);
+                        console.log(r);
+                        if (r <= 15) {
+                            ASSET_MANAGER.playAsset("./audio/gruntscream.mp3");
+                        }
+                        if (r == 100) {
+                            ASSET_MANAGER.playAsset("./audio/gruntpee.mp3");
+                        }
+                    }
                     entity.health = entity.health - 10;
                     entity.beenShot = true;
-                    // if (r <= 15) {
-                    //     ASSET_MANAGER.playAsset("./audio/gruntscream.mp3");
-                    // }
-                    // if (r == 100) {
-                    //     ASSET_MANAGER.playAsset("./audio/gruntpee.mp3");
-                    // }
                     that.removeFromWorld = true;
                 }
                 if (entity instanceof AbstractEnvironment) {
