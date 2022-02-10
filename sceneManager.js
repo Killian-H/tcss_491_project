@@ -38,7 +38,7 @@ class SceneManager {
     }
 
     loadDeathMenu() {
-        this.sleep(700).then(() => {
+        this.sleep(2000).then(() => {
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.deathmenu = new DeathMenu(this.game, 0, 0);
@@ -50,50 +50,50 @@ class SceneManager {
 
     loadLevel(Map, TileSet) {
         
-        // this.clearEntities();
-        // this.resetXanyY();
-        // this.pine = new Tree(this.game, 0, 0);
-        // this.rock = new Rock(this.game, 128, 100);
-        // this.wall_top = new WallTop(this.game, 0, 128);
-        // this.wall = new Wall(this.game, 0, 256);
-        // this.big_tree = new BigTree(this.game, 128, 256);
-        // this.terrain = new Terrain(this.game, 0, 0);
-        // this.dirt = new Dirt(this.game, 128, 0);
-        // this.grunt = new Grunt(this.game, 200, 200);
-        // // this.terrain2 = new Terrain(this.game, 128, 128);
-        // // this.terrain3 = new Terrain(this.game, 0, 128);
-        // // this.terrain4 = new Terrain(this.game, 128, 0);
-        // // this.rock = new Rock(this.game, 128, 128);
-        // // this.game.addEntityToFront(this.pine);
-        // // this.game.addEntityToFront(this.rock);
-        // this.masterchief.resetHealth();
-        // this.masterchief.resetShield();
-        // this.masterchief.resetAmmo();
-        // this.masterchief.resetState();
-        // this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
-        // this.hud = new hud(this.game, this.x, this.y, this.masterchief);
-        // this.game.addEntity(this.hud);
-        // this.game.addEntity(this.pine);
-        // this.game.addEntity(this.big_tree);
-        // this.game.addEntity(this.rock);
-        // this.game.addEntity(this.masterchief);
-        // this.game.addEntity(this.grunt)
-        // this.game.addEntity(new Elite(this.game, 250, 50));
-        // this.game.addEntity(this.wall_top);
-        // this.game.addEntity(this.wall);
-        // this.game.addEntity(new WallTop(this.game, 128, 128));
-        // this.game.addEntity(new Wall(this.game, 128, 256));
-        // this.game.addEntity(this.wall);
-        // this.game.addEntity(this.terrain);
-        // this.game.addEntity(new Terrain(this.game, 0, 384));
-        // this.game.addEntity(this.dirt);
-        // this.grunt2 = new Grunt(this.game, 600, 100);;
-        // this.game.addEntity(this.grunt2);
-        // // this.terrain = new Terrain(game, 0, 0);
-        // // //this.game.addEntity(this.terrain);
-        // this.background = new Background(this.game, 0, 0);
-        // this.game.addEntity(this.background);
-        // this.update();
+        this.clearEntities();
+        this.resetXanyY();
+        this.pine = new Tree(this.game, 0, 0);
+        this.rock = new Rock(this.game, 128, 100);
+        this.wall_top = new WallTop(this.game, 0, 128);
+        this.wall = new Wall(this.game, 0, 256);
+        this.big_tree = new BigTree(this.game, 128, 256);
+        this.terrain = new Terrain(this.game, 0, 0);
+        this.dirt = new Dirt(this.game, 128, 0);
+        this.grunt = new Grunt(this.game, 200, 200);
+        // this.terrain2 = new Terrain(this.game, 128, 128);
+        // this.terrain3 = new Terrain(this.game, 0, 128);
+        // this.terrain4 = new Terrain(this.game, 128, 0);
+        // this.rock = new Rock(this.game, 128, 128);
+        // this.game.addEntityToFront(this.pine);
+        // this.game.addEntityToFront(this.rock);
+        this.masterchief.resetHealth();
+        this.masterchief.resetShield();
+        this.masterchief.resetAmmo();
+        this.masterchief.resetState();
+        this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
+        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
+        this.game.addEntity(this.hud);
+        this.game.addEntity(this.pine);
+        this.game.addEntity(this.big_tree);
+        this.game.addEntity(this.rock);
+        this.game.addEntity(this.masterchief);
+        this.game.addEntity(this.grunt)
+        this.game.addEntity(new Elite(this.game, 250, 50));
+        this.game.addEntity(this.wall_top);
+        this.game.addEntity(this.wall);
+        this.game.addEntity(new WallTop(this.game, 128, 128));
+        this.game.addEntity(new Wall(this.game, 128, 256));
+        this.game.addEntity(this.wall);
+        this.game.addEntity(this.terrain);
+        this.game.addEntity(new Terrain(this.game, 0, 384));
+        this.game.addEntity(this.dirt);
+        this.grunt2 = new Grunt(this.game, 600, 100);;
+        this.game.addEntity(this.grunt2);
+        // this.terrain = new Terrain(game, 0, 0);
+        // //this.game.addEntity(this.terrain);
+        this.background = new Background(this.game, 0, 0);
+        this.game.addEntity(this.background);
+        this.update();
     }
 
     update() {
