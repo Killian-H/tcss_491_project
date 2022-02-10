@@ -7,6 +7,10 @@ ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 ASSET_MANAGER.queueDownload("./images/menu pic.jpg");
 ASSET_MANAGER.queueDownload("./images/troy.jpg");
 ASSET_MANAGER.queueDownload("./images/gameoverscreen.jpg");
+ASSET_MANAGER.queueDownload("./images/creditsimage.jpg");
+ASSET_MANAGER.queueDownload("./images/controlsimage.jpg");
+ASSET_MANAGER.queueDownload("./images/chiefheadimage.png");
+
 
 // Grunt
 ASSET_MANAGER.queueDownload("./sprites/grunt/grunt_arms.png");
@@ -70,6 +74,7 @@ ASSET_MANAGER.queueDownload("./audio/gruntpee.mp3");
 ASSET_MANAGER.queueDownload("./audio/plasma pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
 ASSET_MANAGER.queueDownload("./audio/gameover.mp3");
+ASSET_MANAGER.queueDownload("./audio/click.wav");
 
 // terrain
 ASSET_MANAGER.queueDownload("./sprites/terrain/grass_1.png");

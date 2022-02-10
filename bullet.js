@@ -63,12 +63,6 @@ class bullet {
                     // let r = ASSET_MANAGER.getRandomInt(101);
                     entity.health = entity.health - that.healthDamage;
                     entity.beenShot = true;
-                    // if (r <= 15) {
-                    //     ASSET_MANAGER.playAsset("./audio/gruntscream.mp3");
-                    // }
-                    // if (r == 100) {
-                    //     ASSET_MANAGER.playAsset("./audio/gruntpee.mp3");
-                    // }
                     that.removeFromWorld = true;
                 }
                 if (entity instanceof AbstractEnvironment) {
