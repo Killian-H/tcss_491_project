@@ -5,6 +5,7 @@ class Controls {
     AIM = {x: 10, y: 280};
     LEFT_CLICK = {x: 10, y: 360};
     NUMBERS = {x: 10, y: 440};
+    NUMBERS2 = {x: 10, y: 520};
     BACK = {x: 10, y: 50};
     CONTROLSPIC = ASSET_MANAGER.getAsset("./images/controlsimage.jpg");
 
@@ -34,7 +35,8 @@ class Controls {
         ctx.fillText("R = Reload", this.RELOAD.x, this.RELOAD.y);
         ctx.fillText("Aim = Move Mouse", this.AIM.x, this.AIM.y);
         ctx.fillText("Left Click = Shoot Weapon", this.LEFT_CLICK.x, this.LEFT_CLICK.y);
-        ctx.fillText("1 = Assault Rifle, 2 = Plasma Rifle", this.NUMBERS.x, this.NUMBERS.y);
+        ctx.fillText("1 = Assault Rifle, 2 = Pistol", this.NUMBERS.x, this.NUMBERS.y);
+        ctx.fillText("3 = DMR, 4 = Plasma Rifle", this.NUMBERS2.x, this.NUMBERS2.y);
         
 
         if (this.game.mouse != null) {
