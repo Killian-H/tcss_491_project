@@ -1,5 +1,5 @@
 class AbstractWeapon {
-    constructor(game, x, y) {
-        Object.assign(game, x, y);
+    constructor(game, x, y, facing) {
+        Object.assign(game, x, y, facing);
     }
 }
