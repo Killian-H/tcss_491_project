@@ -131,6 +131,12 @@ class GameEngine {
                 case "Digit2":
                     that.weaponTwo = true;
                     break;
+                case "Digit3":
+                    that.weaponThree = true;
+                    break;
+                case "Digit4":
+                    that.weaponFour = true;
+                    break;
             }
         }, false);
 
@@ -160,6 +166,10 @@ class GameEngine {
                     that.weaponOne = false;
                 case "Digit2":
                     that.weaponTwo = false;
+                case "Digit3":
+                    that.weaponThree = false;
+                case "Digit4":
+                    that.weaponFour = false;
             }
         }, false);
         
