@@ -48,8 +48,21 @@ class SceneManager {
         });
     }
 
-    loadLevel(Map, TileSet) {
-        
+    loadControls() {
+        this.clearEntities();
+        this.controls = new Controls(this.game, 0, 0);
+        this.game.addEntityToFront(this.controls);
+        this.update();
+    }
+
+    loadCredits() {
+        this.clearEntities();
+        this.credits = new Credits(this.game, 0, 0);
+        this.game.addEntityToFront(this.credits);
+        this.update();
+    }
+
+    loadLevel() {
         this.clearEntities();
         this.resetXanyY();
         this.pine = new Tree(this.game, 0, 0);
