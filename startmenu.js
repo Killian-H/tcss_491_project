@@ -17,7 +17,7 @@ class StartMenu {
             if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 160) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
                 && (this.game.click)) {
                 //play click audio
-                this.game.camera.loadLevel();
+                this.game.camera.loadLevel(JSON.parse(TestMap), JSON.parse(KillianTileSet));
             }
         }
     }
