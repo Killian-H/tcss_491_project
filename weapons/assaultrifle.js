@@ -51,7 +51,7 @@ class AssaultRifle extends AbstractWeapon {
 
         if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
             let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-            ASSET_MANAGER.playAsset("./audio/weapons/ar reload.mp3")
+            ASSET_MANAGER.playAsset("./audio/weapons/ar reload.mp3");
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
