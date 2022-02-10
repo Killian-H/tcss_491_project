@@ -366,13 +366,13 @@ class masterchief {
                     1
                 );
                 ctx.rotate(-this.weapon.getArmRotation() + 2 *1.5708);
-                ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)//, this.x-  this.game.camera.x, this.y - this.game.camera.y, 50, 50);
+                ctx.drawImage(this.weapon.draw, -this.weapon.draw.width / 2, -this.weapon.draw.height/2, this.weapon.draw.width * this.SCALE, this.weapon.draw.height * this.SCALE)//, this.x-  this.game.camera.x, this.y - this.game.camera.y, 50, 50);
 
             } else {
                 ctx.save();
                 ctx.translate(-12.5, -32.5); 
                 if (this.headOrientation == this.TILT_UP) {
-                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE)
+                    ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
             } else if (this.headOrientation == this.FORWARD){
                 ctx.drawImage(this.HEAD_FORWARD, this.HEAD_FORWARD.width, this.HEAD_FORWARD.height, this.HEAD_FORWARD.width * this.SCALE, this.HEAD_FORWARD.height * this.SCALE)
             } else {
@@ -381,7 +381,7 @@ class masterchief {
                 }
                 ctx.restore();
                 ctx.rotate(this.weapon.getArmRotation());
-                ctx.drawImage(this.armImg, -this.armImg.width /2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
+                ctx.drawImage(this.weapon.draw, -this.weapon.draw.width / 2, -this.weapon.draw.height/2, this.weapon.draw.width * this.SCALE, this.weapon.draw.height * this.SCALE);
             }
             ctx.restore();
         } else {
