@@ -15,6 +15,8 @@ class EnemyBullet {
         this.rotation = rotation;
         var dist = getDistance(this.x, this.y, target.x, target.y);
         this.cache = [];
+        this.removetime = false;
+        setTimeout(() => {this.removetime = true}, 25000);
 
         this.velocity = { x : (this.target.x - this.x) / dist * this.maxSpeed, y : (this.target.y - this.y) / dist *this.maxSpeed };
 
@@ -53,6 +55,9 @@ class EnemyBullet {
         this.x += this.velocity.x * this.game.clockTick;
         this.y += this.velocity.y * this.game.clockTick;
         this.updateBoundCircle();
+        if(this.removetime == true){
+            this.removeFromWorld = true;
+        }
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pp") {
