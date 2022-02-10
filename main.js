@@ -69,9 +69,16 @@ ASSET_MANAGER.queueDownload("./audio/stopping.mp3");
 ASSET_MANAGER.queueDownload("./audio/ar single.mp3");
 ASSET_MANAGER.queueDownload("./audio/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/gruntpee.mp3");
+ASSET_MANAGER.queueDownload("./audio/gruntdiedevil.mp3");
+ASSET_MANAGER.queueDownload("./audio/gruntitdies.mp3");
+ASSET_MANAGER.queueDownload("./audio/gruntlookout.mp3");
 ASSET_MANAGER.queueDownload("./audio/plasma pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
 ASSET_MANAGER.queueDownload("./audio/gameover.mp3");
+ASSET_MANAGER.queueDownload("./audio/elitelaugh1.mp3");
+ASSET_MANAGER.queueDownload("./audio/elitewut.mp3");
+ASSET_MANAGER.queueDownload("./audio/elitemad.mp3");
+ASSET_MANAGER.queueDownload("./audio/eliteRIH.mp3");
 ASSET_MANAGER.queueDownload("./audio/click.wav");
 
 // terrain
