@@ -22,6 +22,7 @@ class GameEngine {
         this.down = false;
         this.reload = false;
         this.pointer = null;
+        this.escape = false;
 
         // THE KILL SWITCH
         this.running = false;
@@ -125,6 +126,9 @@ class GameEngine {
                 case "KeyR":
                     that.reload = true;
                     break;
+                case "Escape":
+                    that.escape = true;
+                    break;
             }
         }, false);
 
@@ -149,6 +153,9 @@ class GameEngine {
                     break;
                 case "KeyR":
                     that.reload = false;
+                    break;
+                case "Escape":
+                    that.escape = false;
                     break;
             }
         }, false);
