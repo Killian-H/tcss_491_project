@@ -64,6 +64,8 @@ class EnemyBullet {
                 if (entity instanceof masterchief) {
                     if (entity.armor - 12 < 0) entity.armor = 0;
                     if (entity.health - 6 < 0) entity.health = 0;
+                    entity.canRegen = false;
+                    entity.regenTimer();
                     entity.beenShot = true;
                     if(entity.health > 0 && entity.armor <= 0) {
                         entity.health = entity.health - 6;
