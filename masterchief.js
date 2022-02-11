@@ -124,7 +124,7 @@ class masterchief {
 
         // walking animation = 1
         // facing right = 0
-        this.animations[1][0] = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, 0.1, false, true);
+        this.animations[1][0] = new Animator(this.WALK_RIGHT, 7, 2, 41, 41, 8, 0.1, false, true);
 
         // walking animation = 1
         // facing left = 1
