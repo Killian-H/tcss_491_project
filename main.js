@@ -75,22 +75,28 @@ ASSET_MANAGER.queueDownload("./audio/weapons/pr single shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/pr switch.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/ar switch.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/pistol switch.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/pistol reload.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/pistol shot.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/plasma pistol shot.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/ar single.mp3");
+
+ASSET_MANAGER.queueDownload("./audio/click.wav");
+ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
+ASSET_MANAGER.queueDownload("./audio/gameover.mp3");
 ASSET_MANAGER.queueDownload("./audio/walking.mp3");
 ASSET_MANAGER.queueDownload("./audio/stopping.mp3");
-ASSET_MANAGER.queueDownload("./audio/weapons/ar single.mp3");
+
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntpee.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntdiedevil.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntitdies.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntlookout.mp3");
-ASSET_MANAGER.queueDownload("./audio/weapons/plasma pistol shot.mp3");
-ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
-ASSET_MANAGER.queueDownload("./audio/gameover.mp3");
+
 ASSET_MANAGER.queueDownload("./audio/elite/elitelaugh1.mp3");
 ASSET_MANAGER.queueDownload("./audio/elite/elitewut.mp3");
 ASSET_MANAGER.queueDownload("./audio/elite/elitemad.mp3");
 ASSET_MANAGER.queueDownload("./audio/elite/eliteRIH.mp3");
-ASSET_MANAGER.queueDownload("./audio/click.wav");
+
 
 // terrain
 ASSET_MANAGER.queueDownload("./sprites/terrain/grass_1.png");
