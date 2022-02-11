@@ -81,6 +81,9 @@ ASSET_MANAGER.queueDownload("./audio/weapons/pistol reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/plasma pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/ar single.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/shotgun reload.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/shotgun shot.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/shotgun switch.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/click.wav");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");

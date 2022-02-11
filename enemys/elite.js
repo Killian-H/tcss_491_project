@@ -119,7 +119,7 @@ class Elite extends AbstractEnemy {
                         //console.log()
                         that.elapsedTime = 0;
                         that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
-                        ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
+                        //ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
                     }
 
                 }
