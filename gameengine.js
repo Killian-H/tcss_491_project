@@ -22,6 +22,7 @@ class GameEngine {
         this.down = false;
         this.reload = false;
         this.pointer = null;
+        this.escape = false;
 
         // THE KILL SWITCH
         this.running = false;
@@ -137,6 +138,9 @@ class GameEngine {
                 case "Digit4":
                     that.weaponFour = true;
                     break;
+                case "Digit5":
+                    that.weaponFive = true;
+                    break;
             }
         }, false);
 
@@ -170,6 +174,8 @@ class GameEngine {
                     that.weaponThree = false;
                 case "Digit4":
                     that.weaponFour = false;
+                case "Digit4":
+                    that.weaponFive = false;
             }
         }, false);
         

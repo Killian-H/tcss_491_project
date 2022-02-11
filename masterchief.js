@@ -70,7 +70,8 @@ class masterchief {
         this.weaponArray[0] = new AssaultRifle(this.game, this.x, this.y);
         this.weaponArray[1] = new Pistol(this.game, this.x, this.y);
         this.weaponArray[2] = new DMR(this.game, this.x, this.y);
-        this.weaponArray[3] = new PlasmaRifle(this.game, this.x, this.y);
+        this.weaponArray[3] = new Shotgun(this.game, this.x, this.y);
+        this.weaponArray[4] = new PlasmaRifle(this.game, this.x, this.y);
         this.weapon = this.weaponArray[0];
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
@@ -124,7 +125,7 @@ class masterchief {
 
         // walking animation = 1
         // facing right = 0
-        this.animations[1][0] = new Animator(this.WALK_RIGHT, 5, 2, 41, 41, 8, 0.1, false, true);
+        this.animations[1][0] = new Animator(this.WALK_RIGHT, 7, 2, 41, 41, 8, 0.1, false, true);
 
         // walking animation = 1
         // facing left = 1
@@ -169,17 +170,20 @@ class masterchief {
         const TICK = this.game.clockTick;
         this.weapon.update();
         if (this.game.weaponOne) {
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
             this.weapon = this.weaponArray[0]
         } else if (this.game.weaponTwo) {
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/pistol switch.mp3");
             this.weapon = this.weaponArray[1]
         } else if (this.game.weaponThree) {
             this.weapon = this.weaponArray[2];
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
         } else if (this.game.weaponFour) {
             this.weapon = this.weaponArray[3];
-            ASSET_MANAGER.playAsset("./audio/swap weapon.mp3");
+
+        } else if (this.game.weaponFive) {
+            this.weapon = this.weaponArray[4];
+            ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
         }
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
@@ -210,16 +214,6 @@ class masterchief {
         }
 
         this.elapsedtime += this.game.clockTick;
-        // if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
-        //     this.elapsedtime = 0;
-        //     this.clickcount = 1;
-        //     this.ammo -= 1;
-
-        //     this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation));
-        //     ASSET_MANAGER.playAsset("./audio/ar single.mp3");
-        //     //this.game.click = null
-        // }
-        
         var isMoving = false;
 
         if (this.game.up) {
@@ -256,62 +250,33 @@ class masterchief {
             this.state = this.IDLE;
         }
 
-
-        // if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
-        //     let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-        //     ASSET_MANAGER.playAsset("./audio/ar reload.mp3")
-        //     setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, 2500);
-        //     //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
-        // }
         var collisionx = 1;
         var collisiony = 1;
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
-                // if (that.velocity.x > 0 && that.velocity.y > 0) { // traveling down right
-                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                //         if (that.lastBB.right >= entity.BB.left) {
-                //             collisionx = 0;
-                //         }
-                //     }
-                // }
-                // else if (that.velocity.x < 0 && that.velocity.y > 0) { // traveling down left
-                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
-                //         collisionx = 0;
-                //     }
-                // }
-                // else if (that.velocity.x > 0 && that.velocity.y < 0) { // traveling up right
-                //     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                //         collisionx = 0;
-                //     }
-                // }
-                // else if (that.velocity.x < 0 && that.velocity.y < 0) { // traveling up left
-                //     if ((entity instanceof Grunt || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
-                //         collisionx = 0;
-                //     }
-                // }
                 if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.lastBB.bottom > entity.BB.top)) {
                         if (that.game.down && that.BB.bottom < entity.BB.bottom) {
                             collisiony = 0;
                         }
                     }
-                } 
-                else if (that.velocity.y < 0) { // traveling up.
+                }
+                if (that.velocity.y < 0 && that.lastBB.bottom > entity.BB.bottom) { // traveling up.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.top <= entity.BB.bottom) {
                         if (that.game.up) {
                             collisiony = 0;
                         }
                         }
                 } 
-                else if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
+                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
                             if (that.game.right && that.BB.right < entity.BB.right) {
                                collisionx = 0;
                             }
                         }
                 }
-                else if (that.velocity.x < 0) { // traveling left.
+                if (that.velocity.x < 0 && that.lastBB.right > entity.BB.right) { // traveling left.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
                         collisionx = 0;
                         }
@@ -367,7 +332,7 @@ class masterchief {
             if (this.facing == this.LEFT) {
                 ctx.scale(-1,1);
                 ctx.save();
-                ctx.translate(-34, -33); 
+                ctx.translate(-34, -31.5); 
                 if (this.headOrientation == this.TILT_UP) {
                     ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
                 } else if (this.headOrientation == this.FORWARD){
@@ -386,7 +351,7 @@ class masterchief {
 
             } else {
                 ctx.save();
-                ctx.translate(-12.5, -32.5); 
+                ctx.translate(-13.5, -31); 
                 if (this.headOrientation == this.TILT_UP) {
                     ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
             } else if (this.headOrientation == this.FORWARD){

@@ -19,7 +19,8 @@ class bullet {
         // this.chache = [];
 
         //thids.animations = [];
-
+        this.removetime = false;
+        setTimeout(() => {this.removetime = true}, 25000);
         this.elapsedTime = 0;
         this.updateBoundCircle();
 
@@ -56,6 +57,9 @@ class bullet {
         this.y += this.velocity.y * this.game.clockTick;
 
         this.updateBoundCircle();
+        if(this.removetime == true){
+            this.removeFromWorld = true;
+        }
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {

@@ -5,6 +5,7 @@ class Controls {
     AIM = {x: 10, y: 280};
     LEFT_CLICK = {x: 10, y: 360};
     NUMBERS = {x: 10, y: 440};
+    NUMBERS2 = {x: 10, y: 520};
     BACK = {x: 10, y: 50};
     CONTROLSPIC = ASSET_MANAGER.getAsset("./images/controlsimage.jpg");
 
@@ -21,7 +22,7 @@ class Controls {
             if ((this.game.mouse.x - this.game.camera.x >= this.BACK.x && this.game.mouse.x - this.game.camera.x <= this.BACK.x + 185) && (this.game.mouse.y - this.game.camera.y >= this.BACK.y - 40 && this.game.mouse.y - this.game.camera.y <= this.BACK.y)
                 && (this.game.click)) {
                 ASSET_MANAGER.playAsset("./audio/click.wav");
-                this.game.camera.loadStartMenu();
+                this.game.camera.loadStartMenuNoAudio();
             }
         }
     }
@@ -34,7 +35,8 @@ class Controls {
         ctx.fillText("R = Reload", this.RELOAD.x, this.RELOAD.y);
         ctx.fillText("Aim = Move Mouse", this.AIM.x, this.AIM.y);
         ctx.fillText("Left Click = Shoot Weapon", this.LEFT_CLICK.x, this.LEFT_CLICK.y);
-        ctx.fillText("1 = Assault Rifle, 2 = Plasma Rifle", this.NUMBERS.x, this.NUMBERS.y);
+        ctx.fillText("1 = Assault Rifle, 2 = Pistol", this.NUMBERS.x, this.NUMBERS.y);
+        ctx.fillText("3 = DMR, 4 = Plasma Rifle", this.NUMBERS2.x, this.NUMBERS2.y);
         
 
         if (this.game.mouse != null) {

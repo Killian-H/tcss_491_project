@@ -1,9 +1,9 @@
-class DMR extends AbstractWeapon {
+class Shotgun extends AbstractWeapon {
 
-    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_dmr.png");
-    PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/dmr_bullet.png");
+    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_shotgun.png");
+    PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/shotgun_pellet.png");
     SCALE = 1.6;
-    AMMO_DEFAULT = 15;
+    AMMO_DEFAULT = 8;
 
     constructor(game, chiefX, chiefY) {
         super(game, chiefX, chiefY);
@@ -13,15 +13,16 @@ class DMR extends AbstractWeapon {
         this.y = chiefY;
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
-        this.speed = 750;
-        this.shieldDamage = 30;
-        this.healthDamage = 50;
-        this.firerate = .35;
+        this.speed = 700;
+        this.shieldDamage = 10;
+        this.healthDamage = 12;
+        this.firerate = .8;
         this.scale = this.SCALE;
         this.canshoot = true;
         this.reloading = false;
         this.reloadTime = 0;
         this.elapsedtime = 0;
+        this.defaultReloadTime = 3000;
         this.ammo = this.AMMO_DEFAULT;
     };
 
@@ -37,21 +38,22 @@ class DMR extends AbstractWeapon {
         }
 
         this.elapsedtime += TICK;
-        console.log(this.elapsedtime);
+        //console.log(this.elapsedtime);
         if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
             this.elapsedtime = 0;
             this.clickcount = 1;
             this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
-            // ASSET_MANAGER.playAsset("");
-            //this.game.click = null
+            for (var i = 0; i < 8; i++) {
+                this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + getRandomRange(-55, 55), this.game.mouse.y + getRandomRange(-55, 55), this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
+            }
+            // ASSET_MANAGER.playAsset(" ");
         }
 
         if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
             let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-            // ASSET_MANAGER.playAsset("");
-            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, 2500);
+            // ASSET_MANAGER.playAsset(" ");
+            setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
     };

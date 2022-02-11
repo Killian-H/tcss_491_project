@@ -23,7 +23,7 @@ class Credits {
             if ((this.game.mouse.x - this.game.camera.x >= this.BACK.x && this.game.mouse.x - this.game.camera.x <= this.BACK.x + 185) && (this.game.mouse.y - this.game.camera.y >= this.BACK.y - 40 && this.game.mouse.y - this.game.camera.y <= this.BACK.y)
                 && (this.game.click)) {
                 ASSET_MANAGER.playAsset("./audio/click.wav");
-                this.game.camera.loadStartMenu();
+                this.game.camera.loadStartMenuNoAudio();
             }
         }
     }
