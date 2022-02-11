@@ -47,6 +47,8 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_pistol.png");
 ASSET_MANAGER.queueDownload("./sprites/weapons/pistol_bullet.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_dmr.png");
 ASSET_MANAGER.queueDownload("./sprites/weapons/dmr_bullet.png");
+ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_shotgun.png");
+ASSET_MANAGER.queueDownload("./sprites/weapons/shotgun_pellet.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_idle_left.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_walk_right.png");

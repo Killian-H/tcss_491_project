@@ -70,7 +70,8 @@ class masterchief {
         this.weaponArray[0] = new AssaultRifle(this.game, this.x, this.y);
         this.weaponArray[1] = new Pistol(this.game, this.x, this.y);
         this.weaponArray[2] = new DMR(this.game, this.x, this.y);
-        this.weaponArray[3] = new PlasmaRifle(this.game, this.x, this.y);
+        this.weaponArray[3] = new Shotgun(this.game, this.x, this.y);
+        this.weaponArray[4] = new PlasmaRifle(this.game, this.x, this.y);
         this.weapon = this.weaponArray[0];
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
@@ -179,6 +180,9 @@ class masterchief {
             ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
         } else if (this.game.weaponFour) {
             this.weapon = this.weaponArray[3];
+
+        } else if (this.game.weaponFive) {
+            this.weapon = this.weaponArray[4];
             ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
         }
         if (this.health <= 0) {
@@ -328,7 +332,7 @@ class masterchief {
             if (this.facing == this.LEFT) {
                 ctx.scale(-1,1);
                 ctx.save();
-                ctx.translate(-33, -31.5); 
+                ctx.translate(-34, -31.5); 
                 if (this.headOrientation == this.TILT_UP) {
                     ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
                 } else if (this.headOrientation == this.FORWARD){
