@@ -328,7 +328,7 @@ class masterchief {
             if (this.facing == this.LEFT) {
                 ctx.scale(-1,1);
                 ctx.save();
-                ctx.translate(-34, -33); 
+                ctx.translate(-33, -31.5); 
                 if (this.headOrientation == this.TILT_UP) {
                     ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
                 } else if (this.headOrientation == this.FORWARD){
@@ -347,7 +347,7 @@ class masterchief {
 
             } else {
                 ctx.save();
-                ctx.translate(-12.5, -32.5); 
+                ctx.translate(-13.5, -31); 
                 if (this.headOrientation == this.TILT_UP) {
                     ctx.drawImage(this.HEAD_TILT_UP, this.HEAD_TILT_UP.width, this.HEAD_TILT_UP.height, this.HEAD_TILT_UP.width * this.SCALE, this.HEAD_TILT_UP.height * this.SCALE);
             } else if (this.headOrientation == this.FORWARD){
