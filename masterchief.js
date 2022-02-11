@@ -55,11 +55,13 @@ class masterchief {
         this.positiony = this.x - this.game.camera.y;
         this.velocity = { x: 0, y: 0};
         this.beenShot = false;
+        this.canRegen = true;
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
         this.armImg = this.ARMS_ASSAULT;
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
+        this.regenCount = null;
         // this.firerate = .1;
         // this.clickcount = 0;
         // this.ammo = this.AMMO_DEFAULT;
@@ -85,6 +87,26 @@ class masterchief {
         this.rightAnim = this.animations[0][0];
 
     };
+
+    checkShield(){
+        if(this.canRegen){
+            if(this.armor < (this.MAX_ARMOR-9)){
+                this.armor += 10;
+            }
+            else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
+                this.armor = this.MAX_ARMOR;
+            }
+            this.canRegen = false;
+            this.regenTimer();
+        }
+    }
+
+    regenTimer(){
+        //if(this.regenCount != null){
+        clearTimeout(this.regenCount);
+        //}
+        this.regenCount = setTimeout(() => {this.canRegen = true}, 4000);
+    }
 
     resetHealth() {
         this.health = this.MAX_HEALTH;
@@ -168,6 +190,7 @@ class masterchief {
 
     update() {
         const TICK = this.game.clockTick;
+        this.checkShield();
         this.weapon.update();
         if (this.game.weaponOne) {
             ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
