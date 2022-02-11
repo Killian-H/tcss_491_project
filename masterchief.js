@@ -97,15 +97,15 @@ class masterchief {
                 this.armor = this.MAX_ARMOR;
             }
             this.canRegen = false;
-            this.regenTimer();
+            this.regenTimer(1000);
         }
     }
 
-    regenTimer(){
+    regenTimer(waitTime){
         //if(this.regenCount != null){
         clearTimeout(this.regenCount);
         //}
-        this.regenCount = setTimeout(() => {this.canRegen = true}, 4000);
+        this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
     }
 
     resetHealth() {
