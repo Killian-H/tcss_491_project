@@ -199,14 +199,14 @@ class masterchief {
             ASSET_MANAGER.playAsset("./audio/weapons/pistol switch.mp3");
             this.weapon = this.weaponArray[1]
         } else if (this.game.weaponThree) {
-            this.weapon = this.weaponArray[2];
             ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
+            this.weapon = this.weaponArray[2];
         } else if (this.game.weaponFour) {
+            ASSET_MANAGER.playAsset("./audio/weapons/shotgun switch.mp3");
             this.weapon = this.weaponArray[3];
-
         } else if (this.game.weaponFive) {
-            this.weapon = this.weaponArray[4];
             ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
+            this.weapon = this.weaponArray[4];
         }
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
