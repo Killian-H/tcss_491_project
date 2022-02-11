@@ -168,14 +168,19 @@ class GameEngine {
                     break;
                 case "Digit1":
                     that.weaponOne = false;
+                    break;
                 case "Digit2":
                     that.weaponTwo = false;
+                    break;
                 case "Digit3":
                     that.weaponThree = false;
+                    break;
                 case "Digit4":
                     that.weaponFour = false;
-                case "Digit4":
+                    break;
+                case "Digit5":
                     that.weaponFive = false;
+                    break;
             }
         }, false);
         

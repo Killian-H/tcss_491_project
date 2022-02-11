@@ -71,7 +71,6 @@ ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
 
 // sound effects
 ASSET_MANAGER.queueDownload("./audio/weapons/ar reload.mp3");
-ASSET_MANAGER.queueDownload("./audio/weapons/ar fire.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/pr reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/pr single shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/pr switch.mp3");
@@ -81,6 +80,9 @@ ASSET_MANAGER.queueDownload("./audio/weapons/pistol reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/plasma pistol shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/ar single.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/shotgun reload.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/shotgun shot.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/shotgun switch.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/click.wav");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");

@@ -47,12 +47,12 @@ class Shotgun extends AbstractWeapon {
             for (var i = 0; i < 8; i++) {
                 this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + getRandomRange(-55, 55), this.game.mouse.y + getRandomRange(-55, 55), this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
             }
-            // ASSET_MANAGER.playAsset(" ");
+            ASSET_MANAGER.playAsset("./audio/weapons/shotgun shot.mp3");
         }
 
         if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
             let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-            // ASSET_MANAGER.playAsset(" ");
+            ASSET_MANAGER.playAsset("./audio/weapons/shotgun reload.mp3");
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
