@@ -44,14 +44,14 @@ class AssaultRifle extends AbstractWeapon {
             this.clickcount = 1;
             this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + getRandomRange(-50, 50), this.game.mouse.y + getRandomRange(-50, 50), this.armRotation, this.speed, this.BULLET_SPRITE, this.shieldDamage, this.healthDamage));
+            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + getRandomRange(-40, 40), this.game.mouse.y + getRandomRange(-40, 40), this.armRotation, this.speed, this.BULLET_SPRITE, this.shieldDamage, this.healthDamage));
             ASSET_MANAGER.playAsset("./audio/weapons/ar single.mp3");
             //this.game.click = null
         }
 
         if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
             let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-            ASSET_MANAGER.playAsset("./audio/weapons/ar reload.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/ar reload.mp3")
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
