@@ -92,15 +92,11 @@ class masterchief {
     checkShield(){
         if(this.canRegen){
             if(this.armor < (this.MAX_ARMOR-9)){
-                if (this.regAudio = true) {
-                    ASSET_MANAGER.playAsset("./audio/recharge.mp3");
-                    this.regAudio = false;
-                    console.log(this.regAudio);
-                }
                 this.armor += 10;
             }
             else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
+                ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
             this.regenTimer(1000);
