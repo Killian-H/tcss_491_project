@@ -96,7 +96,7 @@ class masterchief {
             }
             else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
-                ASSET_MANAGER.playAsset("./audio/recharge.mp3");
+                //ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
             this.regenTimer(1000);
@@ -107,7 +107,12 @@ class masterchief {
         //if(this.regenCount != null){
         clearTimeout(this.regenCount);
         //}
-        this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
+        if(waitTime == 4000){
+            this.regenCount = setTimeout(() => {this.canRegen = true,ASSET_MANAGER.playAsset("./audio/recharge.mp3")}, waitTime);
+        }
+        else{
+            this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
+        }
     }
 
     resetHealth() {
