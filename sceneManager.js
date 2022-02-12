@@ -72,6 +72,8 @@ class SceneManager {
     loadLevel() {
         this.clearEntities();
         this.resetXanyY();
+        ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
+        ASSET_MANAGER.autoRepeat("./music/halo 3 theme.mp3");
         this.pine = new Tree(this.game, 0, 0);
         this.rock = new Rock(this.game, 128, 100);
         this.wall_top = new WallTop(this.game, 0, 128);
