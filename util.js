@@ -99,6 +99,11 @@ const getDistance = (x1, y1, x2, y2) => {
     return sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
 };
 
+const getUnitVector = (x1, y1, x2, y2) => {
+    var dist = getDistance(x1, y1, x2, y2);
+    return [(x1 - x2) / dist, (y1 - y2) / dist];
+}
+
 /**
  * Returns random element from array
  * @param {Array} items
