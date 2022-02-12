@@ -80,6 +80,7 @@ class SceneManager {
         this.terrain = new Terrain(this.game, 0, 0);
         this.dirt = new Dirt(this.game, 128, 0);
         this.grunt = new Grunt(this.game, 200, 200);
+        this.medkit = new Medkit(this.game, 500, 500);
         // this.terrain2 = new Terrain(this.game, 128, 128);
         // this.terrain3 = new Terrain(this.game, 0, 128);
         // this.terrain4 = new Terrain(this.game, 128, 0);
@@ -109,6 +110,7 @@ class SceneManager {
         this.game.addEntity(this.dirt);
         this.grunt2 = new Grunt(this.game, 600, 100);;
         this.game.addEntity(this.grunt2);
+        this.game.addEntity(this.medkit);
         // this.terrain = new Terrain(game, 0, 0);
         // //this.game.addEntity(this.terrain);
         this.background = new Background(this.game, 0, 0);
