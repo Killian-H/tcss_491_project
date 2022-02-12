@@ -280,21 +280,21 @@ class masterchief {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.lastBB.bottom > entity.BB.top)) {
-                        if (that.game.down && that.BB.bottom < entity.BB.bottom) {
+                        if ((that.game.down && that.lastBB.top < entity.BB.top)) {
                             collisiony = 0;
                         }
                     }
                 }
                 if (that.velocity.y < 0 && that.lastBB.bottom > entity.BB.bottom) { // traveling up.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.top <= entity.BB.bottom) {
-                        if (that.game.up) {
+                        if (that.game.up && that.lastBB.bottom > entity.BB.bottom) {
                             collisiony = 0;
                         }
                         }
                 } 
-                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
+                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.rdight < entity.BB.right)) { // traveling right.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                            if (that.game.right && that.BB.right < entity.BB.right) {
+                            if (that.game.right && that.lastBB.left < entity.BB.left) {
                                collisionx = 0;
                             }
                         }
