@@ -1,7 +1,8 @@
 class Medkit {
 
-    MED_KIT = ASSET_MANAGER.getAsset("./sprites/healthpak.png");
-
+    MED_KIT = ASSET_MANAGER.getAsset("./images/healthpack.png");
+    WIDTH = 200;
+    HEIGHT = 200;
     constructor(game, x, y) {
         this.game = game;
         this.x = x;
@@ -36,7 +37,7 @@ class Medkit {
             ctx.stroke();
         }
         ctx.save();
-        ctx.drawImage(this.MED_KIT, this.x - this.game.camera.x, this.y - this.game.camera.y);
+        ctx.drawImage(this.MED_KIT, this.x - this.game.camera.x, this.y - this.game.camera.y,50,50)// this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH, this.HEIGHT);
         ctx.restore();
     };
 }

@@ -56,6 +56,7 @@ class masterchief {
         this.velocity = { x: 0, y: 0};
         this.beenShot = false;
         this.canRegen = true;
+        this.regAudio = true;
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
         this.armImg = this.ARMS_ASSAULT;
@@ -91,6 +92,11 @@ class masterchief {
     checkShield(){
         if(this.canRegen){
             if(this.armor < (this.MAX_ARMOR-9)){
+                if (this.regAudio = true) {
+                    ASSET_MANAGER.playAsset("./audio/recharge.mp3");
+                    this.regAudio = false;
+                    console.log(this.regAudio);
+                }
                 this.armor += 10;
             }
             else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
