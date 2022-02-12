@@ -6,7 +6,7 @@ class Medkit {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.BC = new BoundingCircle(this.x, this.y, 7);
+        this.BC = new BoundingCircle((this.x - this.game.camera.x)+70, (this.y- this.game.camera.y)+70, 100);
     };
 
     update() {
