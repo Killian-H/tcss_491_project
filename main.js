@@ -66,6 +66,9 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_left.png");
 // bullet
 ASSET_MANAGER.queueDownload("./sprites/bullet.png");
 
+// medkit
+ASSET_MANAGER.queueDownload("./sprites/healthpak.png");
+
 // music
 ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
 
