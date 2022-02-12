@@ -32,8 +32,8 @@ class SceneManager {
         this.clearEntities();
         this.startmenu = new StartMenu(this.game, 0, 0);
         this.game.addEntity(this.startmenu);
-        ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
-        ASSET_MANAGER.autoRepeat("./music/halo 3 theme.mp3");
+        //ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
+        //ASSET_MANAGER.autoRepeat("./music/halo 3 theme.mp3");
         this.update();
     }
 
@@ -70,6 +70,8 @@ class SceneManager {
     }
 
     loadLevel() {
+        ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
+        ASSET_MANAGER.autoRepeat("./music/halo 3 theme.mp3");
         this.clearEntities();
         this.resetXanyY();
         this.pine = new Tree(this.game, 0, 0);
