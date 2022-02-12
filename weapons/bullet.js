@@ -20,7 +20,7 @@ class bullet {
 
         //thids.animations = [];
         this.removetime = false;
-        setTimeout(() => {this.removetime = true}, 25000);
+        setTimeout(() => {this.removetime = true}, 3000);
         this.elapsedTime = 0;
         this.updateBoundCircle();
 
