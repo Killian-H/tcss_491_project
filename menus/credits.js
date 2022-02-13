@@ -16,6 +16,7 @@ class Credits {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.game.unpause();
     }
 
     update() {
@@ -31,7 +32,7 @@ class Credits {
     }
 
     draw(ctx) {
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         ctx.drawImage(this.CREDITSSPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.76, this.CANVAS.h * 1.65);
         ctx.font = 56 + 'px "Black Ops One"';
         ctx.fillStyle = "Black";
@@ -56,6 +57,6 @@ class Credits {
                 ctx.fillText("<Back", this.BACK.x, this.BACK.y);
             }
         }
-        }
+        //}
     }
 }

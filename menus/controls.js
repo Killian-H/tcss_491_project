@@ -17,6 +17,7 @@ class Controls {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.game.unpause();
     }
 
     update() {
@@ -32,7 +33,7 @@ class Controls {
     }
 
     draw(ctx) {
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         ctx.drawImage(this.CONTROLSPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w, this.CANVAS.h * 1.15);
         ctx.font = 56 + 'px "Black Ops One"';
         ctx.fillStyle = "White";
@@ -56,6 +57,6 @@ class Controls {
                 ctx.fillText("<Back", this.BACK.x, this.BACK.y);
             }
         }
-        }
+        //}
     }
 }

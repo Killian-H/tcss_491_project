@@ -12,6 +12,7 @@ class StartMenu {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.game.unpause();
     }
 
     update() {
@@ -37,7 +38,7 @@ class StartMenu {
     }
 
     draw(ctx) {
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         ctx.drawImage(this.STARTPIC, this.x + 200, this.y + 100, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.1, this.CANVAS.h);
 
         ctx.font = 80 + 'px "Black Ops One"';
@@ -72,7 +73,7 @@ class StartMenu {
                 ctx.fillText("Credits", this.CREDITS_POSITION.x, this.CREDITS_POSITION.y);
             }
         }
-        }
+        //}
 
     }
 }

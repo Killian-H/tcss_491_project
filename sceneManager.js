@@ -80,6 +80,7 @@ class SceneManager {
     }
 
     loadLevel(level) {
+        this.game.unpause();
         this.clearEntities();
         this.resetXanyY();
         let map = level.map.layers[0];
