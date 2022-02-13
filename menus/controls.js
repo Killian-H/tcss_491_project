@@ -34,7 +34,7 @@ class Controls {
     draw(ctx) {
         if(!this.game.pauseb){
         ctx.drawImage(this.CONTROLSPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w, this.CANVAS.h * 1.15);
-        ctx.font = 56 + 'px "Black Ops One"';
+        ctx.font = 48 + 'px "Black Ops One"';
         ctx.fillStyle = "White";
         ctx.fillText("W/A/S/D = Move MasterChief", this.WASD.x, this.WASD.y);
         ctx.fillText("R = Reload", this.RELOAD.x, this.RELOAD.y);
