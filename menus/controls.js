@@ -7,7 +7,7 @@ class Controls {
     NUMBERS = {x: 10, y: 360};
     NUMBERS2 = {x: 10, y: 420};
     NUMBERS3 = {x: 10, y: 480};
-    PAUSEBUTTON = {x: 10, y: 540};
+    PAUSEBUTTON = {x: 10, y: 535};
     BACK = {x: 10, y: 50};
     CONTROLSPIC = ASSET_MANAGER.getAsset("./images/controlsimage.jpg");
 
