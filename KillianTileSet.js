@@ -1,4 +1,4 @@
-{ "columns":0,
+let TileSet = { "columns":0,
  "grid":
     {
      "height":1,
@@ -6,7 +6,7 @@
      "width":1
     },
  "margin":0,
- "name":"KillianTileSet",
+ "name":"Killian TileSet",
  "spacing":0,
  "tilecount":6,
  "tiledversion":"1.7.2",
@@ -14,37 +14,37 @@
  "tiles":[
         {
          "id":0,
-         "image":"..\/sprites\/terrain\/dirt.png",
+         "image":"sprites\/terrain\/dirt.png",
          "imageheight":128,
          "imagewidth":128
         }, 
         {
          "id":1,
-         "image":"..\/sprites\/terrain\/dirt_wall.png",
+         "image":"sprites\/terrain\/dirt_wall.png",
          "imageheight":128,
          "imagewidth":128
         }, 
         {
          "id":2,
-         "image":"..\/sprites\/terrain\/dirt_wall_top.png",
+         "image":"sprites\/terrain\/dirt_wall_top.png",
          "imageheight":128,
          "imagewidth":128
         }, 
         {
          "id":3,
-         "image":"..\/sprites\/terrain\/grass_1.png",
+         "image":"sprites\/terrain\/grass_1.png",
          "imageheight":128,
          "imagewidth":128
         }, 
         {
          "id":4,
-         "image":"..\/sprites\/terrain\/grass_2.png",
+         "image":"sprites\/terrain\/grass_2.png",
          "imageheight":128,
          "imagewidth":128
         }, 
         {
          "id":5,
-         "image":"..\/sprites\/terrain\/grass_3.png",
+         "image":"sprites\/terrain\/grass_3.png",
          "imageheight":128,
          "imagewidth":128
         }],

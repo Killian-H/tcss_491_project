@@ -144,11 +144,14 @@ class Terrain {
     GRASS_2 = ASSET_MANAGER.getAsset("./sprites/terrain/grass_2.png");
     GRASS_3 = ASSET_MANAGER.getAsset("./sprites/terrain/grass_3.png");
 
-    constructor(game, x, y) {
+    TYPES = [this.GRASS_1,this.GRASS_2,this.GRASS_3];
+
+    constructor(game, x, y, type) {
         Object.assign(this, {game, x, y});
         this.game = game;
         this.x = x;
         this.y = y;
+        this.grassType = this.TYPES[type];
     };
 
     update() {
@@ -156,7 +159,7 @@ class Terrain {
     };
 
     draw(ctx) {
-        ctx.drawImage(this.GRASS_1, this.x - this.game.camera.x, this.y - this.game.camera.y);
+        ctx.drawImage(this.grassType, this.x - this.game.camera.x, this.y - this.game.camera.y);
     };
 }
 

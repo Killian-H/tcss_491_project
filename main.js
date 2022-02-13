@@ -127,5 +127,5 @@ ASSET_MANAGER.downloadAll(() => {
 	//this.scene.loadDeathMenu(); //for testing death menu
 	gameEngine.start();
 
-	console.log(testLevel.layers[0].chunks);
+
 });
