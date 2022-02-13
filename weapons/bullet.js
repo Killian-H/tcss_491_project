@@ -64,10 +64,14 @@ class bullet {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof AbstractEnemy) {
-                    // let r = ASSET_MANAGER.getRandomInt(101);
+                    if (entity.armor > 0) {
+                        entity.armor = entity.armor - that.shieldDamage;
+                        that.removeFromWorld = true;
+                    } else {
                     entity.health = entity.health - that.healthDamage;
                     entity.beenShot = true;
                     that.removeFromWorld = true;
+                    }
                 }
                 if (entity instanceof AbstractEnvironment) {
                     that.removeFromWorld = true;

@@ -44,6 +44,9 @@ class Elite extends AbstractEnemy {
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.elapsedTime = 0;
+        this.shieldDamage = 20;
+        this.healthDamage = 15;
+        this.bulletSpeed = 550;
         this.loadAnimations();
         this.updateBoundBox();
     };
@@ -85,7 +88,7 @@ class Elite extends AbstractEnemy {
         if(!this.game.pauseb){
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
-        this.randomFireRate = Math.random() * (4 - .3) + .3;
+        this.randomFireRate = Math.random() * (1 - .3) + .3;
         var that = this;
 
         this.game.entities.forEach(function (entity) {
@@ -120,7 +123,7 @@ class Elite extends AbstractEnemy {
                     if (that.elapsedTime >= that.randomFireRate) {
                         //console.log()
                         that.elapsedTime = 0;
-                        that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
+                        that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon, that.shieldDamage, that.healthDamage, that.bulletSpeed));
                         ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
                     }
 

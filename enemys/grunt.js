@@ -26,8 +26,6 @@ class Grunt extends AbstractEnemy {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.x = x;
-        this.y = y;
         this.visualRadius = 300;
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
@@ -35,7 +33,6 @@ class Grunt extends AbstractEnemy {
         this.seen = false;
         this.aimingX = 0;
         this.aimingY = 0;
-        this.game = game;
         this.health = this.FULL_HEALTH;
         this.state = this.IDLE; // 0 = idle, 1 = walk, 2 = scared
         this.facing = this.RIGHT; // 0 = right, 1 = left
@@ -46,6 +43,9 @@ class Grunt extends AbstractEnemy {
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.elapsedTime = 0;
+        this.shieldDamage = 15;
+        this.healthDamage = 8;
+        this.bulletSpeed = 450;
         this.loadAnimations();
         this.updateBoundBox();
     };
@@ -95,7 +95,7 @@ class Grunt extends AbstractEnemy {
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
                         that.elapsedTime = 0;
-                        that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
+                        that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon, that.shieldDamage, that.healthDamage, that.bulletSpeed));
                         ASSET_MANAGER.playAsset("./audio/weapons/plasma pistol shot.mp3");
                     }
                 }
