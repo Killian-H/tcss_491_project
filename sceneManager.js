@@ -1,4 +1,14 @@
 class SceneManager {
+    
+    TILE_WIDTH = 128;
+    DIRT_ID = 1;
+    DIRT_WALL_ID = 2;
+    DIRT_WALL_TOP_ID = 3;
+    GRASS_1_ID = 4;
+    GRASS_2_ID = 5;
+    GRASS_3_ID = 6;
+
+
     MID_POINT_X = 1024/2;
     MID_POINT_Y = 540/2;
     constructor(game) {
@@ -45,7 +55,7 @@ class SceneManager {
     } 
 
     loadDeathMenu() {
-        this.sleep(700).then(() => {
+        this.sleep(2000).then(() => {
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.deathmenu = new DeathMenu(this.game, 0, 0);
@@ -69,52 +79,69 @@ class SceneManager {
         this.update();
     }
 
-    loadLevel() {
+    loadLevel(level) {
         this.clearEntities();
         this.resetXanyY();
-        this.pine = new Tree(this.game, 0, 0);
-        this.rock = new Rock(this.game, 128, 100);
-        this.wall_top = new WallTop(this.game, 0, 128);
-        this.wall = new Wall(this.game, 0, 256);
-        this.big_tree = new BigTree(this.game, 128, 256);
-        this.terrain = new Terrain(this.game, 0, 0);
-        this.dirt = new Dirt(this.game, 128, 0);
+        let map = level.map.layers[0];
+        let tiles = map.data;
+        let currX = 0;
+        let currY = 0;
+        let tileCounter = 0;
+        for(let i = 0; i < map.height; i++) {
+            for(let j = 0; j < map.width; j++) {
+                let tile = tiles[tileCounter];
+                //console.log(tile);
+                switch(tile) {
+                    case 0:
+                        break; //empty tile
+                    case this.GRASS_1_ID:  
+                    case this.GRASS_2_ID:
+                    case this.GRASS_3_ID:
+                        console.log("Loading Grass at X: ", currX, " Y: ", currY);
+                        this.game.addEntity(new Terrain(this.game,currX, currY, tile - 4));
+                        currX += this.TILE_WIDTH;
+                        tileCounter++;
+                        break;
+                    case this.DIRT_ID:
+                        console.log("Loading Dirt at X: ", currX, " Y: ", currY);
+                        this.game.addEntity(new Dirt(this.game,currX, currY));
+                        currX += this.TILE_WIDTH;
+                        tileCounter++;
+                        break;
+                    case this.DIRT_WALL_ID:
+                        console.log("Loading Dirt Wall at X: ", currX, " Y: ", currY);
+                        this.game.addEntity(new Wall(this.game,currX, currY));
+                        currX += this.TILE_WIDTH;
+                        tileCounter++;
+                        break;
+                    case this.DIRT_WALL_TOP_ID:
+                        console.log("Loading Dirt Wall (grass Top) at X: ", currX, " Y: ", currY);
+                        this.game.addEntity(new WallTop(this.game,currX, currY));
+                        currX += this.TILE_WIDTH;
+                        tileCounter++;
+                        break;    
+                }
+            }
+            console.log("Loaded row");
+            currX = 0;
+            currY += this.TILE_WIDTH;
+            
+        }
         this.grunt = new Grunt(this.game, 200, 200);
-        this.medkit = new Medkit(this.game, 500, 500);
-        // this.terrain2 = new Terrain(this.game, 128, 128);
-        // this.terrain3 = new Terrain(this.game, 0, 128);
-        // this.terrain4 = new Terrain(this.game, 128, 0);
-        // this.rock = new Rock(this.game, 128, 128);
-        // this.game.addEntityToFront(this.pine);
-        // this.game.addEntityToFront(this.rock);
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
         this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
-        this.game.addEntity(this.hud);
-        this.game.addEntity(this.pine);
-        this.game.addEntity(this.big_tree);
-        this.game.addEntity(this.rock);
-        this.game.addEntity(this.masterchief);
-        this.game.addEntity(this.grunt)
-        this.game.addEntity(new Elite(this.game, 250, 50));
-        this.game.addEntity(this.wall_top);
-        this.game.addEntity(this.wall);
-        this.game.addEntity(new WallTop(this.game, 128, 128));
-        this.game.addEntity(new Wall(this.game, 128, 256));
-        this.game.addEntity(this.wall);
-        this.game.addEntity(this.terrain);
-        this.game.addEntity(new Terrain(this.game, 0, 384));
-        this.game.addEntity(this.dirt);
-        this.grunt2 = new Grunt(this.game, 600, 100);;
-        this.game.addEntity(this.grunt2);
-        this.game.addEntity(this.medkit);
-        // this.terrain = new Terrain(game, 0, 0);
-        // //this.game.addEntity(this.terrain);
-        this.background = new Background(this.game, 0, 0);
-        this.game.addEntity(this.background);
+        this.game.addEntityToFront(this.hud);
+        this.game.addEntityToFront(this.masterchief);
+        this.game.addEntityToFront(this.grunt)
+        this.game.addEntityToFront(new Elite(this.game, 250, 400));
+        this.grunt2 = new Grunt(this.game, 600, 200);;
+        this.game.addEntityToFront(this.grunt2);
+        this.medkit = new Medkit(this.game, 500, 500);
+        this.game.addEntityToFront(this.medkit);
         this.update();
     }
 
@@ -175,4 +202,5 @@ class SceneManager {
         }
 
     };
+
 };

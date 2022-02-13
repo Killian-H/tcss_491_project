@@ -18,7 +18,7 @@ class DeathMenu {
             if ((this.game.mouse.x - this.game.camera.x >= this.RESTART_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.RESTART_POSITION.x + 235) && (this.game.mouse.y - this.game.camera.y >= this.RESTART_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.RESTART_POSITION.y) 
                 && (this.game.click)) {
                 ASSET_MANAGER.playAsset("./audio/click.wav");
-                this.game.camera.loadLevel();
+                this.game.camera.loadLevel(new TestLevel());
                 ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
             }
             if ((this.game.mouse.x - this.game.camera.x >= this.QUIT_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.QUIT_POSITION.x + 120) && (this.game.mouse.y - this.game.camera.y >= this.QUIT_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.QUIT_POSITION.y)

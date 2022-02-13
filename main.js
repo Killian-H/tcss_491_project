@@ -67,7 +67,7 @@ ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_die_left.png");
 ASSET_MANAGER.queueDownload("./sprites/bullet.png");
 
 // medkit
-ASSET_MANAGER.queueDownload("./sprites/healthpak.png");
+ASSET_MANAGER.queueDownload("./images/healthpack.png");
 
 // music
 ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
@@ -92,6 +92,8 @@ ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
 ASSET_MANAGER.queueDownload("./audio/gameover.mp3");
 ASSET_MANAGER.queueDownload("./audio/walking.mp3");
 ASSET_MANAGER.queueDownload("./audio/stopping.mp3");
+ASSET_MANAGER.queueDownload("./audio/recharge.mp3");
+ASSET_MANAGER.queueDownload("./audio/Health_Sound.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntpee.mp3");
@@ -130,5 +132,5 @@ ASSET_MANAGER.downloadAll(() => {
 	//this.scene.loadDeathMenu(); //for testing death menu
 	gameEngine.start();
 
-	
+
 });

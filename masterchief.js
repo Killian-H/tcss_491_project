@@ -56,6 +56,7 @@ class masterchief {
         this.velocity = { x: 0, y: 0};
         this.beenShot = false;
         this.canRegen = true;
+        this.regAudio = true;
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
         this.armImg = this.ARMS_ASSAULT;
@@ -95,6 +96,7 @@ class masterchief {
             }
             else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
+                //ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
             this.regenTimer(1000);
@@ -105,7 +107,16 @@ class masterchief {
         //if(this.regenCount != null){
         clearTimeout(this.regenCount);
         //}
-        this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
+        if(waitTime == 4000){
+            this.regenCount = setTimeout(() => {this.canRegen = true, this.playRegen()}, waitTime);
+        }
+        else{
+            this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
+        }
+    }
+
+    playRegen(){
+        if(!this.dead){ASSET_MANAGER.playAsset("./audio/recharge.mp3")};
     }
 
     resetHealth() {

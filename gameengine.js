@@ -141,6 +141,9 @@ class GameEngine {
                 case "Digit5":
                     that.weaponFive = true;
                     break;
+                case "escape":
+                    that.escapePress = true;
+                    break;
             }
         }, false);
 
@@ -180,6 +183,9 @@ class GameEngine {
                     break;
                 case "Digit5":
                     that.weaponFive = false;
+                    break;
+                case "escape":
+                    that.escapePress = false;
                     break;
             }
         }, false);
