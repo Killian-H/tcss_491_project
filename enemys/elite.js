@@ -5,6 +5,7 @@ class Elite extends AbstractEnemy {
     IDLE = 0;
     WALK = 1;
     FULL_HEALTH = 250;
+    MAX_ARMOR = 200;
     RIGHT = 0;
     LEFT = 1;
 
@@ -22,17 +23,14 @@ class Elite extends AbstractEnemy {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.x = x;
-        this.y = y;
         this.visualRadius = 400;
         this.armImg = this.ARM_PLASMA_RIFLE;
         this.armRotation = 0;
-
+        this.armor = this.MAX_ARMOR;
         this.weapon = "pr";
         this.seen = false;
         this.aimingX = 0;
         this.aimingY = 0;
-        this.game = game;
         this.health = this.FULL_HEALTH;
         this.state = this.WALK; // 0 = idle, 1 = walk
         this.facing = this.RIGHT; // 0 = right, 1 = left
@@ -43,6 +41,9 @@ class Elite extends AbstractEnemy {
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.elapsedTime = 0;
+        this.shieldDamage = 20;
+        this.healthDamage = 15;
+        this.bulletSpeed = 550;
         this.loadAnimations();
         this.updateBoundBox();
     };
@@ -84,7 +85,7 @@ class Elite extends AbstractEnemy {
         if(!this.game.pauseb){
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
-        this.randomFireRate = Math.random() * (4 - .3) + .3;
+        this.randomFireRate = Math.random() * (1 - .3) + .3;
         var that = this;
 
         this.game.entities.forEach(function (entity) {
@@ -111,15 +112,13 @@ class Elite extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
-                    //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
                     that.armRotation =  Math.atan2 (
                         that.aimingX - that.x, 
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
-                        //console.log()
                         that.elapsedTime = 0;
-                        that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon));
+                        that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon, that.shieldDamage, that.healthDamage, that.bulletSpeed));
                         ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
                     }
 

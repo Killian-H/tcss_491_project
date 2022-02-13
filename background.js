@@ -5,9 +5,6 @@ class Background {
 
     constructor(game,x,y) {
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
         
     }
 

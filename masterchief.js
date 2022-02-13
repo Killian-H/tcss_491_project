@@ -41,7 +41,6 @@ class masterchief {
 
     constructor(game, x, y) {
         Object.assign(this, {game, x, y});
-        this.game = game;
         this.game.player = this;
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.state = this.IDLE; // 0 = idle, 1 = walking, 2 = idle crouch, 3 = crouch walking, 4 = melee, 5 = dead
@@ -49,8 +48,6 @@ class masterchief {
         this.radius = 10;
         this.armRotation = 0;
         this.headOrientation = this.RIGHT;
-        this.x = x;
-        this.y = y;
         this.positionx = this.x - this.game.camera.x;
         this.positiony = this.x - this.game.camera.y;
         this.velocity = { x: 0, y: 0};
@@ -63,9 +60,6 @@ class masterchief {
         this.velocity = { x: 0, y: 0};
         this.elapsedtime = 0;
         this.regenCount = null;
-        // this.firerate = .1;
-        // this.clickcount = 0;
-        // this.ammo = this.AMMO_DEFAULT;
         this.canshoot = true;
         this.reloadTime = 0;
         this.reloading = false;
@@ -91,15 +85,15 @@ class masterchief {
 
     checkShield(){
         if(this.canRegen){
-            if(this.armor < (this.MAX_ARMOR-9)){
-                this.armor += 10;
+            if(this.armor < (this.MAX_ARMOR-1)){
+                this.armor += 2;
             }
-            else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
+            else if(this.armor > (this.MAX_ARMOR-2) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
                 //ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
-            this.regenTimer(1000);
+            this.regenTimer(50);
         }
     }
 
@@ -107,7 +101,7 @@ class masterchief {
         //if(this.regenCount != null){
         clearTimeout(this.regenCount);
         //}
-        if(waitTime == 4000){
+        if(waitTime == 6000){
             this.regenCount = setTimeout(() => {this.playRegen()}, waitTime);
         }
         else{

@@ -3,10 +3,6 @@ class hud {
 
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
-        this.masterchief = masterchief;
-        this.game = game;
-        this.x = x;
-        this.y = y;
     }
 
     update() {

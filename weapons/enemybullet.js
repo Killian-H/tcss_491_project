@@ -3,22 +3,16 @@ class EnemyBullet {
     PLASMA_SHOT = ASSET_MANAGER.getAsset("./sprites/grunt/plasma_shot.png");
     PLASMA_RIFLE_SHOT = ASSET_MANAGER.getAsset("./sprites/elite/plasma_rifle_shot.png");
 
-    constructor(game, x, y, target, rotation, weapon) {
-        Object.assign(this, {game, x, y, target, rotation, weapon});
+    constructor(game, x, y, target, rotation, weapon, shieldDmg, healthDmg, speed) {
+        Object.assign(this, {game, x, y, target, rotation, weapon, shieldDmg, healthDmg, speed});
 
-        this.x = x;
-        this.y = y;
-        this.target = target;
         this.shot = this.PLASMA_SHOT;
-        this.weapon = weapon;
-        this.maxSpeed = 350;
-        this.rotation = rotation;
         var dist = getDistance(this.x, this.y, target.x, target.y);
         this.cache = [];
         this.removetime = false;
         setTimeout(() => {this.removetime = true}, 6000);
 
-        this.velocity = { x : (this.target.x - this.x) / dist * this.maxSpeed, y : (this.target.y - this.y) / dist *this.maxSpeed };
+        this.velocity = { x : (this.target.x - this.x) / dist * this.speed, y : (this.target.y - this.y) / dist * this.speed};
 
         this.updateBoundCircle();
     };
@@ -27,6 +21,7 @@ class EnemyBullet {
         if (this.weapon == "pr") {
             this.shot = this.PLASMA_RIFLE_SHOT
         }
+
         if (rotation < 0 || rotation > 359) return;
 
         if (!this.cache[rotation]) {
@@ -39,17 +34,17 @@ class EnemyBullet {
             let offScreenCtx = offScreenCanvas.getContext('2d');
 
             offScreenCtx.save();
-            offScreenCtx.translate(16, 16);
+            offScreenCtx.translate(13, 13);
             offScreenCtx.rotate(radians);
-            offScreenCtx.translate(-16, -16);
+            offScreenCtx.translate(-13,-13);
             offScreenCtx.drawImage(this.shot, this.shot.width, this.shot.height);
             offScreenCtx.restore();
             this.cache[rotation] = offScreenCanvas;
         }
-        var xOffset = 16;
+        var xOffset = 13;
         var yOffset = 16;
 
-        ctx.drawImage(this.cache[rotation], this.x - this.game.camera.x, this.y - this.game.camera.y);
+        ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y);
     }
     update() {
         this.x += this.velocity.x * this.game.clockTick;
@@ -62,16 +57,16 @@ class EnemyBullet {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pp") {
                 if (entity instanceof masterchief) {
-                    if (entity.armor - 12 < 0) entity.armor = 0;
-                    if (entity.health - 6 < 0) entity.health = 0;
+                    if (entity.armor - that.shieldDmg < 0) entity.armor = 0;
+                    if (entity.health - that.healthDmg < 0) entity.health = 0;
                     entity.canRegen = false;
-                    entity.regenTimer(4000);
+                    entity.regenTimer(6000);
                     entity.beenShot = true;
                     if(entity.health > 0 && entity.armor <= 0) {
-                        entity.health = entity.health - 6;
+                        entity.health = entity.health - that.healthDmg;
                     }
                     else if(entity.armor > 0){
-                        entity.armor = entity.armor - 12;
+                        entity.armor = entity.armor - that.shieldDmg;
                     }
                     that.removeFromWorld = true;
                 }
@@ -81,16 +76,16 @@ class EnemyBullet {
             }
             else if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pr") {
                 if (entity instanceof masterchief) {
-                    if (entity.armor - 14 < 0) entity.armor = 0;
-                    if (entity.health - 9 < 0) entity.health = 0;
+                    if (entity.armor - that.shieldDmg < 0) entity.armor = 0;
+                    if (entity.health - that.healthDmg < 0) entity.health = 0;
                     entity.canRegen = false;
-                    entity.regenTimer(4000);
+                    entity.regenTimer(6000);
                     entity.beenShot = true;
                     if(entity.health > 0 && entity.armor <= 0) {
-                        entity.health = entity.health - 9;
+                        entity.health = entity.health - that.healthDmg ;
                     }
                     else if(entity.armor > 0){
-                        entity.armor = entity.armor - 14;
+                        entity.armor = entity.armor - that.shieldDmg;
                     }
                     that.removeFromWorld = true;
                 }
@@ -103,7 +98,7 @@ class EnemyBullet {
 
     updateBoundCircle() {
         this.lastBC = this.BC;
-        this.BC = new BoundingCircle(this.x, this.y, 7);
+        this.BC = new BoundingCircle(this.x + 2, this.y, 7);
     };
 
     // checkHealth() {

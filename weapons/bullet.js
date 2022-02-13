@@ -33,21 +33,21 @@ class bullet {
             let radians = rotation / 360 * 2 * Math.PI;
             let offScreenCanvas = document.createElement('canvas');
 
-            offScreenCanvas.width = 32;
-            offScreenCanvas.height = 32;
+            offScreenCanvas.width = 24;
+            offScreenCanvas.height = 24;
 
             let offScreenCtx = offScreenCanvas.getContext('2d');
 
             offScreenCtx.save();
-            offScreenCtx.translate(16, 16);
+            offScreenCtx.translate(13, 8);
             offScreenCtx.rotate(radians);
-            offScreenCtx.translate(-16, -16);
+            offScreenCtx.translate(-13,-8);
             offScreenCtx.drawImage(this.spritesheet, this.spritesheet.width, this.spritesheet.height);
             offScreenCtx.restore();
             this.cache[rotation] = offScreenCanvas;
         }
-        var xOffset = 16;
-        var yOffset = 16;
+        var xOffset = 13;
+        var yOffset = 8;
 
         ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y);
     }
@@ -64,10 +64,14 @@ class bullet {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof AbstractEnemy) {
-                    // let r = ASSET_MANAGER.getRandomInt(101);
+                    if (entity.armor > 0) {
+                        entity.armor = entity.armor - that.shieldDamage;
+                        that.removeFromWorld = true;
+                    } else {
                     entity.health = entity.health - that.healthDamage;
                     entity.beenShot = true;
                     that.removeFromWorld = true;
+                    }
                 }
                 if (entity instanceof AbstractEnvironment) {
                     that.removeFromWorld = true;
@@ -78,7 +82,7 @@ class bullet {
 
     updateBoundCircle() {
         this.lastBC = this.BC;
-        this.BC = new BoundingCircle(this.x, this.y, 7);
+        this.BC = new BoundingCircle(this.x + 1, this.y - 1, 8);
     };
 
     draw(ctx){
