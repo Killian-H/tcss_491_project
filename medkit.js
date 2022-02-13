@@ -7,13 +7,13 @@ class Medkit {
         this.game = game;
         this.x = x;
         this.y = y;
-        this.BC = new BoundingCircle((this.x - this.game.camera.x)+70, (this.y- this.game.camera.y)+70, 100);
+        this.BB = new BoundingBox(this.x+3, this.y, 43, 50);
     };
 
     update() {
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity.BB && that.BC.collisionCircle(entity.BB)) {
+            if (entity.BB && that.BB.collide(entity.BB)) {
                 if (entity instanceof masterchief) {
                     if(entity.health < (entity.MAX_HEALTH-19)){
                         entity.health += 20;
@@ -31,10 +31,7 @@ class Medkit {
     draw(ctx){
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = "Red";
-            ctx.beginPath();
-            ctx.arc(this.BC.x - this.game.camera.x, this.BC.y - this.game.camera.y, this.BC.radius, 0, 2 * Math.PI);
-            ctx.closePath();
-            ctx.stroke();
+            ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
         }
         ctx.save();
         ctx.drawImage(this.MED_KIT, this.x - this.game.camera.x, this.y - this.game.camera.y,50,50)// this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH, this.HEIGHT);
