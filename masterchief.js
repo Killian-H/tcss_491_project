@@ -108,11 +108,15 @@ class masterchief {
         clearTimeout(this.regenCount);
         //}
         if(waitTime == 4000){
-            this.regenCount = setTimeout(() => {this.canRegen = true,ASSET_MANAGER.playAsset("./audio/recharge.mp3")}, waitTime);
+            this.regenCount = setTimeout(() => {this.canRegen = true, this.playRegen()}, waitTime);
         }
         else{
             this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
         }
+    }
+
+    playRegen(){
+        if(!this.dead){ASSET_MANAGER.playAsset("./audio/recharge.mp3")};
     }
 
     resetHealth() {
