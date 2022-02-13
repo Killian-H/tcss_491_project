@@ -82,7 +82,7 @@ class Elite extends AbstractEnemy {
         };
 
     update() {
-        if(!this.game.pause){
+        if(!this.game.pauseb){
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;

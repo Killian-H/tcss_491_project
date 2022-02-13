@@ -91,12 +91,12 @@ class masterchief {
 
     checkShield(){
         if(this.canRegen){
-            if(this.armor < (this.MAX_ARMOR-9)){
+            if(this.armor < (this.MAX_ARMOR-1)){
                 this.armor += 2;
             }
-            else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
+            else if(this.armor > (this.MAX_ARMOR-2) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
-                ASSET_MANAGER.playAsset("./audio/recharge.mp3");
+                //ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
             this.regenTimer(50);
