@@ -150,9 +150,9 @@ class GameEngine {
                 case "Digit5":
                     that.weaponFive = true;
                     break;
-                case "Escape":
-                    that.escapePress = true;
-                    break;
+                //case "Escape":
+                    //that.escapePress = true;
+                    //break;
             }
         }, false);
 
@@ -194,7 +194,12 @@ class GameEngine {
                     that.weaponFive = false;
                     break;
                 case "Escape":
-                    that.escapePress = false;
+                    if(that.escapePress == true){
+                        that.escapePress = false;
+                    }
+                    else if(that.escapePress == false){
+                        that.escapePress = true;
+                    }
                     break;
             }
         }, false);
