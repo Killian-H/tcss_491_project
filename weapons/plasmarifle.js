@@ -14,8 +14,8 @@ class PlasmaRifle extends AbstractWeapon {
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
         this.speed = 500;
-        this.shieldDamage = 12;
-        this.healthDamage = 4;
+        this.shieldDamage = 25;
+        this.healthDamage = 6;
         this.firerate = .15;
         this.scale = this.SCALE;
         this.canshoot = true;
