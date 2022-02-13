@@ -11,9 +11,6 @@ class Tree extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
         this.BB = new BoundingBox(this.x + 13, this.y + 108, 36, 20);
     };
 
@@ -39,9 +36,6 @@ class BigTree extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
         this.BB = new BoundingBox(this.x + 28, this.y + 13, 200, 226);
     };
 
@@ -67,9 +61,6 @@ class Rock extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
         this.BB = new BoundingBox(this.x, this.y + 2, 40, 34);
     };
 
@@ -93,9 +84,6 @@ class WallTop extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
         this.BB = new BoundingBox(this.x, this.y + 8, 128, 120);
     };
 
@@ -119,9 +107,6 @@ class Wall extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
         this.BB = new BoundingBox(this.x, this.y, 128, 128);
     };
 
@@ -148,9 +133,6 @@ class Terrain {
 
     constructor(game, x, y, type) {
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
         this.grassType = this.TYPES[type];
     };
 
@@ -168,9 +150,6 @@ class Dirt {
 
     constructor(game, x, y) {
         Object.assign(this, {game, x, y});
-        this.game = game;
-        this.x = x;
-        this.y = y;
     };
 
     update() {

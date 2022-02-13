@@ -23,8 +23,6 @@ class Elite extends AbstractEnemy {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.x = x;
-        this.y = y;
         this.visualRadius = 400;
         this.armImg = this.ARM_PLASMA_RIFLE;
         this.armRotation = 0;
@@ -33,7 +31,6 @@ class Elite extends AbstractEnemy {
         this.seen = false;
         this.aimingX = 0;
         this.aimingY = 0;
-        this.game = game;
         this.health = this.FULL_HEALTH;
         this.state = this.WALK; // 0 = idle, 1 = walk
         this.facing = this.RIGHT; // 0 = right, 1 = left
@@ -115,13 +112,11 @@ class Elite extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
-                    //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
                     that.armRotation =  Math.atan2 (
                         that.aimingX - that.x, 
                         - (that.aimingY - that.y)
                     ) - Math.PI / 2;
                     if (that.elapsedTime >= that.randomFireRate) {
-                        //console.log()
                         that.elapsedTime = 0;
                         that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon, that.shieldDamage, that.healthDamage, that.bulletSpeed));
                         ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
