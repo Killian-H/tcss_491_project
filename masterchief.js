@@ -92,14 +92,14 @@ class masterchief {
     checkShield(){
         if(this.canRegen){
             if(this.armor < (this.MAX_ARMOR-9)){
-                this.armor += 10;
+                this.armor += 2;
             }
             else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
-                //ASSET_MANAGER.playAsset("./audio/recharge.mp3");
+                ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
-            this.regenTimer(1000);
+            this.regenTimer(50);
         }
     }
 
@@ -107,7 +107,7 @@ class masterchief {
         //if(this.regenCount != null){
         clearTimeout(this.regenCount);
         //}
-        if(waitTime == 4000){
+        if(waitTime == 6000){
             this.regenCount = setTimeout(() => {this.canRegen = true, this.playRegen()}, waitTime);
         }
         else{

@@ -5,6 +5,7 @@ class Elite extends AbstractEnemy {
     IDLE = 0;
     WALK = 1;
     FULL_HEALTH = 250;
+    MAX_ARMOR = 200;
     RIGHT = 0;
     LEFT = 1;
 
@@ -27,7 +28,7 @@ class Elite extends AbstractEnemy {
         this.visualRadius = 400;
         this.armImg = this.ARM_PLASMA_RIFLE;
         this.armRotation = 0;
-
+        this.armor = this.MAX_ARMOR;
         this.weapon = "pr";
         this.seen = false;
         this.aimingX = 0;
@@ -81,7 +82,7 @@ class Elite extends AbstractEnemy {
         };
 
     update() {
-        if(!this.game.pauseb){
+        if(!this.game.pause){
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
