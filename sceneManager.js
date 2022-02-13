@@ -137,8 +137,8 @@ class SceneManager {
         this.game.addEntityToFront(this.hud);
         this.game.addEntityToFront(this.masterchief);
         this.game.addEntityToFront(this.grunt)
-        this.game.addEntityToFront(new Elite(this.game, 250, 50));
-        this.grunt2 = new Grunt(this.game, 600, 100);;
+        this.game.addEntityToFront(new Elite(this.game, 250, 400));
+        this.grunt2 = new Grunt(this.game, 600, 200);;
         this.game.addEntityToFront(this.grunt2);
         this.update();
     }
