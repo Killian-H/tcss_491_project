@@ -46,7 +46,7 @@ class Shotgun extends AbstractWeapon {
             this.ammo -= 1;
 
             for (var i = 0; i < 8; i++) {
-                this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + getRandomRange(-55, 55), this.game.mouse.y + getRandomRange(-55, 55), this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
+                this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + (getRandomRange(-.15, .15) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.game.mouse.y + (getRandomRange(-.15, .15) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
             }
             ASSET_MANAGER.playAsset("./audio/weapons/shotgun shot.mp3");
         }
