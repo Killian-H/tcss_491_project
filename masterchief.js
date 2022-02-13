@@ -102,7 +102,7 @@ class masterchief {
         clearTimeout(this.regenCount);
         //}
         if(waitTime == 6000){
-            this.regenCount = setTimeout(() => {this.canRegen = true, this.playRegen()}, waitTime);
+            this.regenCount = setTimeout(() => {this.playRegen()}, waitTime);
         }
         else{
             this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
@@ -110,7 +110,10 @@ class masterchief {
     }
 
     playRegen(){
-        if(!this.dead){ASSET_MANAGER.playAsset("./audio/recharge.mp3")};
+        if(!this.dead&&!this.game.pauseb){
+            this.canRegen = true
+            ASSET_MANAGER.playAsset("./audio/recharge.mp3");
+        }
     }
 
     resetHealth() {
@@ -194,14 +197,14 @@ class masterchief {
     };
 
     update() {
-        if(this.game.escapePress && this.game.pauseb == false){
+        if(this.game.escapePress){
             this.game.pauseb = true;
-            console.log("he"+this.game.pauseb);
         }
-        else if(this.game.escapePress && this.game.pauseb == true){
+        else if(!this.game.escapePress){
             this.game.pauseb = false;
-            console.log("no"+this.game.pauseb);
+            //this.regenCount = setTimeout(() => {this.canRegen = true}, 3000);
         }
+        if(!this.game.pauseb){
         //console.log(this.game.escapePress);
         const TICK = this.game.clockTick;
         this.checkShield();
@@ -327,6 +330,7 @@ class masterchief {
         this.positionx = this.x - this.game.camera.x;
         this.positiony = this.y - this.game.camera.y;
         this.updateBoundBox();
+        }
     };
 
     // calculateWeaponLocationX() {
@@ -346,7 +350,7 @@ class masterchief {
     // 
 
     draw(ctx) {
-
+        if(!this.game.pauseb){
         //Drawing Body
         ctx.save();
         if (!this.dead) {
@@ -406,6 +410,7 @@ class masterchief {
                 this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x -2 * 7.5, this.y - this.game.camera.y -12.5, this.SCALE);
                 setTimeout(() => {this.removeFromWorld = true}, 700);
             }
+        }
     };
     
 
