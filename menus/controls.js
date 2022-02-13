@@ -7,6 +7,7 @@ class Controls {
     NUMBERS = {x: 10, y: 360};
     NUMBERS2 = {x: 10, y: 420};
     NUMBERS3 = {x: 10, y: 480};
+    PAUSEBUTTON = {x: 10, y: 535};
     BACK = {x: 10, y: 50};
     CONTROLSPIC = ASSET_MANAGER.getAsset("./images/controlsimage.jpg");
 
@@ -42,6 +43,7 @@ class Controls {
         ctx.fillText("1 = Assault Rifle, 2 = Pistol", this.NUMBERS.x, this.NUMBERS.y);
         ctx.fillText("3 = DMR, 4 = Shotgun", this.NUMBERS2.x, this.NUMBERS2.y);
         ctx.fillText("5 = Plasma Rifle", this.NUMBERS3.x, this.NUMBERS3.y);
+        ctx.fillText("Escape = Pause Game", this.PAUSEBUTTON.x, this.PAUSEBUTTON.y);
         
 
         if (this.game.mouse != null) {
