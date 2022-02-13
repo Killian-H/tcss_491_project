@@ -22,7 +22,8 @@ class GameEngine {
         this.down = false;
         this.reload = false;
         this.pointer = null;
-        this.escape = false;
+        this.escapePress = false;
+        this.pauseb = false;
 
         // THE KILL SWITCH
         this.running = false;
@@ -52,6 +53,14 @@ class GameEngine {
             }
         };
         gameLoop();
+    };
+
+    pause(){
+        this.pauseb = true;
+    };
+
+    unpause(){
+        this.pauseb = false;
     };
 
     startInput() {
@@ -141,7 +150,7 @@ class GameEngine {
                 case "Digit5":
                     that.weaponFive = true;
                     break;
-                case "escape":
+                case "Escape":
                     that.escapePress = true;
                     break;
             }
@@ -184,7 +193,7 @@ class GameEngine {
                 case "Digit5":
                     that.weaponFive = false;
                     break;
-                case "escape":
+                case "Escape":
                     that.escapePress = false;
                     break;
             }

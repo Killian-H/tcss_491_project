@@ -51,6 +51,7 @@ class Grunt extends AbstractEnemy {
     };
 
     update() {
+        if(!this.game.pauseb){
         this.state = this.WALK;
         this.x += .1;
         this.y += .1;
@@ -100,6 +101,7 @@ class Grunt extends AbstractEnemy {
                 }
             }
         });
+        }
     };
 
     updateBoundBox() {
@@ -141,6 +143,7 @@ class Grunt extends AbstractEnemy {
     };
 
     draw(ctx) {
+        if(!this.game.pauseb){
         if (this.health <= 0) {
             this.dead = true;
             if (this.facing === this.RIGHT) {
@@ -184,6 +187,7 @@ class Grunt extends AbstractEnemy {
                 ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             }
             ctx.restore();
+        }
         }
     };
 }
