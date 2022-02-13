@@ -359,10 +359,10 @@ class masterchief {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
                 ctx.strokeRect(this.x - 6 - this.game.camera.x, this.y - 20 - this.game.camera.y, this.BB.width, this.BB.height);
-                ctx.fillText(("X: "+this.velocity.x), 850, 160);
-                ctx.fillText(("Y: "+this.velocity.y), 850, 210);
-                ctx.fillText(("Chief X: "+this.x), 750, 270);
-                ctx.fillText(("Chief Y: "+this.y), 750, 330);
+                ctx.fillText(("X: "+ (this.velocity.x).toFixed(2)), this.x - 20 - this.game.camera.x, this.y - 80 - this.game.camera.y);
+                ctx.fillText(("Y: "+ (this.velocity.y).toFixed(2)), this.x - 20 - this.game.camera.x, this.y - 60 - this.game.camera.y);
+                ctx.fillText(("Chief X: "+ (this.x).toFixed(2)), this.x - 50 - this.game.camera.x, this.y - 40 - this.game.camera.y);
+                ctx.fillText(("Chief Y: "+ (this.y).toFixed(2)),this.x - 50 - this.game.camera.x, this.y - 20 - this.game.camera.y);
             }
             }
             ctx.save();

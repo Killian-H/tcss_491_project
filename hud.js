@@ -18,12 +18,12 @@ class hud {
         ctx.fillStyle = "Black";
         ctx.strokeStyle = "Black";
         //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
-        ctx.font = 'bold 24px "Black Ops One"';
+        ctx.font = 'bold 20px "Black Ops One"';
         ctx.fillText((this.masterchief.weapon.ammo+"/"+this.masterchief.weapon.AMMO_DEFAULT), 25, 50);
         //ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
         //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
         var ratio = this.masterchief.health / this.masterchief.MAX_HEALTH;
-        ctx.font = 'bold 16px "Black Ops One"';
+        ctx.font = 'bold 12px "Black Ops One"';
         ctx.fillText(("➕"), 815, 105);
         ctx.fillStyle = "Red";
         ctx.fillRect(850, 75, 150*ratio, 40);
@@ -42,7 +42,7 @@ class hud {
         if (PARAMS.DEBUG == true) {
             ctx.fillStyle = "Black";
             ctx.strokeStyle = "Black";
-            ctx.font = 'bold 48px "Black Ops One"';
+            ctx.font = 'bold 16px "Black Ops One"';
             ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
             ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
             //var ratio3 = this.masterchief.ammo / this.masterchief.AMMO_DEFAULT;

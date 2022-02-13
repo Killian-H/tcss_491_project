@@ -182,22 +182,22 @@ class SceneManager {
             ctx.lineWidth = 2;
             ctx.strokeStyle = this.game.left ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Left", 5.5 * PARAMS.BLOCKWIDTH, 3 * PARAMS.BLOCKWIDTH);
+            ctx.fillText("Left", 6.2 * PARAMS.BLOCKWIDTH, 2.5 * PARAMS.BLOCKWIDTH);
             ctx.strokeStyle = this.game.down ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Down", 6.2 * PARAMS.BLOCKWIDTH + 2, 4 * PARAMS.BLOCKWIDTH + 2);
+            ctx.fillText("Down", 6.7 * PARAMS.BLOCKWIDTH + 2, 3 * PARAMS.BLOCKWIDTH + 2);
             ctx.strokeStyle = this.game.up ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Up", 6.8 * PARAMS.BLOCKWIDTH + 2, 2 * PARAMS.BLOCKWIDTH - 2);
+            ctx.fillText("Up", 7.0 * PARAMS.BLOCKWIDTH + 2, 2 * PARAMS.BLOCKWIDTH - 2);
             ctx.strokeStyle = this.game.right ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Right", 7.5 * PARAMS.BLOCKWIDTH + 4, 3 * PARAMS.BLOCKWIDTH);
+            ctx.fillText("Right", 7.5 * PARAMS.BLOCKWIDTH + 4, 2.5 * PARAMS.BLOCKWIDTH);
             ctx.strokeStyle = this.game.reload ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Reload", 8.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
+            ctx.fillText("Reload", 5.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
             ctx.strokeStyle = this.game.click ? "White" : "Grey";
             ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Click", 4.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
+            ctx.fillText("Click", 7.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
 
 
             ctx.translate(0, 10);
