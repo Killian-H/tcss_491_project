@@ -6,10 +6,13 @@ class hud {
     }
 
     update() {
+        if(!this.game.pauseb){
+        }
 
     }
 
     draw(ctx) {
+        if(!this.game.pauseb){
         //console.log("Hello");
         //ctx.font = 56 + 'px "Alegreya Sans"';
         ctx.fillStyle = "Black";
@@ -46,7 +49,12 @@ class hud {
             //ctx.fillRect(50, 25, 150*ratio3, 40);
         }
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
-
+        }
+        else if(this.game.pauseb){
+            ctx.font = 'bold 48px "Black Ops One"';
+            ctx.fillStyle = "Red";
+            ctx.fillText(("PAUSED"), 400, 105);
+        }
 
     }
 }

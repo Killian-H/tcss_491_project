@@ -15,6 +15,7 @@ class StartMenu {
     }
 
     update() {
+        if(!this.game.pauseb){
         if (this.game.mouse != null) {
             if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 160) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
                 && (this.game.click)) {
@@ -32,9 +33,11 @@ class StartMenu {
                 this.game.camera.loadCredits();
             }
         }
+        }
     }
 
     draw(ctx) {
+        if(!this.game.pauseb){
         ctx.drawImage(this.STARTPIC, this.x + 200, this.y + 100, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.1, this.CANVAS.h);
 
         ctx.font = 80 + 'px "Black Ops One"';
@@ -68,6 +71,7 @@ class StartMenu {
                 ctx.fillStyle = "Black";
                 ctx.fillText("Credits", this.CREDITS_POSITION.x, this.CREDITS_POSITION.y);
             }
+        }
         }
 
     }

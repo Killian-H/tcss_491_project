@@ -27,6 +27,7 @@ class PlasmaRifle extends AbstractWeapon {
     };
 
     update() {
+        if(!this.game.pauseb){
         this.x = this.game.player.x;
         this.y = this.game.player.y;
         const TICK = this.game.clockTick;
@@ -55,6 +56,7 @@ class PlasmaRifle extends AbstractWeapon {
             setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             //clearInterval(() => {clearInterval(stopShoot), this.canshoot = true}, 3000);
         }
+    }
     };
 
     getArmRotation() {
@@ -66,6 +68,8 @@ class PlasmaRifle extends AbstractWeapon {
     }
 
     draw(ctx) {
+        if(!this.game.pauseb){
+        }
         // if (this.facing == 1) {
 
         // } else {

@@ -14,6 +14,7 @@ class DeathMenu {
     }
 
     update() {
+        if(!this.game.pauseb){
         if (this.game.mouse != null) {
             if ((this.game.mouse.x - this.game.camera.x >= this.RESTART_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.RESTART_POSITION.x + 235) && (this.game.mouse.y - this.game.camera.y >= this.RESTART_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.RESTART_POSITION.y) 
                 && (this.game.click)) {
@@ -27,9 +28,11 @@ class DeathMenu {
                 this.game.camera.loadStartMenu();
             }
         }
+        }
     }
 
     draw(ctx) {
+        if(!this.game.pauseb){
         ctx.drawImage(this.DEATHPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.6, this.CANVAS.h * 1.2);
         //ctx.drawImage(this.CHIEFHEAD, this.x - 600, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 0.4, this.CANVAS.h * 0.4);
         ctx.font = 56 + 'px "Black Ops One"';
@@ -50,6 +53,7 @@ class DeathMenu {
                 ctx.fillStyle = "White";
                 ctx.fillText("Quit", this.QUIT_POSITION.x, this.QUIT_POSITION.y);
             }
+        }
         }
 
 

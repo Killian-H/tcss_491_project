@@ -19,6 +19,7 @@ class Controls {
     }
 
     update() {
+        if(!this.game.pauseb){
         if (this.game.mouse != null) {
             if ((this.game.mouse.x - this.game.camera.x >= this.BACK.x && this.game.mouse.x - this.game.camera.x <= this.BACK.x + 185) && (this.game.mouse.y - this.game.camera.y >= this.BACK.y - 40 && this.game.mouse.y - this.game.camera.y <= this.BACK.y)
                 && (this.game.click)) {
@@ -26,9 +27,11 @@ class Controls {
                 this.game.camera.loadStartMenuNoAudio();
             }
         }
+        }
     }
 
     draw(ctx) {
+        if(!this.game.pauseb){
         ctx.drawImage(this.CONTROLSPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w, this.CANVAS.h * 1.15);
         ctx.font = 56 + 'px "Black Ops One"';
         ctx.fillStyle = "White";
@@ -50,6 +53,7 @@ class Controls {
                 ctx.fillStyle = "Black";
                 ctx.fillText("<Back", this.BACK.x, this.BACK.y);
             }
+        }
         }
     }
 }
