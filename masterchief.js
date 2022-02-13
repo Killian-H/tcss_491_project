@@ -56,6 +56,7 @@ class masterchief {
         this.velocity = { x: 0, y: 0};
         this.beenShot = false;
         this.canRegen = true;
+        this.regAudio = true;
         this.health = this.MAX_HEALTH;
         this.armor = this.MAX_ARMOR;
         this.armImg = this.ARMS_ASSAULT;
@@ -95,6 +96,7 @@ class masterchief {
             }
             else if(this.armor > (this.MAX_ARMOR-10) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
+                //ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
             this.regenTimer(1000);
@@ -105,7 +107,12 @@ class masterchief {
         //if(this.regenCount != null){
         clearTimeout(this.regenCount);
         //}
-        this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
+        if(waitTime == 4000){
+            this.regenCount = setTimeout(() => {this.canRegen = true,ASSET_MANAGER.playAsset("./audio/recharge.mp3")}, waitTime);
+        }
+        else{
+            this.regenCount = setTimeout(() => {this.canRegen = true}, waitTime);
+        }
     }
 
     resetHealth() {
@@ -280,21 +287,21 @@ class masterchief {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.lastBB.bottom > entity.BB.top)) {
-                        if (that.game.down && that.BB.bottom < entity.BB.bottom) {
+                        if ((that.game.down && that.lastBB.top < entity.BB.top)) {
                             collisiony = 0;
                         }
                     }
                 }
                 if (that.velocity.y < 0 && that.lastBB.bottom > entity.BB.bottom) { // traveling up.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.top <= entity.BB.bottom) {
-                        if (that.game.up) {
+                        if (that.game.up && that.lastBB.bottom > entity.BB.bottom) {
                             collisiony = 0;
                         }
                         }
                 } 
-                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
+                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.rdight < entity.BB.right)) { // traveling right.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                            if (that.game.right && that.BB.right < entity.BB.right) {
+                            if (that.game.right && that.lastBB.left < entity.BB.left) {
                                collisionx = 0;
                             }
                         }

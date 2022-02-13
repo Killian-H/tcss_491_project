@@ -16,7 +16,7 @@ class EnemyBullet {
         var dist = getDistance(this.x, this.y, target.x, target.y);
         this.cache = [];
         this.removetime = false;
-        setTimeout(() => {this.removetime = true}, 25000);
+        setTimeout(() => {this.removetime = true}, 6000);
 
         this.velocity = { x : (this.target.x - this.x) / dist * this.maxSpeed, y : (this.target.y - this.y) / dist *this.maxSpeed };
 
