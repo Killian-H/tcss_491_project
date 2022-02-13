@@ -27,6 +27,7 @@ class EnemyBullet {
         if (this.weapon == "pr") {
             this.shot = this.PLASMA_RIFLE_SHOT
         }
+
         if (rotation < 0 || rotation > 359) return;
 
         if (!this.cache[rotation]) {
@@ -39,17 +40,17 @@ class EnemyBullet {
             let offScreenCtx = offScreenCanvas.getContext('2d');
 
             offScreenCtx.save();
-            offScreenCtx.translate(16, 16);
+            offScreenCtx.translate(13, 13);
             offScreenCtx.rotate(radians);
-            offScreenCtx.translate(-16, -16);
+            offScreenCtx.translate(-13,-13);
             offScreenCtx.drawImage(this.shot, this.shot.width, this.shot.height);
             offScreenCtx.restore();
             this.cache[rotation] = offScreenCanvas;
         }
-        var xOffset = 16;
+        var xOffset = 13;
         var yOffset = 16;
 
-        ctx.drawImage(this.cache[rotation], this.x - this.game.camera.x, this.y - this.game.camera.y);
+        ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y);
     }
     update() {
         this.x += this.velocity.x * this.game.clockTick;
@@ -103,7 +104,7 @@ class EnemyBullet {
 
     updateBoundCircle() {
         this.lastBC = this.BC;
-        this.BC = new BoundingCircle(this.x, this.y, 7);
+        this.BC = new BoundingCircle(this.x + 2, this.y, 7);
     };
 
     // checkHealth() {
