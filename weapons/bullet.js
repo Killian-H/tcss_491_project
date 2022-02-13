@@ -33,8 +33,8 @@ class bullet {
             let radians = rotation / 360 * 2 * Math.PI;
             let offScreenCanvas = document.createElement('canvas');
 
-            offScreenCanvas.width = 32;
-            offScreenCanvas.height = 32;
+            offScreenCanvas.width = 16;
+            offScreenCanvas.height = 16;
 
             let offScreenCtx = offScreenCanvas.getContext('2d');
 
