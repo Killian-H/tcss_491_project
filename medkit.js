@@ -16,10 +16,12 @@ class Medkit {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (entity instanceof masterchief) {
                     if(entity.health < (entity.MAX_HEALTH-19)){
+                        ASSET_MANAGER.playAsset("./audio/Health_Sound.mp3");
                         entity.health += 20;
                         that.removeFromWorld = true;
                     }
                     else if(entity.health > (entity.MAX_HEALTH-20) && entity.health < entity.MAX_HEALTH){
+                        ASSET_MANAGER.playAsset("./audio/Health_Sound.mp3");
                         entity.health = entity.MAX_HEALTH;
                         that.removeFromWorld = true;
                     }
