@@ -44,7 +44,7 @@ class PlasmaRifle extends AbstractWeapon {
             this.clickcount = 1;
             this.ammo -= 1;
 
-            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + getRandomRange(-40, 40), this.game.mouse.y + getRandomRange(-40, 40), this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
+            this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + (getRandomRange(-.1, .1) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.game.mouse.y + (getRandomRange(-.1, .1) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
             ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
             //this.game.click = null
         }
