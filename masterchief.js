@@ -200,6 +200,15 @@ class masterchief {
     };
 
     update() {
+        if(this.game.escapePress && this.game.pauseb == false){
+            this.game.pauseb = true;
+            console.log("he"+this.game.pauseb);
+        }
+        else if(this.game.escapePress && this.game.pauseb == true){
+            this.game.pauseb = false;
+            console.log("no"+this.game.pauseb);
+        }
+        //console.log(this.game.escapePress);
         const TICK = this.game.clockTick;
         this.checkShield();
         this.weapon.update();
