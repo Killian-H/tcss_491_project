@@ -350,11 +350,12 @@ class masterchief {
     // 
 
     draw(ctx) {
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         //Drawing Body
         ctx.save();
         if (!this.dead) {
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x - 2 * 7.5, this.y - this.game.camera.y - 12.5, this.SCALE);//this.x -2* 7.5, this.y -12.5
+            if(!this.game.pauseb){
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
                 ctx.strokeRect(this.x - 6 - this.game.camera.x, this.y - 20 - this.game.camera.y, this.BB.width, this.BB.height);
@@ -362,6 +363,7 @@ class masterchief {
                 ctx.fillText(("Y: "+this.velocity.y), 850, 210);
                 ctx.fillText(("Chief X: "+this.x), 750, 270);
                 ctx.fillText(("Chief Y: "+this.y), 750, 330);
+            }
             }
             ctx.save();
             ctx.restore();
@@ -410,7 +412,7 @@ class masterchief {
                 this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x -2 * 7.5, this.y - this.game.camera.y -12.5, this.SCALE);
                 setTimeout(() => {this.removeFromWorld = true}, 700);
             }
-        }
+        //}
     };
     
 

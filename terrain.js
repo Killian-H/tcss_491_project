@@ -15,7 +15,8 @@ class Tree extends AbstractEnvironment {
     };
 
     update() {
-
+        if(!this.game.pauseb){
+        }
     };
 
 
@@ -40,7 +41,8 @@ class BigTree extends AbstractEnvironment {
     };
 
     update() {
-
+        if(!this.game.pauseb){
+        }
     };
 
 
@@ -65,7 +67,8 @@ class Rock extends AbstractEnvironment {
     };
 
     update() {
-
+        if(!this.game.pauseb){
+        }
     };
 
     draw(ctx) {
@@ -88,7 +91,8 @@ class WallTop extends AbstractEnvironment {
     };
 
     update() {
-
+        if(!this.game.pauseb){
+        }
     };
 
     draw(ctx) {
@@ -111,7 +115,8 @@ class Wall extends AbstractEnvironment {
     };
 
     update() {
-
+        if(!this.game.pauseb){
+        }
     };
 
     draw(ctx) {
@@ -137,7 +142,8 @@ class Terrain {
     };
 
     update() {
-
+        if(!this.game.pauseb){
+        }
     };
 
     draw(ctx) {
@@ -153,7 +159,8 @@ class Dirt {
     };
 
     update() {
-
+        if(!this.game.pauseb){
+        }
     };
 
     draw(ctx) {

@@ -11,6 +11,7 @@ class DeathMenu {
         this.game = game;
         this.x = x;
         this.y = y;
+        this.game.unpause();
     }
 
     update() {
@@ -32,7 +33,7 @@ class DeathMenu {
     }
 
     draw(ctx) {
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         ctx.drawImage(this.DEATHPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.6, this.CANVAS.h * 1.2);
         //ctx.drawImage(this.CHIEFHEAD, this.x - 600, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 0.4, this.CANVAS.h * 0.4);
         ctx.font = 56 + 'px "Black Ops One"';
@@ -54,7 +55,7 @@ class DeathMenu {
                 ctx.fillText("Quit", this.QUIT_POSITION.x, this.QUIT_POSITION.y);
             }
         }
-        }
+        //}
 
 
 

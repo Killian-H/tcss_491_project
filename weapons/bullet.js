@@ -88,7 +88,7 @@ class bullet {
     };
 
     draw(ctx){
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = "Red";
             ctx.beginPath();
@@ -107,6 +107,6 @@ class bullet {
         // ctx.rotate(this.rotation);
         // ctx.drawImage(this.spritesheet, -this.spritesheet.width / 2, -this.spritesheet.height/2);
         // ctx.restore();
-    }
+        //}
     }
 }

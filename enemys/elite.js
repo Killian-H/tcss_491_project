@@ -129,7 +129,7 @@ class Elite extends AbstractEnemy {
     };
 
     draw(ctx) {
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         if (this.health <= 0) {
             this.dead = true;
             if (this.facing === this.RIGHT) {
@@ -174,6 +174,6 @@ class Elite extends AbstractEnemy {
             }
             ctx.restore();
         }
-        }
+        //}
     };
 }

@@ -55,11 +55,15 @@ class GameEngine {
         gameLoop();
     };
 
+
+    //currently pause and unpause should only be used to force a freeze / unfreeze 
     pause(){
+        this.escapePress = true;
         this.pauseb = true;
     };
 
     unpause(){
+        this.escapePress = false;
         this.pauseb = false;
     };
 

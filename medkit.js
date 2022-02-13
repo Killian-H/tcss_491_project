@@ -11,6 +11,7 @@ class Medkit {
     };
 
     update() {
+        if(!this.game.pauseb){
         var that = this;
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
@@ -28,9 +29,11 @@ class Medkit {
                 }
             }
         });
+        }
     };
 
     draw(ctx){
+        //if(!this.game.pauseb){
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = "Red";
             ctx.strokeRect(this.BB.x - this.game.camera.x, this.BB.y - this.game.camera.y, this.BB.width, this.BB.height);
@@ -38,5 +41,6 @@ class Medkit {
         ctx.save();
         ctx.drawImage(this.MED_KIT, this.x - this.game.camera.x, this.y - this.game.camera.y,50,50)// this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH, this.HEIGHT);
         ctx.restore();
+        //}
     };
 }

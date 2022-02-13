@@ -80,6 +80,7 @@ class SceneManager {
     }
 
     loadLevel(level) {
+        this.game.unpause();
         this.clearEntities();
         this.resetXanyY();
         let map = level.map.layers[0];
@@ -147,6 +148,7 @@ class SceneManager {
 
     update() {
         this.updateAudio();
+        if(!this.game.pauseb){
         var lastX = this.x;
         var lastY = this.y;
         this.x = this.masterchief.x - this.MID_POINT_X;
@@ -155,9 +157,11 @@ class SceneManager {
             this.game.mouse.x -= lastX - this.x;
             this.game.mouse.y -= lastY - this.y;
         }
+        }
     };
 
     draw(ctx) {
+        if(!this.game.pauseb){
         //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
        // ctx.font = 'bold 48px serif';
         //ctx.fillStyle = "White";
@@ -199,6 +203,7 @@ class SceneManager {
             ctx.translate(0, 10);
             ctx.strokeStyle = "White";
             ctx.fillStyle = ctx.strokeStyle;
+        }
         }
 
     };
