@@ -350,7 +350,7 @@ class masterchief {
     // 
 
     draw(ctx) {
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         //Drawing Body
         ctx.save();
         if (!this.dead) {
@@ -410,7 +410,7 @@ class masterchief {
                 this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x -2 * 7.5, this.y - this.game.camera.y -12.5, this.SCALE);
                 setTimeout(() => {this.removeFromWorld = true}, 700);
             }
-        }
+        //}
     };
     
 

@@ -108,7 +108,7 @@ class EnemyBullet {
     // };
 
     draw(ctx){
-        if(!this.game.pauseb){
+        //if(!this.game.pauseb){
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = "Red";
             ctx.beginPath();
@@ -127,7 +127,7 @@ class EnemyBullet {
         // ctx.rotate(this.rotation);
         // ctx.drawImage(this.gun, -this.gun.width / 2, -this.gun.height/2);
         // ctx.restore();
-        }
+        //}
     };
 
 };
