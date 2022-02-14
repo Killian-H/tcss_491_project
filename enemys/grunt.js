@@ -1,7 +1,7 @@
 class Grunt extends AbstractEnemy {
 
     SCALE = 1.2;
-
+    SET_VELOCITY = {x: 100, y: 100};
     IDLE = 0;
     WALK = 1;
     SCARED = 2;
@@ -53,9 +53,7 @@ class Grunt extends AbstractEnemy {
 
     update() {
         if(!this.game.pauseb){
-        this.state = this.WALK;
-        this.x += .1;
-        this.y += .1;
+        this.state = this.IDLE;
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
         this.randomFireRate = Math.random() * (4 - .3) + .3;
@@ -94,6 +92,10 @@ class Grunt extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
+                    let isMoving = that.moveTowards(entity);
+                    if(isMoving) {
+                        that.state = that.WALK;
+                    }
                     //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
                     that.armRotation =  Math.atan2 (
                         that.aimingX - that.x, 
