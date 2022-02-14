@@ -36,6 +36,7 @@ ASSET_MANAGER.queueDownload("./sprites/elite/plasma_rifle_shot.png");
 ASSET_MANAGER.queueDownload("./sprites/elite/elite_idle_left.png");
 ASSET_MANAGER.queueDownload("./sprites/elite/elite_walk_left.png");
 ASSET_MANAGER.queueDownload("./sprites/elite/elite_die_left.png");
+ASSET_MANAGER.queueDownload(("./sprites/elite/elite_shield_damage.png"));
 
 // Chief
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
@@ -130,7 +131,8 @@ ASSET_MANAGER.downloadAll(() => {
 
 	this.scene = new SceneManager(gameEngine);
 	gameEngine.addEntity(scene);
-	this.scene.loadStartMenu(); 
+	this.scene.loadSplashScreen();
+	//this.scene.loadStartMenu(); 
 	//this.scene.loadDeathMenu(); //for testing death menu
 	gameEngine.start();
 
