@@ -61,7 +61,12 @@ class Grunt extends AbstractEnemy {
         //console.log(this.randomFireRate);a
         var that = this;
         this.game.entities.forEach(function (entity) {
-            if (entity instanceof masterchief  && that.dead == false) {
+            if (entity instanceof Elite) {
+                if (canSee(that, entity) && entity.alarmGrunts == true) {
+                    that.seen = true;
+                }
+            }
+            if (entity instanceof masterchief && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
                     let r = ASSET_MANAGER.getRandomInt(25001);
                     if (r < 10) {
