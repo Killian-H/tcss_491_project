@@ -6,7 +6,7 @@ class hud {
     }
 
     update() {
-        if(!this.game.pauseb){
+        if(this.game.pauseb){
             if (this.game.mouse != null) {
                 if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185) 
                     && (this.game.click)) {
