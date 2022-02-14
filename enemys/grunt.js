@@ -27,6 +27,7 @@ class Grunt extends AbstractEnemy {
         super(game, x, y);
         Object.assign(this, {game, x, y});
         this.visualRadius = 300;
+        this.radius = 5;
         this.armImg = this.ARM_PLASMA_PISTOL;
         this.armRotation = 0;
         this.weapon = "pp";
@@ -67,7 +68,12 @@ class Grunt extends AbstractEnemy {
                     that.seen = true;
                 }
             }
-            if (entity instanceof masterchief && that.dead == false) {
+            else if (entity instanceof Grunt) {
+                if (canSee(that, entity) && entity.beenShot == true) {
+                    that.seen = true;
+                }
+            }
+            else if (entity instanceof masterchief && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
                     let r = ASSET_MANAGER.getRandomInt(25001);
                     if (r < 10) {

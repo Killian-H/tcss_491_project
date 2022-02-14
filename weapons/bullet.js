@@ -67,6 +67,7 @@ class bullet {
                 if (entity instanceof AbstractEnemy) {
                     if (entity.armor > 0) {
                         entity.armor = entity.armor - that.shieldDamage;
+                        entity.beenShot = true;
                         that.removeFromWorld = true;
                     } else {
                     entity.health = entity.health - that.healthDamage;

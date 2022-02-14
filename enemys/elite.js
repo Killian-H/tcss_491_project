@@ -27,6 +27,7 @@ class Elite extends AbstractEnemy {
         this.armImg = this.ARM_PLASMA_RIFLE;
         this.armRotation = 0;
         this.armor = this.MAX_ARMOR;
+        this.radius = 10;
         this.weapon = "pr";
         this.seen = false;
         this.aimingX = 0;
