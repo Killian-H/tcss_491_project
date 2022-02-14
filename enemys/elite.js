@@ -9,6 +9,8 @@ class Elite extends AbstractEnemy {
     RIGHT = 0;
     LEFT = 1;
 
+    // Shield
+    SHIELD = ASSET_MANAGER.getAsset("./sprites/elite/elite_shield_damage.png");
     // Right
     IDLE_RIGHT = ASSET_MANAGER.getAsset("./sprites/elite/elite_idle_right.png");
     WALK_RIGHT = ASSET_MANAGER.getAsset("./sprites/elite/elite_walk_right.png");
@@ -47,6 +49,15 @@ class Elite extends AbstractEnemy {
         this.healthDamage = 15;
         this.bulletSpeed = 550;
         this.hasNotBeenRemoved = true;
+        this.shieldEffect = [];
+        this.shieldEffect[0] = new Animator(this.SHIELD, 4, 3, 17, 23, 1, 1, false, false);
+        this.shieldEffect[1] = new Animator(this.SHIELD, 28, 5, 28, 17, 1, 1, false, false);
+        this.shieldEffect[2] = new Animator(this.SHIELD, 63, 6, 19, 15, 1, 1, false, false);
+        this.shieldEffect[3] = new Animator(this.SHIELD, 88, 3, 17, 22, 1, 1, false, false);
+        this.shieldEffect[4] = new Animator(this.SHIELD, 111, 0, 17, 28, 1, 1, false, false);
+        this.shieldEffect[5] = new Animator(this.SHIELD, 134, 5, 15, 19, 1, 1, false, false);
+        this.randomEffect = 0;
+        this.shieldBroken = false;
         this.loadAnimations();
         this.updateBoundBox();
     };
@@ -92,6 +103,7 @@ class Elite extends AbstractEnemy {
     };
 
     update() {
+        this.randomEffect = getRandomInteger(0, 5);
         if(!this.game.pauseb){
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
@@ -184,6 +196,18 @@ class Elite extends AbstractEnemy {
                 ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             }
             ctx.restore();
+            if (this.armor > 0 && this.beenShot == true) {
+                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.beenShot = false;
+            }
+            if (this.armor <= 0 && this.shieldBroken == false) {
+                this.shieldEffect[4].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldBroken = true;
+            }
         }
         //}
     };
