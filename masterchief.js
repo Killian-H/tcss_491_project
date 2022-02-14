@@ -91,7 +91,6 @@ class masterchief {
             }
             else if(this.armor > (this.MAX_ARMOR-2) && this.armor < this.MAX_ARMOR){
                 this.armor = this.MAX_ARMOR;
-                //ASSET_MANAGER.playAsset("./audio/recharge.mp3");
             }
             this.canRegen = false;
             this.regenTimer(50);
@@ -99,9 +98,7 @@ class masterchief {
     }
 
     regenTimer(waitTime){
-        //if(this.regenCount != null){
         clearTimeout(this.regenCount);
-        //}
         if(waitTime == 6000){
             this.regenCount = setTimeout(() => {this.playRegen()}, waitTime);
         }

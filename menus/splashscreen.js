@@ -17,18 +17,17 @@ class SplashScreen {
 
     update() {
         if(!this.game.pauseb){
-        if (this.game.mouse != null) {
-            if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 400) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
-                && (this.game.click)) {
-                ASSET_MANAGER.playAsset("./audio/click.wav");
-                this.game.camera.loadStartMenu();
+            if (this.game.mouse != null) {
+                if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 400) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
+                    && (this.game.click)) {
+                    ASSET_MANAGER.playAsset("./audio/click.wav");
+                    this.game.camera.loadStartMenu();
+                }
             }
-        }
         }
     }
 
     draw(ctx) {
-        //if(!this.game.pauseb){
         //ctx.drawImage(this.STARTPIC, this.x + 200, this.y + 100, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w * 1.1, this.CANVAS.h);
         ctx.fillStyle = "Black";
         ctx.fillRect(0, 0, 1024, 540);
@@ -45,7 +44,5 @@ class SplashScreen {
                 ctx.fillText("Click to Start", this.START_POSITION.x, this.START_POSITION.y);
             }
         }
-        //}
-
     }
 }
