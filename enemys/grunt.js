@@ -5,7 +5,7 @@ class Grunt extends AbstractEnemy {
     IDLE = 0;
     WALK = 1;
     SCARED = 2;
-    FULL_HEALTH = 100;
+    FULL_HEALTH = 150;
     RIGHT = 0;
     LEFT = 1;
 
