@@ -6,7 +6,19 @@ class hud {
     }
 
     update() {
-        if(!this.game.pauseb){
+        if(this.game.pauseb){
+            if (this.game.mouse != null) {
+                if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185) 
+                    && (this.game.click)) {
+                    ASSET_MANAGER.playAsset("./audio/click.wav");
+                    this.game.camera.loadLevel(new TestLevel());
+                }
+                if ((this.game.mouse.x - this.game.camera.x >= 450 && this.game.mouse.x - this.game.camera.x <= 553) && (this.game.mouse.y - this.game.camera.y >= 225 && this.game.mouse.y - this.game.camera.y <= 265)
+                    && (this.game.click)) {
+                    ASSET_MANAGER.playAsset("./audio/click.wav");
+                    this.game.camera.loadStartMenu();
+                }
+            }
         }
 
     }
@@ -54,6 +66,24 @@ class hud {
             ctx.font = 'bold 48px "Black Ops One"';
             ctx.fillStyle = "Red";
             ctx.fillText(("PAUSED"), 400, 105);
+            if (this.game.mouse != null) {
+                if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185)) {
+                    ctx.fillStyle = "Black";
+                    ctx.fillText("Restart", 400, 185);
+                }
+                else {
+                    ctx.fillStyle = "Red";
+                    ctx.fillText("Restart", 400, 185);
+                }
+                if ((this.game.mouse.x - this.game.camera.x >= 450 && this.game.mouse.x - this.game.camera.x <= 553) && (this.game.mouse.y - this.game.camera.y >= 225 && this.game.mouse.y - this.game.camera.y <= 265)) {
+                    ctx.fillStyle = "Black";
+                    ctx.fillText("Quit", 450, 265);
+                }
+                else {
+                    ctx.fillStyle = "Red";
+                    ctx.fillText("Quit", 450, 265);
+                }
+            }
         }
 
     }
