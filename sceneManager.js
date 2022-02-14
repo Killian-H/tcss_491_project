@@ -139,7 +139,7 @@ class SceneManager {
         this.game.addEntityToFront(this.masterchief);
         this.game.addEntityToFront(this.grunt)
         this.game.addEntityToFront(new Elite(this.game, 250, 400));
-        this.grunt2 = new Grunt(this.game, 600, 200);;
+        this.grunt2 = new Grunt(this.game, 1000, 200);;
         this.game.addEntityToFront(this.grunt2);
         this.medkit = new Medkit(this.game, 500, 500);
         this.game.addEntityToFront(this.medkit);
