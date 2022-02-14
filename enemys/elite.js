@@ -147,6 +147,12 @@ class Elite extends AbstractEnemy {
 
                 }
             }
+            if (entity instanceof Grunt) {
+                if (canSee(that, entity) && entity.seen == true) {
+                    that.seen = true;
+                    that.alarmGrunts = true;
+                }
+            }
         });
         }
     };
