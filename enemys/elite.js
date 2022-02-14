@@ -201,11 +201,12 @@ class Elite extends AbstractEnemy {
                 this.beenShot = false;
             }
             if (this.armor <= 0 && this.shieldBroken == false) {
+                this.shieldEffect[0].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[1].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[2].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[3].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
                 this.shieldEffect[4].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
-                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
-                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
-                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
-                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
+                this.shieldEffect[5].drawFrame(this.game.clockTick, ctx, this.x + 18 - this.game.camera.x, this.y + 10 - this.game.camera.y, 2);
                 this.shieldBroken = true;
             }
         }
