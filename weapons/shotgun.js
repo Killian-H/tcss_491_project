@@ -14,8 +14,8 @@ class Shotgun extends AbstractWeapon {
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
         this.speed = 700;
-        this.shieldDamage = 10;
-        this.healthDamage = 12;
+        this.shieldDamage = 8;
+        this.healthDamage = 10;
         this.firerate = .8;
         this.scale = this.SCALE;
         this.canshoot = true;

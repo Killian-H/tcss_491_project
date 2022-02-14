@@ -14,8 +14,8 @@ class DMR extends AbstractWeapon {
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
         this.speed = 750;
-        this.shieldDamage = 25;
-        this.healthDamage = 50;
+        this.shieldDamage = 20;
+        this.healthDamage = 45;
         this.firerate = .35;
         this.scale = this.SCALE;
         this.canshoot = true;
