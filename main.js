@@ -131,7 +131,8 @@ ASSET_MANAGER.downloadAll(() => {
 
 	this.scene = new SceneManager(gameEngine);
 	gameEngine.addEntity(scene);
-	this.scene.loadStartMenu(); 
+	this.scene.loadSplashScreen();
+	//this.scene.loadStartMenu(); 
 	//this.scene.loadDeathMenu(); //for testing death menu
 	gameEngine.start();
 

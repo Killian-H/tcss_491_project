@@ -38,6 +38,13 @@ class SceneManager {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
 
+    loadSplashScreen(){
+        this.clearEntities();
+        this.splashscreen = new SplashScreen(this.game, 0, 0);
+        this.game.addEntity(this.splashscreen);
+        this.update();
+    }
+
     loadStartMenu() {
         this.clearEntities();
         this.startmenu = new StartMenu(this.game, 0, 0);
