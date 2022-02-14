@@ -32,6 +32,7 @@ class hud {
         //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
         ctx.font = 'bold 20px "Black Ops One"';
         ctx.fillText((this.masterchief.weapon.ammo+"/"+this.masterchief.weapon.AMMO_DEFAULT), 25, 50);
+        ctx.fillText(("Enemies remaining "+this.game.enemiesInLevel), 400, 50);
         //ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
         //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
         var ratio = this.masterchief.health / this.masterchief.MAX_HEALTH;

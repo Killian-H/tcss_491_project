@@ -45,6 +45,7 @@ class Elite extends AbstractEnemy {
         this.shieldDamage = 20;
         this.healthDamage = 15;
         this.bulletSpeed = 550;
+        this.hasNotBeenRemoved = true;
         this.loadAnimations();
         this.updateBoundBox();
     };
@@ -81,6 +82,13 @@ class Elite extends AbstractEnemy {
             this.animations[1][1] = new Animator(this.WALK_LEFT, 32, 0, 45, 54, 8, 0.08, true, true);
 
         };
+
+    removeCounter(){
+        if(this.removeFromWorld == true && this.hasNotBeenRemoved == true){
+            this.game.enemiesInLevel -= 1
+            this.hasNotBeenRemoved = false;
+        }
+    };
 
     update() {
         if(!this.game.pauseb){
@@ -139,7 +147,7 @@ class Elite extends AbstractEnemy {
             } else {
                 this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.65);
             }
-            setTimeout(() => {this.removeFromWorld = true}, 800);
+            setTimeout(() => {this.removeFromWorld = true,this.removeCounter()}, 800);
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';

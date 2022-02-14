@@ -46,6 +46,7 @@ class Grunt extends AbstractEnemy {
         this.shieldDamage = 15;
         this.healthDamage = 8;
         this.bulletSpeed = 450;
+        this.hasNotBeenRemoved = true;
         this.loadAnimations();
         this.updateBoundBox();
     };
@@ -147,6 +148,13 @@ class Grunt extends AbstractEnemy {
         // facing left = 1
     };
 
+    removeCounter(){
+        if(this.removeFromWorld == true && this.hasNotBeenRemoved == true){
+            this.game.enemiesInLevel -= 1
+            this.hasNotBeenRemoved = false;
+        }
+    };
+
     draw(ctx) {
         //if(!this.game.pauseb){
         if (this.health <= 0) {
@@ -156,7 +164,7 @@ class Grunt extends AbstractEnemy {
             } else if (this.facing === this.LEFT) {
                 this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             }
-            setTimeout(() => {this.removeFromWorld = true}, 800);
+            setTimeout(() => {this.removeFromWorld = true,this.removeCounter()}, 800);
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
