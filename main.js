@@ -10,6 +10,7 @@ ASSET_MANAGER.queueDownload("./images/gameoverscreen.jpg");
 ASSET_MANAGER.queueDownload("./images/creditsimage.jpg");
 ASSET_MANAGER.queueDownload("./images/controlsimage.jpg");
 ASSET_MANAGER.queueDownload("./images/chiefheadimage.png");
+ASSET_MANAGER.queueDownload("./images/halo_the_master_chief.jpg");
 
 
 // Grunt
@@ -94,6 +95,7 @@ ASSET_MANAGER.queueDownload("./audio/walking.mp3");
 ASSET_MANAGER.queueDownload("./audio/stopping.mp3");
 ASSET_MANAGER.queueDownload("./audio/recharge.mp3");
 ASSET_MANAGER.queueDownload("./audio/Health_Sound.mp3");
+ASSET_MANAGER.queueDownload("./audio/victory_sound.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntpee.mp3");

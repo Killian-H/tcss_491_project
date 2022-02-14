@@ -47,6 +47,17 @@ class SceneManager {
         this.update();
     }
 
+    loadWinMenu() {
+        this.sleep(1000).then(() => {
+            this.clearEntities();
+            ASSET_MANAGER.pauseBackgroundMusic();
+            this.winmenu = new WinMenu(this.game, 0, 0);
+            this.game.addEntityToFront(this.winmenu);
+            this.update();
+            ASSET_MANAGER.playAsset("./audio/victory_sound.mp3");
+        });
+    } 
+
     loadStartMenuNoAudio() {
         this.clearEntities();
         this.startmenu = new StartMenu(this.game, 0, 0);

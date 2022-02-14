@@ -110,7 +110,7 @@ class masterchief {
     }
 
     playRegen(){
-        if(!this.dead&&!this.game.pauseb){
+        if(!this.dead&&!this.game.pauseb&&!this.game.win){
             this.canRegen = true
             ASSET_MANAGER.playAsset("./audio/recharge.mp3");
         }

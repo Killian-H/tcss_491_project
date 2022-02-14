@@ -237,6 +237,11 @@ class GameEngine {
         if(this.enemiesInLevel == 0){
             this.win = true;
         }
+        if(this.win == true){
+            this.camera.loadWinMenu();
+            this.win = false;
+            this.enemiesInLevel = -1;
+        }
         // Update Entities
         this.entities.forEach(entity => entity.update(this));
 
