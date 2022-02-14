@@ -27,6 +27,7 @@ class GameEngine {
 
         this.win = false;
         this.enemiesInLevel = -1;
+        this.chiefDone = false;
 
         // THE KILL SWITCH
         this.running = false;
@@ -238,9 +239,9 @@ class GameEngine {
             this.win = true;
         }
         if(this.win == true){
-            this.camera.loadWinMenu();
+            this.chiefDone = true;
             this.win = false;
-            this.enemiesInLevel = -1;
+            this.camera.loadWinMenu();
         }
         // Update Entities
         this.entities.forEach(entity => entity.update(this));

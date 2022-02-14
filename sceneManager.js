@@ -48,13 +48,14 @@ class SceneManager {
     }
 
     loadWinMenu() {
-        this.sleep(1000).then(() => {
+        this.sleep(100).then(() => {
+            this.game.enemiesInLevel = -1;
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.winmenu = new WinMenu(this.game, 0, 0);
             this.game.addEntityToFront(this.winmenu);
-            this.update();
             ASSET_MANAGER.playAsset("./audio/victory_sound.mp3");
+            this.update();
         });
     } 
 
