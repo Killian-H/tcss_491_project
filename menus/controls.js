@@ -43,7 +43,7 @@ class Controls {
         ctx.fillText("Left Click = Shoot Weapon", this.LEFT_CLICK.x, this.LEFT_CLICK.y);
         ctx.fillText("1 = Assault Rifle, 2 = Pistol", this.NUMBERS.x, this.NUMBERS.y);
         ctx.fillText("3 = DMR, 4 = Shotgun", this.NUMBERS2.x, this.NUMBERS2.y);
-        ctx.fillText("5 = Battle Rifle", this.NUMBERS3.x, this.NUMBERS3.y);
+        ctx.fillText("5 = Plasma Rifle", this.NUMBERS3.x, this.NUMBERS3.y);
         ctx.fillText("Escape = Pause Game", this.PAUSEBUTTON.x, this.PAUSEBUTTON.y);
         
 
