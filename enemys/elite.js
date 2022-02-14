@@ -31,6 +31,7 @@ class Elite extends AbstractEnemy {
         this.seen = false;
         this.aimingX = 0;
         this.aimingY = 0;
+        this.alarmGrunts = false;
         this.health = this.FULL_HEALTH;
         this.state = this.WALK; // 0 = idle, 1 = walk
         this.facing = this.RIGHT; // 0 = right, 1 = left
@@ -91,6 +92,7 @@ class Elite extends AbstractEnemy {
         this.game.entities.forEach(function (entity) {
             if (entity instanceof masterchief  && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
+                    that.alarmGrunts = true;
                     let r = ASSET_MANAGER.getRandomInt(25001);
                     if (r < 10) {
                         ASSET_MANAGER.playAsset("./audio/elite/elitelaugh1.mp3");

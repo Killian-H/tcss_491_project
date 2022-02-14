@@ -77,6 +77,10 @@ class bullet {
                 if (entity instanceof AbstractEnvironment) {
                     that.removeFromWorld = true;
                 }
+                if (entity instanceof Elite) {
+                    entity.alarmGrunts = true;
+                    that.removeFromWorld = true;
+                }
             }
         }); 
     }  
