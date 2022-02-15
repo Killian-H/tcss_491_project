@@ -147,12 +147,8 @@ class SceneManager {
             currY += this.TILE_WIDTH;
             
         }
-<<<<<<< HEAD
         //this.game.addEntity(new Background(this.game, 0, 0));
         this.grunt = new Grunt(this.game, 200, 200);
-=======
-        //reset chief for restart
->>>>>>> 9b357e37c55992791ded86ae8b7f3cb7ac866044
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
