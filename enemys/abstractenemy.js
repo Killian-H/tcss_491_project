@@ -5,7 +5,6 @@ class AbstractEnemy {
         this.velocity = { x: 0, y: 0};
     }
     moveTowards(entity) {
-        console.log("Inside moveTowards.");
         let isMovingX = false;
         let isMovingY = false;
         if(entity.x > this.x) { //move right
