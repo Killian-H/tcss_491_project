@@ -40,6 +40,7 @@ ASSET_MANAGER.queueDownload("./sprites/elite/elite_die_left.png");
 ASSET_MANAGER.queueDownload(("./sprites/elite/elite_shield_damage.png"));
 
 // Chief
+ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_shield_damage.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_top_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_bottom_right.png");

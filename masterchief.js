@@ -20,6 +20,7 @@ class masterchief {
     DEAD = 5;
 
 
+    SHIELD = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_shield_damage.png");
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
     HEAD_FORWARD = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_right.png");
     HEAD_TILT_UP = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_head_top_right.png");_
@@ -63,6 +64,15 @@ class masterchief {
         this.canshoot = true;
         this.reloadTime = 0;
         this.reloading = false;
+        this.shieldEffect = [];
+        this.shieldEffect[0] = new Animator(this.SHIELD, 4, 3, 17, 23, 1, 1, false, false);
+        this.shieldEffect[1] = new Animator(this.SHIELD, 28, 5, 28, 17, 1, 1, false, false);
+        this.shieldEffect[2] = new Animator(this.SHIELD, 63, 6, 19, 15, 1, 1, false, false);
+        this.shieldEffect[3] = new Animator(this.SHIELD, 88, 3, 17, 22, 1, 1, false, false);
+        this.shieldEffect[4] = new Animator(this.SHIELD, 111, 0, 17, 28, 1, 1, false, false);
+        this.shieldEffect[5] = new Animator(this.SHIELD, 134, 5, 15, 19, 1, 1, false, false);
+        this.randomEffect = 0;
+        this.shieldBroken = false;
         this.weaponArray = [];
         this.weaponArray[0] = new AssaultRifle(this.game, this.x, this.y);
         this.weaponArray[1] = new Pistol(this.game, this.x, this.y);
@@ -195,6 +205,7 @@ class masterchief {
     };
 
     update() {
+        this.randomEffect = getRandomInteger(0, 5);
         if(this.game.win == true){
             this.gameDone = true;
         }
@@ -409,6 +420,19 @@ class masterchief {
                 ctx.drawImage(this.weapon.draw, -this.weapon.draw.width / 2, -this.weapon.draw.height/2, this.weapon.draw.width * this.SCALE, this.weapon.draw.height * this.SCALE);
             }
             ctx.restore();
+            if (this.armor > 0 && this.beenShot == true) {
+                this.shieldEffect[this.randomEffect].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 2);
+                this.beenShot = false;
+            }
+            if (this.armor <= 0 && this.shieldBroken == false) {
+                this.shieldEffect[0].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 2);
+                this.shieldEffect[1].drawFrame(this.game.clockTick, ctx, this.x- this.game.camera.x, this.y + 1 - this.game.camera.y, 2);
+                this.shieldEffect[2].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 2 - this.game.camera.y, 2);
+                this.shieldEffect[3].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 3 - this.game.camera.y, 2);
+                this.shieldEffect[4].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 4 - this.game.camera.y, 2);
+                this.shieldEffect[5].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y + 5 - this.game.camera.y, 2);
+                this.shieldBroken = true;
+            }
         } else {
                 this.animations[this.DEAD][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x -2 * 7.5, this.y - this.game.camera.y -12.5, this.SCALE);
                 setTimeout(() => {this.removeFromWorld = true}, 700);
