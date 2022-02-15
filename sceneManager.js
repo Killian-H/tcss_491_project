@@ -149,7 +149,6 @@ class SceneManager {
         }
         //
         //this.game.addEntity(new Background(this.game, 0, 0));
-        this.grunt = new Grunt(this.game, 200, 200);
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
