@@ -147,7 +147,6 @@ class SceneManager {
             currY += this.TILE_WIDTH;
             
         }
-        //
         //this.game.addEntity(new Background(this.game, 0, 0));
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
