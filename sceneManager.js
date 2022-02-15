@@ -147,24 +147,29 @@ class SceneManager {
             currY += this.TILE_WIDTH;
             
         }
+<<<<<<< HEAD
         //this.game.addEntity(new Background(this.game, 0, 0));
         this.grunt = new Grunt(this.game, 200, 200);
+=======
+        //reset chief for restart
+>>>>>>> 9b357e37c55992791ded86ae8b7f3cb7ac866044
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
+        //add in masterchief and HUD
         this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntityToFront(this.hud);
         this.game.addEntityToFront(this.masterchief);
-        this.game.addEntityToFront(this.grunt)
+        //add in enemys
         this.game.addEntityToFront(new Elite(this.game, 250, 400));
         this.game.addEntityToFront(new Grunt(this.game, 1600, 400));
+        this.game.addEntityToFront(new Grunt(this.game, 200, 200));
+        this.game.addEntityToFront(new Grunt(this.game, 1000, 200));
         this.game.addEntityToFront(new Elite(this.game, 1600, 500));
-        this.grunt2 = new Grunt(this.game, 1000, 200);;
-        this.game.addEntityToFront(this.grunt2);
-        this.medkit = new Medkit(this.game, 500, 500);
-        this.game.addEntityToFront(this.medkit);
+        //add in powerups
+        this.game.addEntityToFront(new Medkit(this.game, 500, 500));
         this.game.enemiesInLevel = 5;
         this.update();
     }
@@ -172,61 +177,48 @@ class SceneManager {
     update() {
         this.updateAudio();
         if(!this.game.pauseb){
-        var lastX = this.x;
-        var lastY = this.y;
-        this.x = this.masterchief.x - this.MID_POINT_X;
-        this.y = this.masterchief.y - this.MID_POINT_Y;
-        if (this.game.mouse) {
-            this.game.mouse.x -= lastX - this.x;
-            this.game.mouse.y -= lastY - this.y;
-        }
+            var lastX = this.x;
+            var lastY = this.y;
+            this.x = this.masterchief.x - this.MID_POINT_X;
+            this.y = this.masterchief.y - this.MID_POINT_Y;
+            if (this.game.mouse) {
+                this.game.mouse.x -= lastX - this.x;
+                this.game.mouse.y -= lastY - this.y;
+            }
         }
     };
 
     draw(ctx) {
         if(!this.game.pauseb){
-        //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
-       // ctx.font = 'bold 48px serif';
-        //ctx.fillStyle = "White";
-        //ctx.strokeStyle = "White";
-        //commented out because it appears on home screen
-        //ctx.fillText((this.masterchief.ammo+"/"+this.masterchief.AMMO_DEFAULT), 25, 50);
-        //ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
-        //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
-        //if(this.masterchief.health == 0){
-            //ctx.fillText("Game Over 💀", 350, 250);
-        //}
-        //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
-        if (PARAMS.DEBUG == true) {
+            if (PARAMS.DEBUG == true) {
             
-            ctx.fillStyle = "White";
-            ctx.translate(0, -10); // hack to move elements up by 10 pixels instead of adding -10 to all y coordinates below
-            ctx.strokeStyle = "White";
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = this.game.left ? "White" : "Grey";
-            ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Left", 6.2 * PARAMS.BLOCKWIDTH, 2.5 * PARAMS.BLOCKWIDTH);
-            ctx.strokeStyle = this.game.down ? "White" : "Grey";
-            ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Down", 6.7 * PARAMS.BLOCKWIDTH + 2, 3 * PARAMS.BLOCKWIDTH + 2);
-            ctx.strokeStyle = this.game.up ? "White" : "Grey";
-            ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Up", 7.0 * PARAMS.BLOCKWIDTH + 2, 2 * PARAMS.BLOCKWIDTH - 2);
-            ctx.strokeStyle = this.game.right ? "White" : "Grey";
-            ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Right", 7.5 * PARAMS.BLOCKWIDTH + 4, 2.5 * PARAMS.BLOCKWIDTH);
-            ctx.strokeStyle = this.game.reload ? "White" : "Grey";
-            ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Reload", 5.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
-            ctx.strokeStyle = this.game.click ? "White" : "Grey";
-            ctx.fillStyle = ctx.strokeStyle;
-            ctx.fillText("Click", 7.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
+                ctx.fillStyle = "White";
+                ctx.translate(0, -10); // hack to move elements up by 10 pixels instead of adding -10 to all y coordinates below
+                ctx.strokeStyle = "White";
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = this.game.left ? "White" : "Grey";
+                ctx.fillStyle = ctx.strokeStyle;
+                ctx.fillText("Left", 6.2 * PARAMS.BLOCKWIDTH, 2.5 * PARAMS.BLOCKWIDTH);
+                ctx.strokeStyle = this.game.down ? "White" : "Grey";
+                ctx.fillStyle = ctx.strokeStyle;
+                ctx.fillText("Down", 6.7 * PARAMS.BLOCKWIDTH + 2, 3 * PARAMS.BLOCKWIDTH + 2);
+                ctx.strokeStyle = this.game.up ? "White" : "Grey";
+                ctx.fillStyle = ctx.strokeStyle;
+                ctx.fillText("Up", 7.0 * PARAMS.BLOCKWIDTH + 2, 2 * PARAMS.BLOCKWIDTH - 2);
+                ctx.strokeStyle = this.game.right ? "White" : "Grey";
+                ctx.fillStyle = ctx.strokeStyle;
+                ctx.fillText("Right", 7.5 * PARAMS.BLOCKWIDTH + 4, 2.5 * PARAMS.BLOCKWIDTH);
+                ctx.strokeStyle = this.game.reload ? "White" : "Grey";
+                ctx.fillStyle = ctx.strokeStyle;
+                ctx.fillText("Reload", 5.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
+                ctx.strokeStyle = this.game.click ? "White" : "Grey";
+                ctx.fillStyle = ctx.strokeStyle;
+                ctx.fillText("Click", 7.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
 
-
-            ctx.translate(0, 10);
-            ctx.strokeStyle = "White";
-            ctx.fillStyle = ctx.strokeStyle;
-        }
+                ctx.translate(0, 10);
+                ctx.strokeStyle = "White";
+                ctx.fillStyle = ctx.strokeStyle;
+            }
         }
 
     };
