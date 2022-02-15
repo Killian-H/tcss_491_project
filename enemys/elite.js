@@ -179,6 +179,14 @@ class Elite extends AbstractEnemy {
                 ctx.stroke();
                 ctx.setLineDash([]);
             }
+            if(this.seen == true){
+                var ratio = this.health / this.FULL_HEALTH;
+                var ratio2 = this.armor / this.MAX_ARMOR;
+                ctx.fillStyle = "Red";
+                ctx.fillRect(this.x - this.game.camera.x-4, this.y- this.game.camera.y -8, 75*ratio, 7);
+                ctx.fillStyle = "Blue";
+                ctx.fillRect(this.x - this.game.camera.x-4, this.y- this.game.camera.y -15, 75*ratio2, 7);
+            }
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.65);
             ctx.save();
             ctx.translate(
