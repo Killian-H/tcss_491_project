@@ -66,9 +66,16 @@ class bullet {
             if (entity.BB && that.BC.collisionCircle(entity.BB)) {
                 if (entity instanceof AbstractEnemy) {
                     if (entity.armor > 0) {
-                        entity.armor = entity.armor - that.shieldDamage;
-                        entity.beenShot = true;
-                        that.removeFromWorld = true;
+                        if(entity.armor - that.shieldDamage < 0){
+                            entity.armor = 0;
+                            entity.beenShot = true;
+                            that.removeFromWorld = true;
+                        }
+                        else {
+                            entity.armor = entity.armor - that.shieldDamage;
+                            entity.beenShot = true;
+                            that.removeFromWorld = true;
+                        }
                     } else {
                     entity.health = entity.health - that.healthDamage;
                     entity.beenShot = true;
