@@ -41,10 +41,13 @@ class AbstractEnemy {
             this.velocity.y = 0;
             isMovingY = false
         }
-        
+        if (isMovingX && isMovingY) {
+            this.velocity.x = (this.velocity.x / 2) * Math.sqrt(2);
+            this.velocity.y = (this.velocity.y / 2) * Math.sqrt(2);
+        }
         this.x += this.velocity.x;
         this.y += this.velocity.y;
-    return isMovingX || isMovingY;
+        return isMovingX || isMovingY;
     };
 
     moveAway(entity) {
@@ -72,6 +75,10 @@ class AbstractEnemy {
             isMovingY = false
         }
         
+        if (isMovingX && isMovingY) {
+            this.velocity.x = (this.velocity.x / 2) * Math.sqrt(2);
+            this.velocity.y = (this.velocity.y / 2) * Math.sqrt(2);
+        }
         this.x += this.velocity.x;
         this.y += this.velocity.y;
     return isMovingX || isMovingY;
@@ -80,14 +87,10 @@ class AbstractEnemy {
     randomMovement(entity) {
         let isMovingX = false;
         let isMovingY = false;
-        let random = getRandomInteger(0,1);
-        if (random == 0) {
             this.velocity.x = getRandomRange(-1, 1) * (this.SET_VELOCITY.x * this.game.clockTick);
             isMovingX = true;
-        } else {
             this.velocity.y = getRandomRange(-1, 1) * (this.SET_VELOCITY.y * this.game.clockTick);
             isMovingY = true;
-        }
         this.x += this.velocity.x;
         this.y += this.velocity.y;
         return isMovingX || isMovingY;
