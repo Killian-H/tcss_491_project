@@ -168,8 +168,9 @@ class SceneManager {
         this.game.addEntityToFront(new Grunt(this.game, 200, 800));
         this.game.addEntityToFront(new Grunt(this.game, 1000, 200));
         this.game.addEntityToFront(new Elite(this.game, 1600, 500));
-        //add in powerups
+        //add in powerups/weapons
         this.game.addEntityToFront(new Medkit(this.game, 500, 500));
+        this.game.addEntityToFront(new DMRPickup(this.game, 400, 400));
         this.update();
     }
 

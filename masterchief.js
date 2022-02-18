@@ -223,11 +223,11 @@ class masterchief {
         this.weapon.update();
         if (this.game.weaponOne) {
             ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
-            this.weapon = this.weaponArray[0]
+            this.weapon = this.weaponArray[0];
         } else if (this.game.weaponTwo) {
             ASSET_MANAGER.playAsset("./audio/weapons/pistol switch.mp3");
-            this.weapon = this.weaponArray[1]
-        } else if (this.game.weaponThree) {
+            this.weapon = this.weaponArray[1];
+        } else if (this.game.weaponThree && this.weaponArray[2].unlocked) {
             ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
             this.weapon = this.weaponArray[2];
         } else if (this.game.weaponFour) {
