@@ -162,6 +162,7 @@ class SceneManager {
         this.game.addEntityToFront(this.hud);
         this.game.addEntityToFront(this.masterchief);
         //add in enemys
+        this.game.enemiesInLevel = 0;
         this.game.addEntityToFront(new Elite(this.game, 250, 750));
         this.game.addEntityToFront(new Grunt(this.game, 1600, 400));
         this.game.addEntityToFront(new Grunt(this.game, 200, 800));
@@ -169,7 +170,6 @@ class SceneManager {
         this.game.addEntityToFront(new Elite(this.game, 1600, 500));
         //add in powerups
         this.game.addEntityToFront(new Medkit(this.game, 500, 500));
-        this.game.enemiesInLevel = 5;
         this.update();
     }
 

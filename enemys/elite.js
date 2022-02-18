@@ -58,6 +58,7 @@ class Elite extends AbstractEnemy {
         this.shieldEffect[5] = new Animator(this.SHIELD, 134, 5, 15, 19, 1, 1, false, false);
         this.randomEffect = 0;
         this.shieldBroken = false;
+        this.game.enemiesInLevel += 1;
         this.loadAnimations();
         this.updateBoundBox();
     };
