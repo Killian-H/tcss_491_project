@@ -8,7 +8,7 @@
  "margin":0,
  "name":"KillianTileSetV2",
  "spacing":0,
- "tilecount":30,
+ "tilecount":35,
  "tiledversion":"1.7.2",
  "tileheight":256,
  "tiles":[
@@ -191,6 +191,36 @@
          "image":"..\/sprites\/terrain\/big_tree.png",
          "imageheight":256,
          "imagewidth":256
+        }, 
+        {
+         "id":37,
+         "image":"..\/sprites\/hud_display\/plasma_rifle.png",
+         "imageheight":12,
+         "imagewidth":19
+        }, 
+        {
+         "id":38,
+         "image":"..\/sprites\/hud_display\/shotgun.png",
+         "imageheight":9,
+         "imagewidth":34
+        }, 
+        {
+         "id":39,
+         "image":"..\/sprites\/hud_display\/dmr.png",
+         "imageheight":13,
+         "imagewidth":30
+        }, 
+        {
+         "id":40,
+         "image":"..\/sprites\/elite\/elite_idle_right.png",
+         "imageheight":51,
+         "imagewidth":30
+        }, 
+        {
+         "id":41,
+         "image":"..\/sprites\/grunt\/grunt_idle.png",
+         "imageheight":39,
+         "imagewidth":27
         }],
  "tilewidth":256,
  "type":"tileset",
