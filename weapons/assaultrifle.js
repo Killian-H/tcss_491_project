@@ -42,7 +42,6 @@ class AssaultRifle extends AbstractWeapon {
             }
 
             this.elapsedtime += TICK;
-            //console.log(this.elapsedtime);
             if(this.game.click != null && this.elapsedtime > this.firerate && this.ammo > 0 && !this.game.reload && this.canshoot) {
                 this.elapsedtime = 0;
                 this.clickcount = 1;
@@ -50,7 +49,6 @@ class AssaultRifle extends AbstractWeapon {
 
                 this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + (getRandomRange(-.1, .1) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.game.mouse.y + (getRandomRange(-.1, .1) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.armRotation, this.speed, this.BULLET_SPRITE, this.shieldDamage, this.healthDamage));
                 ASSET_MANAGER.playAsset("./audio/weapons/ar single.mp3");
-                //this.game.click = null
             }
 
             if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
