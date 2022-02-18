@@ -42,6 +42,7 @@ ASSET_MANAGER.queueDownload("./sprites/elite/elite_die_left.png");
 ASSET_MANAGER.queueDownload(("./sprites/elite/elite_shield_damage.png"));
 
 // Chief
+ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_shield_damage.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_top_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_bottom_right.png");
@@ -74,6 +75,9 @@ ASSET_MANAGER.queueDownload("./sprites/bullet.png");
 // medkit
 ASSET_MANAGER.queueDownload("./images/healthpack.png");
 
+// pelican
+ASSET_MANAGER.queueDownload("./images/pelican.png");
+
 // music
 ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
 
@@ -100,6 +104,8 @@ ASSET_MANAGER.queueDownload("./audio/stopping.mp3");
 ASSET_MANAGER.queueDownload("./audio/recharge.mp3");
 ASSET_MANAGER.queueDownload("./audio/Health_Sound.mp3");
 ASSET_MANAGER.queueDownload("./audio/victory_sound.mp3");
+
+ASSET_MANAGER.queueDownload("./audio/takeoff.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntscream.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntpee.mp3");

@@ -281,14 +281,7 @@ class GameEngine {
         this.draw();
     };
 
-    addEntityToFront(entity) {
-        
-        this.entities.splice(3, 0, entity);
-    };
-
     get["deltaTime"]() { return this.clockTick; }
     get["width"]() { return this.ctx?.canvas?.width || 0; }
     get["height"]() { return this.ctx?.canvas?.height || 0; }
 };
-
-// KV Le was here :)

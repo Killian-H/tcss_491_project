@@ -65,9 +65,11 @@ class EnemyBullet {
                     entity.beenShot = true;
                     if(entity.health > 0 && entity.armor <= 0) {
                         entity.health = entity.health - that.healthDmg;
+                        entity.beenShot = true;
                     }
                     else if(entity.armor > 0){
                         entity.armor = entity.armor - that.shieldDmg;
+                        entity.beenShot = true;
                     }
                     that.removeFromWorld = true;
                 }
@@ -84,9 +86,11 @@ class EnemyBullet {
                     entity.beenShot = true;
                     if(entity.health > 0 && entity.armor <= 0) {
                         entity.health = entity.health - that.healthDmg ;
+                        entity.beenShot = true;
                     }
                     else if(entity.armor > 0){
                         entity.armor = entity.armor - that.shieldDmg;
+                        entity.beenShot = true;
                     }
                     that.removeFromWorld = true;
                 }
