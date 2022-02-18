@@ -60,7 +60,7 @@ class SceneManager {
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.winmenu = new WinMenu(this.game, 0, 0);
-            this.game.addEntityToFront(this.winmenu);
+            this.game.addEntity(this.winmenu);
             ASSET_MANAGER.playAsset("./audio/victory_sound.mp3");
             this.update();
         });
@@ -78,7 +78,7 @@ class SceneManager {
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.deathmenu = new DeathMenu(this.game, 0, 0);
-            this.game.addEntityToFront(this.deathmenu);
+            this.game.addEntity(this.deathmenu);
             this.update();
             ASSET_MANAGER.playAsset("./audio/gameover.mp3");
         });
@@ -87,14 +87,14 @@ class SceneManager {
     loadControls() {
         this.clearEntities();
         this.controls = new Controls(this.game, 0, 0);
-        this.game.addEntityToFront(this.controls);
+        this.game.addEntity(this.controls);
         this.update();
     }
 
     loadCredits() {
         this.clearEntities();
         this.credits = new Credits(this.game, 0, 0);
-        this.game.addEntityToFront(this.credits);
+        this.game.addEntity(this.credits);
         this.update();
     }
 
@@ -102,6 +102,27 @@ class SceneManager {
         this.game.unpause();
         this.clearEntities();
         this.resetXanyY();
+        //intro
+        this.pelican = new Pelican(this.game, 200, 200);
+        this.game.addEntity(this.pelican);
+        ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
+        //add in masterchief and HUD
+        this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
+        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
+        this.game.addEntity(this.hud);
+        this.game.addEntity(this.masterchief);
+        //add in enemys
+       this.game.enemiesInLevel = 0;
+        this.game.addEntity(new Elite(this.game, 250, 750));
+        this.game.addEntity(new Grunt(this.game, 1600, 400));
+        this.game.addEntity(new Grunt(this.game, 200, 800));
+        this.game.addEntity(new Grunt(this.game, 1000, 200));
+        this.game.addEntity(new Elite(this.game, 1600, 500));
+        //add in powerups/weapons
+        this.game.addEntity(new Medkit(this.game, 500, 500));
+        this.game.addEntity(new DMRPickup(this.game, 400, 350));
+        this.game.addEntity(new ShotgunPickup(this.game, 300, 300));
+        this.game.addEntity(new PlasmaPickup(this.game, 200, 250));
         let map = level.map.layers[0];
         let tiles = map.data;
         let currX = 0;
@@ -152,26 +173,8 @@ class SceneManager {
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
-        //intro
-        this.pelican = new Pelican(this.game, 200, 200);
-        ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
-        this.game.addEntityToFront(this.pelican);
-        //add in masterchief and HUD
-        this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
-        this.hud = new hud(this.game, this.x, this.y, this.masterchief);
-        this.game.addEntityToFront(this.hud);
-        this.game.addEntityToFront(this.masterchief);
-        //add in enemys
-        this.game.addEntityToFront(new Elite(this.game, 250, 750));
-        this.game.addEntityToFront(new Grunt(this.game, 1600, 400));
-        this.game.addEntityToFront(new Grunt(this.game, 200, 800));
-        this.game.addEntityToFront(new Grunt(this.game, 1000, 200));
-        this.game.addEntityToFront(new Elite(this.game, 1600, 500));
-        //add in powerups
-        this.game.addEntityToFront(new Medkit(this.game, 500, 500));
-        this.game.enemiesInLevel = 5;
         this.update();
-    }
+    };
 
     update() {
         this.updateAudio();
@@ -190,7 +193,7 @@ class SceneManager {
     draw(ctx) {
         if(!this.game.pauseb){
             if (PARAMS.DEBUG == true) {
-            
+                ctx.font = 'bold 16px "Black Ops One"';
                 ctx.fillStyle = "White";
                 ctx.translate(0, -10); // hack to move elements up by 10 pixels instead of adding -10 to all y coordinates below
                 ctx.strokeStyle = "White";
