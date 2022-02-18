@@ -193,7 +193,7 @@ class SceneManager {
     draw(ctx) {
         if(!this.game.pauseb){
             if (PARAMS.DEBUG == true) {
-            
+                ctx.font = 'bold 16px "Black Ops One"';
                 ctx.fillStyle = "White";
                 ctx.translate(0, -10); // hack to move elements up by 10 pixels instead of adding -10 to all y coordinates below
                 ctx.strokeStyle = "White";
