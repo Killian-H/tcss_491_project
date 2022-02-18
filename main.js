@@ -139,6 +139,7 @@ ASSET_MANAGER.queueDownload("./sprites/hud_display/shotgun.png");
 //hud
 ASSET_MANAGER.queueDownload("./sprites/hud_display/hud_image_shield1.png");
 ASSET_MANAGER.queueDownload("./sprites/hud_display/hud_image_health1.png");
+ASSET_MANAGER.queueDownload("./sprites/hud_display/hud_logo_covenant.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
