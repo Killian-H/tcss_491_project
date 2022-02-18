@@ -1,6 +1,7 @@
 class DMR extends AbstractWeapon {
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_dmr.png");
+    DMR_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/dmr.png");
     PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/dmr_bullet.png");
     SCALE = 1.6;
     AMMO_DEFAULT = 15;
@@ -24,6 +25,8 @@ class DMR extends AbstractWeapon {
         this.defaultReloadTime = 2500;
         this.elapsedtime = 0;
         this.ammo = this.AMMO_DEFAULT;
+        this.ammotype = this.PR_BULLET;
+        this.gun = this.DMR_PIC;
     };
 
     update() {

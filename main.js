@@ -128,6 +128,14 @@ ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_top.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt.png");
 
+//weapons
+ASSET_MANAGER.queueDownload("./sprites/hud_display/battle_rifle.png");
+ASSET_MANAGER.queueDownload("./sprites/hud_display/assault_rifle.png");
+ASSET_MANAGER.queueDownload("./sprites/hud_display/pistol.png");
+ASSET_MANAGER.queueDownload("./sprites/hud_display/dmr.png");
+ASSET_MANAGER.queueDownload("./sprites/hud_display/plasma_rifle.png");
+ASSET_MANAGER.queueDownload("./sprites/hud_display/shotgun.png");
+
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
 	const ctx = canvas.getContext("2d");

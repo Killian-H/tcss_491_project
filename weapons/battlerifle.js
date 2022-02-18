@@ -1,6 +1,7 @@
 class BattleRifle extends AbstractWeapon {
 
     ARMS_BR = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_battle_rifle.png");
+    BATTLE_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/battle_rifle.png");
     PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/dmr_bullet.png");
     SCALE = 1.6;
     AMMO_DEFAULT = 36;
@@ -25,6 +26,8 @@ class BattleRifle extends AbstractWeapon {
         this.elapsedtime = 0;
         this.ammo = this.AMMO_DEFAULT;
         this.burst = 0;
+        this.ammotype = this.PR_BULLET;
+        this.gun = this.BATTLE_PIC;
     };
 
     update() {

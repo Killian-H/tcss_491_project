@@ -1,6 +1,7 @@
 class Shotgun extends AbstractWeapon {
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_shotgun.png");
+    SHOTGUN_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/shotgun.png");
     PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/shotgun_pellet.png");
     SCALE = 1.6;
     AMMO_DEFAULT = 8;
@@ -24,6 +25,8 @@ class Shotgun extends AbstractWeapon {
         this.elapsedtime = 0;
         this.defaultReloadTime = 3000;
         this.ammo = this.AMMO_DEFAULT;
+        this.ammotype = this.PR_BULLET;
+        this.gun = this.SHOTGUN_PIC;
     };
 
     update() {

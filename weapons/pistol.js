@@ -1,6 +1,7 @@
 class Pistol extends AbstractWeapon {
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_pistol.png");
+    PISTOL_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/pistol.png");
     PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/pistol_bullet.png");
     SCALE = 1.6;
     AMMO_DEFAULT = 12;
@@ -24,6 +25,8 @@ class Pistol extends AbstractWeapon {
         this.elapsedtime = 0;
         this.defaultReloadTime = 2500;
         this.ammo = this.AMMO_DEFAULT;
+        this.ammotype = this.PR_BULLET;
+        this.gun = this.PISTOL_PIC;
     };
 
     update() {

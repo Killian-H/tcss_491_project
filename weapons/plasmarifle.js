@@ -1,6 +1,7 @@
 class PlasmaRifle extends AbstractWeapon {
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_plasma_rifle.png");
+    PLASMA_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/plasma_rifle.png");
     PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/plasma_rifle_red_shot.png");
     SCALE = 1.6;
     AMMO_DEFAULT = 20;
@@ -24,6 +25,8 @@ class PlasmaRifle extends AbstractWeapon {
         this.defaultReloadTime = 1500;
         this.elapsedtime = 0;
         this.ammo = this.AMMO_DEFAULT;
+        this.ammotype = this.PR_BULLET;
+        this.gun = this.PLASMA_PIC;
     };
 
     update() {

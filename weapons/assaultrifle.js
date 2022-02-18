@@ -1,6 +1,7 @@
 class AssaultRifle extends AbstractWeapon {
 
     ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
+    AR_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/assault_rifle.png");
     BULLET_SPRITE = ASSET_MANAGER.getAsset("./sprites/bullet.png");
     SCALE = 1.6;
     AMMO_DEFAULT = 32;
@@ -24,6 +25,8 @@ class AssaultRifle extends AbstractWeapon {
         this.defaultReloadTime = 2500;
         this.elapsedtime = 0;
         this.ammo = this.AMMO_DEFAULT;
+        this.ammotype = this.BULLET_SPRITE;
+        this.gun = this.AR_PIC;
     };
 
     update() {
