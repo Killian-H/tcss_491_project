@@ -98,7 +98,7 @@ class Grunt extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
-                    let isMoving = that.moveTowards(entity);
+                    let isMoving = that.chooseDirection(entity, 100, 135);
                     if(isMoving) {
                         that.state = that.WALK;
                     }
