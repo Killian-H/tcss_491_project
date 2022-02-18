@@ -1,7 +1,7 @@
 class Elite extends AbstractEnemy {
 
     SCALE = 1.65;
-
+    SET_VELOCITY = {x: 175, y: 175};
     IDLE = 0;
     WALK = 1;
     FULL_HEALTH = 250;
@@ -36,7 +36,7 @@ class Elite extends AbstractEnemy {
         this.aimingY = 0;
         this.alarmGrunts = false;
         this.health = this.FULL_HEALTH;
-        this.state = this.WALK; // 0 = idle, 1 = walk
+        this.state = this.IDLE; // 0 = idle, 1 = walk
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.dead = false;
         this.beenShot = false;
@@ -136,6 +136,10 @@ class Elite extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
+                    let isMoving = that.chooseDirection(entity, 275, 350);
+                    if(isMoving) {
+                        that.state = that.WALK;
+                    }
                     that.armRotation =  Math.atan2 (
                         that.aimingX - that.x, 
                         - (that.aimingY - that.y)
