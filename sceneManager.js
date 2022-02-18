@@ -117,32 +117,32 @@ class SceneManager {
                     case this.GRASS_1_ID:  
                     case this.GRASS_2_ID:
                     case this.GRASS_3_ID:
-                        console.log("Loading Grass at X: ", currX, " Y: ", currY);
+                        //console.log("Loading Grass at X: ", currX, " Y: ", currY);
                         this.game.addEntity(new Terrain(this.game,currX, currY, tile - 4));
                         currX += this.TILE_WIDTH;
                         tileCounter++;
                         break;
                     case this.DIRT_ID:
-                        console.log("Loading Dirt at X: ", currX, " Y: ", currY);
+                        //console.log("Loading Dirt at X: ", currX, " Y: ", currY);
                         this.game.addEntity(new Dirt(this.game,currX, currY));
                         currX += this.TILE_WIDTH;
                         tileCounter++;
                         break;
                     case this.DIRT_WALL_ID:
-                        console.log("Loading Dirt Wall at X: ", currX, " Y: ", currY);
+                        //console.log("Loading Dirt Wall at X: ", currX, " Y: ", currY);
                         this.game.addEntity(new Wall(this.game,currX, currY));
                         currX += this.TILE_WIDTH;
                         tileCounter++;
                         break;
                     case this.DIRT_WALL_TOP_ID:
-                        console.log("Loading Dirt Wall (grass Top) at X: ", currX, " Y: ", currY);
+                        //console.log("Loading Dirt Wall (grass Top) at X: ", currX, " Y: ", currY);
                         this.game.addEntity(new WallTop(this.game,currX, currY));
                         currX += this.TILE_WIDTH;
                         tileCounter++;
                         break;    
                 }
             }
-            console.log("Loaded row");
+            //console.log("Loaded row");
             currX = 0;
             currY += this.TILE_WIDTH;
             
@@ -152,15 +152,19 @@ class SceneManager {
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
         this.masterchief.resetState();
+        //intro
+        this.pelican = new Pelican(this.game, 200, 200);
+        ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
+        this.game.addEntityToFront(this.pelican);
         //add in masterchief and HUD
         this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntityToFront(this.hud);
         this.game.addEntityToFront(this.masterchief);
         //add in enemys
-        this.game.addEntityToFront(new Elite(this.game, 250, 400));
+        this.game.addEntityToFront(new Elite(this.game, 250, 750));
         this.game.addEntityToFront(new Grunt(this.game, 1600, 400));
-        this.game.addEntityToFront(new Grunt(this.game, 200, 200));
+        this.game.addEntityToFront(new Grunt(this.game, 200, 800));
         this.game.addEntityToFront(new Grunt(this.game, 1000, 200));
         this.game.addEntityToFront(new Elite(this.game, 1600, 500));
         //add in powerups
