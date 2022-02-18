@@ -43,12 +43,12 @@ class hud {
         ctx.font = 'bold 12px "Black Ops One"';
         //ctx.fillText(("➕"), 815, 105);
         ctx.drawImage(this.HEALTH_PIC, 815, 82, this.HEALTH_PIC.width * 0.2, this.HEALTH_PIC.height * 0.2);
-        ctx.fillStyle = "Red";
+        ctx.fillStyle = "FireBrick";
         ctx.fillRect(850, 75, 150*ratio, 40);
         var ratio2 = this.masterchief.armor / this.masterchief.MAX_ARMOR;
         //ctx.fillText(("🛡️"), 820, 55);
         ctx.drawImage(this.SHIELD_PIC, 810, 25, this.SHIELD_PIC.width * 0.2, this.SHIELD_PIC.height * 0.2);
-        ctx.fillStyle = "Blue";
+        ctx.fillStyle = "DodgerBlue";
         ctx.fillRect(850, 25, 150*ratio2, 40);
         ctx.fillStyle = "White";
         var ratio4 = this.masterchief.weapon.reloadTime / this.masterchief.weapon.defaultReloadTime;
