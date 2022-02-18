@@ -285,5 +285,3 @@ class GameEngine {
     get["width"]() { return this.ctx?.canvas?.width || 0; }
     get["height"]() { return this.ctx?.canvas?.height || 0; }
 };
-
-// KV Le was here :)

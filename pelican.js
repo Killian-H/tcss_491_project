@@ -13,10 +13,10 @@ class Pelican {
     }
 
     update() {
-        this.x += 75 * this.game.clockTick;
-        this.y -= 120 * this.game.clockTick;
-
-        //console.log("added");
+        if(!this.game.pauseb){
+            this.x += 75 * this.game.clockTick;
+            this.y -= 120 * this.game.clockTick;
+        }
     }
 
     draw(ctx) {
