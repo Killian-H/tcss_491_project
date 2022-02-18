@@ -1,5 +1,7 @@
 class hud {
 
+    SHIELD_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_image_shield1.png");
+    HEALTH_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_image_health1.png");
 
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
@@ -39,11 +41,13 @@ class hud {
         //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
         var ratio = this.masterchief.health / this.masterchief.MAX_HEALTH;
         ctx.font = 'bold 12px "Black Ops One"';
-        ctx.fillText(("➕"), 815, 105);
+        //ctx.fillText(("➕"), 815, 105);
+        ctx.drawImage(this.HEALTH_PIC, 815, 82, this.HEALTH_PIC.width * 0.2, this.HEALTH_PIC.height * 0.2);
         ctx.fillStyle = "Red";
         ctx.fillRect(850, 75, 150*ratio, 40);
         var ratio2 = this.masterchief.armor / this.masterchief.MAX_ARMOR;
-        ctx.fillText(("🛡️"), 820, 55);
+        //ctx.fillText(("🛡️"), 820, 55);
+        ctx.drawImage(this.SHIELD_PIC, 810, 25, this.SHIELD_PIC.width * 0.2, this.SHIELD_PIC.height * 0.2);
         ctx.fillStyle = "Blue";
         ctx.fillRect(850, 25, 150*ratio2, 40);
         ctx.fillStyle = "White";
