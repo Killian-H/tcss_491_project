@@ -117,8 +117,8 @@ class SceneManager {
                     case this.GRASS_1_ID:  
                     case this.GRASS_2_ID:
                     case this.GRASS_3_ID:
-                        console.log("Loading Grass at X: ", currX, " Y: ", currY);
-                        this.game.addEntity(new Terrain(this.game,currX, currY, tile - 4));
+                        // console.log("Loading Grass at X: ", currX, " Y: ", currY);
+                        // this.game.addEntity(new Terrain(this.game,currX, currY, tile - 4));
                         currX += this.TILE_WIDTH;
                         tileCounter++;
                         break;
@@ -147,8 +147,7 @@ class SceneManager {
             currY += this.TILE_WIDTH;
             
         }
-        //
-        //this.game.addEntity(new Background(this.game, 0, 0));
+        this.game.addEntity(new Background(this.game, 0, 0));
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();
