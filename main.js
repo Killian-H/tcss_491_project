@@ -5,7 +5,6 @@ const ASSET_MANAGER = new AssetManager();
 // images
 ASSET_MANAGER.queueDownload("./sprites/TestMap.png");
 ASSET_MANAGER.queueDownload("./images/menu pic.jpg");
-ASSET_MANAGER.queueDownload("./images/troy.jpg");
 ASSET_MANAGER.queueDownload("./images/gameoverscreen.jpg");
 ASSET_MANAGER.queueDownload("./images/creditsimage.jpg");
 ASSET_MANAGER.queueDownload("./images/controlsimage.jpg");
@@ -129,6 +128,10 @@ ASSET_MANAGER.queueDownload("./sprites/terrain/big_tree.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_top.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_1_horizontal.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_1_vertical.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_2_horizontal.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_2_vertical.png");
 
 //weapons
 ASSET_MANAGER.queueDownload("./sprites/hud_display/battle_rifle.png");

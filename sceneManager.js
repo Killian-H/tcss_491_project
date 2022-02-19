@@ -123,52 +123,53 @@ class SceneManager {
         this.game.addEntity(new DMRPickup(this.game, 400, 350));
         this.game.addEntity(new ShotgunPickup(this.game, 300, 300));
         this.game.addEntity(new PlasmaPickup(this.game, 200, 250));
-        let map = level.map.layers[0];
-        let tiles = map.data;
-        let currX = 0;
-        let currY = 0;
-        let tileCounter = 0;
-        for(let i = 0; i < map.height; i++) {
-            for(let j = 0; j < map.width; j++) {
-                let tile = tiles[tileCounter];
-                //console.log(tile);
-                switch(tile) {
-                    case 0:
-                        break; //empty tile
-                    case this.GRASS_1_ID:  
-                    case this.GRASS_2_ID:
-                    case this.GRASS_3_ID:
-                        //console.log("Loading Grass at X: ", currX, " Y: ", currY);
-                        this.game.addEntity(new Terrain(this.game,currX, currY, tile - 4));
-                        currX += this.TILE_WIDTH;
-                        tileCounter++;
-                        break;
-                    case this.DIRT_ID:
-                        //console.log("Loading Dirt at X: ", currX, " Y: ", currY);
-                        this.game.addEntity(new Dirt(this.game,currX, currY));
-                        currX += this.TILE_WIDTH;
-                        tileCounter++;
-                        break;
-                    case this.DIRT_WALL_ID:
-                        //console.log("Loading Dirt Wall at X: ", currX, " Y: ", currY);
-                        this.game.addEntity(new Wall(this.game,currX, currY));
-                        currX += this.TILE_WIDTH;
-                        tileCounter++;
-                        break;
-                    case this.DIRT_WALL_TOP_ID:
-                        //console.log("Loading Dirt Wall (grass Top) at X: ", currX, " Y: ", currY);
-                        this.game.addEntity(new WallTop(this.game,currX, currY));
-                        currX += this.TILE_WIDTH;
-                        tileCounter++;
-                        break;    
+        let layers = level.layers;
+        for(let layerNum = 0; layerNum < layers.length; layerNum++) {
+            let layer = layers[layerNum];
+            let tiles = layer.data;
+            let currX = 0;
+            let currY = 0;
+            let tileCounter = 0;
+            for(let i = 0; i < layer.height; i++) {
+                for(let j = 0; j < layer.width; j++) {
+                    let tile = tiles[tileCounter];
+                    //console.log(tile);
+                    switch(tile - 1) {
+                        case -1:
+                            currX += this.TILE_WIDTH;
+                            tileCounter++;
+                            break; //empty tile
+                        case 0:  
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                        case 7:
+                            //console.log("Loading Grass at X: ", currX, " Y: ", currY);
+                            this.game.addEntity(new Terrain(this.game,currX, currY, tile));
+                            break;
+                        case this.DIRT_WALL_ID:
+                            //console.log("Loading Dirt Wall at X: ", currX, " Y: ", currY);
+                            this.game.addEntity(new Wall(this.game,currX, currY));
+                            break;
+                        case this.DIRT_WALL_TOP_ID:
+                            //console.log("Loading Dirt Wall (grass Top) at X: ", currX, " Y: ", currY);
+                            this.game.addEntity(new WallTop(this.game,currX, currY));
+                            break;    
+                    }
+                    currX += this.TILE_WIDTH;
+                    tileCounter++;
                 }
+                //console.log("Loaded row");
+                currX = 0;
+                currY += this.TILE_WIDTH;
+                
             }
-            //console.log("Loaded row");
-            currX = 0;
-            currY += this.TILE_WIDTH;
-            
         }
-        this.game.addEntity(new Background(this.game, 0, 0));
+        
+        //his.game.addEntity(new Background(this.game, 0, 0));
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
         this.masterchief.resetAmmo();

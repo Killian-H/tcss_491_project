@@ -133,8 +133,14 @@ class Terrain {
     GRASS_1 = ASSET_MANAGER.getAsset("./sprites/terrain/grass_1.png");
     GRASS_2 = ASSET_MANAGER.getAsset("./sprites/terrain/grass_2.png");
     GRASS_3 = ASSET_MANAGER.getAsset("./sprites/terrain/grass_3.png");
+    DIRT = ASSET_MANAGER.getAsset("./sprites/terrain/dirt.png");
+    DIRT_HORIZONTAL_1 = ASSET_MANAGER.getAsset("./sprites/terrain/dirt_1_horizontal.png");
+    DIRT_HORIZONTAL_2 = ASSET_MANAGER.getAsset("./sprites/terrain/dirt_2_horizontal.png");
+    DIRT_VERTICAL_1 = ASSET_MANAGER.getAsset("./sprites/terrain/dirt_1_vertical.png");
+    DIRT_VERTICAL_2 = ASSET_MANAGER.getAsset("./sprites/terrain/dirt_2_vertical.png");
 
-    TYPES = [this.GRASS_1,this.GRASS_2,this.GRASS_3];
+    TYPES = [this.GRASS_1,this.GRASS_2,this.GRASS_3, this.DIRT, this.DIRT_HORIZONTAL_1, 
+        this.DIRT_HORIZONTAL_2, this.DIRT_VERTICAL_1, this.DIRT_VERTICAL_2];
 
     constructor(game, x, y, type) {
         Object.assign(this, {game, x, y});

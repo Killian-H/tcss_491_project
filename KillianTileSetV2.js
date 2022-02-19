@@ -1,4 +1,4 @@
-{ "columns":0,
+let tileSet = { "columns":0,
  "grid":
     {
      "height":1,

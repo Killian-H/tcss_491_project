@@ -1,4 +1,4 @@
-{ "compressionlevel":-1,
+let levelOne = { "compressionlevel":-1,
  "height":50,
  "infinite":false,
  "layers":[

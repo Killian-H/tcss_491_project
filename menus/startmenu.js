@@ -21,7 +21,7 @@ class StartMenu {
                 if ((this.game.mouse.x - this.game.camera.x >= this.START_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.START_POSITION.x + 160) && (this.game.mouse.y - this.game.camera.y >= this.START_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.START_POSITION.y)
                     && (this.game.click)) {
                     ASSET_MANAGER.playAsset("./audio/click.wav");
-                    this.game.camera.loadLevel(new TestLevel());
+                    this.game.camera.loadLevel(levelOne);
                 }
                 if ((this.game.mouse.x - this.game.camera.x >= this.CONTROLS_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.CONTROLS_POSITION.x + 267) && (this.game.mouse.y - this.game.camera.y >= this.CONTROLS_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.CONTROLS_POSITION.y)
                     && (this.game.click)) {
