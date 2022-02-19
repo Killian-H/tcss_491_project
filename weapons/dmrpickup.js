@@ -17,6 +17,7 @@ class DMRPickup {
                 if (entity.BB && that.BB.collide(entity.BB)) {
                     if (entity instanceof masterchief) {
                         entity.weaponArray[2].unlocked = true;
+                        ASSET_MANAGER.playAsset("./audio/weapons/ar reload.mp3");
                         that.removeFromWorld = true;
                     }
                 }

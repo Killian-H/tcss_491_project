@@ -17,6 +17,7 @@ class ShotgunPickup {
                 if (entity.BB && that.BB.collide(entity.BB)) {
                     if (entity instanceof masterchief) {
                         entity.weaponArray[3].unlocked = true;
+                        ASSET_MANAGER.playAsset("./audio/weapons/shotgun reload.mp3");
                         that.removeFromWorld = true;
                     }
                 }
