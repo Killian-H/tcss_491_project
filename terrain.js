@@ -111,7 +111,7 @@ class Wall extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.BB = new BoundingBox(this.x + 2, this.y + 2, 128, 128);
+        this.BB = new BoundingBox(this.x, this.y, 128, 128);
     };
 
     update() {
