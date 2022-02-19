@@ -15,4 +15,15 @@ class BoundingBox {
         }
         return isCollide;
     };
+
+    update() {
+
+    };
+
+    draw(ctx) {
+        if (PARAMS.DEBUG == true) {
+            ctx.strokeStyle = 'Red';
+            ctx.strokeRect(this.left - this.game.camera.x, this.top - this.game.camera.y, this.BB.width, this.BB.height);
+        }
+    }
 };

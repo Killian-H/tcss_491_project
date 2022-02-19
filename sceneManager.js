@@ -112,7 +112,8 @@ class SceneManager {
         this.game.addEntity(this.hud);
         this.game.addEntity(this.masterchief);
         //add in enemys
-       this.game.enemiesInLevel = 0;
+        this.game.enemiesInLevel = 0;
+        // this.game.addEntity(new BoundingBox(this.game, 0, 100, 128, 128));
         this.game.addEntity(new Elite(this.game, 250, 750));
         this.game.addEntity(new Grunt(this.game, 1600, 400));
         this.game.addEntity(new Grunt(this.game, 200, 800));
