@@ -316,6 +316,7 @@ class masterchief {
                 }
                 if (that.velocity.y < 0 && that.BB.bottom > entity.BB.bottom) { // traveling up.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.BB.top <= entity.BB.bottom) {
+                        that.y += 1;
                         if (that.game.up && that.BB.bottom > entity.BB.bottom) {
                             collisiony = 0;
                         }
@@ -326,15 +327,16 @@ class masterchief {
                             if (that.game.right && that.BB.left < entity.BB.left) {
                                collisionx = 0;
                             }
-                        }
+                    }
                 }
                 if (that.velocity.x < 0 && that.BB.right > entity.BB.right) { // traveling left.
+                    that.x += 1;
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.BB.left <= entity.BB.right) {
                         collisionx = 0;
-                        }
                     }
+                }
             }
-        })
+        });
         this.updateBoundBox();
         this.x += this.velocity.x * collisionx;
         this.y += this.velocity.y * collisiony;
