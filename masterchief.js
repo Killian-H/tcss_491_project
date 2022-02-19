@@ -146,7 +146,7 @@ class masterchief {
     };
 
     loadAnimations() {
-        for (var i = 0; i < 6; i++) { // five statesa
+        for (var i = 0; i < 6; i++) { // five states
             this.animations.push([]);
             for (var j = 0; j < 2; j++) { // two directions
                 this.animations[i].push([]);
@@ -319,7 +319,7 @@ class masterchief {
                         if (that.game.up && that.lastBB.bottom > entity.BB.bottom) {
                             collisiony = 0;
                         }
-                        }
+                    }
                 } 
                 if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.rdight < entity.BB.right)) { // traveling right.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
@@ -332,7 +332,7 @@ class masterchief {
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
                         collisionx = 0;
                         }
-                }
+                    }
             }
         })
         this.updateBoundBox();
