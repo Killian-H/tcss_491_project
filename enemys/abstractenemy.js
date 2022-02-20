@@ -85,7 +85,7 @@ class AbstractEnemy {
     };
 
     randomMovement(entity) {
-        let randomDirection = getRandomRange(-150, 150);
+        let randomDirection = getRandomRange(-350, 350);
         let isMovingX = false;
         let isMovingY = false;
         if(entity.x + randomDirection > this.x) { //move right

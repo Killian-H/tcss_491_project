@@ -79,6 +79,7 @@ class masterchief {
         this.weaponArray[2] = new DMR(this.game, this.x, this.y);
         this.weaponArray[3] = new Shotgun(this.game, this.x, this.y);
         this.weaponArray[4] = new PlasmaRifle(this.game, this.x, this.y);
+        this.weaponArray[5] = new RocketLauncher(this.game, this.x, this.y);
         this.weapon = this.weaponArray[0];
         this.game.chiefDone = false;
 
@@ -236,6 +237,9 @@ class masterchief {
         } else if (this.game.weaponFive && this.weaponArray[4].unlocked) {
             ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
             this.weapon = this.weaponArray[4];
+        } else if (this.game.weaponSix && this.weaponArray[5].unlocked) {
+            // NEW SOUND HERE ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
+            this.weapon = this.weaponArray[5];
         }
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");

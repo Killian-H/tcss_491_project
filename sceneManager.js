@@ -124,6 +124,7 @@ class SceneManager {
         this.game.addEntity(new DMRPickup(this.game, 400, 350));
         this.game.addEntity(new ShotgunPickup(this.game, 300, 300));
         this.game.addEntity(new PlasmaPickup(this.game, 200, 250));
+        this.game.addEntity(new RocketLauncherPickup(this.game, 250, 250));
         let map = level.map.layers[0];
         let tiles = map.data;
         let currX = 0;

@@ -12,6 +12,7 @@ ASSET_MANAGER.queueDownload("./images/controlsimage.jpg");
 ASSET_MANAGER.queueDownload("./images/chiefheadimage.png");
 ASSET_MANAGER.queueDownload("./images/halo_the_master_chief.jpg");
 ASSET_MANAGER.queueDownload("./images/Grass_Background_Large.png");
+ASSET_MANAGER.queueDownload("./sprites/weapons/rocket_explosion.png");
 
 
 // Grunt
@@ -40,6 +41,10 @@ ASSET_MANAGER.queueDownload("./sprites/elite/elite_die_left.png");
 ASSET_MANAGER.queueDownload(("./sprites/elite/elite_shield_damage.png"));
 
 // Chief
+ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_rocket_launcher.png");
+ASSET_MANAGER.queueDownload("./sprites/hud_display/rocket_launcher.png");
+ASSET_MANAGER.queueDownload("./sprites/weapons/rocket.png");
+ASSET_MANAGER.queueDownload("./sprites/weapons/rocket_explosion.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_shield_damage.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_right.png");
 ASSET_MANAGER.queueDownload("./sprites/master_chief/chief_head_top_right.png");
