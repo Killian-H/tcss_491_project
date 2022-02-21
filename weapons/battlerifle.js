@@ -27,6 +27,7 @@ class BattleRifle extends AbstractWeapon {
         this.ammo = this.AMMO_DEFAULT;
         this.burst = 0;
         this.ammotype = this.PR_BULLET;
+        this.ammotypescale = 2.5;
         this.gun = this.BATTLE_PIC;
     };
 

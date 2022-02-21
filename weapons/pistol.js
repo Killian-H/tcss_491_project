@@ -26,6 +26,7 @@ class Pistol extends AbstractWeapon {
         this.defaultReloadTime = 2500;
         this.ammo = this.AMMO_DEFAULT;
         this.ammotype = this.PR_BULLET;
+        this.ammotypescale = 2.5;
         this.gun = this.PISTOL_PIC;
     };
 
