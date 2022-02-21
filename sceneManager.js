@@ -133,13 +133,12 @@ class SceneManager {
             for(let i = 0; i < layer.height; i++) {
                 for(let j = 0; j < layer.width; j++) {
                     let tile = tiles[tileCounter];
+                    let isDirt = false; //specifies between dirt walls and rock walls
                     //console.log(tile);
                     switch(tile - 1) {
-                        case -1:
-                            currX += this.TILE_WIDTH;
-                            tileCounter++;
-                            break; //empty tile
-                        case 0:  
+                        case -1: //empty tile
+                            break; 
+                        case 0:  //Ground tiles
                         case 1:
                         case 2:
                         case 3:
@@ -147,17 +146,38 @@ class SceneManager {
                         case 5:
                         case 6:
                         case 7:
-                            //console.log("Loading Grass at X: ", currX, " Y: ", currY);
-                            this.game.addEntity(new Terrain(this.game,currX, currY, tile));
+                            this.game.addEntity(new Terrain(this.game,currX, currY, tile - 1));
                             break;
-                        case this.DIRT_WALL_ID:
-                            //console.log("Loading Dirt Wall at X: ", currX, " Y: ", currY);
-                            this.game.addEntity(new Wall(this.game,currX, currY));
+                        case 17: //Top Wall Tiles
+                            isDirt = true;
+                        case 26:
+                            this.game.addEntity(new TopWall(this.game,currX, currY, isDirt));
                             break;
-                        case this.DIRT_WALL_TOP_ID:
-                            //console.log("Loading Dirt Wall (grass Top) at X: ", currX, " Y: ", currY);
-                            this.game.addEntity(new WallTop(this.game,currX, currY));
-                            break;    
+                        case 12: //Bottom Wall Tiles
+                            isDirt = true;
+                        case 21:
+                            this.game.addEntity(new BottomWall(this.game,currX, currY, isDirt));
+                            break;
+                        case 15: //Left Wall Tiles
+                            isDirt = true;
+                        case 24:
+                            this.game.addEntity(new LeftWall(this.game,currX, currY, isDirt));
+                            break;
+                        case 16: //Right Wall Tiles
+                            isDirt = true;
+                        case 25:
+                            this.game.addEntity(new RightWall(this.game,currX, currY, isDirt));
+                            break;
+                        case 13: //Bottom Left Full Wall Tiles (Mostly grass small wall)
+                            isDirt = true;
+                        case 22:
+                            this.game.addEntity(new BottomLeftFullWall(this.game,currX, currY, isDirt));
+                            break;
+                        case 14: //Bottom Right Full Wall Tiles (Mostly grass small wall)
+                            isDirt = true;
+                        case 23:
+                            this.game.addEntity(new BottomRightFullWall(this.game,currX, currY, isDirt));
+                            break;
                     }
                     currX += this.TILE_WIDTH;
                     tileCounter++;
