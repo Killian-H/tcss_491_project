@@ -11,7 +11,7 @@ class Explosion {
         this.sprite = this.EXPLODE;
         this.removetime = false;
         this.canHit = true;
-        setTimeout(() => {this.removetime = true}, 200);
+        setTimeout(() => {this.removetime = true}, 0);
         this.updateBoundBox();
     }
 
@@ -32,9 +32,9 @@ class Explosion {
                 if (entity instanceof AbstractEnemy) {
                     entity.beenShot = true;
                     console.log(that.x + " " + that.y);
-                    let dist = getDistance(that.x + (that.BB.width / 2), that.y + (that.BB.height / 2), entity.x, entity.y);
-                    let distDamage = (200 / (.02 * dist * 1.2));
-                    console.log(dist);
+                    let dist = getDistance(that.x, that.y, entity.x, entity.y);
+                    let distDamage = (200 / (.02 * dist));
+                    console.log(distDamage);
                     if (entity instanceof Elite) {
                         if (entity.armor > 0) {
                             entity.armor = entity.armor - distDamage; 
