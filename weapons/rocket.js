@@ -9,6 +9,7 @@ class Rocket {
         this.shieldDamage = dmgShield;
         this.healthDamage = dmgHealth;
         this.collide = false;
+        this.once = true;
         //this.target = {x: clickX, y: clickY};
         var dist = Math.sqrt(pow((clickX-x),2)+pow((clickY-y),2));
         this.cache = [];
@@ -68,8 +69,9 @@ class Rocket {
                     }
                 }
             }); 
-            if (this.collide || this.removetime) {
-                // this.game.addEntityToFront(new Explosion(that.game, that.x - 50, that.y - 50));
+            if ((this.collide || this.removetime) && this.once) {
+                this.game.addEntityToFront(new Explosion(that.game, that.x - 70, that.y - 100));
+                this.once = false;
                 this.removeFromWorld = true;
             }
         }  

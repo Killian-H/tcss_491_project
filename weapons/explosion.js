@@ -10,21 +10,48 @@ class Explosion {
         this.outerDamage = this.OUT_DMG;
         this.sprite = this.EXPLODE;
         this.removetime = false;
+        this.canHit = true;
         setTimeout(() => {this.removetime = true}, 200);
         this.updateBoundBox();
     }
 
     updateBoundBox() {
-        // this.BB = new BoundingBox(this.x, this.y, 24, 24);
+        this.BB = new BoundingBox(this.x, this.y, 210, 150);
     };
 
     update() {
         if(!this.game.pauseb) {
             var that = this;
         }
-        if(this.removetime == true) {
+        if(this.removetime) {
             this.removeFromWorld = true;
         }
+        var that = this;
+        this.game.entities.forEach(function (entity) {
+            if (entity.BB && that.BB.collide(entity.BB)) {
+                if (entity instanceof AbstractEnemy) {
+                    entity.beenShot = true;
+                    console.log(that.x + " " + that.y);
+                    let dist = getDistance(that.x + (that.BB.width / 2), that.y + (that.BB.height / 2), entity.x, entity.y);
+                    let distDamage = (200 / (.02 * dist * 1.2));
+                    console.log(dist);
+                    if (entity instanceof Elite) {
+                        if (entity.armor > 0) {
+                            entity.armor = entity.armor - distDamage; 
+                            entity.alarmGrunts = true;
+                            if(entity.armor - distDamage < 0) {
+                                entity.armor = 0;
+                            }
+                        } else {
+                            entity.health = entity.health - distDamage;
+                        } 
+                    }
+                    if (entity instanceof Grunt) {
+                        entity.health = entity.health - 200 * (0.2 * dist);
+                    }
+                }
+            }
+        }); 
     };
 
     draw(ctx) {
