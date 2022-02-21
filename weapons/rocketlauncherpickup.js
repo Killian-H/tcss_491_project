@@ -17,7 +17,7 @@ class RocketLauncherPickup {
                 if (entity.BB && that.BB.collide(entity.BB)) {
                     if (entity instanceof masterchief) {
                         entity.weaponArray[5].unlocked = true;
-                        // reload here ASSET_MANAGER.playAsset("./audio/weapons/shotgun reload.mp3");
+                        // reload here ASSET_MANAGER.playAsset("./audio/weapons/shotgun switch.mp3");
                         that.removeFromWorld = true;
                     }
                 }
