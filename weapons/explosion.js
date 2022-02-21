@@ -32,22 +32,23 @@ class Explosion {
                 if (entity instanceof AbstractEnemy) {
                     entity.beenShot = true;
                     console.log(that.x + " " + that.y);
-                    let dist = getDistance(that.x, that.y, entity.x, entity.y);
-                    let distDamage = (200 / (.02 * dist));
+                    let dist = getDistance(that.x + (that.sprite.width / 2), that.y + (that.sprite.height / 2), entity.x, entity.y);
+                    let distDamage = (200 / (.01 * dist * 1.2));
                     console.log(distDamage);
+                    console.log(that.sprite.width / 2);
+                    console.log(that.sprite.height / 2);
                     if (entity instanceof Elite) {
-                        if (entity.armor > 0) {
-                            entity.armor = entity.armor - distDamage; 
-                            entity.alarmGrunts = true;
-                            if(entity.armor - distDamage < 0) {
-                                entity.armor = 0;
-                            }
-                        } else {
+                        if (entity.armor - distDamage <= 0) {
+                            distDamage = distDamage - entity.armor;
+                            entity.armor = 0;
                             entity.health = entity.health - distDamage;
-                        } 
+                            entity.alarmGrunts = true;
+                        } else {
+                            entity.armor = entity.armor - distDamage;
+                        }
                     }
                     if (entity instanceof Grunt) {
-                        entity.health = entity.health - 200 * (0.2 * dist);
+                        entity.health = entity.health - distDamage;
                     }
                 }
             }
