@@ -10,7 +10,7 @@ class BoundingBox {
 
     collide(theOther) {
         let isCollide = false;
-        if (this.right > theOther.left && this.left < theOther.right && this.top < theOther.bottom && this.bottom > theOther.top) {
+        if (this.right >= theOther.left && this.left <= theOther.right && this.top <= theOther.bottom && this.bottom >= theOther.top) {
             isCollide = true;
         }
         return isCollide;

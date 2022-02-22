@@ -27,6 +27,7 @@ class Shotgun extends AbstractWeapon {
         this.ammo = this.AMMO_DEFAULT;
         this.ammotype = this.PR_BULLET;
         this.gun = this.SHOTGUN_PIC;
+        this.ammotypescale = 2.5;
         this.unlocked = false;
     };
 

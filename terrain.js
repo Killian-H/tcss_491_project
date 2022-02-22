@@ -87,7 +87,7 @@ class WallTop extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.BB = new BoundingBox(this.x, this.y + 8, 128, 120);
+        this.BB = new BoundingBox(this.x, this.y + 100, 128, 28);
     };
 
     update() {
