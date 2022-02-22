@@ -110,7 +110,6 @@ class SceneManager {
         this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
-        this.game.addEntity(this.masterchief);
         this.game.enemiesInLevel = 0;
         
 
@@ -118,6 +117,7 @@ class SceneManager {
         let ground = level.layers[0];
         let entities = level.layers[1];
         this.loadEntities(entities);
+        this.game.addEntity(this.masterchief);
         this.loadGround(ground);
         
         

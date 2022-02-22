@@ -278,7 +278,7 @@ class GameEngine {
     };
     
     addEntityToFront(entity) {
-        this.entities.splice(3, 0, entity);
+        this.entities.splice(420, 0, entity);
     };
 
     loop() {
