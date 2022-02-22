@@ -123,6 +123,7 @@ ASSET_MANAGER.queueDownload("./sprites/terrain/grass_1.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/grass_2.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/grass_3.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/tree.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/tree_wall.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/rock.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/big_tree.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt.png");
@@ -133,6 +134,7 @@ ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_2_vertical.png");
 
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_bottom_left_corner.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_bottom_left_full.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_bottom_right_full.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_bottom_right_corner.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_bottom.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_left.png");
@@ -144,6 +146,7 @@ ASSET_MANAGER.queueDownload("./sprites/terrain/dirt_wall_top.png");
 
 ASSET_MANAGER.queueDownload("./sprites/terrain/rock_wall_bottom_left_corner.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/rock_wall_bottom_left_full.png");
+ASSET_MANAGER.queueDownload("./sprites/terrain/rock_wall_bottom_right_full.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/rock_wall_bottom_right_corner.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/rock_wall_bottom.png");
 ASSET_MANAGER.queueDownload("./sprites/terrain/rock_wall_left.png");
