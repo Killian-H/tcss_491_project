@@ -39,6 +39,16 @@ ASSET_MANAGER.queueDownload("./sprites/elite/elite_walk_left.png");
 ASSET_MANAGER.queueDownload("./sprites/elite/elite_die_left.png");
 ASSET_MANAGER.queueDownload(("./sprites/elite/elite_shield_damage.png"));
 
+// Hunter
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_idle_left.png");
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_idle_right.png");
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_walk_left.png");
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_walk_right.png");
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_dead_left.png");
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_dead_right.png");
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_gun.png");
+ASSET_MANAGER.queueDownload("./sprites/hunter/hunter_bullet.png");
+
 // Chief
 ASSET_MANAGER.queueDownload("./sprites/master_chief/arms_rocket_launcher.png");
 ASSET_MANAGER.queueDownload("./sprites/hud_display/rocket_launcher.png");
