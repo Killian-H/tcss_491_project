@@ -14,7 +14,7 @@ class hud {
                 if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185) 
                     && (this.game.click)) {
                     ASSET_MANAGER.playAsset("./audio/click.wav");
-                    this.game.camera.loadLevel(new TestLevel());
+                    this.game.camera.loadLevel(levelOne);
                 }
                 if ((this.game.mouse.x - this.game.camera.x >= 450 && this.game.mouse.x - this.game.camera.x <= 553) && (this.game.mouse.y - this.game.camera.y >= 225 && this.game.mouse.y - this.game.camera.y <= 265)
                     && (this.game.click)) {
