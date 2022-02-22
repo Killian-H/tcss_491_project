@@ -4,7 +4,7 @@ class Elite extends AbstractEnemy {
     SET_VELOCITY = {x: 175, y: 175};
     IDLE = 0;
     WALK = 1;
-    FULL_HEALTH = 250;
+    FULL_HEALTH = 225;
     MAX_ARMOR = 200;
     RIGHT = 0;
     LEFT = 1;
@@ -47,7 +47,7 @@ class Elite extends AbstractEnemy {
         this.elapsedTime = 0;
         this.shieldDamage = 20;
         this.healthDamage = 15;
-        this.bulletSpeed = 550;
+        this.bulletSpeed = 415;
         this.hasNotBeenRemoved = true;
         this.shieldEffect = [];
         this.shieldEffect[0] = new Animator(this.SHIELD, 4, 3, 17, 23, 1, 1, false, false);

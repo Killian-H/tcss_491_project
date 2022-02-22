@@ -46,7 +46,7 @@ class Grunt extends AbstractEnemy {
         this.elapsedTime = 0;
         this.shieldDamage = 15;
         this.healthDamage = 8;
-        this.bulletSpeed = 450;
+        this.bulletSpeed = 350;
         this.hasNotBeenRemoved = true;
         this.game.enemiesInLevel += 1;
         this.loadAnimations();

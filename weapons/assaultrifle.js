@@ -15,8 +15,8 @@ class AssaultRifle extends AbstractWeapon {
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
         this.speed = 650;
-        this.shieldDamage = 8;
-        this.healthDamage = 10;
+        this.shieldDamage = 12;
+        this.healthDamage = 13;
         this.firerate = .1;
         this.scale = this.SCALE;
         this.canshoot = true;

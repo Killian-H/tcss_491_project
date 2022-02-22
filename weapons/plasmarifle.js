@@ -16,7 +16,7 @@ class PlasmaRifle extends AbstractWeapon {
         this.draw = this.ARMS_ASSAULT;
         this.speed = 500;
         this.shieldDamage = 25;
-        this.healthDamage = 8;
+        this.healthDamage = 10;
         this.firerate = .15;
         this.scale = this.SCALE;
         this.canshoot = true;
@@ -28,7 +28,7 @@ class PlasmaRifle extends AbstractWeapon {
         this.ammotype = this.PR_BULLET;
         this.gun = this.PLASMA_PIC;
         this.ammotypescale = 2.5;
-        this.unlocked = false;
+        this.unlocked = true;
     };
 
     update() {

@@ -44,7 +44,7 @@ class EnemyBullet {
         var xOffset = 13;
         var yOffset = 16;
 
-        ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y);
+        ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y, this.cache[rotation].width, this.cache[rotation].height);
     }
     update() {
         if(!this.game.pauseb){

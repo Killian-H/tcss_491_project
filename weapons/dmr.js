@@ -15,8 +15,8 @@ class DMR extends AbstractWeapon {
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
         this.speed = 750;
-        this.shieldDamage = 20;
-        this.healthDamage = 45;
+        this.shieldDamage = 35;
+        this.healthDamage = 50;
         this.firerate = .35;
         this.scale = this.SCALE;
         this.canshoot = true;
@@ -28,7 +28,7 @@ class DMR extends AbstractWeapon {
         this.ammotype = this.PR_BULLET;
         this.gun = this.DMR_PIC;
         this.ammotypescale = 2.5;
-        this.unlocked = false;
+        this.unlocked = true;
     };
 
     update() {
