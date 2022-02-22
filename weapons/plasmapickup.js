@@ -17,6 +17,7 @@ class PlasmaPickup {
                 if (entity.BB && that.BB.collide(entity.BB)) {
                     if (entity instanceof masterchief) {
                         entity.weaponArray[4].unlocked = true;
+                        ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3")
                         that.removeFromWorld = true;
                     }
                 }

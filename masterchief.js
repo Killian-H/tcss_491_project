@@ -79,6 +79,7 @@ class masterchief {
         this.weaponArray[2] = new DMR(this.game, this.x, this.y);
         this.weaponArray[3] = new Shotgun(this.game, this.x, this.y);
         this.weaponArray[4] = new PlasmaRifle(this.game, this.x, this.y);
+        this.weaponArray[5] = new RocketLauncher(this.game, this.x, this.y);
         this.weapon = this.weaponArray[0];
         this.game.chiefDone = false;
 
@@ -146,7 +147,7 @@ class masterchief {
     };
 
     loadAnimations() {
-        for (var i = 0; i < 6; i++) { // five statesa
+        for (var i = 0; i < 6; i++) { // five states
             this.animations.push([]);
             for (var j = 0; j < 2; j++) { // two directions
                 this.animations[i].push([]);
@@ -236,6 +237,9 @@ class masterchief {
         } else if (this.game.weaponFive && this.weaponArray[4].unlocked) {
             ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
             this.weapon = this.weaponArray[4];
+        } else if (this.game.weaponSix && this.weaponArray[5].unlocked) {
+            // NEW SOUND HERE ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
+            this.weapon = this.weaponArray[5];
         }
         if (this.health <= 0) {
             ASSET_MANAGER.playAsset("./audio/mcdeath.mp3");
@@ -308,33 +312,37 @@ class masterchief {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0 || (that.velocity.y < 0 && that.BB.bottom < entity.BB.bottom)) { // Traveling down.
-                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.lastBB.bottom > entity.BB.top)) {
-                        if ((that.game.down && that.lastBB.top < entity.BB.top)) {
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && (that.BB.bottom > entity.BB.top)) {
+                        if ((that.game.down && that.BB.top < entity.BB.top)) {
                             collisiony = 0;
                         }
                     }
                 }
-                if (that.velocity.y < 0 && that.lastBB.bottom > entity.BB.bottom) { // traveling up.
-                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.top <= entity.BB.bottom) {
-                        if (that.game.up && that.lastBB.bottom > entity.BB.bottom) {
+                if (that.velocity.y < 0 && that.BB.bottom > entity.BB.bottom) { // traveling up.
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.BB.top <= entity.BB.bottom) {
+                        that.y += 1;
+                        if (that.game.up && that.BB.bottom > entity.BB.bottom) {
                             collisiony = 0;
                         }
-                        }
+                    }
                 } 
-                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.rdight < entity.BB.right)) { // traveling right.
-                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.right >= entity.BB.left) {
-                            if (that.game.right && that.lastBB.left < entity.BB.left) {
+                if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.BB.right >= entity.BB.left) {
+                            if (that.game.right && that.BB.left < entity.BB.left) {
                                collisionx = 0;
                             }
-                        }
+                    }
                 }
-                if (that.velocity.x < 0 && that.lastBB.right > entity.BB.right) { // traveling left.
-                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.lastBB.left <= entity.BB.right) {
+                if (that.velocity.x < 0 && that.BB.right > entity.BB.right) { // traveling left.
+                    if (that.BB.top >= entity.BB.top) {
+                        that.x += 1;
+                    }
+                    if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.BB.left <= entity.BB.right) {
                         collisionx = 0;
-                        }
+                    }
                 }
             }
-        })
+        });
         this.updateBoundBox();
         this.x += this.velocity.x * collisionx;
         this.y += this.velocity.y * collisiony;

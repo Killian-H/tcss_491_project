@@ -158,6 +158,9 @@ class GameEngine {
                 case "Digit5":
                     that.weaponFive = true;
                     break;
+                case "Digit6":
+                    that.weaponSix = true;
+                    break;
                 //case "Escape":
                     //that.escapePress = true;
                     //break;
@@ -200,6 +203,9 @@ class GameEngine {
                     break;
                 case "Digit5":
                     that.weaponFive = false;
+                    break;
+                case "Digit6":
+                    that.weaponSix = false;
                     break;
                 case "Escape":
                     if(that.escapePress == true){

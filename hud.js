@@ -2,6 +2,7 @@ class hud {
 
     SHIELD_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_image_shield1.png");
     HEALTH_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_image_health1.png");
+    COVENANT_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_logo_covenant.png");
 
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
@@ -34,9 +35,10 @@ class hud {
         //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
         ctx.font = 'bold 20px "Black Ops One"';
         ctx.fillText((this.masterchief.weapon.ammo+"/"+this.masterchief.weapon.AMMO_DEFAULT), 65, 50);
-        ctx.drawImage(this.masterchief.weapon.ammotype, 25, 40, this.masterchief.weapon.ammotype.width * 2.5, this.masterchief.weapon.ammotype.height * 2.5);
+        ctx.drawImage(this.masterchief.weapon.ammotype, 25, 40, this.masterchief.weapon.ammotype.width * this.masterchief.weapon.ammotypescale, this.masterchief.weapon.ammotype.height * this.masterchief.weapon.ammotypescale);
         ctx.drawImage(this.masterchief.weapon.gun, 25, 65, this.masterchief.weapon.gun.width * 2.5, this.masterchief.weapon.gun.height * 2.5);
         ctx.fillText(("Enemies remaining "+this.game.enemiesInLevel), 400, 50);
+        ctx.drawImage(this.COVENANT_PIC, 365, 25, this.COVENANT_PIC.width * 0.07, this.COVENANT_PIC.height * 0.07);
         //ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
         //ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
         var ratio = this.masterchief.health / this.masterchief.MAX_HEALTH;

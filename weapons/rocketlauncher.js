@@ -1,33 +1,34 @@
-class PlasmaRifle extends AbstractWeapon {
+class RocketLauncher extends AbstractWeapon {
 
-    ARMS_ASSAULT = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_plasma_rifle.png");
-    PLASMA_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/plasma_rifle.png");
-    PR_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/plasma_rifle_red_shot.png");
+    ARMS_ROCKET = ASSET_MANAGER.getAsset("./sprites/master_chief/arms_rocket_launcher.png");
+    ROCKET_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/rocket_launcher.png");
+    RL_BULLET = ASSET_MANAGER.getAsset("./sprites/weapons/rocket.png");
     SCALE = 1.6;
-    AMMO_DEFAULT = 20;
+    AMMO_DEFAULT = 2;
 
-    constructor(game, chiefX, chiefY) {
-        super(game, chiefX, chiefY);
-        Object.assign(this, {game, chiefX, chiefY});
+
+    constructor(game, x, y) {
+        super(game, x, y);
+        Object.assign(this, {game, x, y});
         this.game = game;
-        this.x = chiefX;
-        this.y = chiefY;
+        this.x = x;
+        this.y = y;
         this.armRotation = 0;
-        this.draw = this.ARMS_ASSAULT;
-        this.speed = 500;
-        this.shieldDamage = 25;
-        this.healthDamage = 8;
-        this.firerate = .15;
+        this.draw = this.ARMS_ROCKET;
+        this.speed = 450;
+        // this.shieldDamage = 20;
+        // this.healthDamage = 45;
+        this.firerate = 1.35;
         this.scale = this.SCALE;
         this.canshoot = true;
         this.reloading = false;
         this.reloadTime = 0;
-        this.defaultReloadTime = 1500;
+        this.defaultReloadTime = 4500;
         this.elapsedtime = 0;
         this.ammo = this.AMMO_DEFAULT;
-        this.ammotype = this.PR_BULLET;
-        this.gun = this.PLASMA_PIC;
-        this.ammotypescale = 2.5;
+        this.ammotype = this.RL_BULLET;
+        this.gun = this.ROCKET_PIC;
+        this.ammotypescale = 0.75;
         this.unlocked = false;
     };
 
@@ -49,13 +50,13 @@ class PlasmaRifle extends AbstractWeapon {
                 this.clickcount = 1;
                 this.ammo -= 1;
 
-                this.game.addEntityToFront(new bullet(this.game, this.x, this.y, this.game.mouse.x + (getRandomRange(-.1, .1) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.game.mouse.y + (getRandomRange(-.1, .1) * getDistance(this.x, this.y, this.game.mouse.x, this.game.mouse.y)), this.armRotation, this.speed, this.PR_BULLET, this.shieldDamage, this.healthDamage));
-                ASSET_MANAGER.playAsset("./audio/weapons/pr single shot.mp3");
+                this.game.addEntityToFront(new Rocket(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation, this.speed, this.RL_BULLET, this.shieldDamage, this.healthDamage));
+                // SOUND HERE ASSET_MANAGER.playAsset("./audio/weapons/ar single.mp3");
             }
 
             if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
                 let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
-                ASSET_MANAGER.playAsset("./audio/weapons/pr reload.mp3")
+                // SOUND HERE ASSET_MANAGER.playAsset("./audio/weapons/ar reload.mp3");
                 setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             }
         }
@@ -78,4 +79,4 @@ class PlasmaRifle extends AbstractWeapon {
             
         // }
     };
-};
+}
