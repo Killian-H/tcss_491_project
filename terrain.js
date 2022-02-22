@@ -11,7 +11,7 @@ class Tree extends AbstractEnvironment {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.BB = new BoundingBox((this.x + 50) - 10, this.y + 100, 40, 30);
+        this.BB = new BoundingBox((this.x + 50) - 10, this.y + 100, 40, 26);
     };
 
     update() {
