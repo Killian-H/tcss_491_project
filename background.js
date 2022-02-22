@@ -1,7 +1,7 @@
 class Background {
     WIDTH = 1024;
     HEIGHT = 540;
-    BACKGROUND = ASSET_MANAGER.getAsset("./images/Grass_Background_Large.png");
+    BACKGROUND = ASSET_MANAGER.getAsset("./images/Grass_Background_Huge.png");
 
     constructor(game,x,y) {
         Object.assign(this, {game, x, y});
