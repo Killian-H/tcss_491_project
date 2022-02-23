@@ -52,8 +52,13 @@ class Pistol extends AbstractWeapon {
                 ASSET_MANAGER.playAsset("./audio/weapons/pistol shot.mp3");
             }
 
+            if(this.reloading){
+                this.reloadTime += TICK;
+            }
+
             if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
-                let stopShoot = setInterval(() => {this.canshoot = false,this.reloadTime += 1,this.reloading = true}, 1);
+                this.reloadTime = 0;
+                let stopShoot = setInterval(() => {this.canshoot = false,this.reloading = true}, 1);
                 ASSET_MANAGER.playAsset("./audio/weapons/pistol reload.mp3");
                 setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             }
