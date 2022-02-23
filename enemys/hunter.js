@@ -1,10 +1,10 @@
 class Hunter extends AbstractEnemy {
 
     SCALE = 1.2;
-    SET_VELOCITY = {x: 100, y: 100};
+    SET_VELOCITY = {x: 85, y: 85};
     IDLE = 0;
     WALK = 1;
-    FULL_HEALTH = 750;
+    FULL_HEALTH = 1150;
     RIGHT = 0;
     LEFT = 1;
 
@@ -40,8 +40,8 @@ class Hunter extends AbstractEnemy {
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.elapsedTime = 0;
-        this.shieldDamage = 25;
-        this.healthDamage = 35;
+        this.shieldDamage = 35;
+        this.healthDamage = 25;
         this.bulletSpeed = 380;
         this.hasNotBeenRemoved = true;
         this.game.enemiesInLevel += 1;
@@ -54,7 +54,7 @@ class Hunter extends AbstractEnemy {
         this.state = this.IDLE;
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
-        this.randomFireRate = Math.random() * (4 - .3) + .3;
+        this.randomFireRate = Math.random() * (3 - .3) + .3;
         //console.log(this.randomFireRate);a
         var that = this;
         this.game.entities.forEach(function (entity) {
@@ -153,7 +153,7 @@ class Hunter extends AbstractEnemy {
             } else if (this.facing === this.LEFT) {
                 this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             }
-            setTimeout(() => {this.removeFromWorld = true,this.removeCounter()}, 5000);
+            setTimeout(() => {this.removeFromWorld = true,this.removeCounter()}, 800);
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
