@@ -217,7 +217,7 @@ class masterchief {
             this.game.pauseb = false;
             //this.regenCount = setTimeout(() => {this.canRegen = true}, 3000);
         }
-        if(!this.game.pauseb){
+        if(!this.game.pauseb && !this.dead) {
         //console.log(this.game.escapePress);
         const TICK = this.game.clockTick;
         this.checkShield();
