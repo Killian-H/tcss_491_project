@@ -288,7 +288,7 @@ class SceneManager {
                 ctx.fillText("Reload", 5.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
                 ctx.strokeStyle = this.game.click ? "White" : "Grey";
                 ctx.fillStyle = ctx.strokeStyle;
-                ctx.fillText("Click", 7.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
+                ctx.fillText("Click", 3.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
 
                 ctx.translate(0, 10);
                 ctx.strokeStyle = "White";

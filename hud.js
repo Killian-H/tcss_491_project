@@ -3,6 +3,7 @@ class hud {
     SHIELD_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_image_shield1.png");
     HEALTH_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_image_health1.png");
     COVENANT_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_logo_covenant.png");
+    HAPPY_PIC = ASSET_MANAGER.getAsset("./images/happy.png");
 
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
@@ -66,6 +67,7 @@ class hud {
             ctx.font = 'bold 16px "Black Ops One"';
             ctx.fillText(("🛡️ "+this.masterchief.armor), 850, 50);
             ctx.fillText(("➕ "+this.masterchief.health), 850, 110);
+            ctx.drawImage(this.HAPPY_PIC, 645, 25, this.HAPPY_PIC.width * 0.17, this.HAPPY_PIC.height * 0.17);
             //var ratio3 = this.masterchief.ammo / this.masterchief.AMMO_DEFAULT;
             //ctx.fillRect(50, 25, 150*ratio3, 40);
         }
