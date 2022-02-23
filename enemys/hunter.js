@@ -4,7 +4,7 @@ class Hunter extends AbstractEnemy {
     SET_VELOCITY = {x: 100, y: 100};
     IDLE = 0;
     WALK = 1;
-    FULL_HEALTH = 550;
+    FULL_HEALTH = 750;
     RIGHT = 0;
     LEFT = 1;
 
@@ -22,7 +22,7 @@ class Hunter extends AbstractEnemy {
     constructor(game, x, y) {
         super(game, x, y);
         Object.assign(this, {game, x, y});
-        this.visualRadius = 500;
+        this.visualRadius = 425;
         this.radius = 10;
         this.armImg = this.ARM_CANNON;
         this.armRotation = 0;
@@ -35,8 +35,8 @@ class Hunter extends AbstractEnemy {
         this.facing = this.RIGHT; // 0 = right, 1 = left
         this.dead = false;
         this.beenShot = false;
-        this.deadLeft = new Animator(this.DEAD_LEFT, 7, 0, 47, 35, 5, 0.12, true, false);
-        this.deadRight = new Animator(this.DEAD_RIGHT, 8, 0, 45, 35, 5, 0.12, false, false);
+        this.deadLeft = new Animator(this.DEAD_LEFT, 30, 0, 100, 80, 4, 0.12, true, false);
+        this.deadRight = new Animator(this.DEAD_RIGHT, 18, 0, 100, 80, 4, .12, false, false);
         this.velocity = { x: 0, y: 0};
         this.animations = [];
         this.elapsedTime = 0;
@@ -69,31 +69,31 @@ class Hunter extends AbstractEnemy {
                 }
             }
             else if (entity instanceof masterchief && that.dead == false) {
-                // if (canSee(that, entity) || that.seen || that.beenShot) {
-                //     // let r = ASSET_MANAGER.getRandomInt(25001);
-                //     that.seen = true;
-                //     if (that.BB.left > entity.BB.left) {
-                //     that.facing = 1;
-                //     } else {
-                //         that.facing = 0;
-                //     }
-                //     that.aimingX = entity.x;
-                //     that.aimingY = entity.y;
-                //     let isMoving = that.chooseDirection(entity, 50, 200);
-                //     if(isMoving) {
-                //         that.state = that.WALK;
-                //     }
-                //     //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
-                //     that.armRotation =  Math.atan2 (
-                //         that.aimingX - that.x, 
-                //         - (that.aimingY - that.y)
-                //     ) - Math.PI / 2;
-                //     if (that.elapsedTime >= that.randomFireRate) {
-                //         that.elapsedTime = 0;
-                //         that.game.addEntityToFront(new EnemyBullet(that.game, that.x, that.y, entity, that.armRotation, that.weapon, that.shieldDamage, that.healthDamage, that.bulletSpeed));
-                //         ASSET_MANAGER.playAsset("./audio/weapons/plasma pistol shot.mp3");
-                //     }
-                // }
+                if (canSee(that, entity) || that.seen || that.beenShot) {
+                    // let r = ASSET_MANAGER.getRandomInt(25001);
+                    that.seen = true;
+                    if (that.BB.left > entity.BB.left) {
+                    that.facing = 1;
+                    } else {
+                        that.facing = 0;
+                    }
+                    that.aimingX = entity.x;
+                    that.aimingY = entity.y;
+                    let isMoving = that.chooseDirection(entity, 50, 200);
+                    if(isMoving) {
+                        that.state = that.WALK;
+                    }
+                    //console.log("In Aiming. -- Left: " + entity.x + " -- Right: " + entity.y);
+                    that.armRotation =  Math.atan2 (
+                        that.aimingX - that.x, 
+                        - (that.aimingY - that.y)
+                    ) - Math.PI / 2;
+                    if (that.elapsedTime >= that.randomFireRate) {
+                        that.elapsedTime = 0;
+                        that.game.addEntityToFront(new HunterBullet(that.game, that.x, that.y, entity, that.armRotation, that.shieldDamage, that.healthDamage, that.bulletSpeed));
+                        // ASSET_MANAGER.playAsset("./audio/weapons/plasma pistol shot.mp3");
+                    }
+                }
             }
         });
         }
@@ -124,11 +124,11 @@ class Hunter extends AbstractEnemy {
 
         // walk = 1
         // facing right = 0
-        this.animations[1][0] = new Animator(this.WALK_RIGHT, 5, 1, 30, 41, 6, 0.1, false, true);
+        this.animations[1][0] = new Animator(this.WALK_RIGHT, 8, 2, 80, 83, 8, 0.15, false, true);
 
         // walk = 1
         // facing left = 1
-        this.animations[1][1] = new Animator(this.WALK_LEFT, 20, 1, 30, 41, 6, 0.1, true, true);
+        this.animations[1][1] = new Animator(this.WALK_LEFT, 18, 2, 80, 83, 8, .1, true, true);
 
         // scared = 2
         // facing right = 0
@@ -153,7 +153,7 @@ class Hunter extends AbstractEnemy {
             } else if (this.facing === this.LEFT) {
                 this.deadLeft.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             }
-            setTimeout(() => {this.removeFromWorld = true,this.removeCounter()}, 800);
+            setTimeout(() => {this.removeFromWorld = true,this.removeCounter()}, 5000);
         } else {
             if (PARAMS.DEBUG == true) {
                 ctx.strokeStyle = 'Red';
@@ -169,7 +169,7 @@ class Hunter extends AbstractEnemy {
             if(this.seen == true){
                 var ratio = this.health / this.FULL_HEALTH;
                 ctx.fillStyle = "Red";
-                ctx.fillRect(this.x - this.game.camera.x-8, this.y- this.game.camera.y -8, 50*ratio, 7);
+                ctx.fillRect(this.x - this.game.camera.x, this.y- this.game.camera.y -8, 80*ratio, 7);
             }
             this.animations[this.state][this.facing].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.25);
             ctx.save();
@@ -180,15 +180,15 @@ class Hunter extends AbstractEnemy {
             if (this.facing === this.LEFT && this.state != this.IDLE) {
                 ctx.scale(-1,1);
                 ctx.translate(
-                    -20,
-                    27.5
+                    -45,
+                    38.5
                 );
                 ctx.rotate(-this.armRotation + Math.PI);
                 ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)
             } else if (this.facing === this.RIGHT && this.state != this.IDLE) {
                 ctx.translate(
-                    15,
-                    27.5
+                    28,
+                    38.5
                 );
                 ctx.rotate(this.armRotation);
                 ctx.drawImage(this.armImg, -this.armImg.width / 2, -this.armImg.height/2, this.armImg.width * this.SCALE, this.armImg.height * this.SCALE)

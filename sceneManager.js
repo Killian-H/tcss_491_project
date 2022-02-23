@@ -104,7 +104,7 @@ class SceneManager {
         this.resetXanyY();
         //intro
         this.pelican = new Pelican(this.game, 200, 200);
-        this.game.addEntity(new Hunter(this.game, 250, 250));
+        this.game.addEntity(new Hunter(this.game, 1050, 250));
         this.game.addEntity(this.pelican);
         ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
         //add in masterchief and HUD

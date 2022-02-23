@@ -29,7 +29,7 @@ class RocketLauncher extends AbstractWeapon {
         this.ammotype = this.RL_BULLET;
         this.gun = this.ROCKET_PIC;
         this.ammotypescale = 0.75;
-        this.unlocked = false;
+        this.unlocked = true;
     };
 
     update() {

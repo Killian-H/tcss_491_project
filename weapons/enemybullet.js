@@ -2,7 +2,7 @@ class EnemyBullet {
 
     PLASMA_SHOT = ASSET_MANAGER.getAsset("./sprites/grunt/plasma_shot.png");
     PLASMA_RIFLE_SHOT = ASSET_MANAGER.getAsset("./sprites/elite/plasma_rifle_shot.png");
-    PLASMA_CANNON_SHOT = ("./sprites/hunter/hunter_bullet.png");
+    PLASMA_CANNON_SHOT = ASSET_MANAGER.getAsset("./sprites/hunter/hunter_bullet.png");
 
     constructor(game, x, y, target, rotation, weapon, shieldDmg, healthDmg, speed) {
         Object.assign(this, {game, x, y, target, rotation, weapon, shieldDmg, healthDmg, speed});
@@ -48,7 +48,7 @@ class EnemyBullet {
         var xOffset = 13;
         var yOffset = 16;
 
-        ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y, this.cache[rotation].width, this.cache[rotation].height);
+        ctx.drawImage(this.cache[rotation], this.x - xOffset - this.game.camera.x, this.y - yOffset - this.game.camera.y);
     }
     update() {
         if(!this.game.pauseb){
@@ -82,6 +82,27 @@ class EnemyBullet {
                 }
             }
             else if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pr") {
+                if (entity instanceof masterchief) {
+                    if (entity.armor - that.shieldDmg < 0) entity.armor = 0;
+                    if (entity.health - that.healthDmg < 0) entity.health = 0;
+                    entity.canRegen = false;
+                    entity.regenTimer(6000);
+                    entity.beenShot = true;
+                    if(entity.health > 0 && entity.armor <= 0) {
+                        entity.health = entity.health - that.healthDmg ;
+                        entity.beenShot = true;
+                    }
+                    else if(entity.armor > 0){
+                        entity.armor = entity.armor - that.shieldDmg;
+                        entity.beenShot = true;
+                    }
+                    that.removeFromWorld = true;
+                }
+                if (entity instanceof AbstractEnvironment) {
+                    that.removeFromWorld = true;
+                }
+            }
+            else if (entity.BB && that.BC.collisionCircle(entity.BB) && that.weapon == "pc") {
                 if (entity instanceof masterchief) {
                     if (entity.armor - that.shieldDmg < 0) entity.armor = 0;
                     if (entity.health - that.healthDmg < 0) entity.health = 0;

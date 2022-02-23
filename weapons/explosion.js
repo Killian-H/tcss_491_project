@@ -50,6 +50,9 @@ class Explosion {
                     if (entity instanceof Grunt) {
                         entity.health = entity.health - distDamage;
                     }
+                    if (entity instanceof Hunter) {
+                        entity.health = entity.health - (distDamage * 1/2);
+                    }
                 }
             }
         }); 
