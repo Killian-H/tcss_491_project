@@ -2,6 +2,7 @@ class EnemyBullet {
 
     PLASMA_SHOT = ASSET_MANAGER.getAsset("./sprites/grunt/plasma_shot.png");
     PLASMA_RIFLE_SHOT = ASSET_MANAGER.getAsset("./sprites/elite/plasma_rifle_shot.png");
+    PLASMA_CANNON_SHOT = ("./sprites/hunter/hunter_bullet.png");
 
     constructor(game, x, y, target, rotation, weapon, shieldDmg, healthDmg, speed) {
         Object.assign(this, {game, x, y, target, rotation, weapon, shieldDmg, healthDmg, speed});
@@ -19,7 +20,10 @@ class EnemyBullet {
 
     drawAngle(ctx, rotation) {
         if (this.weapon == "pr") {
-            this.shot = this.PLASMA_RIFLE_SHOT
+            this.shot = this.PLASMA_RIFLE_SHOT;
+        }
+        if (this.weapon == "pc") {
+            this.shot = this.PLASMA_CANNON_SHOT;
         }
 
         if (rotation < 0 || rotation > 359) return;

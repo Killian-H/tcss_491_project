@@ -15,8 +15,8 @@ class Pistol extends AbstractWeapon {
         this.armRotation = 0;
         this.draw = this.ARMS_ASSAULT;
         this.speed = 700;
-        this.shieldDamage = 10;
-        this.healthDamage = 34;
+        this.shieldDamage = 15;
+        this.healthDamage = 30;
         this.firerate = .2;
         this.scale = this.SCALE;
         this.canshoot = true;
