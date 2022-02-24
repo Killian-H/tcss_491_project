@@ -111,20 +111,20 @@ class SceneManager {
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
-        this.game.addEntity(new Hunter(this.game, 150, 250));
-        this.game.addEntity(new Hunter(this.game, 150, 350));
-        this.game.addEntity(new Hunter(this.game, 150, 250));
-        this.game.addEntity(new Hunter(this.game, 250, 250));
-        this.game.addEntity(new Hunter(this.game, 550, 150));
-        this.game.addEntity(new Hunter(this.game, 525, 250));
-        this.game.addEntity(new Hunter(this.game, 550, 450));
-        this.game.addEntity(new Hunter(this.game, 500, 450));
-        this.game.addEntity(new Hunter(this.game, 500, 350));
-        this.game.addEntity(new Hunter(this.game, 450, 400));
-        this.game.addEntity(new Hunter(this.game, 350, 250));
-        this.game.addEntity(new Hunter(this.game, 650, 250));
-        this.game.addEntity(new Hunter(this.game, 650, 350));
-        this.game.addEntity(new Hunter(this.game, 650, 450));
+        // this.game.addEntity(new Hunter(this.game, 150, 250));
+        // this.game.addEntity(new Hunter(this.game, 150, 350));
+        // this.game.addEntity(new Hunter(this.game, 150, 250));
+        // this.game.addEntity(new Hunter(this.game, 250, 250));
+        // this.game.addEntity(new Hunter(this.game, 550, 150));
+        // this.game.addEntity(new Hunter(this.game, 525, 250));
+        // this.game.addEntity(new Hunter(this.game, 550, 450));
+        // this.game.addEntity(new Hunter(this.game, 500, 450));
+        // this.game.addEntity(new Hunter(this.game, 500, 350));
+        // this.game.addEntity(new Hunter(this.game, 450, 400));
+        // this.game.addEntity(new Hunter(this.game, 350, 250));
+        // this.game.addEntity(new Hunter(this.game, 650, 250));
+        // this.game.addEntity(new Hunter(this.game, 650, 350));
+        // this.game.addEntity(new Hunter(this.game, 650, 450));
         
 
         //Load Level
