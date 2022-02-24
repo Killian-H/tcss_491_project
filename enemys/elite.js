@@ -115,7 +115,7 @@ class Elite extends AbstractEnemy {
             if (entity instanceof masterchief  && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
                     that.alarmGrunts = true;
-                    let r = ASSET_MANAGER.getRandomInt(25001);
+                    let r = ASSET_MANAGER.getRandomInt(22001);
                     if (r < 10) {
                         ASSET_MANAGER.playAsset("./audio/elite/elitelaugh1.mp3");
                     }

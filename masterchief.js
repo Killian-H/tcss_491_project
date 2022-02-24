@@ -238,7 +238,7 @@ class masterchief {
             ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
             this.weapon = this.weaponArray[4];
         } else if (this.game.weaponSix && this.weaponArray[5].unlocked) {
-            // NEW SOUND HERE ASSET_MANAGER.playAsset("./audio/weapons/pr switch.mp3");
+            ASSET_MANAGER.playAsset("./audio/weapons/rocket switch.mp3");
             this.weapon = this.weaponArray[5];
         }
         if (this.health <= 0) {

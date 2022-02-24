@@ -111,7 +111,7 @@ class SceneManager {
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
-        // this.game.addEntity(new Hunter(this.game, 150, 250));
+        this.game.addEntity(new Hunter(this.game, 150, 250));
         // this.game.addEntity(new Hunter(this.game, 150, 350));
         // this.game.addEntity(new Hunter(this.game, 150, 250));
         // this.game.addEntity(new Hunter(this.game, 250, 250));

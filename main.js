@@ -107,6 +107,10 @@ ASSET_MANAGER.queueDownload("./audio/weapons/ar single.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/shotgun reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/shotgun shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/shotgun switch.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/rocket switch.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/rocket reload.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/rocket single shot.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/explosion.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/click.wav");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
@@ -129,6 +133,9 @@ ASSET_MANAGER.queueDownload("./audio/elite/elitelaugh1.mp3");
 ASSET_MANAGER.queueDownload("./audio/elite/elitewut.mp3");
 ASSET_MANAGER.queueDownload("./audio/elite/elitemad.mp3");
 ASSET_MANAGER.queueDownload("./audio/elite/eliteRIH.mp3");
+
+ASSET_MANAGER.queueDownload("./audio/hunter/hunterlaugh.mp3");
+ASSET_MANAGER.queueDownload("./audio/hunter/hunterlaugh2.mp3");
 
 
 // terrain
