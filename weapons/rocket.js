@@ -70,6 +70,7 @@ class Rocket {
                 }
             }); 
             if ((this.collide || this.removetime) && this.once) {
+                ASSET_MANAGER.playAsset("./audio/weapons/explosion.mp3");
                 this.game.addEntityToFront(new Explosion(that.game, that.x - 70, that.y - 100));
                 this.once = false;
                 this.removeFromWorld = true;

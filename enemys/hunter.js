@@ -70,7 +70,13 @@ class Hunter extends AbstractEnemy {
             }
             else if (entity instanceof masterchief && that.dead == false) {
                 if (canSee(that, entity) || that.seen || that.beenShot) {
-                    // let r = ASSET_MANAGER.getRandomInt(25001);
+                    let r = ASSET_MANAGER.getRandomInt(22001);
+                    if (r < 10) {
+                        ASSET_MANAGER.playAsset("./audio/hunter/hunterlaugh.mp3");
+                    }
+                    if (r >= 10 && r < 20) {
+                        ASSET_MANAGER.playAsset("./audio/hunter/hunterlaugh2.mp3");
+                    }
                     that.seen = true;
                     if (that.BB.left > entity.BB.left) {
                     that.facing = 1;

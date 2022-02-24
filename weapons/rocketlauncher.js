@@ -51,7 +51,7 @@ class RocketLauncher extends AbstractWeapon {
                 this.ammo -= 1;
 
                 this.game.addEntityToFront(new Rocket(this.game, this.x, this.y, this.game.mouse.x, this.game.mouse.y, this.armRotation, this.speed, this.RL_BULLET, this.shieldDamage, this.healthDamage));
-                // SOUND HERE ASSET_MANAGER.playAsset("./audio/weapons/ar single.mp3");
+                ASSET_MANAGER.playAsset("./audio/weapons/rocket single shot.mp3");
             }
             
             if(this.reloading){
@@ -61,7 +61,7 @@ class RocketLauncher extends AbstractWeapon {
             if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
                 this.reloadTime = 0;
                 let stopShoot = setInterval(() => {this.canshoot = false,this.reloading = true}, 1);
-                // SOUND HERE ASSET_MANAGER.playAsset("./audio/weapons/ar reload.mp3");
+                ASSET_MANAGER.playAsset("./audio/weapons/rocket reload.mp3");
                 setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             }
         }
