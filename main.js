@@ -111,6 +111,7 @@ ASSET_MANAGER.queueDownload("./audio/weapons/rocket switch.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/rocket reload.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/rocket single shot.mp3");
 ASSET_MANAGER.queueDownload("./audio/weapons/explosion.mp3");
+ASSET_MANAGER.queueDownload("./audio/weapons/hunter shot.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/click.wav");
 ASSET_MANAGER.queueDownload("./audio/mcdeath.mp3");
