@@ -97,7 +97,7 @@ class Hunter extends AbstractEnemy {
                     if (that.elapsedTime >= that.randomFireRate) {
                         that.elapsedTime = 0;
                         that.game.addEntityToFront(new HunterBullet(that.game, that.x, that.y, entity, that.armRotation, that.shieldDamage, that.healthDamage, that.bulletSpeed));
-                        // ASSET_MANAGER.playAsset("./audio/weapons/plasma pistol shot.mp3");
+                        ASSET_MANAGER.playAsset("./audio/weapons/hunter shot.mp3");
                     }
                 }
             }
