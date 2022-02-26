@@ -32,6 +32,8 @@ class Elite extends AbstractEnemy {
         this.radius = 10;
         this.weapon = "pr";
         this.seen = false;
+        this.collideX = false;
+        this.collideY = false;
         this.aimingX = 0;
         this.aimingY = 0;
         this.alarmGrunts = false;
@@ -47,7 +49,7 @@ class Elite extends AbstractEnemy {
         this.elapsedTime = 0;
         this.shieldDamage = 20;
         this.healthDamage = 15;
-        this.bulletSpeed = 415;
+        this.bulletSpeed = 450;
         this.hasNotBeenRemoved = true;
         this.shieldEffect = [];
         this.shieldEffect[0] = new Animator(this.SHIELD, 4, 3, 17, 23, 1, 1, false, false);
@@ -136,6 +138,7 @@ class Elite extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
+                    that.collide();
                     let isMoving = that.chooseDirection(entity, 275, 350);
                     if(isMoving) {
                         that.state = that.WALK;

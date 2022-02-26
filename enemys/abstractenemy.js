@@ -20,10 +20,10 @@ class AbstractEnemy {
     moveTowards(entity) {
         let isMovingX = false;
         let isMovingY = false;
-        if(entity.x > this.x) { //move right
+        if(entity.x > this.x && !this.collideX) { //move right
             this.velocity.x = this.SET_VELOCITY.x * this.game.clockTick;
             isMovingX = true;
-        } else if(entity.x < this.x) { //move left
+        } else if(entity.x < this.x && !this.collideX) { //move left
             this.velocity.x = -1 * (this.SET_VELOCITY.x * this.game.clockTick);
             isMovingX = true;
         } else {
@@ -31,17 +31,17 @@ class AbstractEnemy {
             isMovingX = false;
         }
         
-        if(entity.y > this.y) { //move down
+        if(entity.y > this.y && !this.collideY) { //move down
             this.velocity.y = this.SET_VELOCITY.y * this.game.clockTick;
             isMovingY = true;
-        } else if(entity.y < this.y) { //move up
+        } else if(entity.y < this.y && !this.collideY) { //move up
             this.velocity.y = -1 * (this.SET_VELOCITY.y * this.game.clockTick);
             isMovingY = true;
         } else {
             this.velocity.y = 0;
             isMovingY = false
         }
-        if (isMovingX && isMovingY) {
+        if (isMovingX && isMovingY && !(this.collideX && this.collideY)) {
             this.velocity.x = (this.velocity.x / 2) * Math.sqrt(2);
             this.velocity.y = (this.velocity.y / 2) * Math.sqrt(2);
         }
@@ -53,10 +53,10 @@ class AbstractEnemy {
     moveAway(entity) {
         let isMovingX = false;
         let isMovingY = false;
-        if(entity.x > this.x) { //move right
+        if(entity.x > this.x && !this.collideX) { //move right
             this.velocity.x = -this.SET_VELOCITY.x * this.game.clockTick;
             isMovingX = true;
-        } else if(entity.x < this.x) { //move left
+        } else if(entity.x < this.x && !this.collideX) { //move left
             this.velocity.x = (this.SET_VELOCITY.x * this.game.clockTick);
             isMovingX = true;
         } else {
@@ -64,10 +64,10 @@ class AbstractEnemy {
             isMovingX = false;
         }
         
-        if(entity.y > this.y) { //move down
+        if(entity.y > this.y && !this.collideY) { //move down
             this.velocity.y = -this.SET_VELOCITY.y * this.game.clockTick;
             isMovingY = true;
-        } else if(entity.y < this.y) { //move up
+        } else if(entity.y < this.y && !this.collideY) { //move up
             this.velocity.y = (this.SET_VELOCITY.y * this.game.clockTick);
             isMovingY = true;
         } else {
@@ -75,7 +75,7 @@ class AbstractEnemy {
             isMovingY = false
         }
         
-        if (isMovingX && isMovingY) {
+        if (isMovingX && isMovingY && !(this.collideX && this.collideY)) {
             this.velocity.x = (this.velocity.x / 2) * Math.sqrt(2);
             this.velocity.y = (this.velocity.y / 2) * Math.sqrt(2);
         }
@@ -88,10 +88,10 @@ class AbstractEnemy {
         let randomDirection = getRandomRange(-350, 350);
         let isMovingX = false;
         let isMovingY = false;
-        if(entity.x + randomDirection > this.x) { //move right
+        if((entity.x + randomDirection > this.x) && !this.collideX) { //move right
             this.velocity.x = this.SET_VELOCITY.x * this.game.clockTick;
             isMovingX = true;
-        } else if(entity.x + randomDirection < this.x) { //move left
+        } else if((entity.x + randomDirection < this.x) && !this.collideX) { //move left
             this.velocity.x = -1 * (this.SET_VELOCITY.x * this.game.clockTick);
             isMovingX = true;
         } else {
@@ -99,17 +99,17 @@ class AbstractEnemy {
             isMovingX = false;
         }
         
-        if(entity.y + randomDirection > this.y) { //move down
+        if((entity.y + randomDirection > this.y) && !this.collideY) { //move down
             this.velocity.y = this.SET_VELOCITY.y * this.game.clockTick;
             isMovingY = true;
-        } else if(entity.y + randomDirection < this.y) { //move up
+        } else if((entity.y + randomDirection < this.y) && !this.collideY) { //move up
             this.velocity.y = -1 * (this.SET_VELOCITY.y * this.game.clockTick);
             isMovingY = true;
         } else {
             this.velocity.y = 0;
             isMovingY = false
         }
-        if (isMovingX && isMovingY) {
+        if (isMovingX && isMovingY && !(this.collideX && this.collideY)) {
             this.velocity.x = (this.velocity.x / 2) * Math.sqrt(2);
             this.velocity.y = (this.velocity.y / 2) * Math.sqrt(2);
         }
@@ -117,4 +117,48 @@ class AbstractEnemy {
         this.y += this.velocity.y;
         return isMovingX || isMovingY;
     };
+
+    collide() {
+        var that = this;
+        this.game.entities.forEach(function (entity) {
+            if (entity.BB && that.BB.collide(entity.BB)) {
+                if (that.velocity.y > 0) { // Traveling down.
+                    if (entity instanceof AbstractEnvironment && that.BB.bottom > entity.BB.top) {
+                            that.velocity.y = 0;
+                            that.y -= 1; 
+                            that.collideY = true;
+                    }
+                } else {
+                    that.collideY = false;
+                }
+                if (that.velocity.y < 0 && that.BB.bottom > entity.BB.bottom) { // traveling up.
+                    if (entity instanceof AbstractEnvironment && that.BB.top <= entity.BB.bottom) {
+                        that.velocity.y = 0;
+                        that.y += 1; 
+                        that.collideY = true;
+                    }
+                }  else {
+                    that.collideY = false;
+                }
+                if (that.velocity.x > 0) { // traveling right.
+                    if (entity instanceof AbstractEnvironment && that.BB.right >= entity.BB.left) {
+                        that.velocity.x = 0;
+                        that.x -= 1; 
+                        that.collideX = true;
+                    } 
+                } else {
+                    that.collideX = false;
+                }
+                if (that.velocity.x < 0) { // traveling left.
+                    if (entity instanceof AbstractEnvironment && that.BB.left <= entity.BB.right) {
+                        that.velocity.x = 0;
+                        that.x += 1; 
+                        that.collideX = true;
+                    }
+                } else {
+                    that.collideX = false;
+                }
+            }
+        });
+    }
 }

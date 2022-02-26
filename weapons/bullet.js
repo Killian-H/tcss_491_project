@@ -87,6 +87,7 @@ class bullet {
                 }
                 if (entity instanceof Elite) {
                     entity.alarmGrunts = true;
+                    entity.seen = true;
                     that.removeFromWorld = true;
                 }
             }

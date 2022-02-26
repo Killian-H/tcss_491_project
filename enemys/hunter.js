@@ -28,6 +28,8 @@ class Hunter extends AbstractEnemy {
         this.armRotation = 0;
         this.weapon = "pc";
         this.seen = false;
+        this.collideX = false;
+        this.collideY = false;
         this.aimingX = 0;
         this.aimingY = 0;
         this.health = this.FULL_HEALTH;
@@ -42,7 +44,7 @@ class Hunter extends AbstractEnemy {
         this.elapsedTime = 0;
         this.shieldDamage = 35;
         this.healthDamage = 25;
-        this.bulletSpeed = 380;
+        this.bulletSpeed = 420;
         this.hasNotBeenRemoved = true;
         this.game.enemiesInLevel += 1;
         this.loadAnimations();
@@ -85,6 +87,7 @@ class Hunter extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
+                    that.collide();
                     let isMoving = that.chooseDirection(entity, 50, 200);
                     if(isMoving) {
                         that.state = that.WALK;

@@ -32,6 +32,8 @@ class Grunt extends AbstractEnemy {
         this.armRotation = 0;
         this.weapon = "pp";
         this.seen = false;
+        this.collideX = false;
+        this.collideY = false;
         this.aimingX = 0;
         this.aimingY = 0;
         this.health = this.FULL_HEALTH;
@@ -46,7 +48,7 @@ class Grunt extends AbstractEnemy {
         this.elapsedTime = 0;
         this.shieldDamage = 15;
         this.healthDamage = 8;
-        this.bulletSpeed = 350;
+        this.bulletSpeed = 400;
         this.hasNotBeenRemoved = true;
         this.game.enemiesInLevel += 1;
         this.loadAnimations();
@@ -99,6 +101,7 @@ class Grunt extends AbstractEnemy {
                     }
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
+                    that.collide();
                     let isMoving = that.chooseDirection(entity, 100, 135);
                     if(isMoving) {
                         that.state = that.WALK;
