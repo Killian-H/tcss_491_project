@@ -123,41 +123,40 @@ class AbstractEnemy {
         this.game.entities.forEach(function (entity) {
             if (entity.BB && that.BB.collide(entity.BB)) {
                 if (that.velocity.y > 0) { // Traveling down.
-                    if (entity instanceof AbstractEnvironment && that.BB.bottom > entity.BB.top) {
-                            that.velocity.y = 0;
-                            that.y -= 1; 
-                            that.collideY = true;
+                    if (entity instanceof AbstractEnvironment && that.BB.bottom >= entity.BB.top) {
+                        that.collideX = false;
+                        that.velocity.y = 0;
+                        that.y -= 1; 
+                        that.collideY = true;
                     }
-                } else {
-                    that.collideY = false;
-                }
-                if (that.velocity.y < 0 && that.BB.bottom > entity.BB.bottom) { // traveling up.
+                } 
+                else if (that.velocity.y < 0 && that.BB.bottom > entity.BB.bottom) { // traveling up.
                     if (entity instanceof AbstractEnvironment && that.BB.top <= entity.BB.bottom) {
+                        that.collideX = false;
                         that.velocity.y = 0;
                         that.y += 1; 
                         that.collideY = true;
                     }
-                }  else {
-                    that.collideY = false;
                 }
-                if (that.velocity.x > 0) { // traveling right.
+                else if (that.velocity.x > 0) { // traveling right.
                     if (entity instanceof AbstractEnvironment && that.BB.right >= entity.BB.left) {
+                        that.collideY = false;
                         that.velocity.x = 0;
                         that.x -= 1; 
                         that.collideX = true;
-                    } 
-                } else {
-                    that.collideX = false;
+                    }
                 }
-                if (that.velocity.x < 0) { // traveling left.
+                else if (that.velocity.x < 0) { // traveling left.
                     if (entity instanceof AbstractEnvironment && that.BB.left <= entity.BB.right) {
+                        that.collideY = false;
                         that.velocity.x = 0;
                         that.x += 1; 
                         that.collideX = true;
                     }
-                } else {
-                    that.collideX = false;
                 }
+            } else {
+                that.collideX = false;
+                that.collideY = false;
             }
         });
     }
