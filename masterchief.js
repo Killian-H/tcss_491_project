@@ -4,7 +4,7 @@ class masterchief {
     Y_DEFAULT = 0;
     AMMO_DEFAULT = 32;
     MAX_HEALTH = 100;
-    MAX_ARMOR = 200;
+    MAX_ARMOR = 170;
     SCALE = 1.6;
     LEFT = 1;
     RIGHT = 0;
