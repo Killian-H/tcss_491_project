@@ -126,7 +126,7 @@ class AbstractEnemy {
                     if (entity instanceof AbstractEnvironment && that.BB.bottom >= entity.BB.top) {
                         that.collideX = false;
                         that.velocity.y = 0;
-                        that.y -= 1; 
+                        that.y -= 2; 
                         that.collideY = true;
                     }
                 } 
@@ -134,7 +134,7 @@ class AbstractEnemy {
                     if (entity instanceof AbstractEnvironment && that.BB.top <= entity.BB.bottom) {
                         that.collideX = false;
                         that.velocity.y = 0;
-                        that.y += 1; 
+                        that.y += 2; 
                         that.collideY = true;
                     }
                 }
@@ -142,7 +142,7 @@ class AbstractEnemy {
                     if (entity instanceof AbstractEnvironment && that.BB.right >= entity.BB.left) {
                         that.collideY = false;
                         that.velocity.x = 0;
-                        that.x -= 1; 
+                        that.x -= 2; 
                         that.collideX = true;
                     }
                 }
@@ -150,7 +150,7 @@ class AbstractEnemy {
                     if (entity instanceof AbstractEnvironment && that.BB.left <= entity.BB.right) {
                         that.collideY = false;
                         that.velocity.x = 0;
-                        that.x += 1; 
+                        that.x += 2; 
                         that.collideX = true;
                     }
                 }
