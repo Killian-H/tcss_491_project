@@ -106,6 +106,9 @@ class SceneManager {
         this.pelican = new Pelican(this.game, 200, 200);
         this.game.addEntity(this.pelican);
         ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
+        //add in minimap
+        //this.map = new Minimap(this.game, 900, 400, 50);
+        //this.game.addEntity(this.map);
         //add in masterchief and HUD
         this.masterchief = new masterchief(this.game, this.x - this.game.camera.x + this.MID_POINT_X, this.y - this.game.camera.y + this.MID_POINT_Y);
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);

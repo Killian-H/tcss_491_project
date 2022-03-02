@@ -351,7 +351,13 @@ class masterchief {
         this.positiony = this.y - this.game.camera.y;
         this.updateBoundBox();
         }
-    };
+
+    }
+
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Green";
+        ctx.fillRect(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, PARAMS.SCALE * Math.min(this.size + 1, 2));
+    }
 
     // calculateWeaponLocationX() {
     //     if (this.facing == this.LEFT) {

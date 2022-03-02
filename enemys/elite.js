@@ -165,6 +165,11 @@ class Elite extends AbstractEnemy {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Red";
+        ctx.fillRect(mmX + this.x / PARAMS.BITWIDTH, mmY + this.y / PARAMS.BITWIDTH, PARAMS.SCALE, PARAMS.SCALE * Math.min(this.size + 1, 2));
+    }
+
     draw(ctx) {
         //if(!this.game.pauseb){
         if (this.health <= 0) {
