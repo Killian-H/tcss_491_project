@@ -116,7 +116,7 @@ class SceneManager {
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
-        this.game.addEntity(new Hunter(this.game, 500, 500));
+        //this.game.addEntity(new Hunter(this.game, 500, 500));
 
         //Load Level
         let ground = level.layers[0];
