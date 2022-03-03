@@ -168,7 +168,7 @@ class Grunt extends AbstractEnemy {
     };
 
     drawMinimap(ctx, mmX, mmY) {
-        ctx.fillStyle = "Orange";
+        ctx.fillStyle = "Red";
         //console.log(PARAMS.SCALE);
         ctx.fillRect(mmX + this.x / 32.5, mmY + this.y / 32.5, PARAMS.SCALE * 1.7 , PARAMS.SCALE * 1.7);
     }

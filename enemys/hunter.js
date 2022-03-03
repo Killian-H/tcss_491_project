@@ -154,7 +154,7 @@ class Hunter extends AbstractEnemy {
     };
 
     drawMinimap(ctx, mmX, mmY) {
-        ctx.fillStyle = "LimeGreen";
+        ctx.fillStyle = "Red";
         ctx.fillRect(mmX + this.x / 32.5, mmY + this.y / 32.5, PARAMS.SCALE * 2 , PARAMS.SCALE * 2);
     }
 

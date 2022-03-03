@@ -166,7 +166,7 @@ class Elite extends AbstractEnemy {
     };
 
     drawMinimap(ctx, mmX, mmY) {
-        ctx.fillStyle = "Blue";
+        ctx.fillStyle = "Red";
         ctx.fillRect(mmX + this.x / 32.5, mmY + this.y / 32.5, PARAMS.SCALE * 1.7 , PARAMS.SCALE * 1.7);
     }
 
