@@ -1,6 +1,6 @@
 class Elite extends AbstractEnemy {
 
-    SCALE = 1.65;
+    SCALE = 1;
     SET_VELOCITY = {x: 175, y: 175};
     IDLE = 0;
     WALK = 1;
