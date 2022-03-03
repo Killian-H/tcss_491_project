@@ -67,6 +67,9 @@ class RocketLauncher extends AbstractWeapon {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     getArmRotation() {
         return this.armRotation;
     };

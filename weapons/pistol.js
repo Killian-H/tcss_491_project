@@ -65,6 +65,9 @@ class Pistol extends AbstractWeapon {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     getArmRotation() {
         return this.armRotation;
     };

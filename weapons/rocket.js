@@ -78,6 +78,9 @@ class Rocket {
         }  
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     updateBoundBox() {
         this.lastBB = this.BB;
         this.BB = new BoundingBox(this.x + 1, this.y - 12, 24, 24);

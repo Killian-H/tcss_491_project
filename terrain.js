@@ -19,7 +19,8 @@ class Tree extends AbstractEnvironment {
         }
     };
 
-
+    drawMinimap(ctx, mmX, mmY) {
+    };
 
     draw(ctx) {
         ctx.drawImage(this.PINE_TREE, this.x - this.game.camera.x, this.y - this.game.camera.y);
@@ -45,7 +46,8 @@ class BigTree extends AbstractEnvironment {
         }
     };
 
-
+    drawMinimap(ctx, mmX, mmY) {
+    };
 
     draw(ctx) {
         ctx.drawImage(this.PINE_TREE, this.x - this.game.camera.x, this.y - this.game.camera.y);
@@ -69,6 +71,9 @@ class Rock extends AbstractEnvironment {
     update() {
         if(!this.game.pauseb){
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {
@@ -95,6 +100,9 @@ class WallTop extends AbstractEnvironment {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         ctx.drawImage(this.WALL_TOP, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
@@ -117,6 +125,9 @@ class TreeWall extends AbstractEnvironment {
     update() {
         if(!this.game.pauseb){
         }
+    };
+    
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {
@@ -141,6 +152,9 @@ class Wall extends AbstractEnvironment {
     update() {
         if(!this.game.pauseb){
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {
@@ -171,6 +185,9 @@ class TopWall extends AbstractEnvironment {
     update() {
         if(!this.game.pauseb){
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {
@@ -204,6 +221,9 @@ class BottomWall extends AbstractEnvironment {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         ctx.drawImage(this.img, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
@@ -232,6 +252,9 @@ class LeftWall extends AbstractEnvironment {
     update() {
         if(!this.game.pauseb){
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {
@@ -264,6 +287,9 @@ class RightWall extends AbstractEnvironment {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         ctx.drawImage(this.img, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
@@ -294,6 +320,9 @@ class BottomLeftFullWall extends AbstractEnvironment {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         ctx.drawImage(this.img, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
@@ -322,6 +351,9 @@ class BottomRightFullWall extends AbstractEnvironment {
     update() {
         if(!this.game.pauseb){
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {
@@ -355,6 +387,9 @@ class BottomRightCornerWall extends AbstractEnvironment {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         ctx.drawImage(this.img, this.x - this.game.camera.x, this.y - this.game.camera.y);
         if (PARAMS.DEBUG == true) {
@@ -384,6 +419,9 @@ class BottomLeftCornerWall extends AbstractEnvironment {
     update() {
         if(!this.game.pauseb){
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {
@@ -421,6 +459,9 @@ class Terrain {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         ctx.drawImage(this.grassType, this.x - this.game.camera.x, this.y - this.game.camera.y);
     };
@@ -436,6 +477,9 @@ class Dirt {
     update() {
         if(!this.game.pauseb){
         }
+    };
+
+    drawMinimap(ctx, mmX, mmY) {
     };
 
     draw(ctx) {

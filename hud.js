@@ -24,8 +24,10 @@ class hud {
                 }
             }
         }
+    };
 
-    }
+    drawMinimap(ctx, mmX, mmY) {
+    };
 
     draw(ctx) {
         if(!this.game.pauseb){

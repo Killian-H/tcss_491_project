@@ -13,6 +13,9 @@ class Background {
         }
     }
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         if(!this.game.pauseb){
             ctx.drawImage(this.BACKGROUND, this.x, this.y, this.WIDTH, this.HEIGHT, this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH, this.HEIGHT);

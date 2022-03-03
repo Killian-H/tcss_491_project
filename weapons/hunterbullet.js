@@ -76,6 +76,9 @@ class HunterBullet {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     updateBoundCircle() {
         this.lastBC = this.BC;
         this.BC = new BoundingCircle(this.x + 2, this.y, 16);

@@ -95,6 +95,9 @@ class bullet {
     }  
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     updateBoundCircle() {
         this.lastBC = this.BC;
         this.BC = new BoundingCircle(this.x + 1, this.y - 1, 8);

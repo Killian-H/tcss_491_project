@@ -58,6 +58,9 @@ class Explosion {
         }); 
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx) {
         if (PARAMS.DEBUG == true) {
             ctx.strokeStyle = "Red";

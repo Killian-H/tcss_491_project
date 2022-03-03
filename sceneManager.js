@@ -17,6 +17,8 @@ class SceneManager {
         this.y = this.MID_POINT_Y;
         this.game.camera = this;
         this.masterchief = new masterchief(game, this.x, this.y);
+        // this.minimap = new Minimap(this.game, 18.5 * PARAMS.BLOCKWIDTH, 8.5 * PARAMS.BLOCKWIDTH, 55 * PARAMS.SCALE, 55 * PARAMS.SCALE);
+        this.minimap = new Minimap(this.game, 3.5 * PARAMS.BLOCKWIDTH, 1.5 * PARAMS.BLOCKWIDTH, 225 * PARAMS.SCALE, 225 * PARAMS.SCALE);
     };
 
     clearEntities() {
@@ -114,21 +116,6 @@ class SceneManager {
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
-        //this.game.addEntity(new Hunter(this.game, 150, 250));
-        // this.game.addEntity(new Hunter(this.game, 150, 350));
-        // this.game.addEntity(new Hunter(this.game, 150, 250));
-        // this.game.addEntity(new Hunter(this.game, 250, 250));
-        // this.game.addEntity(new Hunter(this.game, 550, 150));
-        // this.game.addEntity(new Hunter(this.game, 525, 250));
-        // this.game.addEntity(new Hunter(this.game, 550, 450));
-        // this.game.addEntity(new Hunter(this.game, 500, 450));
-        // this.game.addEntity(new Hunter(this.game, 500, 350));
-        // this.game.addEntity(new Hunter(this.game, 450, 400));
-        // this.game.addEntity(new Hunter(this.game, 350, 250));
-        // this.game.addEntity(new Hunter(this.game, 650, 250));
-        // this.game.addEntity(new Hunter(this.game, 650, 350));
-        // this.game.addEntity(new Hunter(this.game, 650, 450));
-        
 
         //Load Level
         let ground = level.layers[0];
@@ -309,6 +296,7 @@ class SceneManager {
                 ctx.translate(0, 10);
                 ctx.strokeStyle = "White";
                 ctx.fillStyle = ctx.strokeStyle;
+                this.minimap.draw(ctx);
             }
         }
 

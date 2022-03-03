@@ -132,6 +132,9 @@ class EnemyBullet {
         this.BC = new BoundingCircle(this.x + 2, this.y, 7);
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     // checkHealth() {
 
     // };

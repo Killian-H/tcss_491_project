@@ -8,6 +8,9 @@ class BoundingBox {
         this.bottom = this.top + this.height;
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     collide(theOther) {
         let isCollide = false;
         if (this.right >= theOther.left && this.left <= theOther.right && this.top <= theOther.bottom && this.bottom >= theOther.top) {

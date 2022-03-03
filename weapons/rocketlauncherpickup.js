@@ -25,6 +25,9 @@ class RocketLauncherPickup {
         }
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     draw(ctx){
         //if(!this.game.pauseb){
         if (PARAMS.DEBUG == true) {

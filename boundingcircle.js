@@ -5,6 +5,9 @@ class BoundingCircle {
         this.radius = radius;
     };
 
+    drawMinimap(ctx, mmX, mmY) {
+    };
+
     collisionCircle(theOther) {
         let isCollide = false;
         var top = theOther.top + this.radius;
