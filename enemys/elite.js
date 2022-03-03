@@ -1,6 +1,6 @@
 class Elite extends AbstractEnemy {
 
-    SCALE = 1;
+    SCALE = 1.6;
     SET_VELOCITY = {x: 175, y: 175};
     IDLE = 0;
     WALK = 1;
@@ -166,8 +166,8 @@ class Elite extends AbstractEnemy {
     };
 
     drawMinimap(ctx, mmX, mmY) {
-        ctx.fillStyle = "Red";
-        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.4 , PARAMS.SCALE * 1.4);
+        ctx.fillStyle = "Blue";
+        ctx.fillRect(mmX + this.x / 32.5, mmY + this.y / 32.5, PARAMS.SCALE * 1.7 , PARAMS.SCALE * 1.7);
     }
 
     draw(ctx) {

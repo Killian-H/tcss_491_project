@@ -47,6 +47,8 @@ class BigTree extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        ctx.fillRect(mmX + this.x / 31.5, mmY + this.y / 31.5, PARAMS.SCALE * 1 , PARAMS.SCALE * 1);
     };
 
     draw(ctx) {
@@ -131,6 +133,8 @@ class TreeWall extends AbstractEnvironment {
     };
     
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        ctx.fillRect(mmX + this.x / 31.5, mmY + this.y / 31.5, PARAMS.SCALE * 1 , PARAMS.SCALE * 1);
     };
 
     draw(ctx) {
@@ -264,6 +268,8 @@ class LeftWall extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        ctx.fillRect(mmX + this.x / 31.5, mmY + this.y / 31.5, PARAMS.SCALE * 1 , PARAMS.SCALE * 1);
     };
 
     draw(ctx) {
@@ -297,6 +303,8 @@ class RightWall extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        ctx.fillRect(mmX + this.x / 31.5, mmY + this.y / 31.5, PARAMS.SCALE * 1 , PARAMS.SCALE * 1);
     };
 
     draw(ctx) {

@@ -355,8 +355,8 @@ class masterchief {
     }
 
     drawMinimap(ctx, mmX, mmY) {
-        ctx.fillStyle = "Blue";
-        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, this.SCALE * 1.6, this.SCALE * 1.6);
+        ctx.fillStyle = "Aqua";
+        ctx.fillRect(mmX + this.x / 32.5, mmY + this.y / 32.5, PARAMS.SCALE * 2 , PARAMS.SCALE * 2);
     }
 
     // calculateWeaponLocationX() {
