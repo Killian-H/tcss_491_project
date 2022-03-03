@@ -18,7 +18,7 @@ class SceneManager {
         this.game.camera = this;
         this.masterchief = new masterchief(game, this.x, this.y);
         // this.minimap = new Minimap(this.game, 18.5 * PARAMS.BLOCKWIDTH, 8.5 * PARAMS.BLOCKWIDTH, 55 * PARAMS.SCALE, 55 * PARAMS.SCALE);
-        this.minimap = new Minimap(this.game, 3.5 * PARAMS.BLOCKWIDTH, 1.5 * PARAMS.BLOCKWIDTH, 225 * PARAMS.SCALE, 225 * PARAMS.SCALE);
+        //this.minimap = new Minimap(this.game, 3.5 * PARAMS.BLOCKWIDTH, 1.5 * PARAMS.BLOCKWIDTH, 225 * PARAMS.SCALE, 225 * PARAMS.SCALE);
     };
 
     clearEntities() {
@@ -294,9 +294,9 @@ class SceneManager {
                 ctx.fillText("Click", 3.5 * PARAMS.BLOCKWIDTH + 2, 1.2 * PARAMS.BLOCKWIDTH - 2);
 
                 ctx.translate(0, 10);
-                ctx.strokeStyle = "White";
-                ctx.fillStyle = ctx.strokeStyle;
-                this.minimap.draw(ctx);
+                //ctx.strokeStyle = "White";
+                //ctx.fillStyle = ctx.strokeStyle;
+                //this.minimap.draw(ctx);
             }
         }
 

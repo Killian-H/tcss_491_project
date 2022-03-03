@@ -7,6 +7,8 @@ class hud {
 
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
+        // this.minimap = new Minimap(this.game, 18.5 * PARAMS.BLOCKWIDTH, 8.5 * PARAMS.BLOCKWIDTH, 55 * PARAMS.SCALE, 55 * PARAMS.SCALE);
+        this.minimap = new Minimap(this.game, 3.5 * PARAMS.BLOCKWIDTH, 1.5 * PARAMS.BLOCKWIDTH, 225 * PARAMS.SCALE, 225 * PARAMS.SCALE);
     }
 
     update() {
@@ -62,6 +64,10 @@ class hud {
         if(this.masterchief.weapon.ammo == 0 && this.masterchief.weapon.canshoot){
             ctx.fillText(("R -> Reload"), this.masterchief.positionx-38, this.masterchief.positiony+75);
         }
+        ctx.strokeStyle = "White";
+        ctx.fillStyle = ctx.strokeStyle;
+        this.minimap.draw(ctx);
+        ctx.strokeStyle = "Black";
         ctx.font = 'bold 48px "Black Ops One"';
         if (PARAMS.DEBUG == true) {
             ctx.fillStyle = "Black";
