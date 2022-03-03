@@ -197,7 +197,7 @@ class TopWall extends AbstractEnvironment {
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Black";
         //console.log(PARAMS.SCALE);
-        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
+        ctx.fillRect(mmX + this.x / 32, mmY + (this.y+100) / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -269,7 +269,7 @@ class LeftWall extends AbstractEnvironment {
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Black";
-        ctx.fillRect(mmX + this.x / 31.5, mmY + this.y / 31.5, PARAMS.SCALE * 1 , PARAMS.SCALE * 1);
+        ctx.fillRect(mmX + (this.x-50) / 31.5, mmY + this.y / 31.5, PARAMS.SCALE * .4 , PARAMS.SCALE * 1.8);
     };
 
     draw(ctx) {
@@ -304,7 +304,7 @@ class RightWall extends AbstractEnvironment {
 
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Black";
-        ctx.fillRect(mmX + this.x / 31.5, mmY + this.y / 31.5, PARAMS.SCALE * 1 , PARAMS.SCALE * 1);
+        ctx.fillRect(mmX + (this.x+50) / 31.5, mmY + this.y / 31.5,  PARAMS.SCALE * .4 , PARAMS.SCALE * 1.8);
     };
 
     draw(ctx) {
@@ -340,7 +340,7 @@ class BottomLeftFullWall extends AbstractEnvironment {
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Black";
         //console.log(PARAMS.SCALE);
-        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
+        ctx.fillRect(mmX + (this.x-80) / 32, mmY + (this.y+100) / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -376,7 +376,7 @@ class BottomRightFullWall extends AbstractEnvironment {
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Black";
         //console.log(PARAMS.SCALE);
-        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
+        ctx.fillRect(mmX + (this.x+90) / 32, mmY + (this.y+100) / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -413,7 +413,7 @@ class BottomRightCornerWall extends AbstractEnvironment {
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Black";
         //console.log(PARAMS.SCALE);
-        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * .4 , PARAMS.SCALE * 1.8);
     };
 
     draw(ctx) {
@@ -450,7 +450,7 @@ class BottomLeftCornerWall extends AbstractEnvironment {
     drawMinimap(ctx, mmX, mmY) {
         ctx.fillStyle = "Black";
         //console.log(PARAMS.SCALE);
-        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * .4 , PARAMS.SCALE * 1.8);
     };
 
     draw(ctx) {
