@@ -25,6 +25,7 @@ class Pistol extends AbstractWeapon {
         this.elapsedtime = 0;
         this.defaultReloadTime = 2500;
         this.ammo = this.AMMO_DEFAULT;
+        this.ammoReserve = Infinity;
         this.ammotype = this.PR_BULLET;
         this.ammotypescale = 2.5;
         this.gun = this.PISTOL_PIC;
@@ -56,14 +57,25 @@ class Pistol extends AbstractWeapon {
                 this.reloadTime += TICK;
             }
 
-            if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
+            if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading&&this.ammoReserve > 0) {
                 this.reloadTime = 0;
                 let stopShoot = setInterval(() => {this.canshoot = false,this.reloading = true}, 1);
                 ASSET_MANAGER.playAsset("./audio/weapons/pistol reload.mp3");
-                setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
+                setTimeout(() => {this.reloadlogic(), clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             }
         }
     };
+
+    reloadlogic(){
+        if(this.ammoReserve >= this.AMMO_DEFAULT){
+            this.ammoReserve -= (this.AMMO_DEFAULT - this.ammo)
+            this.ammo = this.AMMO_DEFAULT;
+        }
+        else {
+            this.ammo = this.ammoReserve;
+            this.ammoReserve = 0;
+        }
+    }
 
     drawMinimap(ctx, mmX, mmY) {
     };

@@ -26,10 +26,11 @@ class RocketLauncher extends AbstractWeapon {
         this.defaultReloadTime = 4500;
         this.elapsedtime = 0;
         this.ammo = this.AMMO_DEFAULT;
+        this.ammoReserve = 4;
         this.ammotype = this.RL_BULLET;
         this.gun = this.ROCKET_PIC;
         this.ammotypescale = 0.75;
-        this.unlocked = true;
+        this.unlocked = false;
     };
 
     update() {
@@ -58,14 +59,29 @@ class RocketLauncher extends AbstractWeapon {
                 this.reloadTime += TICK;
             }
 
-            if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading) {
+            if (this.game.reload && (this.ammo < this.AMMO_DEFAULT)&&!this.reloading&&this.ammoReserve > 0) {
                 this.reloadTime = 0;
                 let stopShoot = setInterval(() => {this.canshoot = false,this.reloading = true}, 1);
                 ASSET_MANAGER.playAsset("./audio/weapons/rocket reload.mp3");
-                setTimeout(() => {this.ammo = this.AMMO_DEFAULT, clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
+                setTimeout(() => {this.reloadlogic(),clearInterval(stopShoot), this.canshoot = true,this.reloading = false,this.reloadTime = 0}, this.defaultReloadTime);
             }
         }
     };
+
+    reloadlogic(){
+        if(this.ammoReserve >= this.AMMO_DEFAULT){
+            this.ammoReserve -= (this.AMMO_DEFAULT - this.ammo)
+            this.ammo = this.AMMO_DEFAULT;
+        }
+        else {
+            this.ammo = this.ammoReserve;
+            this.ammoReserve = 0;
+        }
+    }
+
+    getAmmoReserve(){
+        return this.ammoReserve;
+    }
 
     drawMinimap(ctx, mmX, mmY) {
     };

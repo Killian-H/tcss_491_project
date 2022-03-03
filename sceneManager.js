@@ -117,6 +117,8 @@ class SceneManager {
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
         //this.game.addEntity(new Hunter(this.game, 500, 500));
+        this.game.addEntity(new RocketLauncherPickup(this.game, 500, 500));
+        this.game.addEntity(new RocketLauncherPickup(this.game, 600, 600));
 
         //Load Level
         let ground = level.layers[0];

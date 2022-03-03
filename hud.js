@@ -40,7 +40,7 @@ class hud {
         ctx.strokeStyle = "Black";
         //ctx.font = PARAMS.BLOCKWIDTH/2 + 'px "Arial"';
         ctx.font = 'bold 20px "Black Ops One"';
-        ctx.fillText((this.masterchief.weapon.ammo+"/"+this.masterchief.weapon.AMMO_DEFAULT), 65, 50);
+        ctx.fillText((this.masterchief.weapon.ammo+"/"+this.masterchief.weapon.ammoReserve), 65, 50);
         ctx.drawImage(this.masterchief.weapon.ammotype, 25, 40, this.masterchief.weapon.ammotype.width * this.masterchief.weapon.ammotypescale, this.masterchief.weapon.ammotype.height * this.masterchief.weapon.ammotypescale);
         ctx.drawImage(this.masterchief.weapon.gun, 25, 65, this.masterchief.weapon.gun.width * 2.5, this.masterchief.weapon.gun.height * 2.5);
         ctx.fillText(("Enemies remaining "+this.game.enemiesInLevel), 400, 50);
@@ -62,7 +62,7 @@ class hud {
         var ratio4 = this.masterchief.weapon.reloadTime / this.masterchief.weapon.defaultReloadTime;
         ctx.fillRect(this.masterchief.positionx-13 , this.masterchief.positiony+55, 50000*ratio4, 5);
         ctx.fillStyle = "White";
-        if(this.masterchief.weapon.ammo == 0 && this.masterchief.weapon.canshoot){
+        if(this.masterchief.weapon.ammo == 0 && this.masterchief.weapon.canshoot && this.masterchief.weapon.ammoReserve > 0){
             ctx.fillText(("R -> Reload"), this.masterchief.positionx-38, this.masterchief.positiony+75);
         }
         ctx.strokeStyle = "White";
