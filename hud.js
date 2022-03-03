@@ -8,7 +8,8 @@ class hud {
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
         // this.minimap = new Minimap(this.game, 18.5 * PARAMS.BLOCKWIDTH, 8.5 * PARAMS.BLOCKWIDTH, 55 * PARAMS.SCALE, 55 * PARAMS.SCALE);
-        this.minimap = new Minimap(this.game, 3.5 * PARAMS.BLOCKWIDTH, 1.5 * PARAMS.BLOCKWIDTH, 225 * PARAMS.SCALE, 225 * PARAMS.SCALE);
+        //this.minimap = new Minimap(this.game, 3.5 * PARAMS.BLOCKWIDTH, 1.5 * PARAMS.BLOCKWIDTH, 225 * PARAMS.SCALE, 225 * PARAMS.SCALE);
+        this.minimap = new Minimap(this.game, .5 * PARAMS.BLOCKWIDTH, 6.5 * PARAMS.BLOCKWIDTH, 100 * PARAMS.SCALE, 100 * PARAMS.SCALE);
     }
 
     update() {
