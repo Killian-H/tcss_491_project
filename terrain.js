@@ -101,6 +101,9 @@ class WallTop extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -188,6 +191,9 @@ class TopWall extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -222,6 +228,9 @@ class BottomWall extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -321,6 +330,9 @@ class BottomLeftFullWall extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -354,6 +366,9 @@ class BottomRightFullWall extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -388,6 +403,9 @@ class BottomRightCornerWall extends AbstractEnvironment {
     };
 
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
@@ -420,8 +438,11 @@ class BottomLeftCornerWall extends AbstractEnvironment {
         if(!this.game.pauseb){
         }
     };
-
+    
     drawMinimap(ctx, mmX, mmY) {
+        ctx.fillStyle = "Black";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32, mmY + this.y / 32, PARAMS.SCALE * 1.8 , PARAMS.SCALE * .4);
     };
 
     draw(ctx) {
