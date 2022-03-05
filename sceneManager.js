@@ -117,8 +117,6 @@ class SceneManager {
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
         //this.game.addEntity(new Hunter(this.game, 500, 500));
-        this.game.addEntity(new RocketLauncherPickup(this.game, 500, 500));
-        this.game.addEntity(new RocketLauncherPickup(this.game, 600, 600));
 
         //Load Level
         let ground = level.layers[0];
@@ -235,6 +233,15 @@ class SceneManager {
                         break;
                     case 41: //Grunt
                         this.game.addEntity(new Grunt(this.game,currX,currY));
+                        break;
+                    case 45: //Hunter
+                        this.game.addEntity(new Hunter(this.game,currX,currY));
+                        break;
+                    case 47: //MedKit
+                        this.game.addEntity(new Medkit(this.game,currX, currY  + this.TILE_WIDTH / 2));
+                        break;
+                    case 44:
+                        this.game.addEntity(new RocketLauncherPickup(this.game,currX + this.TILE_WIDTH / 2, currY  + this.TILE_WIDTH / 2));
                         break;
                     case 37: //plasma rifle
                         this.game.addEntity(new PlasmaPickup(this.game,currX + this.TILE_WIDTH / 2,currY  + this.TILE_WIDTH / 2));

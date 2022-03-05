@@ -8,7 +8,7 @@
  "margin":0,
  "name":"KillianTileSetV2",
  "spacing":0,
- "tilecount":37,
+ "tilecount":40,
  "tiledversion":"1.7.2",
  "tileheight":256,
  "tiles":[
@@ -231,6 +231,24 @@
         {
          "id":43,
          "image":"..\/sprites\/terrain\/rock_wall_bottom_right_corner.png",
+         "imageheight":128,
+         "imagewidth":128
+        }, 
+        {
+         "id":44,
+         "image":"..\/sprites\/hud_display\/rocket_launcher.png",
+         "imageheight":14,
+         "imagewidth":47
+        }, 
+        {
+         "id":45,
+         "image":"..\/sprites\/hunter\/hunter_idle_right.png",
+         "imageheight":83,
+         "imagewidth":59
+        }, 
+        {
+         "id":47,
+         "image":"..\/images\/Health_Pickup_Location_Marker.png",
          "imageheight":128,
          "imagewidth":128
         }],
