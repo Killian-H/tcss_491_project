@@ -1,6 +1,6 @@
 class Background {
-    WIDTH = 1024;
-    HEIGHT = 540;
+    WIDTH = 10000;
+    HEIGHT = 10000;
     BACKGROUND = ASSET_MANAGER.getAsset("./images/Grass_Background_Huge.png");
 
     constructor(game,x,y) {
@@ -17,8 +17,6 @@ class Background {
     };
 
     draw(ctx) {
-        if(!this.game.pauseb){
-            ctx.drawImage(this.BACKGROUND, this.x, this.y, this.WIDTH, this.HEIGHT, this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH, this.HEIGHT);
-        }
+        ctx.drawImage(this.BACKGROUND, this.x - this.game.camera.x, this.y - this.game.camera.y, this.WIDTH, this.HEIGHT);
     }
 }

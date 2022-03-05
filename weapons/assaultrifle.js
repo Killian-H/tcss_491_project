@@ -29,6 +29,7 @@ class AssaultRifle extends AbstractWeapon {
         this.ammotype = this.BULLET_SPRITE;
         this.ammotypescale = 2.5;
         this.gun = this.AR_PIC;
+        this.unlocked = false;
     };
 
     update() {

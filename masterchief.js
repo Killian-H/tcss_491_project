@@ -80,7 +80,7 @@ class masterchief {
         this.weaponArray[3] = new Shotgun(this.game, this.x, this.y);
         this.weaponArray[4] = new PlasmaRifle(this.game, this.x, this.y);
         this.weaponArray[5] = new RocketLauncher(this.game, this.x, this.y);
-        this.weapon = this.weaponArray[0];
+        this.weapon = this.weaponArray[1];
         this.game.chiefDone = false;
 
         //this.animator = new Animator(ASSET_MANAGER.getAsset("./sprites/master_chief/arms_1.png"), 3, 0, 38, 70, 1, 0.2);
@@ -222,7 +222,7 @@ class masterchief {
         const TICK = this.game.clockTick;
         this.checkShield();
         this.weapon.update();
-        if (this.game.weaponOne) {
+        if (this.game.weaponOne && this.weaponArray[0].unlocked) {
             ASSET_MANAGER.playAsset("./audio/weapons/ar switch.mp3");
             this.weapon = this.weaponArray[0];
         } else if (this.game.weaponTwo) {

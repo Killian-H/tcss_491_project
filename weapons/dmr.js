@@ -29,7 +29,7 @@ class DMR extends AbstractWeapon {
         this.ammotype = this.PR_BULLET;
         this.gun = this.DMR_PIC;
         this.ammotypescale = 2.5;
-        this.unlocked = true;
+        this.unlocked = false;
     };
 
     update() {
