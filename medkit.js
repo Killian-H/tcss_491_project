@@ -33,7 +33,10 @@ class Medkit {
     };
 
     drawMinimap(ctx, mmX, mmY) {
-    };
+        ctx.fillStyle = "purple";
+        //console.log(PARAMS.SCALE);
+        ctx.fillRect(mmX + this.x / 32.5, mmY + this.y / 32.5, PARAMS.SCALE * 1.7 , PARAMS.SCALE * 1.7);
+    }
 
     draw(ctx){
         //if(!this.game.pauseb){
