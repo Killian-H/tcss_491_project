@@ -22,7 +22,7 @@ class WinMenu {
                     && (this.game.click)) {
                     ASSET_MANAGER.playAsset("./audio/click.wav");
                     this.game.camera.loadLevel(levelOne);
-                    ASSET_MANAGER.playAsset("./music/halo 3 theme.mp3");
+                    ASSET_MANAGER.playAsset("./music/music_track.mp3");
                 }
                 if ((this.game.mouse.x - this.game.camera.x >= this.QUIT_POSITION.x && this.game.mouse.x - this.game.camera.x <= this.QUIT_POSITION.x + 120) && (this.game.mouse.y - this.game.camera.y >= this.QUIT_POSITION.y - 40 && this.game.mouse.y - this.game.camera.y <= this.QUIT_POSITION.y)
                     && (this.game.click)) {

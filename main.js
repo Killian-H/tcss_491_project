@@ -92,7 +92,8 @@ ASSET_MANAGER.queueDownload("./images/healthpack.png");
 ASSET_MANAGER.queueDownload("./images/pelican.png");
 
 // music
-ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
+//ASSET_MANAGER.queueDownload("./music/halo 3 theme.mp3");
+ASSET_MANAGER.queueDownload("./music/music_track.mp3");
 
 // sound effects
 ASSET_MANAGER.queueDownload("./audio/weapons/ar reload.mp3");
