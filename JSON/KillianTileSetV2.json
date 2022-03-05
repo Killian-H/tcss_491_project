@@ -8,7 +8,7 @@
  "margin":0,
  "name":"KillianTileSetV2",
  "spacing":0,
- "tilecount":40,
+ "tilecount":41,
  "tiledversion":"1.7.2",
  "tileheight":256,
  "tiles":[
@@ -251,6 +251,12 @@
          "image":"..\/images\/Health_Pickup_Location_Marker.png",
          "imageheight":128,
          "imagewidth":128
+        }, 
+        {
+         "id":48,
+         "image":"..\/sprites\/hud_display\/assault_rifle.png",
+         "imageheight":12,
+         "imagewidth":28
         }],
  "tilewidth":256,
  "type":"tileset",

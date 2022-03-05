@@ -243,6 +243,9 @@ class SceneManager {
                     case 44:
                         this.game.addEntity(new RocketLauncherPickup(this.game,currX + this.TILE_WIDTH / 2, currY  + this.TILE_WIDTH / 2));
                         break;
+                    case 48: //assault rifle
+                        this.game.addEntity(new AssaultRiflePickup(this.game,currX + this.TILE_WIDTH / 2,currY  + this.TILE_WIDTH / 2));
+                        break;
                     case 37: //plasma rifle
                         this.game.addEntity(new PlasmaPickup(this.game,currX + this.TILE_WIDTH / 2,currY  + this.TILE_WIDTH / 2));
                         break;    
