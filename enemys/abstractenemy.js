@@ -85,8 +85,8 @@ class AbstractEnemy {
     };
 
     randomMovement() {
-        let randomDirectionX = getRandomInteger(-5350, 5350);
-        let randomDirectionY = getRandomInteger(-5350, 5350);
+        let randomDirectionX = getRandomInteger(0, 5000);
+        let randomDirectionY = getRandomInteger(0, 6200);
         let isMovingX = false;
         let isMovingY = false;
         if((randomDirectionX > this.x) && !this.collideX) { //move right
