@@ -13,7 +13,7 @@ class AbstractEnemy {
         } else if (distance < distMin) {
             direction = this.moveAway(entity);
         } else {
-            direction = this.randomMovement(entity);
+            direction = this.randomMovement();
         }
         return direction;
     }
@@ -84,9 +84,9 @@ class AbstractEnemy {
     return isMovingX || isMovingY;
     };
 
-    randomMovement(entity) {
-        let randomDirectionX = getRandomRange(-1350, 1350);
-        let randomDirectionY = getRandomRange(-1350, 1350);
+    randomMovement() {
+        let randomDirectionX = getRandomInteger(-5350, 5350);
+        let randomDirectionY = getRandomInteger(-5350, 5350);
         let isMovingX = false;
         let isMovingY = false;
         if((randomDirectionX > this.x) && !this.collideX) { //move right
