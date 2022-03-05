@@ -29,7 +29,7 @@ class PlasmaRifle extends AbstractWeapon {
         this.ammotype = this.PR_BULLET;
         this.gun = this.PLASMA_PIC;
         this.ammotypescale = 2.5;
-        this.unlocked = true;
+        this.unlocked = false;
     };
 
     update() {

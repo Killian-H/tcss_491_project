@@ -1,6 +1,6 @@
 class AssaultRiflePickup {
 
-    AR_PIC = ASSET_MANAGER.getAsset("./sprites/master_chief/chief_arms_assault_rifle.png");
+    AR_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/assault_rifle.png");
     //WIDTH = 200;
     //HEIGHT = 200;
     constructor(game, x, y) {

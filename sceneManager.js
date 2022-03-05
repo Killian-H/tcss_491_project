@@ -108,6 +108,7 @@ class SceneManager {
         this.pelican = new Pelican(this.game, 200, 200);
         this.game.addEntity(this.pelican);
         ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
+        this.game.addEntity(new AssaultRiflePickup(this.game, 650, 300));
         //add in minimap
         //this.map = new Minimap(this.game, 900, 400, 50);
         //this.game.addEntity(this.map);
@@ -125,7 +126,7 @@ class SceneManager {
         this.game.addEntity(this.masterchief);
         this.loadGround(ground);
         
-        
+        this.game.addEntity(new Background(this.game, -528, -128));
         //his.game.addEntity(new Background(this.game, 0, 0));
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
