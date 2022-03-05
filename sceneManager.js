@@ -127,7 +127,7 @@ class SceneManager {
         this.loadEntities(entities);
         this.game.addEntity(this.masterchief);
         this.loadGround(ground);
-        
+        //this.game.addEntity(new Elite(this.game, 650, 300));
         this.game.addEntity(new Background(this.game, -528, -128));
         //his.game.addEntity(new Background(this.game, 0, 0));
         this.masterchief.resetHealth();

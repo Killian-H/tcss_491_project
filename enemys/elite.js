@@ -174,6 +174,7 @@ class Elite extends AbstractEnemy {
         //if(!this.game.pauseb){
         if (this.health <= 0) {
             this.dead = true;
+            ASSET_MANAGER.playAsset("./audio/elite/elitedeath.mp3");
             if (this.facing === this.RIGHT) {
                 this.deadRight.drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, 1.65);
             } else {
