@@ -94,6 +94,10 @@ class RocketLauncher extends AbstractWeapon {
         this.ammo = this.AMMO_DEFAULT;
     }
 
+    addAmmo() {
+        this.ammoReserve += 4;
+    }
+
     draw(ctx) {
         if(!this.game.pauseb){
         }

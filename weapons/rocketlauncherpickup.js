@@ -16,7 +16,11 @@ class RocketLauncherPickup {
             this.game.entities.forEach(function (entity) {
                 if (entity.BB && that.BB.collide(entity.BB)) {
                     if (entity instanceof masterchief) {
-                        entity.weaponArray[5].unlocked = true;
+                        if (!entity.weaponArray[5].unlocked) {
+                            entity.weaponArray[5].unlocked = true;
+                        } else {
+                            entity.weaponArray[5].addAmmo();
+                        }
                         ASSET_MANAGER.playAsset("./audio/weapons/rocket switch.mp3");
                         that.removeFromWorld = true;
                     }

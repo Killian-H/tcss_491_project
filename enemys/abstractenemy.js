@@ -85,13 +85,14 @@ class AbstractEnemy {
     };
 
     randomMovement(entity) {
-        let randomDirection = getRandomRange(-350, 350);
+        let randomDirectionX = getRandomRange(-1350, 1350);
+        let randomDirectionY = getRandomRange(-1350, 1350);
         let isMovingX = false;
         let isMovingY = false;
-        if((entity.x + randomDirection > this.x) && !this.collideX) { //move right
+        if((randomDirectionX > this.x) && !this.collideX) { //move right
             this.velocity.x = this.SET_VELOCITY.x * this.game.clockTick;
             isMovingX = true;
-        } else if((entity.x + randomDirection < this.x) && !this.collideX) { //move left
+        } else if((randomDirectionX < this.x) && !this.collideX) { //move left
             this.velocity.x = -1 * (this.SET_VELOCITY.x * this.game.clockTick);
             isMovingX = true;
         } else {
@@ -99,10 +100,10 @@ class AbstractEnemy {
             isMovingX = false;
         }
         
-        if((entity.y + randomDirection > this.y) && !this.collideY) { //move down
+        if((randomDirectionY > this.y) && !this.collideY) { //move down
             this.velocity.y = this.SET_VELOCITY.y * this.game.clockTick;
             isMovingY = true;
-        } else if((entity.y + randomDirection < this.y) && !this.collideY) { //move up
+        } else if((randomDirectionY < this.y) && !this.collideY) { //move up
             this.velocity.y = -1 * (this.SET_VELOCITY.y * this.game.clockTick);
             isMovingY = true;
         } else {

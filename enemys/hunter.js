@@ -56,7 +56,7 @@ class Hunter extends AbstractEnemy {
         this.state = this.IDLE;
         this.updateBoundBox();
         this.elapsedTime += this.game.clockTick;
-        this.randomFireRate = Math.random() * (3 - .3) + .3;
+        this.randomFireRate = Math.random() * (3 - .6) + .6;
         //console.log(this.randomFireRate);a
         var that = this;
         this.game.entities.forEach(function (entity) {

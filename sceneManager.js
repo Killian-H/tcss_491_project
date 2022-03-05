@@ -109,6 +109,8 @@ class SceneManager {
         this.game.addEntity(this.pelican);
         ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
         this.game.addEntity(new AssaultRiflePickup(this.game, 650, 300));
+        this.game.addEntity(new RocketLauncherPickup(this.game, 700, 300));
+        this.game.addEntity(new RocketLauncherPickup(this.game, 700, 400));
         //add in minimap
         //this.map = new Minimap(this.game, 900, 400, 50);
         //this.game.addEntity(this.map);

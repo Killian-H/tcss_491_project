@@ -139,7 +139,7 @@ class Elite extends AbstractEnemy {
                     that.aimingX = entity.x;
                     that.aimingY = entity.y;
                     that.collide();
-                    let isMoving = that.chooseDirection(entity, 275, 350);
+                    let isMoving = that.chooseDirection(entity, 250, 325);
                     if(isMoving) {
                         that.state = that.WALK;
                     }
