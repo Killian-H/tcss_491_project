@@ -89,6 +89,9 @@ class Grunt extends AbstractEnemy {
                     if (r >= 30 && r < 40) {
                         ASSET_MANAGER.playAsset("./audio/grunt/gruntpee.mp3");
                     }
+                    if (r >= 40 && r < 50) {
+                        ASSET_MANAGER.playAsset("./audio/grunt/gruntscream.mp3");
+                    }
 
                     that.seen = true;
                     if (that.BB.left > entity.BB.left) {
