@@ -132,6 +132,7 @@ ASSET_MANAGER.queueDownload("./audio/grunt/gruntpee.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntdiedevil.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntitdies.mp3");
 ASSET_MANAGER.queueDownload("./audio/grunt/gruntlookout.mp3");
+ASSET_MANAGER.queueDownload("./audio/grunt/gruntdeath.mp3");
 
 ASSET_MANAGER.queueDownload("./audio/elite/elitelaugh1.mp3");
 ASSET_MANAGER.queueDownload("./audio/elite/elitewut.mp3");

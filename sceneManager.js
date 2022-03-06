@@ -104,6 +104,10 @@ class SceneManager {
         this.game.unpause();
         this.clearEntities();
         this.resetXanyY();
+        //intro
+        this.pelican = new Pelican(this.game, 200, 200);
+        this.game.addEntity(this.pelican);
+        ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
         //add in minimap
         //this.map = new Minimap(this.game, 900, 400, 50);
         //this.game.addEntity(this.map);
@@ -112,12 +116,7 @@ class SceneManager {
         this.hud = new hud(this.game, this.x, this.y, this.masterchief);
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
-        //intro
-        this.pelican = new Pelican(this.game, 200, 200);
-        this.game.addEntity(this.pelican);
-        ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
         //this.game.addEntity(new Hunter(this.game, 500, 500));
-        this.game.addEntity(new AssaultRiflePickup(this.game, 650, 300));
 
         //Load Level
         let ground = level.layers[0];
@@ -125,8 +124,8 @@ class SceneManager {
         this.loadEntities(entities);
         this.game.addEntity(this.masterchief);
         this.loadGround(ground);
-        //this.game.addEntity(new Elite(this.game, 650, 300));
-        this.game.addEntity(new Background(this.game, -528, -128));
+        
+        
         //his.game.addEntity(new Background(this.game, 0, 0));
         this.masterchief.resetHealth();
         this.masterchief.resetShield();
@@ -241,11 +240,11 @@ class SceneManager {
                     case 47: //MedKit
                         this.game.addEntity(new Medkit(this.game,currX, currY  + this.TILE_WIDTH / 2));
                         break;
-                    case 44:
+                    case 44: //Rocket Launcher
                         this.game.addEntity(new RocketLauncherPickup(this.game,currX + this.TILE_WIDTH / 2, currY  + this.TILE_WIDTH / 2));
                         break;
                     case 48: //assault rifle
-                        this.game.addEntity(new AssaultRiflePickup(this.game,currX + this.TILE_WIDTH / 2,currY  + this.TILE_WIDTH / 2));
+                        this.game.addEntity(new AssaultRiflePickup(this.game,currX + this.TILE_WIDTH / 2, currY  + this.TILE_WIDTH / 2));
                         break;
                     case 37: //plasma rifle
                         this.game.addEntity(new PlasmaPickup(this.game,currX + this.TILE_WIDTH / 2,currY  + this.TILE_WIDTH / 2));
