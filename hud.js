@@ -14,7 +14,7 @@ class hud {
     NUMBERS3 = {x: 10, y: 480};
     PAUSEBUTTON = {x: 10, y: 535};
     BACK = {x: 10, y: 50};
-    CONTROLSPIC = ASSET_MANAGER.getAsset("./images/controlsimage.jpg");
+    CONTROLSPIC = ASSET_MANAGER.getAsset("./images/halo_pause_back.jpg");
 
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
@@ -111,6 +111,7 @@ class hud {
         }
         else if(this.game.pauseb){
             if(!this.game.pauseControls){
+                ctx.drawImage(this.CONTROLSPIC, 0, 0, this.CANVAS.w, this.CANVAS.h, 0, 0, this.CANVAS.w * 1, this.CANVAS.h * 1);
                 ctx.font = 'bold 48px "Black Ops One"';
                 ctx.fillStyle = "Red";
                 ctx.fillText(("PAUSED"), 400, 105);
@@ -142,7 +143,7 @@ class hud {
                 }
             }
             else if(this.game.pauseControls){
-                ctx.drawImage(this.CONTROLSPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w, this.CANVAS.h * 1.15);
+                ctx.drawImage(this.CONTROLSPIC, 0, 0, this.CANVAS.w, this.CANVAS.h, 0, 0, this.CANVAS.w * 1, this.CANVAS.h * 1);
                 ctx.font = 48 + 'px "Black Ops One"';
                 ctx.fillStyle = "White";
                 ctx.fillText("W/A/S/D = Move MasterChief", this.WASD.x, this.WASD.y);
@@ -156,11 +157,11 @@ class hud {
                 
                 if (this.game.mouse != null) {
                     if ((this.game.mouse.x - this.game.camera.x >= this.BACK.x && this.game.mouse.x - this.game.camera.x <= this.BACK.x + 185) && (this.game.mouse.y - this.game.camera.y >= this.BACK.y - 40 && this.game.mouse.y - this.game.camera.y <= this.BACK.y)) {
-                        ctx.fillStyle = "Red";
+                        ctx.fillStyle = "Black";
                         ctx.fillText("<Back", this.BACK.x, this.BACK.y);
                     }
                     else {
-                        ctx.fillStyle = "Black";
+                        ctx.fillStyle = "Red";
                         ctx.fillText("<Back", this.BACK.x, this.BACK.y);
                     }
                 }

@@ -108,7 +108,6 @@ class SceneManager {
         this.pelican = new Pelican(this.game, 200, 200);
         this.game.addEntity(this.pelican);
         ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
-        this.game.addEntity(new AssaultRiflePickup(this.game, 650, 300));
         //add in minimap
         //this.map = new Minimap(this.game, 900, 400, 50);
         //this.game.addEntity(this.map);
@@ -118,6 +117,7 @@ class SceneManager {
         this.game.addEntity(this.hud);
         this.game.enemiesInLevel = 0;
         //this.game.addEntity(new Hunter(this.game, 500, 500));
+        this.game.addEntity(new AssaultRiflePickup(this.game, 650, 300));
 
         //Load Level
         let ground = level.layers[0];

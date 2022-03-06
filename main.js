@@ -10,6 +10,7 @@ ASSET_MANAGER.queueDownload("./images/creditsimage.jpg");
 ASSET_MANAGER.queueDownload("./images/controlsimage.jpg");
 ASSET_MANAGER.queueDownload("./images/chiefheadimage.png");
 ASSET_MANAGER.queueDownload("./images/halo_the_master_chief.jpg");
+ASSET_MANAGER.queueDownload("./images/halo_pause_back.jpg");
 ASSET_MANAGER.queueDownload("./images/Grass_Background_Large.png");
 ASSET_MANAGER.queueDownload("./images/Grass_Background_Huge.png");
 ASSET_MANAGER.queueDownload("./sprites/weapons/rocket_explosion.png");
