@@ -18,6 +18,7 @@ class RocketLauncherPickup {
                     if (entity instanceof masterchief) {
                         if (!entity.weaponArray[5].unlocked) {
                             entity.weaponArray[5].unlocked = true;
+                            entity.setWeapon(5);
                         } else {
                             entity.weaponArray[5].addAmmo();
                         }

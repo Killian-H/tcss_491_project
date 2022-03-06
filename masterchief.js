@@ -359,7 +359,10 @@ class masterchief {
         ctx.fillStyle = "Aqua";
         ctx.fillRect(mmX + this.x / 32.5, mmY + this.y / 32.5, PARAMS.SCALE * 2 , PARAMS.SCALE * 2);
     }
-
+    
+    setWeapon(callNum){
+        this.weapon = this.weaponArray[callNum];
+    }
     // calculateWeaponLocationX() {
     //     if (this.facing == this.LEFT) {
     //         return this.x - this.armImg.width/2; 
