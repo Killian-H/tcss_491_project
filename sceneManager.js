@@ -117,6 +117,7 @@ class SceneManager {
         this.game.addEntity(this.pelican);
         ASSET_MANAGER.playAsset("./audio/takeoff.mp3");
         //this.game.addEntity(new Hunter(this.game, 500, 500));
+        //this.game.addEntity(new Elite(this.game, 650, 300));
         this.game.addEntity(new AssaultRiflePickup(this.game, 650, 300));
 
         //Load Level
