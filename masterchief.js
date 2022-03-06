@@ -215,6 +215,7 @@ class masterchief {
         }
         else if(!this.game.escapePress){
             this.game.pauseb = false;
+            this.game.pauseControls = false;
             //this.regenCount = setTimeout(() => {this.canRegen = true}, 3000);
         }
         if(!this.game.pauseb && !this.dead) {

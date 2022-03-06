@@ -24,7 +24,7 @@ class GameEngine {
         this.pointer = null;
         this.escapePress = false;
         this.pauseb = false;
-
+        this.pauseControls = false;
         this.win = false;
         this.enemiesInLevel = -1;
         this.chiefDone = false;
@@ -69,6 +69,7 @@ class GameEngine {
     unpause(){
         this.escapePress = false;
         this.pauseb = false;
+        this.pauseControls = false;
     };
 
     startInput() {

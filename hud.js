@@ -4,6 +4,17 @@ class hud {
     HEALTH_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_image_health1.png");
     COVENANT_PIC = ASSET_MANAGER.getAsset("./sprites/hud_display/hud_logo_covenant.png");
     HAPPY_PIC = ASSET_MANAGER.getAsset("./images/happy.png");
+    CANVAS = {w: 1024, h: 540};
+    WASD = {x: 10, y: 120};
+    RELOAD = {x: 10, y: 180};
+    AIM = {x: 10, y: 240};
+    LEFT_CLICK = {x: 10, y: 300};
+    NUMBERS = {x: 10, y: 360};
+    NUMBERS2 = {x: 10, y: 420};
+    NUMBERS3 = {x: 10, y: 480};
+    PAUSEBUTTON = {x: 10, y: 535};
+    BACK = {x: 10, y: 50};
+    CONTROLSPIC = ASSET_MANAGER.getAsset("./images/controlsimage.jpg");
 
     constructor(game,x,y,masterchief) {
         Object.assign(this, {game, x, y, masterchief});
@@ -14,16 +25,32 @@ class hud {
 
     update() {
         if(this.game.pauseb){
-            if (this.game.mouse != null) {
-                if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185) 
-                    && (this.game.click)) {
-                    ASSET_MANAGER.playAsset("./audio/click.wav");
-                    this.game.camera.loadLevel(levelOne);
+            if(!this.game.pauseControls){
+                if (this.game.mouse != null) {
+                    if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185) 
+                        && (this.game.click)) {
+                        ASSET_MANAGER.playAsset("./audio/click.wav");
+                        this.game.camera.loadLevel(levelOne);
+                    }
+                    if ((this.game.mouse.x - this.game.camera.x >= 387 && this.game.mouse.x - this.game.camera.x <= 615) && (this.game.mouse.y - this.game.camera.y >= 225 && this.game.mouse.y - this.game.camera.y <= 265)
+                        && (this.game.click)) {
+                        ASSET_MANAGER.playAsset("./audio/click.wav");
+                        this.game.pauseControls = true;
+                    }
+                    if ((this.game.mouse.x - this.game.camera.x >= 450 && this.game.mouse.x - this.game.camera.x <= 553) && (this.game.mouse.y - this.game.camera.y >= 305 && this.game.mouse.y - this.game.camera.y <= 345)
+                        && (this.game.click)) {
+                        ASSET_MANAGER.playAsset("./audio/click.wav");
+                        this.game.camera.loadStartMenu();
+                    }
                 }
-                if ((this.game.mouse.x - this.game.camera.x >= 450 && this.game.mouse.x - this.game.camera.x <= 553) && (this.game.mouse.y - this.game.camera.y >= 225 && this.game.mouse.y - this.game.camera.y <= 265)
-                    && (this.game.click)) {
-                    ASSET_MANAGER.playAsset("./audio/click.wav");
-                    this.game.camera.loadStartMenu();
+            }
+            else if(this.game.pauseControls){
+                if (this.game.mouse != null) {
+                    if ((this.game.mouse.x - this.game.camera.x >= this.BACK.x && this.game.mouse.x - this.game.camera.x <= this.BACK.x + 185) && (this.game.mouse.y - this.game.camera.y >= this.BACK.y - 40 && this.game.mouse.y - this.game.camera.y <= this.BACK.y)
+                        && (this.game.click)) {
+                        ASSET_MANAGER.playAsset("./audio/click.wav");
+                        this.game.pauseControls = false;
+                    }
                 }
             }
         }
@@ -83,25 +110,59 @@ class hud {
         //ctx.strokeText((this.masterchief.ammo+"ammo"), 1000, 500);
         }
         else if(this.game.pauseb){
-            ctx.font = 'bold 48px "Black Ops One"';
-            ctx.fillStyle = "Red";
-            ctx.fillText(("PAUSED"), 400, 105);
-            if (this.game.mouse != null) {
-                if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185)) {
-                    ctx.fillStyle = "Black";
-                    ctx.fillText("Restart", 400, 185);
+            if(!this.game.pauseControls){
+                ctx.font = 'bold 48px "Black Ops One"';
+                ctx.fillStyle = "Red";
+                ctx.fillText(("PAUSED"), 400, 105);
+                if (this.game.mouse != null) {
+                    if ((this.game.mouse.x - this.game.camera.x >= 400 && this.game.mouse.x - this.game.camera.x <= 600) && (this.game.mouse.y - this.game.camera.y >= 145 && this.game.mouse.y - this.game.camera.y <= 185)) {
+                        ctx.fillStyle = "Black";
+                        ctx.fillText("Restart", 400, 185);
+                    }
+                    else {
+                        ctx.fillStyle = "Red";
+                        ctx.fillText("Restart", 400, 185);
+                    }
+                    if ((this.game.mouse.x - this.game.camera.x >= 387 && this.game.mouse.x - this.game.camera.x <= 615) && (this.game.mouse.y - this.game.camera.y >= 225 && this.game.mouse.y - this.game.camera.y <= 265)) {
+                        ctx.fillStyle = "Black";
+                        ctx.fillText("Controls", 387, 265);
+                    }
+                    else {
+                        ctx.fillStyle = "Red";
+                        ctx.fillText("Controls", 387, 265);
+                    }
+                    if ((this.game.mouse.x - this.game.camera.x >= 450 && this.game.mouse.x - this.game.camera.x <= 553) && (this.game.mouse.y - this.game.camera.y >= 305 && this.game.mouse.y - this.game.camera.y <= 345)) {
+                        ctx.fillStyle = "Black";
+                        ctx.fillText("Quit", 450, 345);
+                    }
+                    else {
+                        ctx.fillStyle = "Red";
+                        ctx.fillText("Quit", 450, 345);
+                    }
                 }
-                else {
-                    ctx.fillStyle = "Red";
-                    ctx.fillText("Restart", 400, 185);
-                }
-                if ((this.game.mouse.x - this.game.camera.x >= 450 && this.game.mouse.x - this.game.camera.x <= 553) && (this.game.mouse.y - this.game.camera.y >= 225 && this.game.mouse.y - this.game.camera.y <= 265)) {
-                    ctx.fillStyle = "Black";
-                    ctx.fillText("Quit", 450, 265);
-                }
-                else {
-                    ctx.fillStyle = "Red";
-                    ctx.fillText("Quit", 450, 265);
+            }
+            else if(this.game.pauseControls){
+                ctx.drawImage(this.CONTROLSPIC, this.x, this.y, this.CANVAS.w, this.CANVAS.h, this.x, this.y, this.CANVAS.w, this.CANVAS.h * 1.15);
+                ctx.font = 48 + 'px "Black Ops One"';
+                ctx.fillStyle = "White";
+                ctx.fillText("W/A/S/D = Move MasterChief", this.WASD.x, this.WASD.y);
+                ctx.fillText("R = Reload", this.RELOAD.x, this.RELOAD.y);
+                ctx.fillText("Aim = Move Mouse", this.AIM.x, this.AIM.y);
+                ctx.fillText("Left Click = Shoot Weapon", this.LEFT_CLICK.x, this.LEFT_CLICK.y);
+                ctx.fillText("1 = Assault Rifle, 2 = Pistol", this.NUMBERS.x, this.NUMBERS.y);
+                ctx.fillText("3 = DMR, 4 = Shotgun", this.NUMBERS2.x, this.NUMBERS2.y);
+                ctx.fillText("5 = Plasma Rifle, 6 = Rocket Launcher", this.NUMBERS3.x, this.NUMBERS3.y);
+                ctx.fillText("Escape = Pause Game", this.PAUSEBUTTON.x, this.PAUSEBUTTON.y);
+                
+                if (this.game.mouse != null) {
+                    if ((this.game.mouse.x - this.game.camera.x >= this.BACK.x && this.game.mouse.x - this.game.camera.x <= this.BACK.x + 185) && (this.game.mouse.y - this.game.camera.y >= this.BACK.y - 40 && this.game.mouse.y - this.game.camera.y <= this.BACK.y)) {
+                        ctx.fillStyle = "Red";
+                        ctx.fillText("<Back", this.BACK.x, this.BACK.y);
+                    }
+                    else {
+                        ctx.fillStyle = "Black";
+                        ctx.fillText("<Back", this.BACK.x, this.BACK.y);
+                    }
                 }
             }
         }
