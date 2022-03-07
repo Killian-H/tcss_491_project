@@ -321,10 +321,10 @@ class masterchief {
                 }
                 if (that.velocity.y < 0 && that.BB.bottom > entity.BB.bottom) { // traveling up.
                     if ((entity instanceof AbstractEnemy || entity instanceof AbstractEnvironment) && that.BB.top <= entity.BB.bottom) {
-                        that.y += 1;
-                        if (that.game.up && that.BB.bottom > entity.BB.bottom) {
-                            collisiony = 0;
+                        if (that.BB.top > entity.BB.top) {
+                            that.y += 1;
                         }
+                        collisiony = 0;
                     }
                 } 
                 if (that.velocity.x > 0 || (that.velocity.x < 0 && that.BB.right < entity.BB.right)) { // traveling right.
