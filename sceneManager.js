@@ -41,6 +41,8 @@ class SceneManager {
     }
 
     loadSplashScreen(){
+        this.game.inGame = false;
+        document.getElementById("gameWorld").style.cursor = "default";
         this.clearEntities();
         this.splashscreen = new SplashScreen(this.game, 0, 0);
         this.game.addEntity(this.splashscreen);
@@ -48,6 +50,8 @@ class SceneManager {
     }
 
     loadStartMenu() {
+        this.game.inGame = false;
+        document.getElementById("gameWorld").style.cursor = "default";
         this.clearEntities();
         this.startmenu = new StartMenu(this.game, 0, 0);
         this.game.addEntity(this.startmenu);
@@ -58,6 +62,8 @@ class SceneManager {
 
     loadWinMenu() {
         this.sleep(100).then(() => {
+            this.game.inGame = false;
+            document.getElementById("gameWorld").style.cursor = "default";
             this.game.enemiesInLevel = -1;
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
@@ -69,6 +75,8 @@ class SceneManager {
     } 
 
     loadStartMenuNoAudio() {
+        this.game.inGame = false;
+        document.getElementById("gameWorld").style.cursor = "default";
         this.clearEntities();
         this.startmenu = new StartMenu(this.game, 0, 0);
         this.game.addEntity(this.startmenu);
@@ -77,6 +85,8 @@ class SceneManager {
 
     loadDeathMenu() {
         this.sleep(2000).then(() => {
+            this.game.inGame = false;
+            document.getElementById("gameWorld").style.cursor = "default";
             this.clearEntities();
             ASSET_MANAGER.pauseBackgroundMusic();
             this.deathmenu = new DeathMenu(this.game, 0, 0);
@@ -87,6 +97,8 @@ class SceneManager {
     }
 
     loadControls() {
+        this.game.inGame = false;
+        document.getElementById("gameWorld").style.cursor = "default";
         this.clearEntities();
         this.controls = new Controls(this.game, 0, 0);
         this.game.addEntity(this.controls);
@@ -94,6 +106,8 @@ class SceneManager {
     }
 
     loadCredits() {
+        this.game.inGame = false;
+        document.getElementById("gameWorld").style.cursor = "default";
         this.clearEntities();
         this.credits = new Credits(this.game, 0, 0);
         this.game.addEntity(this.credits);
@@ -101,6 +115,8 @@ class SceneManager {
     }
 
     loadLevel(level) {
+        this.game.inGame = true;
+        document.getElementById("gameWorld").style.cursor = "crosshair";
         this.game.unpause();
         this.clearEntities();
         this.resetXanyY();

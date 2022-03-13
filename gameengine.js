@@ -28,6 +28,7 @@ class GameEngine {
         this.win = false;
         this.enemiesInLevel = -1;
         this.chiefDone = false;
+        this.inGame = false;
 
         // THE KILL SWITCH
         this.running = false;
@@ -210,9 +211,11 @@ class GameEngine {
                     break;
                 case "Escape":
                     if(that.escapePress == true){
+                        that.makeCrosshair();
                         that.escapePress = false;
                     }
                     else if(that.escapePress == false){
+                        that.makeDefault();
                         that.escapePress = true;
                     }
                     break;
@@ -222,6 +225,18 @@ class GameEngine {
 
         window.addEventListener("keydown", event => this.keys[event.key] = true);
         window.addEventListener("keyup", event => this.keys[event.key] = false);
+    };
+
+    makeCrosshair(){
+        if(this.inGame){
+            document.getElementById("gameWorld").style.cursor = "crosshair";
+        }
+    };
+
+    makeDefault(){
+        if(this.inGame){
+            document.getElementById("gameWorld").style.cursor = "default";
+        }
     };
 
     addEntity(entity) {
